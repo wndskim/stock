@@ -12,10 +12,22 @@ import matplotlib as plt
 # st.text('This is text')
 # st.caption('This is caption')
 
-st.write('2022년12월1일부터 2022년12월29일까지 전종목 가격 변동 - 하락률 순')
-df = stock.get_market_price_change("20221201", "20221231", market='ALL')
-df.sort_values(by='등락률', ascending=True, inplace=True)
 
-st.write('총',len(df),'건')
-st.dataframe(df)
+# Side Bar 생성
+job=st.sidebar.selectbox('선택','코스피2000','인덱스 종류')
+if job=='코스피200': pass
+if job=='인덱스 종류':
+    for ticker in stock.get_index_ticker_list():
+        st.write(ticker, stock.get_index_ticker_name(ticker))
+
+
+
+
+
+# st.write('2022년12월1일부터 2022년12월29일까지 전종목 가격 변동 - 하락률 순')
+# df = stock.get_market_price_change("20221201", "20221231", market='ALL')
+# df.sort_values(by='등락률', ascending=True, inplace=True)
+
+# st.write('총',len(df),'건')
+# st.dataframe(df)
 
