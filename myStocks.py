@@ -44,12 +44,19 @@ if job=='코스피200':
 # url='https://github.com/wndskim/stock/blob/b9b1d3205b052c18a7a67c4c3e8b88948238b522/data.xlsx'
 # data = pd.read_excel('/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx','Sorted')
 
-url = 'https://github.com/wndskim/stock/main/data.xlsx'
+url = 'https://github.com/wndskim/stock/data.xlsx'
 data = pd.read_excel(url,'Sorted')
 
 st.dataframe(data)
 
 
+import pandas as pd
+
+# Read the Excel file from GitHub
+df = pd.read_excel('https://github.com/YourGitHubName/YourRepositoryName/YourExcelFileName.xlsx')
+
+# Print the contents of the Excel file
+print(df)
 
 
 
