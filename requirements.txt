@@ -4,4 +4,3 @@ streamlit
 numpy
 pykrx
 matplotlib
-requests
