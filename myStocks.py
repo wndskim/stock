@@ -40,10 +40,10 @@ if job=='코스피200':
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
 # url = 'https://gitlab.com/wndskim/repo/-/raw/master/data.xlsx'
-url = 'https://gitlab.com/wndskim/상한가_300억이상_거래 종목.xlsx'
+url = 'https://gitlab.com/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx'
 
-data = pd.read_excel('/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx','Sorted')
-# data = pd.read_excel(url)
+# data = pd.read_excel('/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx','Sorted')
+data = pd.read_excel(url)
 
 st.dataframe(data)
 
