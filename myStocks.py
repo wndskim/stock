@@ -20,8 +20,9 @@ if job=='인덱스 종류':
     for ticker in stock.get_index_ticker_list():
         st.write(ticker, stock.get_index_ticker_name(ticker))
 if job=='코스피200':
-    pdf = stock.get_index_portfolio_deposit_file("1028")
-    st.write(pdf)
+    tickers = stock.get_index_portfolio_deposit_file("1028")
+    for ticker in tickers:
+        st.write(ticker, stock.get_market_ticker_name(ticker))
 
 
 
