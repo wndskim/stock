@@ -45,7 +45,7 @@ if job=='코스피200':
 # data = pd.read_excel('/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx','Sorted')
 
 url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
-data = pd.read_excel(url)
+data = pd.read_excel(url,'Sorted')
 
 st.dataframe(data)
 
