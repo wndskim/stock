@@ -15,10 +15,11 @@ import matplotlib as plt
 
 # Side Bar 생성
 job=st.sidebar.selectbox('선택',['선택','코스피200','인덱스 종류'])
-if job=='코스피200': pass
+if job=='선택': pass
 if job=='인덱스 종류':
     for ticker in stock.get_index_ticker_list():
         st.write(ticker, stock.get_index_ticker_name(ticker))
+
 if job=='코스피200':
     tickers = stock.get_index_portfolio_deposit_file("1028")
     for i, ticker in enumerate(tickers):
