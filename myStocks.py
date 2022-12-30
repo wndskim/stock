@@ -42,8 +42,9 @@ if job=='코스피200':
 # url = 'https://gitlab.com/wndskim/repo/-/raw/master/data.xlsx'
 # url = 'https://gitlab.com/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx'
 
-url = 'https://github.com/wndskim/stock/-/raw/main/data.xlsx'
+# url = 'https://github.com/wndskim/stock/-/raw/main/data.xlsx'
 
+url='https://github.com/wndskim/stock/blob/b9b1d3205b052c18a7a67c4c3e8b88948238b522/data.xlsx'
 # data = pd.read_excel('/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx','Sorted')
 data = pd.read_excel(url)
 
