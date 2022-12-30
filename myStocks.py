@@ -4,4 +4,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
-st.title('Hello Everyone.!!')
+st.title('This is title')
+st.subtitle('This is sub title')
+st.text('This is text')
+st.caption('This is caption')
