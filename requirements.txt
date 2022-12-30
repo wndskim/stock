@@ -6,3 +6,4 @@ pykrx
 matplotlib
 time
 os
+requests
