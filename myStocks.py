@@ -17,5 +17,6 @@ st.write('2022년12월1일부터 2022년12월29일까지 전종목 가격 변동
 df = stock.get_market_price_change("20221201", "20221231", market='ALL')
 df.sort_values(by='등락률', ascending=True, inplace=True)
 
+st.write('총',len(df),'건')
 st.dataframe(df)
 
