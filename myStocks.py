@@ -10,5 +10,10 @@ st.subheader('This is subheader')
 st.text('This is text')
 st.caption('This is caption')
 
-st.write('민정희 공부 잘하고 있어?')
+st.title('민정희 공부 잘하고 있어?')
+st.title('민정희 공부 잘하고 있어?')
+st.title('민정희 공부 잘하고 있어?')
+st.title('민정희 공부 잘하고 있어?')
+st.title('민정희 공부 잘하고 있어?')
+st.title('민정희 공부 잘하고 있어?')
 
