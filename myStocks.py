@@ -4,7 +4,9 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from pykrx import stock
+import matplotlib as plt
 
+st.title('민정희 이것  잘 보여?????')
 st.title('This is title')
 st.header('This is header')
 st.subheader('This is subheader')
