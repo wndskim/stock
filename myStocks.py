@@ -6,6 +6,19 @@ import numpy as np
 from pykrx import stock
 import matplotlib as plt
 
+# import gspread
+# from oauth2client.service_account import ServiceAccountCredentials
+# scope=['https://www.googleapis.com/auth/spreadsheets',
+#        'https://www.googleapis.com/auth/drive.file',
+#        'https://spreadsheets.google.com/feeds',
+#        'https://www.googleapis.com/auth/drive']
+# creds=ServiceAccountCredentials.from_json_keyfile_name('wndskim/stock/credentials.json',scope)
+# client=gspread.authorize(creds)
+
+
+
+
+
 # st.title('This is title')
 # st.header('This is header')
 # st.subheader('This is subheader')
@@ -14,7 +27,7 @@ import matplotlib as plt
 
 
 # Side Bar 생성
-job=st.sidebar.selectbox('선택',['선택','코스피200','인덱스 종류'])
+job=st.sidebar.selectbox('선택',['선택','코스피200','인덱스 종류', '특징주 보기'])
 if job=='선택': pass
 
 if job=='인덱스 종류':
@@ -26,7 +39,12 @@ if job=='코스피200':
     for i, ticker in enumerate(tickers):
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
+# url = 'https://gitlab.com/wndskim/repo/-/raw/master/data.xlsx'
+url = 'https://gitlab.com/wndskim/repo/-/raw/main/상한가_300억이상_거래 종목.xlsx'
 
+data = pd.read_excel(url)
+
+st.dataframe(data)
 
 
 
