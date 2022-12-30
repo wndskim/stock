@@ -4,3 +4,5 @@ streamlit
 numpy
 pykrx
 matplotlib
+time
+os
