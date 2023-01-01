@@ -47,18 +47,13 @@ st.write('Download 삼성 Historical Data..!!')
 # Get the data for the stock Apple by specifying the stock ticker, start date, and end date
 data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
 data.reset_index(inplace=True)
-data.to_csv('samsung.csv', index=False)
+data.to_csv('./samsung.csv', index=False)
 
 # data.to
 
 # Print the data
 st.dataframe(data)
 
-
-# url = 'https://gitlab.com/wndskim/repo/-/raw/master/data.xlsx'
-# url = 'https://gitlab.com/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx'
-# url='https://github.com/wndskim/stock/blob/b9b1d3205b052c18a7a67c4c3e8b88948238b522/data.xlsx'
-# data = pd.read_excel('/wndskim/stock/main/상한가_300억이상_거래 종목.xlsx','Sorted')
 
 # url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
 # data = pd.read_excel(url,'Sorted')
