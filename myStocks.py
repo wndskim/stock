@@ -48,7 +48,7 @@ st.write('Download 삼성 Historical Data..!!')
 data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
 
 # Print the data
-print(data)
+st.dataframe(data)
 
 
 # url = 'https://gitlab.com/wndskim/repo/-/raw/master/data.xlsx'
