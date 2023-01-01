@@ -4,3 +4,4 @@ streamlit
 numpy
 pykrx
 matplotlib
+yfinance
