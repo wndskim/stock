@@ -6,6 +6,7 @@ import numpy as np
 from pykrx import stock
 import matplotlib as plt
 import yfinance as yf
+import openpyxl
 
 # import gspread
 # from oauth2client.service_account import ServiceAccountCredentials
