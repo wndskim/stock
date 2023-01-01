@@ -44,6 +44,7 @@ if job=='코스피200':
 if job=='2022년 가격 변동률':
     st.write('2022년1월1일부터 2022년12월31일까지 전종목 가격 변동')
     df = stock.get_market_price_change("20220101", "20221231", market='ALL')
+    df=df[df['거래량']>0]
     df.sort_values(by='등락률', ascending=False, inplace=True)
 
     st.write('총',len(df),'건')
