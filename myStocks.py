@@ -29,7 +29,7 @@ import openpyxl
 
 
 # Side Bar 생성
-job=st.sidebar.selectbox('선택',['선택','종목별 OHLCV', '코스피200','인덱스 종류', '특징주 보기'])
+job=st.sidebar.selectbox('선택',['선택','2022년 가격 변동률','종목별 OHLCV', '코스피200','인덱스 종류', '특징주 보기'])
 if job=='선택': pass
 
 if job=='인덱스 종류':
@@ -41,20 +41,27 @@ if job=='코스피200':
     for i, ticker in enumerate(tickers):
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
-# samsung = yf.Ticker("005930.KS")
+if job=='2022년 가격 변동률':
+    st.write('2022년1월1일부터 2022년12월31일까지 전종목 가격 변동)'
+    df = stock.get_market_price_change("20220101", "20221231", market='ALL')
+    df.sort_values(by='등락률', ascending=False, inplace=True)
 
-# # get stock info
-# samsung_info = samsung.info
+    st.write('총',len(df),'건')
+    col1, col2=st.columns(2)
+    with col1:
+        st.text('(상승률 순')')
+        st.dataframe(df)
+    with col2:
+        st.text('(하락률 순')')
+        df.sort_values(by='등락률', ascending=True, inplace=True)
+        st.dataframe(df)
 
-# # get historical market data
-# samsung_history = samsung.history(period="5y")
-# df=samsung.history(period="5y", interval="1y")
 
-# df=yf.download('005930.KS', period='10y', interval='1y')
-# df=yf.download('AAPL', start='2012-01-01', end='2022-12-31', interval='1d')
-df=yf.download('005930.KS', start='2012-01-01', end='2022-12-31', interval='1mo')
 
-st.dataframe(df)
+
+# df=yf.download('005930.KS', start='2012-01-01', end='2022-12-31', interval='1mo')
+
+# st.dataframe(df)
 
 
 
@@ -89,10 +96,5 @@ st.write(pd.read_excel(file_upload), index=False)
 
 
 
-# st.write('2022년12월1일부터 2022년12월29일까지 전종목 가격 변동 - 하락률 순')
-# df = stock.get_market_price_change("20221201", "20221231", market='ALL')
-# df.sort_values(by='등락률', ascending=True, inplace=True)
 
-# st.write('총',len(df),'건')
-# st.dataframe(df)
 
