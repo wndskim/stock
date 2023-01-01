@@ -46,6 +46,9 @@ st.write('Download 삼성 Historical Data..!!')
 
 # Get the data for the stock Apple by specifying the stock ticker, start date, and end date
 data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
+data.reset_index(inplace=True)
+
+# data.to
 
 # Print the data
 st.dataframe(data)
