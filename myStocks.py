@@ -41,6 +41,10 @@ if job=='코스피200':
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
 
+file_upload = st.file_uploader("data", type="xlsx")
+
+st.write(file_upload)
+
 
 st.write('Download 삼성 Historical Data..!!')
 
