@@ -43,7 +43,7 @@ if job=='코스피200':
 
 file_upload = st.file_uploader("data", type="xlsx")
 
-st.write(file_upload)
+st.write(pd.read_excel(file_upload), index=False)
 
 
 st.write('Download 삼성 Historical Data..!!')
