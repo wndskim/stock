@@ -42,28 +42,29 @@ if job=='코스피200':
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
 
+
+######################################################################################################################
 file_upload = st.file_uploader("data", type="xlsx")
-
 st.write(pd.read_excel(file_upload), index=False)
+######################################################################################################################
+# st.write('Download 삼성 Historical Data..!!')
 
+# # Get the data for the stock Apple by specifying the stock ticker, start date, and end date
+# data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
+# data.reset_index(inplace=True)
+# data.to_csv('./samsung.csv', index=False)
 
-st.write('Download 삼성 Historical Data..!!')
+# # data.to
 
-# Get the data for the stock Apple by specifying the stock ticker, start date, and end date
-data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
-data.reset_index(inplace=True)
-data.to_csv('./samsung.csv', index=False)
-
-# data.to
-
-# Print the data
-st.dataframe(data)
-
-
-# url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
-# data = pd.read_excel(url,'Sorted')
-
+# # Print the data
 # st.dataframe(data)
+######################################################################################################################
+
+
+url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
+data = pd.read_excel(url,'Sorted')
+
+st.dataframe(data)
 
 # Read the Excel file from GitHub
 # df = pd.read_excel('https://github.com/YourGitHubName/YourRepositoryName/YourExcelFileName.xlsx')
