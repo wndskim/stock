@@ -47,7 +47,7 @@ samsung = yf.Ticker("005930.KS")
 samsung_info = samsung.info
 
 # get historical market data
-samsung_history = samsung.history(period="5y"
+samsung_history = samsung.history(period="5y")
 df=samsung.history(period="5y", interval="1y")
 
 st.dataframe(df)
