@@ -50,7 +50,8 @@ if job=='코스피200':
 # samsung_history = samsung.history(period="5y")
 # df=samsung.history(period="5y", interval="1y")
 
-df= yf.download('005930.KS', period='10y', interval='1y')
+# df=yf.download('005930.KS', period='10y', interval='1y')
+df=yf.download('005930.KS', start='2012-01-01', end='2022-12-31', interval='1y')
 
 st.dataframe(df)
 
