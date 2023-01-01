@@ -41,6 +41,18 @@ if job=='코스피200':
     for i, ticker in enumerate(tickers):
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
+samsung = yf.Ticker("005930.KS")
+
+# get stock info
+samsung_info = samsung.info
+
+# get historical market data
+samsung_history = samsung.history(period="5y"
+df=samsung.history(period="5y", interval="1y")
+
+st.dataframe(df)
+
+
 
 
 ######################################################################################################################
@@ -59,10 +71,10 @@ st.write(pd.read_excel(file_upload), index=False)
 # # Print the data
 # st.dataframe(data)
 #####################################################################################################################
-url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
-data = pd.read_excel(url)
+# url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
+# data = pd.read_excel(url)
 
-st.dataframe(data)
+# st.dataframe(data)
 ######################################################################################################################
 
 # Read the Excel file from GitHub
