@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from pykrx import stock
 import matplotlib as plt
-# import yfinance as yf
+import yfinance as yf
 
 # import gspread
 # from oauth2client.service_account import ServiceAccountCredentials
@@ -42,11 +42,11 @@ if job=='코스피200':
 
 
 
-# # Get the data for the stock Apple by specifying the stock ticker, start date, and end date
-# data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
+# Get the data for the stock Apple by specifying the stock ticker, start date, and end date
+data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
 
-# # Print the data
-# print(data)
+# Print the data
+print(data)
 
 
 # url = 'https://gitlab.com/wndskim/repo/-/raw/master/data.xlsx'
