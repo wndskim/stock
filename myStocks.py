@@ -58,13 +58,12 @@ st.write(pd.read_excel(file_upload), index=False)
 
 # # Print the data
 # st.dataframe(data)
+#####################################################################################################################
+# url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
+# data = pd.read_excel(url,'Sorted')
+
+# st.dataframe(data)
 ######################################################################################################################
-
-
-url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
-data = pd.read_excel(url,'Sorted')
-
-st.dataframe(data)
 
 # Read the Excel file from GitHub
 # df = pd.read_excel('https://github.com/YourGitHubName/YourRepositoryName/YourExcelFileName.xlsx')
