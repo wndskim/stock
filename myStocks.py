@@ -41,14 +41,16 @@ if job=='코스피200':
     for i, ticker in enumerate(tickers):
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
-samsung = yf.Ticker("005930.KS")
+# samsung = yf.Ticker("005930.KS")
 
-# get stock info
-samsung_info = samsung.info
+# # get stock info
+# samsung_info = samsung.info
 
-# get historical market data
-samsung_history = samsung.history(period="5y")
-df=samsung.history(period="5y", interval="1y")
+# # get historical market data
+# samsung_history = samsung.history(period="5y")
+# df=samsung.history(period="5y", interval="1y")
+
+df= yf.download('005930.KS', period='10y', interval='1y')
 
 st.dataframe(df)
 
