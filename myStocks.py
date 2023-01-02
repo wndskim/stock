@@ -58,12 +58,12 @@ def main():
                 streamlit version is {version}
                 ''')
 
-    schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
-    if schk: 금감원_공시내역_보기()
 
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
-    if job=='선택': return
+    if job=='선택':
+        schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
+        if schk: 금감원_공시내역_보기()
 
     if job=='인덱스 종류':
         for ticker in stock.get_index_ticker_list():
