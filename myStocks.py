@@ -15,7 +15,8 @@ def 전종목_등락률(sYear):
     df = stock.get_market_price_change(startDate, endDate, market='ALL')
     df=df[df['거래량']>0]
     df['거래대금(억)']=df['거래대금']/100000000
-    df['거래대금(억)']=df['거래대금(억)'].round(0)
+    df.loc[:, "거래대금(억)"] = df["거래대금(억)"].map('{:,d}'.format)
+    # df['거래대금(억)']=df['거래대금(억)'].round(0)
     df.sort_values(by='등락률', ascending=False, inplace=True)
     return df
 
