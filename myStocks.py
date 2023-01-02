@@ -36,8 +36,8 @@ def main():
 
     version=st.__version__
     st.markdown(f'''
-    #### My Stock Management System(Web Version)
-        __*streamlit version is {version}*__
+                #### My Stock Management System(Web Version)
+                    __*streamlit version is {version}*__
         ''')
 
     # Side Bar 생성
