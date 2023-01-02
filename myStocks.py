@@ -22,7 +22,7 @@ def 코스피200_등락률(sYear):
     tickers = stock.get_index_portfolio_deposit_file("1028")
     df_all=전종목_등락률(sYear)
     df=df_all.loc[df_all.index.isin(tickers)]
-    df.sort_values(by='등락률', ascending=False, inplace=True)
+    df=df.sort_values(by='등락률', ascending=False, inplace=True)
 
     return df
 
@@ -62,7 +62,7 @@ def main():
         st.write('총',str(len(df)+1),'건')
         st.text('상승률순')
         st.dataframe(df)
-        
+
         st.text('하락률순')
         df.sort_values(by='등락률', ascending=True, inplace=True)
         st.dataframe(df)
