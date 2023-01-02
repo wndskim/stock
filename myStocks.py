@@ -29,7 +29,7 @@ import openpyxl
 
 
 # Side Bar 생성
-job=st.sidebar.selectbox('선택',['선택','2022년 가격 변동률','종목별 OHLCV', '코스피200','인덱스 종류', '특징주 보기'])
+job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV', '코스피200','인덱스 종류', '특징주 보기'])
 if job=='선택': pass
 
 if job=='인덱스 종류':
@@ -41,9 +41,11 @@ if job=='코스피200':
     for i, ticker in enumerate(tickers):
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
-if job=='2022년 가격 변동률':
-    st.write('2022년1월1일부터 2022년12월31일까지 전종목 가격 변동')
-    df = stock.get_market_price_change("20220101", "20221231", market='ALL')
+if job=='가격 변동률':
+    sYear=st.sidebar.selectbox('선택',['2023','2022','2021','2020','2019','2018'])
+    startDate=sYear+'0101'; endDate=sYear+'1231'
+    st.write(startDate,'부터', endDate,'까지 전종목 가격 변동')
+    df = stock.get_market_price_change(startDate, endDate, market='ALL')
     df=df[df['거래량']>0]
     df.sort_values(by='등락률', ascending=False, inplace=True)
 
