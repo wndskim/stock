@@ -37,17 +37,18 @@ if job=='가격 변동률':
 
     if s선택=='전체':
         df=전종목_등락률(sYear)
-        st.write('총',len(df),'건')
-        col1, col2=st.columns(2)
-        with col1:
-            st.text('상승률순')
-            st.dataframe(df)
-        with col2:
-            st.text('하락률순')
-            df.sort_values(by='등락률', ascending=True, inplace=True)
-            st.dataframe(df)
 
     else: pass
+
+    st.write('총',len(df),'건')
+    col1, col2=st.columns(2)
+    with col1:
+        st.text('상승률순')
+        st.dataframe(df)
+    with col2:
+        st.text('하락률순')
+        df.sort_values(by='등락률', ascending=True, inplace=True)
+        st.dataframe(df)
 
 
 
