@@ -59,15 +59,13 @@ def main():
 
         else: pass
 
-        st.write('총',len(df),'건')
-        col1, col2=st.columns(2)
-        with col1:
-            st.text('상승률순')
-            st.dataframe(df)
-        with col2:
-            st.text('하락률순')
-            df.sort_values(by='등락률', ascending=True, inplace=True)
-            st.dataframe(df)
+        st.write('총',str(len(df)+1),'건')
+        st.text('상승률순')
+        st.dataframe(df)
+        
+        st.text('하락률순')
+        df.sort_values(by='등락률', ascending=True, inplace=True)
+        st.dataframe(df)
 
 
     return
