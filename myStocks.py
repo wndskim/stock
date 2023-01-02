@@ -36,9 +36,6 @@ if job=='인덱스 종류':
     for ticker in stock.get_index_ticker_list():
         st.write(ticker, stock.get_index_ticker_name(ticker))
 
-if job=='코스피200':
-
-
 if job=='가격 변동률':
     s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
     sYear=st.selectbox('선택',['2023','2022','2021','2020','2019','2018'])
