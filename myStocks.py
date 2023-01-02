@@ -66,8 +66,7 @@ if job=='가격 변동률':
 ##############################################################
 def main():
     # st.set_page_config(page_title='My Stock Management',
-    st.set_page_config(page_icon=':kimono:',
-                    layout='wide'
+    st.set_page_config(layout='wide'
                     )
 
     version=st.__version__
