@@ -44,7 +44,7 @@ def main():
 
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
-    if job=='선택': pass
+    if job=='선택': return
 
     if job=='인덱스 종류':
         for ticker in stock.get_index_ticker_list():
@@ -65,7 +65,7 @@ def main():
 
         tickers=df.index.to_list()
         ticker=st.selectbox('티커선택',tickers)
-        
+
         건수=len(df)+1
         st.write('총',str(건수),'건')
         st.text('상승률순')
