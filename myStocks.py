@@ -59,7 +59,8 @@ def main():
 
         else: pass
 
-        st.write('총',str(len(df)+1),'건')
+        건수=len(df)+1
+        st.write('총',str(건수),'건')
         st.text('상승률순')
         st.dataframe(df)
 
