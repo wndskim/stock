@@ -8,24 +8,13 @@ import matplotlib as plt
 import yfinance as yf
 import openpyxl
 
-# import gspread
-# from oauth2client.service_account import ServiceAccountCredentials
-# scope=['https://www.googleapis.com/auth/spreadsheets',
-#        'https://www.googleapis.com/auth/drive.file',
-#        'https://spreadsheets.google.com/feeds',
-#        'https://www.googleapis.com/auth/drive']
-# creds=ServiceAccountCredentials.from_json_keyfile_name('wndskim/stock/credentials.json',scope)
-# client=gspread.authorize(creds)
-
-
-
-
-
-# st.title('This is title')
-# st.header('This is header')
-# st.subheader('This is subheader')
-# st.text('This is text')
-# st.caption('This is caption')
+def 전종목_등락률(sYear):
+    startDate=sYear+'0101'; endDate=sYear+'1231'
+    st.write(startDate,'부터', endDate,'까지 전종목 가격 변동')
+    df = stock.get_market_price_change(startDate, endDate, market='ALL')
+    df=df[df['거래량']>0]
+    df.sort_values(by='등락률', ascending=False, inplace=True)
+    return df
 
 
 # Side Bar 생성
@@ -42,24 +31,23 @@ if job=='코스피200':
         st.write(i, ticker, stock.get_market_ticker_name(ticker))
 
 if job=='가격 변동률':
-    sYear=st.sidebar.selectbox('선택',['2023','2022','2021','2020','2019','2018'])
-    startDate=sYear+'0101'; endDate=sYear+'1231'
-    st.write(startDate,'부터', endDate,'까지 전종목 가격 변동')
-    df = stock.get_market_price_change(startDate, endDate, market='ALL')
-    df=df[df['거래량']>0]
-    df.sort_values(by='등락률', ascending=False, inplace=True)
+    s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
+    sYear=st.selectboxselectbox('선택',['2023','2022','2021','2020','2019','2018'])
 
-    st.write('총',len(df),'건')
-    col1, col2=st.columns(2)
-    with col1:
-        st.text('상승률순')
-        st.dataframe(df)
-    with col2:
-        st.text('하락률순')
-        df.sort_values(by='등락률', ascending=True, inplace=True)
-        st.dataframe(df)
+    if s선택=='전체':
+        df=전종목_등락률(sYear)
+        st.write('총',len(df),'건')
+        col1, col2=st.columns(2)
+        with col1:
+            st.text('상승률순')
+            st.dataframe(df)
+        with col2:
+            st.text('하락률순')
+            df.sort_values(by='등락률', ascending=True, inplace=True)
+            st.dataframe(df)
 
-
+    else: pass
+    
 
 
 # df=yf.download('005930.KS', start='2012-01-01', end='2022-12-31', interval='1mo')
