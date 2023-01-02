@@ -6,3 +6,6 @@ pykrx
 matplotlib
 yfinance
 openpyxl
+OpenDartReader
+datetime
+timedelta
