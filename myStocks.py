@@ -26,38 +26,6 @@ def 코스피200_등락률(sYear):
 
     return df
 
-# Side Bar 생성
-job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
-if job=='선택': pass
-
-if job=='인덱스 종류':
-    for ticker in stock.get_index_ticker_list():
-        st.write(ticker, stock.get_index_ticker_name(ticker))
-
-if job=='가격 변동률':
-    s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
-    sYear=st.selectbox('선택',['2023','2022','2021','2020','2019','2018'])
-
-    if s선택=='전체':
-        df=전종목_등락률(sYear)
-    elif s선택=='코스피200':
-        df=코스피200_등락률(sYear)
-
-        st.dataframe(df)
-
-    else: pass
-
-    st.write('총',len(df),'건')
-    col1, col2=st.columns(2)
-    with col1:
-        st.text('상승률순')
-        st.dataframe(df)
-    with col2:
-        st.text('하락률순')
-        df.sort_values(by='등락률', ascending=True, inplace=True)
-        st.dataframe(df)
-
-
 ##############################################################
 # ##### Main
 ##############################################################
@@ -69,8 +37,39 @@ def main():
     version=st.__version__
     st.markdown(f'''
     #### My Stock Management System(Web Version)
-    __*streamlit version is {version}*__
-    ''')
+        __*streamlit version is {version}*__
+        ''')
+
+    # Side Bar 생성
+    job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
+    if job=='선택': pass
+
+    if job=='인덱스 종류':
+        for ticker in stock.get_index_ticker_list():
+            st.write(ticker, stock.get_index_ticker_name(ticker))
+
+    if job=='가격 변동률':
+        s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
+        sYear=st.selectbox('선택',['2023','2022','2021','2020','2019','2018'])
+
+        if s선택=='전체':
+            df=전종목_등락률(sYear)
+        elif s선택=='코스피200':
+            df=코스피200_등락률(sYear)
+
+        else: pass
+
+        st.write('총',len(df),'건')
+        col1, col2=st.columns(2)
+        with col1:
+            st.text('상승률순')
+            st.dataframe(df)
+        with col2:
+            st.text('하락률순')
+            df.sort_values(by='등락률', ascending=True, inplace=True)
+            st.dataframe(df)
+
+
     return
 
 #####################################################
