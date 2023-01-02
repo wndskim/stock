@@ -61,7 +61,28 @@ if job=='가격 변동률':
         st.dataframe(df)
 
 
+##############################################################
+# ##### Main
+##############################################################
+def main():
+    st.set_page_config(page_title='My Stock Management',
+                    # page_icon=':bar_chart:',
+                    page_icon=':kimono:',
+                    layout='wide'
+                    )
 
+    version=st.__version__
+    st.markdown(f'''
+    #### My Stock Management System(Web Version)
+    __*streamlit version is {version}*__
+    ''')
+    return
+
+#####################################################
+##### Main ##########################################
+#####################################################
+if __name__ == '__main__':
+    main()
 # df=yf.download('005930.KS', start='2012-01-01', end='2022-12-31', interval='1mo')
 
 # st.dataframe(df)
