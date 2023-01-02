@@ -20,6 +20,10 @@ def 전종목_등락률(sYear):
 @st.cache(suppress_st_warning=True)
 def 코스피200_등락률(sYear):
     tickers = stock.get_index_portfolio_deposit_file("1028")
+
+    st.write(tickers)
+
+    
     # 종목명=[]
     # for i, ticker in enumerate(tickers):
     #     종목명.append(stock.get_market_ticker_name(ticker))
