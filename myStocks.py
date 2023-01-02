@@ -7,6 +7,10 @@ from pykrx import stock
 import matplotlib as plt
 import yfinance as yf
 import openpyxl
+import OpenDartReader
+
+API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
+dart=OpenDartReader(API_KEY)
 
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear):
@@ -42,6 +46,14 @@ def main():
                 #### My Stock Management System(Web Version)
                 streamlit version is {version}
                 ''')
+
+    # 금일 금강원 공시 내역
+    today=datetime.datetime.now().strftime('%Y%m%d')
+    df=dart.list(start=today, end=today, final=False)
+    st.markdown('-----')
+    st.text('금일 금감원 공시 건수:'+str(len(df))+'건')
+    st.dataframe(df)
+
 
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
