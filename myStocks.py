@@ -8,6 +8,7 @@ import matplotlib as plt
 import yfinance as yf
 import openpyxl
 
+@st.cache
 def 전종목_등락률(sYear):
     startDate=sYear+'0101'; endDate=sYear+'1231'
     st.write(startDate,'부터', endDate,'까지 전종목 가격 변동')
