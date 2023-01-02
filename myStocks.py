@@ -37,8 +37,8 @@ def main():
     version=st.__version__
     st.markdown(f'''
                 #### My Stock Management System(Web Version)
-                    __*streamlit version is {version}*__
-        ''')
+                streamlit version is {version}
+                ''')
 
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
