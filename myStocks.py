@@ -28,8 +28,12 @@ def 코스피200_등락률(sYear):
 
     st.dataframe(df_all)
 
-    
+
     df=df_all.loc[df_all.index.isin(tickers)]
+
+    st.dataframe(df)
+
+    
     df=df.sort_values(by='등락률', ascending=False, inplace=True)
 
     st.dataframe(df)
