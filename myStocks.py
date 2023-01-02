@@ -16,6 +16,7 @@ def 전종목_등락률(sYear):
     df=df[df['거래량']>0]
     df['거래대금(억)']=df['거래대금']/100000000
     df['거래대금(억)']=df['거래대금(억)'].round(0)
+    df['거래대금(억)']=df['거래대금(억)'].astype(int)
     df.sort_values(by='등락률', ascending=False, inplace=True)
     return df
 
