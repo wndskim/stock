@@ -34,7 +34,7 @@ def 코스피200_등락률(sYear):
     df.sort_values(by='등락률', ascending=False, inplace=True)
     return df
 
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def 금감원_공시내역_보기():
     # 금일 금강원 공시 내역
     today=datetime.now().strftime('%Y%m%d')
