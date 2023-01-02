@@ -54,7 +54,7 @@ def main():
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
         sYear=st.sidebar.selectbox('선택',['선택하세요','2023','2022','2021','2020','2019','2018'])
 
-        if s선택=='선택하세요': return
+        if sYear=='선택하세요': return
 
         if s선택=='전체':
             df=전종목_등락률(sYear)
