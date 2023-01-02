@@ -8,7 +8,7 @@ import matplotlib as plt
 import yfinance as yf
 import openpyxl
 
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear):
     startDate=sYear+'0101'; endDate=sYear+'1231'
     st.write(startDate,'부터', endDate,'까지 전종목 가격 변동')
@@ -21,7 +21,7 @@ def 전종목_등락률(sYear):
     df.sort_values(by='등락률', ascending=False, inplace=True)
     return df
 
-@st.cache(suppress_st_warning=True)
+# @st.cache(suppress_st_warning=True)
 def 코스피200_등락률(sYear):
     tickers = stock.get_index_portfolio_deposit_file("1028")
     df_all=전종목_등락률(sYear)
