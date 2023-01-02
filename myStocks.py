@@ -20,24 +20,9 @@ def 전종목_등락률(sYear):
 @st.cache(suppress_st_warning=True)
 def 코스피200_등락률(sYear):
     tickers = stock.get_index_portfolio_deposit_file("1028")
-
-    st.write(tickers)
-
-
     df_all=전종목_등락률(sYear)
-
-    st.dataframe(df_all)
-
-
     df=df_all.loc[df_all.index.isin(tickers)]
-
-    st.dataframe(df)
-
-
     df.sort_values(by='등락률', ascending=False, inplace=True)
-
-    st.dataframe(df)
-
     return df
 
 ##############################################################
@@ -75,8 +60,8 @@ def main():
 
 
 
-        # 건수=len(df)
-        # st.write('총',str(건수),'건')
+        건수=len(df)+1
+        st.write('총',str(건수),'건')
         st.text('상승률순')
         st.dataframe(df)
 
