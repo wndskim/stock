@@ -32,7 +32,7 @@ if job=='코스피200':
 
 if job=='가격 변동률':
     s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
-    sYear=st.selectboxselectbox('선택',['2023','2022','2021','2020','2019','2018'])
+    sYear=st.selectbox('선택',['2023','2022','2021','2020','2019','2018'])
 
     if s선택=='전체':
         df=전종목_등락률(sYear)
@@ -47,7 +47,7 @@ if job=='가격 변동률':
             st.dataframe(df)
 
     else: pass
-    
+
 
 
 # df=yf.download('005930.KS', start='2012-01-01', end='2022-12-31', interval='1mo')
