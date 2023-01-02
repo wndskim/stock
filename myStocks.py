@@ -65,6 +65,7 @@ def main():
         건수=len(df)+1
         st.write('총',str(건수),'건')
         st.text('상승률순')
+        df.reset_index(inplace=True)
         st.dataframe(df)
 
         st.text('하락률순')
