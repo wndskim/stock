@@ -17,6 +17,7 @@ def 전종목_등락률(sYear):
     df.sort_values(by='등락률', ascending=False, inplace=True)
     return df
 
+@st.cache(suppress_st_warning=True)
 def 코스피200_등락률(sYear):
     tickers = stock.get_index_portfolio_deposit_file("1028")
     종목명=[]
