@@ -17,9 +17,19 @@ def 전종목_등락률(sYear):
     df.sort_values(by='등락률', ascending=False, inplace=True)
     return df
 
+def 코스피200_등락률(sYear):
+    tickers = stock.get_index_portfolio_deposit_file("1028")
+    종목명=[]
+    for i, ticker in enumerate(tickers):
+        종목명.append(stock.get_market_ticker_name(ticker))
+
+    df=pd.DataFrame({'티커':tickers, '종목명':종목명})
+
+
+    return df
 
 # Side Bar 생성
-job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV', '코스피200','인덱스 종류', '특징주 보기'])
+job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
 if job=='선택': pass
 
 if job=='인덱스 종류':
@@ -27,9 +37,7 @@ if job=='인덱스 종류':
         st.write(ticker, stock.get_index_ticker_name(ticker))
 
 if job=='코스피200':
-    tickers = stock.get_index_portfolio_deposit_file("1028")
-    for i, ticker in enumerate(tickers):
-        st.write(i, ticker, stock.get_market_ticker_name(ticker))
+
 
 if job=='가격 변동률':
     s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
@@ -37,6 +45,10 @@ if job=='가격 변동률':
 
     if s선택=='전체':
         df=전종목_등락률(sYear)
+    elif s선택=='코스피200':
+        df=코스피200_등락률(sYear)
+
+        st.dataframe(df)
 
     else: pass
 
