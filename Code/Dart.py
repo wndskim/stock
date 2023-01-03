@@ -6,10 +6,11 @@ from datetime import datetime, timedelta
 API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
 dart=OpenDartReader(API_KEY)
 # @st.cache(suppress_st_warning=True)
-def 금감원_공시내역_보기():
+def 금감원_공시내역_보기(조회일):
     # 금일 금강원 공시 내역
-    today=datetime.now().strftime('%Y%m%d')
-    df=dart.list(start=today, end=today, final=False)
+    # today=datetime.now().strftime('%Y%m%d')
+    조회일=datetime.now().strftime('%Y%m%d')
+    df=dart.list(start=조회일, end=조회일, final=False)
 
     df['날짜']=df['rcept_dt']
     df['티커']=df['stock_code']
