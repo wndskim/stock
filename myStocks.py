@@ -13,9 +13,6 @@ import yfinance as yf
 
 from Code import Dart
 
-# API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
-# dart=OpenDartReader(API_KEY)
-
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear):
     startDate=sYear+'0101'; endDate=sYear+'1231'
@@ -37,16 +34,6 @@ def 코스피200_등락률(sYear):
     df.sort_values(by='등락률', ascending=False, inplace=True)
     return df
 
-# @st.cache(suppress_st_warning=True)
-# def 금감원_공시내역_보기():
-#     # 금일 금강원 공시 내역
-#     today=datetime.now().strftime('%Y%m%d')
-#     df=dart.list(start=today, end=today, final=False)
-#     st.markdown('-----')
-#     st.text('금일 금감원 공시 건수:'+str(len(df))+'건')
-#     st.dataframe(df)
-#     return
-
 ##############################################################
 # ##### Main
 ##############################################################
@@ -60,18 +47,23 @@ def main():
                 #### My Stock Management System(Web Version)
                 streamlit version is {version}
                 ''')
-
-    st.text('특징주 내역')
-    df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
-    st.dataframe(df)
-
-
     # Side Bar 생성
-    job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
+    job=st.sidebar.selectbox('선택',['선택', '특징주','가격 변동률','종목별 OHLCV','인덱스 종류'])
     if job=='선택':
         schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         # if schk: 금감원_공시내역_보기()
         if schk: Dart.금감원_공시내역_보기()
+
+    if job=='특징주':
+        
+        st.text('특징주 내역')
+        df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
+        st.dataframe(df)
+        종목명s=df['종목명'].unique.to_list()
+        종목명=st.selectbox('티커선택',종목명s)
+
+        df_종목=df[df['종목명']=='종목명']
+        st.dataframe(df_종목)
 
     if job=='인덱스 종류':
         for ticker in stock.get_index_ticker_list():
