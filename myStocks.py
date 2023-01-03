@@ -16,7 +16,7 @@ from Code import Dart
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear, sort_order):
     startDate=sYear+'0101'; endDate=sYear+'1231'
-    st.write(startDate,'부터', endDate,'까지 전종목 가격 변동')
+    st.write(startDate,'부터', endDate,'까지 가격 변동')
     df = stock.get_market_price_change(startDate, endDate, market='ALL')
     df=df[df['거래량']>0]
     df['거래대금(억)']=df['거래대금']/100000000
@@ -81,7 +81,7 @@ def main():
         else: pass
 
         건수=len(df)+1
-        st.write('총',str(건수),'건', s_radio)
+        st.write('총',str(건수),'건/', s_radio)
         # st.text(s_radio)
         df.reset_index(inplace=True)
         st.dataframe(df)
