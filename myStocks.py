@@ -81,14 +81,9 @@ def main():
         else: pass
 
         건수=len(df)+1
-        st.write('총',str(건수),'건/', s_radio)
-        # st.text(s_radio)
+        st.write('총',str(건수),'건 /', s선택, s_radio)
         df.reset_index(inplace=True)
         st.dataframe(df)
-
-        # st.text('하락률순')
-        # df.sort_values(by='등락률', ascending=True, inplace=True)
-        # st.dataframe(df)
 
         col1, col2=st.columns([1,2])
         with col1:
