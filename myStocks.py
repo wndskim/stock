@@ -63,7 +63,7 @@ def main():
         종목명s=df['종목명'].unique().tolist()
         종목명=st.selectbox('티커선택',종목명s)
 
-        df_종목=df[df['종목명']=='종목명']
+        df_종목=df[df['종목명']==종목명]
         st.dataframe(df_종목)
 
     if job=='인덱스 종류':
