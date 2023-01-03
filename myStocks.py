@@ -48,7 +48,7 @@ def main():
                 streamlit version is {version}
                 ''')
     # Side Bar 생성
-    job=st.sidebar.selectbox('선택',['선택', '특징주','가격 변동률','종목별 OHLCV','인덱스 종류'])
+    job=st.sidebar.selectbox('선택',['선택', '특징주','가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
     if job=='선택':
         schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         if schk: Dart.금감원_공시내역_보기()
@@ -65,10 +65,10 @@ def main():
         df_종목=df[df['종목명']==종목명]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
-    if job=='가격 변동률':
+    if job=='가격 변동률(년간)':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
         sYear=st.sidebar.selectbox('선택',['선택하세요','2023','2022','2021','2020','2019','2018'])
-        s_radio=st.radio("정렬순서 선택", ('상승률순', '하락률'))
+        s_radio=st.radio("정렬순서 선택", ('상승률순', '하락률순'))
         if s_radio=='상승률순': sort_order=False
         else: sort_order=True
 
@@ -81,8 +81,8 @@ def main():
         else: pass
 
         건수=len(df)+1
-        st.write('총',str(건수),'건')
-        st.text(s_radio)
+        st.write('총',str(건수),'건', s_radio)
+        # st.text(s_radio)
         df.reset_index(inplace=True)
         st.dataframe(df)
 
