@@ -14,7 +14,7 @@ import yfinance as yf
 from Code import Dart
 
 # @st.cache(suppress_st_warning=True)
-def 전종목_등락률(sYear):
+def 전종목_등락률(sYear, sort_order):
     startDate=sYear+'0101'; endDate=sYear+'1231'
     st.write(startDate,'부터', endDate,'까지 전종목 가격 변동')
     df = stock.get_market_price_change(startDate, endDate, market='ALL')
@@ -23,15 +23,15 @@ def 전종목_등락률(sYear):
     df['거래대금(억)']=df['거래대금(억)'].round(0)
     df['거래대금(억)']=df['거래대금(억)'].astype(int)
     df.drop(columns =['거래대금'], inplace = True) 
-    df.sort_values(by='등락률', ascending=False, inplace=True)
+    df.sort_values(by='등락률', ascending=sort_order, inplace=True)
     return df
 
 # @st.cache(suppress_st_warning=True)
-def 코스피200_등락률(sYear):
+def 코스피200_등락률(sYear, sort_order):
     tickers = stock.get_index_portfolio_deposit_file("1028")
-    df_all=전종목_등락률(sYear)
+    df_all=전종목_등락률(sYear, sort_order)
     df=df_all.loc[df_all.index.isin(tickers)]
-    df.sort_values(by='등락률', ascending=False, inplace=True)
+    df.sort_values(by='등락률', ascending=sort_order, inplace=True)
     return df
 
 ##############################################################
@@ -68,24 +68,27 @@ def main():
     if job=='가격 변동률':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
         sYear=st.sidebar.selectbox('선택',['선택하세요','2023','2022','2021','2020','2019','2018'])
+        s_radio=st.radio("선택", ('상승률순', '하락률'))
+        if s_radio=='상승률순': sort_order=True
+        else: sort_order=False
 
         if sYear=='선택하세요': return
 
         if s선택=='전체':
-            df=전종목_등락률(sYear)
+            df=전종목_등락률(sYear, sort_order)
         elif s선택=='코스피200':
-            df=코스피200_등락률(sYear)
+            df=코스피200_등락률(sYear,sort_order)
         else: pass
 
         건수=len(df)+1
         st.write('총',str(건수),'건')
-        st.text('상승률순')
+        st.text(sort_order)
         df.reset_index(inplace=True)
         st.dataframe(df)
 
-        st.text('하락률순')
-        df.sort_values(by='등락률', ascending=True, inplace=True)
-        st.dataframe(df)
+        # st.text('하락률순')
+        # df.sort_values(by='등락률', ascending=True, inplace=True)
+        # st.dataframe(df)
 
         col1, col2=st.columns([1,2])
         with col1:
