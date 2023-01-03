@@ -89,7 +89,7 @@ def main():
 
         col1, col2=st.columns([1,2])
         with col1:
-            티커s=df.index.to_list()
+            티커s=df['티커'].to_list()
             티커=st.selectbox('티커선택',티커s)
         with col2:
             st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
