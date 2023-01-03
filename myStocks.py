@@ -58,6 +58,9 @@ def main():
                 streamlit version is {version}
                 ''')
 
+    df=pd.read_excel('data.xlsx')
+    st.dataframe(df)
+
 
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','가격 변동률','종목별 OHLCV','인덱스 종류', '특징주 보기'])
