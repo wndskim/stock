@@ -53,6 +53,8 @@ def main():
         schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         if schk: Dart.금감원_공시내역_보기()
 
+    st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
+
     if job=='특징주':
         st.text('특징주 내역')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
@@ -94,7 +96,6 @@ def main():
             st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
             st.write('[네이버금융(종합정보)](https://finance.naver.com/item/main.naver?code={})'.format(티커))
             st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
-            # st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(종목))
             st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
 
     if job=='인덱스 종류':
