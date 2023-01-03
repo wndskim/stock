@@ -51,11 +51,9 @@ def main():
     job=st.sidebar.selectbox('선택',['선택', '특징주','가격 변동률','종목별 OHLCV','인덱스 종류'])
     if job=='선택':
         schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
-        # if schk: 금감원_공시내역_보기()
         if schk: Dart.금감원_공시내역_보기()
 
     if job=='특징주':
-        
         st.text('특징주 내역')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
@@ -67,10 +65,6 @@ def main():
         df_종목=df[df['종목명']==종목명]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
-    if job=='인덱스 종류':
-        for ticker in stock.get_index_ticker_list():
-            st.write(ticker, stock.get_index_ticker_name(ticker))
-
     if job=='가격 변동률':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
         sYear=st.sidebar.selectbox('선택',['선택하세요','2023','2022','2021','2020','2019','2018'])
@@ -81,8 +75,17 @@ def main():
             df=전종목_등락률(sYear)
         elif s선택=='코스피200':
             df=코스피200_등락률(sYear)
-
         else: pass
+
+        건수=len(df)+1
+        st.write('총',str(건수),'건')
+        st.text('상승률순')
+        df.reset_index(inplace=True)
+        st.dataframe(df)
+
+        st.text('하락률순')
+        df.sort_values(by='등락률', ascending=True, inplace=True)
+        st.dataframe(df)
 
         col1, col2=st.columns([1,2])
         with col1:
@@ -96,16 +99,9 @@ def main():
             # st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(종목))
             st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
 
-        건수=len(df)+1
-        st.write('총',str(건수),'건')
-        st.text('상승률순')
-        df.reset_index(inplace=True)
-        st.dataframe(df)
-
-        st.text('하락률순')
-        df.sort_values(by='등락률', ascending=True, inplace=True)
-        st.dataframe(df)
-
+    if job=='인덱스 종류':
+        for ticker in stock.get_index_ticker_list():
+            st.write(ticker, stock.get_index_ticker_name(ticker))
 
     return
 
