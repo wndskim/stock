@@ -68,9 +68,9 @@ def main():
     if job=='가격 변동률':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
         sYear=st.sidebar.selectbox('선택',['선택하세요','2023','2022','2021','2020','2019','2018'])
-        s_radio=st.radio("선택", ('상승률순', '하락률'))
-        if s_radio=='상승률순': sort_order=True
-        else: sort_order=False
+        s_radio=st.radio("정렬순서 선택", ('상승률순', '하락률'))
+        if s_radio=='상승률순': sort_order=False
+        else: sort_order=True
 
         if sYear=='선택하세요': return
 
