@@ -52,14 +52,14 @@ def main():
     if job=='선택':
         schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         조회일=st.date_input('조회일')
-        if schk: Dart.금감원_공시내역_보기()
+        if schk: Dart.금감원_공시내역_보기(조회일)
 
     # st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
     # st.write('[KT](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
-        
+
         st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
         st.write('[기법정리](https://docs.google.com/spreadsheets/d/1tJg4kfIIpt17LNKXoKwzzallnXPmyCzMF1DhIIw1Q-8/edit#gid=1186881965)')
         st.write('[KT(030200) 보유주](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
