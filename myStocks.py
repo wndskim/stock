@@ -54,6 +54,7 @@ def main():
         if schk: Dart.금감원_공시내역_보기()
 
     st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
+    st.write('[KT](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
 
     if job=='특징주':
         st.text('특징주 내역')
