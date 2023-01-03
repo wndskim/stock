@@ -58,6 +58,7 @@ def main():
         
         st.text('특징주 내역')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
+        df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         st.dataframe(df)
 
         종목명s=df['종목명'].unique().tolist()
