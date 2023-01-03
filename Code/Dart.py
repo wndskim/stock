@@ -17,6 +17,7 @@ def 금감원_공시내역_보기():
     df['공시내용']=df['report_nm']
 
     df=df.drop(['corp_code','corp_name','stock_code','corp_cls','report_nm','rcept_no','rcept_dt'], axis=1)
+    df = df.reindex(columns = ['날짜','티커','종목명','공시내용'])
 
 
     st.markdown('-----')
