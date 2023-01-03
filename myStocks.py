@@ -65,7 +65,7 @@ def main():
         종목명=st.selectbox('티커선택',종목명s)
 
         df_종목=df[df['종목명']==종목명]
-        st.dataframe(df_종목)
+        st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
     if job=='인덱스 종류':
         for ticker in stock.get_index_ticker_list():
