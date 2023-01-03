@@ -58,7 +58,7 @@ def main():
                 streamlit version is {version}
                 ''')
 
-    df=pd.read_excel('data.xlsx')
+    df=pd.read_excel('./data.xlsx')
     st.dataframe(df)
 
 
