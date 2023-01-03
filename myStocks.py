@@ -60,7 +60,7 @@ def main():
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
         st.dataframe(df)
 
-        종목명s=df['종목명'].unique().to_list()
+        종목명s=df['종목명'].unique().tolist()
         종목명=st.selectbox('티커선택',종목명s)
 
         df_종목=df[df['종목명']=='종목명']
