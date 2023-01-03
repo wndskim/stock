@@ -82,7 +82,7 @@ def main():
 
         건수=len(df)+1
         st.write('총',str(건수),'건')
-        st.text(sort_order)
+        st.text(s_radio)
         df.reset_index(inplace=True)
         st.dataframe(df)
 
