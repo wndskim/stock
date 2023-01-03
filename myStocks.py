@@ -58,7 +58,9 @@ def main():
                 streamlit version is {version}
                 ''')
 
-    df=pd.read_excel('./Data/data.xlsx')
+    # df=pd.read_excel('./Data/data.xlsx')
+    st.text('특징주 내역')
+    df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
     st.dataframe(df)
 
 
