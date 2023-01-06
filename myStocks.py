@@ -86,9 +86,10 @@ def main():
 
             try:
                 df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx',sheet_name=sheet_name)
-                if 상승하락=='하락종목':
-                    df.sort_values(by['등락률'], ascending=True, inplace=False)
             except: st.write(년도,'년도는 준비되지 않았습니다.'); return
+            
+            if 상승하락=='하락종목':
+                df.sort_values(by['등락률'], ascending=True, inplace=False)
         
                 # df_상승률_0050.to_excel(writer, sheet_name='상승00_50', index=False, freeze_panes=(1,1)) 0
                 # df_상승률_50100.to_excel(writer, sheet_name='상승50_100', index=False, freeze_panes=(1,1)) 1
