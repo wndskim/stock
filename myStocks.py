@@ -48,14 +48,17 @@ def main():
                 streamlit version is {version}
                 ''')
     # Side Bar 생성
-    job=st.sidebar.selectbox('선택',['선택','관심주 및 보유주','특징주','가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
+    job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
     if job=='선택':
         schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         조회일=st.date_input('조회일')
         if schk: Dart.금감원_공시내역_보기(조회일)
 
-    # st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
-    # st.write('[KT](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
+    if job=='년도별 가격 변동률 조회':
+        df=pd.read_excel('./Data/2022_종목별_년간등락.xlsx')
+        
+        st.dataframe(df)
+    
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
