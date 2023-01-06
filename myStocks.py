@@ -70,7 +70,6 @@ def main():
             elif 시트선택=='상승150%~200%': sheet_name=3
             elif 시트선택=='상승200%이상': sheet_name=4
             else: sheet_name=11
-            st.text(시트선택)
             try:
                 df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx',sheet_name=sheet_name)
             except: st.write(년도,'년도는 준비되지 않았습니다.'); return
@@ -88,10 +87,7 @@ def main():
                 # df_하락률_50.to_excel(writer, sheet_name='하락50이상', index=False, freeze_panes=(1,1)) 10
                 # df_merge.to_excel(writer, sheet_name='전체', index=False, freeze_panes=(1,1)) 11
 
-
-
-
-
+        st.text(시트선택, len(df),'건')
         st.dataframe(df)
     
     if job=='관심주 및 보유주':
