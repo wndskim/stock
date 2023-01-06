@@ -104,11 +104,12 @@ def main():
                 # df_하락률_50.to_excel(writer, sheet_name='하락50이상', index=False, freeze_panes=(1,1)) 10
                 # df_merge.to_excel(writer, sheet_name='전체', index=False, freeze_panes=(1,1)) 11
 
-        발굴종목s=df['티커'].unique()
-        st.write(시트선택, len(발굴종목s),'건')
+        # 발굴종목s=df['티커'].unique()
+        종목명s=df['종목'].unique()
+        st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
-        st.selectbox('발굴종목',발굴종목s)
+        st.selectbox('발굴종목',종목명s)
     
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
