@@ -55,7 +55,8 @@ def main():
         if schk: Dart.금감원_공시내역_보기(조회일)
 
     if job=='년도별 가격 변동률 조회':
-        df=pd.read_excel('./Data/2022_종목별_년간등락.xlsx')
+        st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
+        df=pd.read_excel('./Data/2022_종목별_년간등락.xlsx',sheet_name=[1])
         
         st.dataframe(df)
     
