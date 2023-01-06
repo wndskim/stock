@@ -34,6 +34,13 @@ def 코스피200_등락률(sYear, sort_order):
     df.sort_values(by='등락률', ascending=sort_order, inplace=True)
     return df
 
+def 참조링크보기(티커):
+    st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
+    st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
+    st.write('[네이버금융(종합정보)](https://finance.naver.com/item/main.naver?code={})'.format(티커))
+    st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
+    st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
+    return
 ##############################################################
 # ##### Main
 ##############################################################
@@ -83,7 +90,6 @@ def main():
             elif 시트선택=='하락41%~50%': sheet_name=9
             else: sheet_name=10
 
-
         try:
             df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx',sheet_name=sheet_name)
             df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
@@ -97,7 +103,8 @@ def main():
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
-        st.selectbox('발굴종목',종목명s)
+        티커=st.selectbox('발굴종목',종목명s)
+        참조링크보기(티커)
     
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
