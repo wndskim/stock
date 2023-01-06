@@ -90,21 +90,8 @@ def main():
         except: st.write(년도,'년도는 준비되지 않았습니다.'); return
 
         if 상승하락=='하락순':
-            df.sort_values(by=['등락률'], ascending=True, inplace=False)
+            df.sort_values(by=['등락률'], ascending=False, inplace=False)
         
-                # df_상승률_0050.to_excel(writer, sheet_name='상승00_50', index=False, freeze_panes=(1,1)) 0
-                # df_상승률_50100.to_excel(writer, sheet_name='상승50_100', index=False, freeze_panes=(1,1)) 1
-                # df_상승률_100150.to_excel(writer, sheet_name='상승100_150', index=False, freeze_panes=(1,1)) 2
-                # df_상승률_150200.to_excel(writer, sheet_name='상승150_200', index=False, freeze_panes=(1,1)) 3
-                # df_상승률_200.to_excel(writer, sheet_name='상승200이상', index=False, freeze_panes=(1,1)) 4
-                # df_하락률_0010.to_excel(writer, sheet_name='하락10까지', index=False, freeze_panes=(1,1)) 5
-                # df_하락률_1120.to_excel(writer, sheet_name='하락11_20', index=False, freeze_panes=(1,1)) 6
-                # df_하락률_2130.to_excel(writer, sheet_name='하락21_30', index=False, freeze_panes=(1,1)) 7
-                # df_하락률_3140.to_excel(writer, sheet_name='하락31_40', index=False, freeze_panes=(1,1)) 8
-                # df_하락률_4150.to_excel(writer, sheet_name='하락41_50', index=False, freeze_panes=(1,1)) 9
-                # df_하락률_50.to_excel(writer, sheet_name='하락50이상', index=False, freeze_panes=(1,1)) 10
-                # df_merge.to_excel(writer, sheet_name='전체', index=False, freeze_panes=(1,1)) 11
-
         # 발굴종목s=df['티커'].unique()
         종목명s=df['종목'].unique()
         st.write(시트선택, len(종목명s),'종목')
