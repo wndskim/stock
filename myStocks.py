@@ -86,6 +86,7 @@ def main():
 
         try:
             df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx',sheet_name=sheet_name)
+            df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
         except: st.write(년도,'년도는 준비되지 않았습니다.'); return
 
         if 상승하락=='하락순':
