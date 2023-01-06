@@ -65,6 +65,10 @@ def main():
                 시트선택=st.selectbox('선택',상승률)
 
             if 시트선택=='상승50%까지': sheet_name=0
+            elif 시트선택=='상승50%~100%': sheet_name=1
+            elif 시트선택=='상승100%~150%': sheet_name=2
+            elif 시트선택=='상승150%~200%': sheet_name=3
+            elif 시트선택=='상승200%이상': sheet_name=4
             else: sheet_name=11
             st.text(시트선택)
             try:
