@@ -70,8 +70,24 @@ def main():
             elif 시트선택=='상승150%~200%': sheet_name=3
             elif 시트선택=='상승200%이상': sheet_name=4
             else: sheet_name=11
+
+        else:
+            with col2:
+                하락률=['선택','하락0%~10%','하락11%~20%','하락21%~30%','하락31%~40%','하락41%~50%','하락50%이상']
+                시트선택=st.selectbox('선택',하락률)
+
+            if 시트선택=='하락0%~10%': sheet_name=5
+            elif 시트선택=='하락11%~20%': sheet_name=6
+            elif 시트선택=='하락21%~30%': sheet_name=7
+            elif 시트선택=='하락31%~40%': sheet_name=8
+            elif 시트선택=='하락41%~50%': sheet_name=
+            else: sheet_name=10
+
+
             try:
                 df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx',sheet_name=sheet_name)
+                if 상승하락=='하락종목':
+                    df.sort_values(by['등락률'], ascending=True, inplace=False)
             except: st.write(년도,'년도는 준비되지 않았습니다.'); return
         
                 # df_상승률_0050.to_excel(writer, sheet_name='상승00_50', index=False, freeze_panes=(1,1)) 0
