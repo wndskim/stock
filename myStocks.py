@@ -60,7 +60,7 @@ def main():
             df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx')
         except: st.write(년도,'년도는 준비되지 않았습니다.'); return
 
-        col1, col2=st.columns(3)
+        col1, col2, col3=st.columns(3)
         with col1:
             상승하락=st.radio('상승하락선택',('상승종목','하락종목'))
         if 상승하락=='상승종목':
