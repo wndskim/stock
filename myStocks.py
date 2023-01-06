@@ -58,8 +58,30 @@ def main():
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
         try:
             df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx')
-        except: st.write(년도,'는 준비가 않되었습니다.'); return
+        except: st.write(년도,'년도는 준비되지 않았습니다.'); return
+
+        상승하락=st.radio('상승하락선택',('상승종목','하락종목'))
+        if 상승하락=='상승종목':
+            상승률=['상승50%까지','상승50%~100%','상승100%~150%','상승150%~200%','상승200%이상']
+            시트선택=st.selectbox('선택',['선택','전체',상승률])
         
+                # df_상승률_0050.to_excel(writer, sheet_name='상승00_50', index=False, freeze_panes=(1,1))
+                # df_상승률_50100.to_excel(writer, sheet_name='상승50_100', index=False, freeze_panes=(1,1))
+                # df_상승률_100150.to_excel(writer, sheet_name='상승100_150', index=False, freeze_panes=(1,1))
+                # df_상승률_150200.to_excel(writer, sheet_name='상승150_200', index=False, freeze_panes=(1,1))
+                # df_상승률_200.to_excel(writer, sheet_name='상승200이상', index=False, freeze_panes=(1,1))
+                # df_하락률_0010.to_excel(writer, sheet_name='하락10까지', index=False, freeze_panes=(1,1))
+                # df_하락률_1120.to_excel(writer, sheet_name='하락11_20', index=False, freeze_panes=(1,1))
+                # df_하락률_2130.to_excel(writer, sheet_name='하락21_30', index=False, freeze_panes=(1,1))
+                # df_하락률_3140.to_excel(writer, sheet_name='하락31_40', index=False, freeze_panes=(1,1))
+                # df_하락률_4150.to_excel(writer, sheet_name='하락41_50', index=False, freeze_panes=(1,1))
+                # df_하락률_50.to_excel(writer, sheet_name='하락50이상', index=False, freeze_panes=(1,1))
+
+
+
+
+
+
         st.dataframe(df)
     
     if job=='관심주 및 보유주':
