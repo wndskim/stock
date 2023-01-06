@@ -80,7 +80,7 @@ def main():
             elif 시트선택=='하락11%~20%': sheet_name=6
             elif 시트선택=='하락21%~30%': sheet_name=7
             elif 시트선택=='하락31%~40%': sheet_name=8
-            elif 시트선택=='하락41%~50%': sheet_name=
+            elif 시트선택=='하락41%~50%': sheet_name=9
             else: sheet_name=10
 
 
