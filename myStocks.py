@@ -87,7 +87,7 @@ def main():
                 # df_하락률_50.to_excel(writer, sheet_name='하락50이상', index=False, freeze_panes=(1,1)) 10
                 # df_merge.to_excel(writer, sheet_name='전체', index=False, freeze_panes=(1,1)) 11
 
-        st.text(시트선택, len(df),'건')
+        st.write(시트선택, len(df),'건')
         st.dataframe(df)
     
     if job=='관심주 및 보유주':
