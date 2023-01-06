@@ -58,7 +58,7 @@ def main():
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
         try:
             df=pd.read_excel(f'./Data/{년도}_종목별_년간등락.xlsx')
-        except: st.write(년도,'는 준비가 않되었습니다.')
+        except: st.write(년도,'는 준비가 않되었습니다.'); return
         
         st.dataframe(df)
     
