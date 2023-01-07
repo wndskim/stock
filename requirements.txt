@@ -10,3 +10,4 @@ OpenDartReader
 datetime
 timedelta
 plotly
+ta
