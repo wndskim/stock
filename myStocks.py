@@ -57,6 +57,10 @@ def main():
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
     조회일=st.date_input('조회일')
+
+    st.write(조회일)
+
+
     if job=='선택':
         chk1=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         if chk1:
@@ -64,12 +68,12 @@ def main():
 
         chk2=st.checkbox('시장지표를 확인할려면 틱 하세요..!!', value=False)
         if chk2:
-            st.write(시작일, 종료일)
-
-
             시작일=조회일.replace('/','')
             종료일=조회일.replace('/','')
 
+            st.write(시작일, 종료일)
+
+            
             df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
             st.dataframe(df_kospi)
 
