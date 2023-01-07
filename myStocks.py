@@ -82,6 +82,12 @@ def main():
             st.markdown(f'최근 코스피 PBR은 :blue[{kospi_pbr}]로 매우 저평가 되어있다. :orange[이번 사이클의 상승 여력이 있는 종목이나] \
                 :red[지금 바닥에 있는 종목중 다음 사이클에 상승 예상 종목을 발굴하여 진입할 준비가 필요하다].')
 
+            col1, col2=st.columns(2)
+            with col1:
+                st.dataframe(df_kospi)
+            with col2:
+                st.dataframe(df_kosdaq)
+
             st.markdown("Text can be :blue[azul], but also :orange[laranja]. And of course it can be \
             :red[red]. And :green[verde]. And look at this :violet[violeta]!")
 
@@ -90,13 +96,7 @@ def main():
             st.markdown(
                 'This will print <span style="color:blue;"> blue text </span>',
                 unsafe_allow_html=True
-                ) 
-
-            col1, col2=st.columns(2)
-            with col1:
-                st.dataframe(df_kospi)
-            with col2:
-                st.dataframe(df_kosdaq)
+                )
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
