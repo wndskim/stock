@@ -30,7 +30,7 @@ def Chart_001(df):
             ),
         # plot_bgcolor='rgba(0,0,0,0)',
         # yaxis=(dict(showgrid=False)),
-        paper_bgcolor='cornsilk'
+        # paper_bgcolor='cornsilk'
     )
 
     # Render the figure in the Streamlit app
