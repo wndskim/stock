@@ -34,5 +34,7 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
     df=stock.get_index_fundamental(시작일, 종료일, market)
     df.reset_index(inplace=True)
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
+    df['종가'] = df['종가'].round(2)
+
 
     return df
