@@ -77,8 +77,12 @@ def main():
             종료일=str(조회일).replace('-','')
             df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
             df_kosdaq = stock.get_index_fundamental(시작일, 종료일, "2001")
-            df_kospi.index=df_kospi.index.dt.strftime('%Y-%m-%d')
-            df_kosdaq.index=df_kosdaq.index.dt.strftime('%Y-%m-%d')
+
+            df_kospi.reset_index(inplace=True)
+            df_kosdaq.reset_index(inplace=True)
+            df_kospi['날짜']=df_kospi['날짜'].dt.strftime('%Y-%m-%d')
+            df_kosdaq['날짜']=df_kosdaq['날짜'].dt.strftime('%Y-%m-%d')
+            
             col1, col2=st.columns(2)
             with col1:
                 st.dataframe(df_kospi)
