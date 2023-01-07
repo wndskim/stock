@@ -2,6 +2,7 @@ import OpenDartReader
 import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
+from pykrx import stock
 
 
 API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
@@ -27,3 +28,11 @@ def 금감원_공시내역_보기(조회일):
     st.dataframe(df)
     return
 
+def Index_Fundamental_조회(시작일, 종료일, 마켓):
+    if 마켓=='코스피': market='1001'
+    else: market='2001' # 코스닥
+    df=stock.get_index_fundamental(시작일, 종료일, market)
+    df.reset_index(inplace=True)
+    df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
+
+    return df
