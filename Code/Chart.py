@@ -14,7 +14,7 @@ def Chart_001(df):
                  )
 
     fig.update_layout(showlegend=False)
-    fig.update_layout(barmode='group')
+    # fig.update_layout(barmode='group')
 
     fig.update_layout(
         xaxis_title="<b>날짜<b>",
