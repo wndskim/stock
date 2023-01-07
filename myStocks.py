@@ -59,7 +59,8 @@ def main():
     if job=='선택':
         schk=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         조회일=st.date_input('조회일')
-        if schk: Dart.금감원_공시내역_보기(조회일)
+        if schk:
+            Dart.금감원_공시내역_보기(조회일)
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
