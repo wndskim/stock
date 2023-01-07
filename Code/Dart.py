@@ -4,7 +4,6 @@ import pandas as pd
 from datetime import datetime, timedelta
 from pykrx import stock
 
-
 API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
 dart=OpenDartReader(API_KEY)
 # @st.cache(suppress_st_warning=True)
@@ -41,4 +40,10 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
     df['PER'] = df['PER'].map('{:,.2f}'.format)
     df['PBR'] = df['PBR'].map('{:,.2f}'.format)
     df['배당수익률'] = df['배당수익률'].map('{:,.2f}'.format)
+    return df
+
+def Index_OHLCV_조회(idx):
+
+    st.write(idx)
+    df = stock.get_index_ohlcv("20210101", "20221231", idx)
     return df
