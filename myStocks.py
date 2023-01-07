@@ -77,11 +77,10 @@ def main():
             종료일=str(조회일).replace('-','')
             df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
             df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
-            kospi_pbr=df_kospi._get_value(0, 'PBR')
+            kospi_pbr=df_kospi._get_value(13, 'PBR')
 
             st.markdown(f'최근 코스피 PBR은 :blue[{kospi_pbr}]로 매우 저평가 되어있다. :orange[이번 사이클의 상승 여력이 있는 종목이나] \
                 :red[지금 바닥에 있는 종목중 다음 사이클에 상승 예상 종목을 발굴하여 진입할 준비가 필요하다].')
-
 
             st.markdown("Text can be :blue[azul], but also :orange[laranja]. And of course it can be \
             :red[red]. And :green[verde]. And look at this :violet[violeta]!")
@@ -92,8 +91,6 @@ def main():
                 'This will print <span style="color:blue;"> blue text </span>',
                 unsafe_allow_html=True
                 ) 
-
-
 
             col1, col2=st.columns(2)
             with col1:
