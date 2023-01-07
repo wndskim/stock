@@ -68,8 +68,8 @@ def main():
 
         chk2=st.checkbox('시장지표를 확인할려면 틱 하세요..!!', value=False)
         if chk2:
-            시작일=조회일.replace('-','')
-            종료일=조회일.replace('-','')
+            시작일=str(조회일).replace('-','')
+            종료일=str(조회일).replace('-','')
 
             st.write(시작일, 종료일)
 
