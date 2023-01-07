@@ -10,7 +10,7 @@ def Chart_001(df):
                  y=df["PBR"],
                  title="최근 20일 PBR",
                 #  color="continent",
-                 template="plotly_dark"
+                #  template="plotly_dark"
                  )
 
     fig.update_layout(showlegend=False)
