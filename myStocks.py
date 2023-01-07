@@ -82,12 +82,10 @@ def main():
             col1, col2=st.columns(2)
             with col1:
                 st.dataframe(df_kospi)
-                chk3=st.checkbox('차트보기',value=False)
+                chk3=st.checkbox('코스피 PBR 차트보기',value=False)
                 if chk3: Chart.Chart_001(df_kospi)
             with col2:
                 st.dataframe(df_kosdaq)
-                # chk4=st.checkbox('차트보기',value=False)
-                # if chk4: Chart.Chart_001(df_kosdaq)
 
             st.markdown("Text can be :blue[azul], but also :orange[laranja]. And of course it can be \
             :red[red]. And :green[verde]. And look at this :violet[violeta]!")
