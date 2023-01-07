@@ -76,7 +76,7 @@ def main():
             df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
             kospi_pbr=df_kospi._get_value(13, 'PBR')
 
-            df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),조회일, '1001')
+            df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001')
 
             st.dataframe(df_index)
 
