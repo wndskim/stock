@@ -6,7 +6,7 @@ import plotly.express as px
 
 def Chart_001(df):
     # Create the Plotly figure
-    fig = px.bar(df, x=df["날짜"], y=df["PBR"], color="continent",
+    fig = px.bar(x=df["날짜"], y=df["PBR"], color="continent",
                 title="최근 20일 PBR",
                 template="plotly_dark")
 
