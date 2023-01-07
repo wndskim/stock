@@ -76,9 +76,6 @@ def main():
             df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
             kospi_pbr=df_kospi._get_value(13, 'PBR')
 
-            st.markdown(f'최근 코스피 PBR은 :blue[{kospi_pbr}]로 매우 저평가 되어있다. :orange[이번 사이클의 상승 여력이 있는 종목이나] \
-                :violet[지금 바닥에 있는 종목중 다음 사이클에 상승 예상 종목을 발굴하여 진입할 준비가 필요하다].')
-
             col1, col2=st.columns(2)
             with col1:
                 st.dataframe(df_kospi)
@@ -89,7 +86,7 @@ def main():
 
         chk4=st.checkbox('2023년 투자전략 보기', value=False)
         if chk4:
-            Strategy.Strategy_2023_01()
+            Strategy.Strategy_2023_01(kospi_pbr)
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
