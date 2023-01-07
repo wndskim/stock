@@ -66,6 +66,10 @@ def main():
         if chk2:
             시작일=조회일.replace('/','')
             종료일=조회일.replace('/','')
+
+            st.write(시작일, 종료일)
+
+            
             df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
             st.dataframe(df_kospi)
 
