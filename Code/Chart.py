@@ -12,22 +12,18 @@ def Chart_001(df):
                 #  color="continent",
                 #  template="plotly_dark"
                  )
-
-    # fig.update_layout(showlegend=False)
-    # fig.update_layout(barmode='group')
-
     fig.update_layout(
         xaxis_title="<b>날짜<b>",
         yaxis_title="<b>PBR<b>",
         width=1000,
         height=300,
-        margin=dict(
-            l=50,
-            r=50,
-            b=50,
-            t=50,
-            pad=4
-            ),
+        # margin=dict(
+        #     l=50,
+        #     r=50,
+        #     b=50,
+        #     t=50,
+        #     pad=4
+        #     ),
         # plot_bgcolor='rgba(0,0,0,0)',
         # yaxis=(dict(showgrid=False)),
         # paper_bgcolor='cornsilk'
