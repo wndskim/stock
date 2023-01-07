@@ -46,11 +46,11 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
 
 def Index_OHLCV_조회(시작일, 종료일, idx):
 
-    st.write(시작일,종료일,idx)
-
     df=stock.get_index_ohlcv(시작일, 종료일, idx)
     df.reset_index(inplace=True)
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
+
+    # df['rsi']=ta.momen
 
     # Initialize Bollinger Bands Indicator
     indicator_bb = BollingerBands(close=df["종가"], window=40, window_dev=2)
@@ -59,6 +59,7 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
     df['bb_bbm'] = indicator_bb.bollinger_mavg()
     df['bb_bbh'] = indicator_bb.bollinger_hband()
     df['bb_bbl'] = indicator_bb.bollinger_lband()
+
 
 
     return df
