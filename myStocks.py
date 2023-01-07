@@ -78,6 +78,8 @@ def main():
             df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
             df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
 
+            st.write(df_kospi['PBR'].values(0))
+
             kospi_pbr=df_kospi['PBR'][0].values(0)
 
             st.markdown('최근 코스피 PBR은 :blue[kospi_pbr]로 매우 저평가 되어있다. :orange[이번 사이클의 상승 여력이 있는 종목이나] \
