@@ -49,6 +49,7 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
     st.write(시작일,종료일,idx)
 
     df=stock.get_index_ohlcv(시작일, 종료일, idx)
+    df.reset_index(inplace=True)
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
 
     # Initialize Bollinger Bands Indicator
