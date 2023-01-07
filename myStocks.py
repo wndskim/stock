@@ -82,6 +82,8 @@ def main():
 
             kospi_pbr=df_kospi._get_value(0, 'PBR')
 
+            st.write(kospi_pbr)
+
             st.markdown('최근 코스피 PBR은 :blue[kospi_pbr]로 매우 저평가 되어있다. :orange[이번 사이클의 상승 여력이 있는 종목이나] \
                 :red[지금 바닥에 있는 종목중 다음 사이클에 상승 예상 종목을 발굴하여 진입할 준비가 필요하다].')
 
