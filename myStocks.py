@@ -64,12 +64,12 @@ def main():
 
         chk2=st.checkbox('시장지표를 확인할려면 틱 하세요..!!', value=False)
         if chk2:
+            st.write(시작일, 종료일)
+
+
             시작일=조회일.replace('/','')
             종료일=조회일.replace('/','')
 
-            st.write(시작일, 종료일)
-
-            
             df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
             st.dataframe(df_kospi)
 
