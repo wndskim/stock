@@ -74,7 +74,11 @@ def main():
         chk2=st.checkbox('시장지표를 확인할려면 틱 하세요..!!', value=False)
         if chk2:
             시작일=str(조회일).replace('-','')
-            종료일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일 간의 데이타 가져오기
+            종료일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
+
+            st.write(종료일)
+
+            
             df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
             df_kosdaq = stock.get_index_fundamental(시작일, 종료일, "2001")
             col1, col2=st.columns(2)
