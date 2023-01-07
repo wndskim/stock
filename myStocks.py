@@ -12,7 +12,7 @@ import matplotlib as plt
 import yfinance as yf
 import datetime
 from datetime import date, timedelta
-from Code import Dart, Chart
+from Code import Dart, Chart, Strategy
 
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear, sort_order):
@@ -87,15 +87,9 @@ def main():
             with col2:
                 st.dataframe(df_kosdaq)
 
-            st.markdown("Text can be :blue[azul], but also :orange[laranja]. And of course it can be \
-            :red[red]. And :green[verde]. And look at this :violet[violeta]!")
-
-            st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
-
-            st.markdown(
-                'This will print <span style="color:blue;"> blue text </span>',
-                unsafe_allow_html=True
-                )
+        chk4=st.checkbox('2023년 투자전략 보기', value=False)
+        if chk4:
+            Strategy.Strategy_2023_01()
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
