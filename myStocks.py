@@ -75,12 +75,10 @@ def main():
         if chk2:
             시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
             종료일=str(조회일).replace('-','')
-
-            st.write(시작일, 종료일)
-
-
             df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
             df_kosdaq = stock.get_index_fundamental(시작일, 종료일, "2001")
+            df_kospi.index=df_kospi.index.dt.strftime('%Y-%m-%d')
+            df_kosdaq.index=df_kosdaq.index.dt.strftime('%Y-%m-%d')
             col1, col2=st.columns(2)
             with col1:
                 st.dataframe(df_kospi)
