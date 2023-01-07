@@ -73,8 +73,8 @@ def main():
 
         chk2=st.checkbox('시장지표를 확인할려면 틱 하세요..!!', value=False)
         if chk2:
-            시작일=str(조회일).replace('-','')
-            종료일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
+            시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
+            종료일=str(조회일).replace('-','')
 
             st.write(시작일, 종료일)
 
