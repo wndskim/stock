@@ -28,7 +28,6 @@ def Chart_001(df):
         # yaxis=(dict(showgrid=False)),
         # paper_bgcolor='cornsilk'
     )
-
     # Render the figure in the Streamlit app
     st.plotly_chart(fig)
 
