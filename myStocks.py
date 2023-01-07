@@ -10,8 +10,9 @@ import numpy as np
 from pykrx import stock
 import matplotlib as plt
 import yfinance as yf
-
-from Code import Dart
+import datetime
+from datetime import date, timedelta
+from Code import Dart, Chart
 
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear, sort_order):
@@ -41,10 +42,6 @@ def 참조링크보기(티커):
     st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
     st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
     return
-
-import datetime
-from datetime import date, timedelta
-
 
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
@@ -80,13 +77,17 @@ def main():
             kospi_pbr=df_kospi._get_value(13, 'PBR')
 
             st.markdown(f'최근 코스피 PBR은 :blue[{kospi_pbr}]로 매우 저평가 되어있다. :orange[이번 사이클의 상승 여력이 있는 종목이나] \
-                :red[지금 바닥에 있는 종목중 다음 사이클에 상승 예상 종목을 발굴하여 진입할 준비가 필요하다].')
+                :violet[지금 바닥에 있는 종목중 다음 사이클에 상승 예상 종목을 발굴하여 진입할 준비가 필요하다].')
 
             col1, col2=st.columns(2)
             with col1:
                 st.dataframe(df_kospi)
+                chk3=st.checkbox('차트보기',value=False)
+                if chk3: Chart.Chart_001(df_kospi)
             with col2:
                 st.dataframe(df_kosdaq)
+                chk3=st.checkbox('차트보기',value=False)
+                if chk3: Chart.Chart_001(df_kosdaq)
 
             st.markdown("Text can be :blue[azul], but also :orange[laranja]. And of course it can be \
             :red[red]. And :green[verde]. And look at this :violet[violeta]!")
