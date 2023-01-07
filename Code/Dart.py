@@ -34,11 +34,12 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
     df=stock.get_index_fundamental(시작일, 종료일, market)
     df.reset_index(inplace=True)
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
-    df['종가']=df['종가'].astype(float)
+    df['종가']=df['종가'].round(2)
+    df['PBR']=df['PBR'].round(2)
 
+    # df['종가']=df['종가'].astype(float)
     # df['종가']=df['종가'].apply(lambda x: round(x, 2))
     # df['column_name'] = df['column_name'].apply(lambda x: round(x, 2))
-    # df['종가']=df['종가'].round(2)
 
 
     return df
