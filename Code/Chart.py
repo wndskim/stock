@@ -10,7 +10,8 @@ def Chart_001(df):
                  y=df["PBR"],
                  title="최근 20일 PBR",
                 #  color="continent",
-                 template="plotly_dark")
+                #  template="plotly_dark"
+                 )
 
     # Render the figure in the Streamlit app
     st.plotly_chart(fig)
