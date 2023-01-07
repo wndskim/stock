@@ -56,9 +56,9 @@ def main():
                 ''')
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
+    조회일=st.date_input('조회일')
     if job=='선택':
         chk1=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
-        조회일=st.date_input('조회일')
         if chk1:
             Dart.금감원_공시내역_보기(조회일)
 
