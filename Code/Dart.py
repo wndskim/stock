@@ -3,6 +3,8 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 from pykrx import stock
+import ta
+from ta.volatility import BollingerBands
 
 API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
 dart=OpenDartReader(API_KEY)
@@ -46,4 +48,14 @@ def Index_OHLCV_조회(idx):
 
     st.write(idx)
     df = stock.get_index_ohlcv("20210101", "20221231", idx)
+
+    # Initialize Bollinger Bands Indicator
+    indicator_bb = BollingerBands(close=df["종가"], window=40, window_dev=2)
+
+    # Add Bollinger Bands features
+    df['bb_bbm'] = indicator_bb.bollinger_mavg()
+    df['bb_bbh'] = indicator_bb.bollinger_hband()
+    df['bb_bbl'] = indicator_bb.bollinger_lband()
+
+
     return df
