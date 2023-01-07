@@ -2,7 +2,7 @@ import streamlit as st
 import plotly.express as px
 
 # Load data
-df = px.data.gapminder()
+# df = px.data.gapminder()
 
 def Chart_001(df):
     # Create the Plotly figure
