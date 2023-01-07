@@ -41,6 +41,14 @@ def 참조링크보기(티커):
     st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
     st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
     return
+
+import datetime
+from datetime import date, timedelta
+
+
+def get_date(기준일, delta):
+    return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
+
 ##############################################################
 # ##### Main
 ##############################################################
@@ -58,9 +66,6 @@ def main():
     job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
     조회일=st.date_input('조회일')
 
-    st.write(조회일)
-
-
     if job=='선택':
         chk1=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         if chk1:
@@ -69,13 +74,14 @@ def main():
         chk2=st.checkbox('시장지표를 확인할려면 틱 하세요..!!', value=False)
         if chk2:
             시작일=str(조회일).replace('-','')
-            종료일=str(조회일).replace('-','')
-
-            st.write(시작일, 종료일)
-
-
+            종료일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일 간의 데이타 가져오기
             df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
-            st.dataframe(df_kospi)
+            df_kosdaq = stock.get_index_fundamental(시작일, 종료일, "2001")
+            col1, col2=st.columns(2)
+            with col1:
+                st.dataframe(df_kospi)
+            with col2:
+                st.dataframe(df_kosdaq)
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
