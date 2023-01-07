@@ -75,18 +75,13 @@ def main():
         if chk2:
             시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
             종료일=str(조회일).replace('-','')
-            df_kospi = stock.get_index_fundamental(시작일, 종료일, "1001")
-            df_kosdaq = stock.get_index_fundamental(시작일, 종료일, "2001")
 
-            df_kospi.reset_index(inplace=True)
-            df_kosdaq.reset_index(inplace=True)
-            df_kospi['날짜']=df_kospi['날짜'].dt.strftime('%Y-%m-%d')
-            df_kosdaq['날짜']=df_kosdaq['날짜'].dt.strftime('%Y-%m-%d')
-            
             col1, col2=st.columns(2)
             with col1:
+                df_kospi=Dart.datetime(시작일,종료일,'코스피')
                 st.dataframe(df_kospi)
             with col2:
+                df_kosdaq=Dart.datetime(시작일,종료일,'코스닥')
                 st.dataframe(df_kosdaq)
 
     if job=='년도별 가격 변동률 조회':
