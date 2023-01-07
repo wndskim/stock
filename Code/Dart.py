@@ -44,10 +44,10 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
     df['배당수익률'] = df['배당수익률'].map('{:,.2f}'.format)
     return df
 
-def Index_OHLCV_조회(idx):
+def Index_OHLCV_조회(시작일, 종료일, idx):
 
-    st.write(idx)
-    df = stock.get_index_ohlcv("20210101", "20221231", idx)
+    df=stock.get_index_ohlcv(시작일, 종료일, idx)
+    df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
 
     # Initialize Bollinger Bands Indicator
     indicator_bb = BollingerBands(close=df["종가"], window=40, window_dev=2)
