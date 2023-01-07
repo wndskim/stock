@@ -11,7 +11,7 @@ def 금감원_공시내역_보기(조회일):
     # today=datetime.now().strftime('%Y%m%d')
     조회일=조회일.strftime('%Y%m%d')
     df=dart.list(start=조회일, end=조회일, final=False)
-    if len(df)<1: return
+    if len(df)<1: st.text('금일 공시내역 없음..!!'); return
 
     df['날짜']=df['rcept_dt']
     df['티커']=df['stock_code']
