@@ -78,10 +78,10 @@ def main():
 
             col1, col2=st.columns(2)
             with col1:
-                df_kospi=Dart.datetime(시작일,종료일,'코스피')
+                df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
                 st.dataframe(df_kospi)
             with col2:
-                df_kosdaq=Dart.datetime(시작일,종료일,'코스닥')
+                df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
                 st.dataframe(df_kosdaq)
 
     if job=='년도별 가격 변동률 조회':
