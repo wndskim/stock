@@ -9,3 +9,4 @@ openpyxl
 OpenDartReader
 datetime
 timedelta
+plotly
