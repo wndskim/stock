@@ -13,6 +13,9 @@ def Chart_001(df):
                 #  template="plotly_dark"
                  )
 
+    fig.update_layout(showlegend=False)
+    fig.update_layout(barmode='group')
+    
     # Render the figure in the Streamlit app
     st.plotly_chart(fig)
 
