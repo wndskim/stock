@@ -11,6 +11,7 @@ def 금감원_공시내역_보기(조회일):
     # today=datetime.now().strftime('%Y%m%d')
     조회일=조회일.strftime('%Y%m%d')
     df=dart.list(start=조회일, end=조회일, final=False)
+    if len(df)<1: return
 
     df['날짜']=df['rcept_dt']
     df['티커']=df['stock_code']
@@ -19,7 +20,6 @@ def 금감원_공시내역_보기(조회일):
 
     df=df.drop(['corp_code','corp_name','stock_code','corp_cls','report_nm','rcept_no','rcept_dt'], axis=1)
     df = df.reindex(columns = ['날짜','티커','종목명','공시내용'])
-
 
     st.markdown('-----')
     st.text('금일 금감원 공시 건수:'+str(len(df))+'건')
