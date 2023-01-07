@@ -75,13 +75,17 @@ def main():
         if chk2:
             시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
             종료일=str(조회일).replace('-','')
+            df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
+            df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
+
+
+            st.markdown("Text can be :blue[azul], but also :orange[laranja]. And of course it can be \
+            :red[red]. And :green[verde]. And look at this :violet[violeta]!")
 
             col1, col2=st.columns(2)
             with col1:
-                df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
                 st.dataframe(df_kospi)
             with col2:
-                df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
                 st.dataframe(df_kosdaq)
 
     if job=='년도별 가격 변동률 조회':
