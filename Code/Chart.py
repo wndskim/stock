@@ -19,8 +19,8 @@ def Chart_001(df):
     fig.update_layout(
         xaxis_title="<b>날짜<b>",
         yaxis_title="<b>PBR<b>",
-        width=1300,
-        height=500,
+        width=1000,
+        height=300,
         margin=dict(
             l=50,
             r=50,
@@ -28,7 +28,7 @@ def Chart_001(df):
             t=50,
             pad=4
             ),
-        plot_bgcolor='rgba(0,0,0,0)',
+        # plot_bgcolor='rgba(0,0,0,0)',
         # yaxis=(dict(showgrid=False)),
         paper_bgcolor='cornsilk'
     )
