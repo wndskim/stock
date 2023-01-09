@@ -10,7 +10,7 @@ def Define_매매기술():
     # 4. 그 이후에 분봉상에서 매매 타점을 잡아 매수 진행 한다.
 
     st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
-    st.markdown('**:blue[전고점 돌파매매]**')
+    st.markdown('**####:blue[전고점 돌파매매]####**')
 
 
 
