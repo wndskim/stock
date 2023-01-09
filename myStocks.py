@@ -104,7 +104,7 @@ def main():
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001')
 
             kospi_rsi=df_index['rsi'].iloc[-1].round(2)
-            kospi_bbl=df_index['bb_bbl'].iloc[-1].round(0)
+            kospi_bbl=df_index['bb_bbl'].iloc[-1].round(2)
             kospi_지수=df_index['종가'].iloc[-1].round(2)
 
             col1, col2, col3, col4, col5=st.columns(5)
