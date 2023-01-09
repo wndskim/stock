@@ -56,7 +56,7 @@ def main():
 
     version=st.__version__
     st.markdown(f'''
-                #### My Stock Management System(Web Version)
+                ####My Stock Management System(Web Version)
                 streamlit version is {version}
                 ''')
     # Side Bar 생성
@@ -68,7 +68,7 @@ def main():
         Strategy.Define_매매기술()
 
 
-        
+
         chk1=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         if chk1:
             Dart.금감원_공시내역_보기(조회일)
