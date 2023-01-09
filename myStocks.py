@@ -64,6 +64,11 @@ def main():
     조회일=st.date_input('조회일')
 
     if job=='선택':
+
+        Strategy.Define_매매기술()
+
+
+        
         chk1=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         if chk1:
             Dart.금감원_공시내역_보기(조회일)
@@ -82,7 +87,7 @@ def main():
             kospi_bbl=df_index['bb_bbl'].iloc[-1].round(0)
             kospi_지수=df_index['종가'].iloc[-1].round(2)
 
-            
+
             st.write('rsi', kospi_rsi)
             st.write('볼린저 하한선', kospi_bbl)
             st.write('코스피 지수', kospi_지수)
