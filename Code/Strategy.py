@@ -1,6 +1,28 @@
 import streamlit as st
 
-def Define_매매기술():
+
+
+def 연봉돌파_설명():
+
+    st.markdown('''
+            ##### :blue[1. 매년 1월 첫째주에 선별 작업을 수행한다.]
+            ##### :blue[2. 3년 이동평균값을 첫번째 중요 라인으로 결정한다.]
+            ##### :blue[3. 전 고점을 두번째 중요 라인으로 결정한다.]
+            ##### :blue[4. 업종을 확인 한다.]
+            ##### :blue[5. 테마를 확인 한다.]
+            ##### :blue[6. 지난 3년 이상의 재무상태를 확인한다.]
+            ##### :blue[7. 최근 부터 과거의 뉴스를 확인 한다.]
+            ##### :blue[8. 차트의 위치와 테마의 순환성을 조사한다.]
+            ##### :blue[9. 위의 내용을 엑셀파일에 저장한다.]
+    
+    ''')
+
+
+    return
+
+
+
+def Define_매매기술_설명():
 
     # 차트영웅 22가지 기술에 대한 원리
     # 1. 큰 흐름(년봉/월봉/주봉)에서 추가 상승이 나올 수 있는 패턴 발견 후
@@ -12,15 +34,11 @@ def Define_매매기술():
     st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
     st.markdown('**:blue[전고점 돌파매매]**')
     st.markdown('''
-            ##### **:blue[전고점 돌파매매]**
+            ##### **:red[전고점 돌파매매 설명 보기]**
             ''')
     선택=st.selectbox('선택',['연봉돌파','월봉돌파','주봉돌파'])
-
-    st.write(선택)
-
-
-
-    pass
+    if 선택=='연봉돌파': 연봉돌파_설명()
+    else: pass
 
     return
 
