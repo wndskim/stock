@@ -107,14 +107,14 @@ def main():
             kospi_bbl=df_index['bb_bbl'].iloc[-1].round(0)
             kospi_지수=df_index['종가'].iloc[-1].round(2)
 
-            st.markdown(f'''
-                        ###### :orange[코스피지수: {kospi_지수}]
-                        ###### :green[PBR: {kospi_pbr}]
-                        ###### :blue[RSI: {kospi_rsi}]
-                        ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
-                ''')
+            # st.markdown(f'''
+            #             ###### :orange[코스피지수: {kospi_지수}]
+            #             ###### :green[PBR: {kospi_pbr}]
+            #             ###### :blue[RSI: {kospi_rsi}]
+            #             ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
+            #     ''')
 
-            col1, col2, col3, col4=st.columns(4)
+            col1, col2, col3, col4, col4=st.columns(5)
             with col1:
                 st.markdown(f'''
                             ###### :orange[코스피지수: {kospi_지수}]
