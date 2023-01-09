@@ -60,14 +60,11 @@ def main():
                 streamlit version is {version}
                 ''')
     # Side Bar 생성
-    job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
+    job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','매매기술 설명 보기'
+                             '가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
     조회일=st.date_input('조회일')
 
     if job=='선택':
-
-        Strategy.Define_매매기술_설명()
-
-
 
         chk1=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
         if chk1:
@@ -174,6 +171,9 @@ def main():
 
         df_종목=df[df['종목명']==종목명]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
+
+    if job=='매매기술 설명 보기':
+        Strategy.Define_매매기술_설명()
 
     if job=='가격 변동률(년간)':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
