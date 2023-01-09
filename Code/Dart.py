@@ -5,6 +5,7 @@ from datetime import datetime, timedelta
 from pykrx import stock
 import ta
 from ta.volatility import BollingerBands
+from ta.momentum import rsi
 
 API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
 dart=OpenDartReader(API_KEY)
@@ -50,7 +51,9 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
     df.reset_index(inplace=True)
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
 
-    # df['rsi']=ta.momen
+    
+
+    df['rsi']=rsi(close=df['종가'],window=10)
 
     # Initialize Bollinger Bands Indicator
     indicator_bb = BollingerBands(close=df["종가"], window=40, window_dev=2)
