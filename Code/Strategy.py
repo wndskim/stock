@@ -14,7 +14,9 @@ def Define_매매기술():
     st.markdown('''
             ##### **:blue[전고점 돌파매매]**
             ''')
+    선택=st.select_slider('선택'['연봉돌파','월봉돌파','주봉돌파'])
 
+    st.write(선택)
 
 
 
