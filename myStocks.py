@@ -114,6 +114,24 @@ def main():
                         ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
                 ''')
 
+            col1, col2, col3, col4=st.columns(4)
+            with col1:
+                st.markdown(f'''
+                            ###### :orange[코스피지수: {kospi_지수}]
+                    ''')
+            with col2:
+                st.markdown(f'''
+                            ###### :green[PBR: {kospi_pbr}]
+                    ''')
+            with col3:
+                st.markdown(f'''
+                            ###### :blue[RSI: {kospi_rsi}]
+                    ''')
+            with col4:
+                st.markdown(f'''
+                            ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
+                    ''')
+
             # st.dataframe(df_index)
 
             col1, col2=st.columns(2)
