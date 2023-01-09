@@ -1,7 +1,5 @@
 import streamlit as st
 
-
-
 def 연봉돌파_설명():
 
     st.markdown('''
@@ -56,6 +54,10 @@ def Strategy_2023_01(pbr):
     st.markdown('**:blue[1. 코스피의 현재 PBR이 0.90이하인가?]**')
     st.markdown('**:red[2. 코스피 지수가 볼린저밴드(40,2)의 하한선을 하향 돌파 하였는가?]**')
     st.markdown('**:violet[3. 코스피 지수의 RSI(10)이 30 이하인가?]**')
+
+
+
+
 
     st.text('')
     st.text('')
