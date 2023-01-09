@@ -121,7 +121,7 @@ def main():
                 # st.dataframe(df_kospi)
                 chk3=st.checkbox('코스피 PBR 차트보기',value=False)
                 if chk3: Chart.Chart_001(df_kospi)
-            with col2:
+            # with col2:
                 # st.dataframe(df_kosdaq)
 
             chk4=st.checkbox('2023년 투자전략 보기', value=False)
