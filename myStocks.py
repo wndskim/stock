@@ -114,7 +114,7 @@ def main():
             #             ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
             #     ''')
 
-            col1, col2, col3, col4, col5, col6=st.columns(6)
+            col1, col2, col3, col4, col5=st.columns(5)
             with col1:
                 st.markdown(f'''
                             ###### :orange[코스피지수: {kospi_지수}]
