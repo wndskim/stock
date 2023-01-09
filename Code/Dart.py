@@ -56,6 +56,8 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
     df['거래대금(억)']=df['거래대금(억)'].map('{:,.2f}'.format)
     df['상장시가총액(억)']=df['상장시가총액(억)'].map('{:,.2f}'.format)
 
+    df.drop(['거래대금','상장시가총액'], inplace=True, axis=1)
+
     df['rsi']=rsi(close=df['종가'],window=10)
     indicator_bb = BollingerBands(close=df["종가"], window=40, window_dev=2)
     df['bb_bbm'] = indicator_bb.bollinger_mavg()
