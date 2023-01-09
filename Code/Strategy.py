@@ -12,7 +12,7 @@ def Define_매매기술():
     st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
     st.markdown('**:blue[전고점 돌파매매]**')
     st.markdown('''
-            **####:blue[전고점 돌파매매]
+            **#### :blue[전고점 돌파매매]
             ''')
 
 
