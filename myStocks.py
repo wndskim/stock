@@ -65,7 +65,7 @@ def main():
 
     if job=='선택':
 
-        Strategy.Define_매매기술()
+        Strategy.Define_매매기술_설명()
 
 
 
