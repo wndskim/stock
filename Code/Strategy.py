@@ -5,7 +5,7 @@ import streamlit as st
 def 연봉돌파_설명():
 
     st.markdown('''
-            ##### :blue[1. 매년 1월 첫째주에 선별 작업을 수행한다.]
+            #### :blue[1. 매년 1월 첫째주에 선별 작업을 수행한다.]
             ##### :blue[2. 3년 이동평균값을 첫번째 중요 라인으로 결정한다.]
             ##### :blue[3. 전 고점을 두번째 중요 라인으로 결정한다.]
             ##### :blue[4. 업종을 확인 한다.]
@@ -31,12 +31,13 @@ def Define_매매기술_설명():
     #   - 기다리는 동안 해당 종목이 올라갈 수 있는 이유(기업, 재료, 차트)에 대한 분석을 진행 한다.
     # 4. 그 이후에 분봉상에서 매매 타점을 잡아 매수 진행 한다.
 
-    st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
-    st.markdown('**:blue[전고점 돌파매매]**')
-    st.markdown('''
-            ##### **:red[전고점 돌파매매 설명 보기]**
-            ''')
-    선택=st.selectbox('선택',['연봉돌파','월봉돌파','주봉돌파'])
+    # st.markdown("This text is :red[colored red], and this is **:blue[colored]** and bold.")
+    # st.markdown('**:blue[전고점 돌파매매]**')
+    # st.markdown('''
+    #         ##### **:red[전고점 돌파매매 설명 보기]**
+    #         ''')
+    
+    선택=st.selectbox('큰 흐름상 돌파매매 설명보기',['연봉돌파','월봉돌파','주봉돌파'])
     if 선택=='연봉돌파': 연봉돌파_설명()
     else: pass
 
