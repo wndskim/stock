@@ -80,8 +80,10 @@ def main():
 
             kospi_rsi=df_index['rsi'].iloc[-1].round(2)
             kospi_bbl=df_index['bb_bbl'].iloc[-1].round(0)
+            kospi_지수=df_index['종가'].iloc[-1].round(2)
             st.write('rsi', kospi_rsi)
             st.write('볼린저 하한선', kospi_bbl)
+            st.write('코스피 지수', kospi_지수)
 
 
             st.dataframe(df_index)
