@@ -114,20 +114,20 @@ def main():
             #             ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
             #     ''')
 
-            col1, col2, col3, col4, col5=st.columns(5)
-            with col1:
+            col1, col2, col3, col4, col5, col6=st.columns(6)
+            with col2:
                 st.markdown(f'''
                             ###### :orange[코스피지수: {kospi_지수}]
                     ''')
-            with col2:
+            with col3:
                 st.markdown(f'''
                             ###### :green[PBR: {kospi_pbr}]
                     ''')
-            with col3:
+            with col4:
                 st.markdown(f'''
                             ###### :blue[RSI: {kospi_rsi}]
                     ''')
-            with col4:
+            with col5:
                 st.markdown(f'''
                             ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
                     ''')
