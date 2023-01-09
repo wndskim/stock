@@ -79,7 +79,9 @@ def main():
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001')
 
             kospi_rsi=df_index['rsi'].iloc[-1].round(2)
+            kospi_bbl=df_index['bb_bbl'].iloc[-1].round(0)
             st.write('rsi', kospi_rsi)
+            st.write('볼린저 하한선', kospi_bbl)
 
 
             st.dataframe(df_index)
