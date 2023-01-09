@@ -114,12 +114,7 @@ def main():
                         ###### :violet[볼리저밴드 하단선: {kospi_bbl}]
                 ''')
 
-            st.write('rsi', kospi_rsi)
-            st.write('볼린저 하한선', kospi_bbl)
-            st.write('코스피 지수', kospi_지수)
-
-
-            st.dataframe(df_index)
+            # st.dataframe(df_index)
 
             col1, col2=st.columns(2)
             with col1:
