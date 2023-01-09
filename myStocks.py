@@ -78,6 +78,10 @@ def main():
 
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001')
 
+            kospi_rsi=df_index['rsi'].ilo[-1]
+            st.write('rsi', kospi_rsi)
+
+
             st.dataframe(df_index)
 
             col1, col2=st.columns(2)
