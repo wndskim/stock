@@ -108,9 +108,12 @@ def main():
             kospi_지수=df_index['종가'].iloc[-1].round(2)
 
             st.markdown(f'''
-                        코스피지수: {kospi_지수},  RSI: {kospi_rsi}, 볼리저밴드 하단선: {kospi_bbl}, PBR: {kospi_pbr}
-            ''')
-            
+                        :orange[코스피지수: {kospi_지수}]
+                        :green[PBR: {kospi_pbr}]
+                        :blue[RSI: {kospi_rsi}]
+                        :violet[볼리저밴드 하단선: {kospi_bbl}]
+                ''')
+
             st.write('rsi', kospi_rsi)
             st.write('볼린저 하한선', kospi_bbl)
             st.write('코스피 지수', kospi_지수)
