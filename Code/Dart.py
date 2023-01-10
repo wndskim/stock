@@ -103,6 +103,7 @@ def get_CompanyGuide자료(ticker):
         투자활동FCF=현금흐름표.loc[['투자활동으로인한현금흐름']]
         투자활동FCF=투자활동FCF.astype(float)
 
+        st.dataframe(손익계산서)
         st.write(매출액)
         # st.write(당기순이익)
         # st.write(영업활동FCF)
