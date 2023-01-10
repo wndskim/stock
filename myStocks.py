@@ -196,8 +196,14 @@ def main():
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
-        종목=st.selectbox('발굴종목',종목명s)
-        티커=df[df['종목']==종목]['티커'].values[0]
+        col1, col2, col3=st.columns(3)
+        with col1:
+            종목=st.selectbox('발굴종목',종목명s)
+            티커=df[df['종목']==종목]['티커'].values[0]
+        with col2:
+            st.text('꼭 확인해야 할 사항 4가지')
+            st.text('1:부채비율, 2:유보율, 3:유통주식수, 4:적자흑자유무')
+            
         col1, col2, col3=st.columns(3)
         with col1:
             참조링크보기(티커)
