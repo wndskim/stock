@@ -229,6 +229,16 @@ def main():
         종료일=str(조회일).replace('-','')
         주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커)
 
+        종가=주가정보['종가'].iloc[-1].round(0)
+        최고가52=주가정보['High52'].iloc[-1].round(0)
+        최저가52=주가정보['Low52'].iloc[-1].round(0)
+        이평120=주가정보['sma120'].iloc[-1].round(2)
+        rsi10=주가정보['rsi10'].iloc[-1].round(2)
+        bbl=주가정보['bb_bbl'].iloc[-1].round(2)
+
+        st.markdown(f'''###### :orange[종가:{종가}, 52일 최고가:{최고가52}, 52일최저가: {최저가52}]''')
+        st.markdown(f'''###### :orange[120일이평값:{이평120}, rsi(10):{rsi10}, 볼린저하한값: {bbl}]''')
+
         st.dataframe(주가정보)
 
         
