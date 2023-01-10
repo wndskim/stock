@@ -219,7 +219,8 @@ def get_CompanyGuide자료(ticker):
         # 이익수익률=EPS/주가 > 채권수익률(현재 3년 국채 수익률 또는 10년 국채 수익률)
         # 안전마진(순유동자산, 적정주가) => (유동자산 - 유동부채) / 총발행주식수
         # 안전마진(순순유동자산, 적정주가) => (유동자산 - 부채총계) / 총발행주식수
+        # df=df.transpose()
     except:
-        return df.transpose()
+        return df
 
-    return df
+    return df.transpose()
