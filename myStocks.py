@@ -76,7 +76,7 @@ def main():
             col1, col2=st.columns(2)
             with col1:
                 st.markdown('''
-                        ##### :red[-- 시장평가 기준 --]
+                        ##### :orange[시장평가 기준]
                         ###### :red[1. 코스피의 PBR이 1.2 이상이면 미친 고평가]
                         ###### :blue[2. 코스피의 PBR이 1 이하이면 저평가]
                         ###### :green[3. 코스피의 PBR이 0.9 이하이면 폭락장/하락장]
