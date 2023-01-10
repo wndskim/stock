@@ -30,6 +30,20 @@ def 금감원_공시내역_보기(조회일):
     st.text('금일 금감원 공시 건수:'+str(len(df))+'건')
     st.dataframe(df)
     return
+def Stock_Fundamental_조회(시작일, 종료일, 티커):
+    펀더멘털=stock.get_market_fundamental(시작일,종료일, 티커, freq='y')
+    펀더멘털['년도'] = pd.DatetimeIndex(펀더멘털.index).year
+    펀더멘털.reset_index(inplace=True)
+    펀더멘털.set_index('년도', inplace=True)
+    펀더멘털.drop('날짜', axis=1, inplace=True)
+    펀더멘털.sort_index(inplace=True, ascending=False)
+    펀더멘털.loc[:, "PER"] = 펀더멘털["PER"].map('{:.2f}'.format)
+    펀더멘털.loc[:, "PBR"] = 펀더멘털["PBR"].map('{:.2f}'.format)
+    펀더멘털.loc[:, "DIV"] = 펀더멘털["DIV"].map('{:.2f}'.format)
+    펀더멘털.loc[:, "BPS"] = 펀더멘털["BPS"].map('{:,d}'.format)
+    펀더멘털.loc[:, "EPS"] = 펀더멘털["EPS"].map('{:,d}'.format)
+    펀더멘털.loc[:, "DPS"] = 펀더멘털["DPS"].map('{:,d}'.format)
+    return 펀더멘털
 
 def Index_Fundamental_조회(시작일, 종료일, 마켓):
     if 마켓=='코스피': market='1001'
@@ -95,10 +109,7 @@ def get_CompanyGuide자료(ticker):
         ### 재무제표
         # 팻도시 5원칙 체크사항용(ROE>15%, ROA>7%, ROIC>7%~15%, 당기순이익/매출액*100>15, 잉여현금흐름(FCF)/매출액*100>5, 재고자산회전율)
         매출액=손익계산서.loc[['매출액']]
-        # 매출액=매출액.astype(float)
-        
         당기순이익=손익계산서.loc[['당기순이익']]
-        # 당기순이익=당기순이익.astype(float)
 
         영업활동FCF=현금흐름표.loc[['영업활동으로인한현금흐름']]
         영업활동FCF=영업활동FCF.astype(float)
