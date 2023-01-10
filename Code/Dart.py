@@ -79,7 +79,6 @@ def get_CompanyGuide자료(ticker):
         손익계산서=tables[0]
         손익계산서=손익계산서.set_index(손익계산서.columns[0])
 
-        st.write(손익계산서)
 
 
         재무상태표=tables[2]
@@ -90,6 +89,7 @@ def get_CompanyGuide자료(ticker):
         현금흐름표=tables[4]
         현금흐름표=현금흐름표.set_index(현금흐름표.columns[0])
 
+        st.write(현금흐름표)
 
 
         ### 재무비율
