@@ -202,9 +202,14 @@ def main():
         with col1:
             참조링크보기(티커)
         with col2:
-            df_finance=Dart.get_CompanyGuide자료(티커)
+            재무정보=Dart.get_CompanyGuide자료(티커).transpose()
+            col_names=재무정보.columns
 
-            st.dataframe(df_finance)
+            if len(재무정보)>0:
+                for col_name in col_names:
+                    재무정보.loc[:, col_name] = 재무정보[col_name].map('{:.2f}'.format)
+
+                st.dataframe(재무정보)
     
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
