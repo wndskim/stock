@@ -79,6 +79,28 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
     df['bb_bbl'] = indicator_bb.bollinger_lband()
 
     return df
+def Stock_OHLCV_조회(시작일, 종료일, 티커):
+    data=stock.get_market_ohlcv(시작일,종료일, 티커)
+    data['등락']=data.종가.diff(periods=1)
+    data['등락률']=data.종가.pct_change(periods=1)
+    data['Low52']=data.종가.rolling(min_periods=1, window=262, center=False).min()
+    data['High52']=data.종가.rolling(min_periods=1, window=262, center=False).max()
+    data['Mid52']=(data['High52']+data['Low52'])/2
+
+    data['sma5']=ta.trend.sma_indicator(data.Close, window=5)
+    data['sma10']=ta.trend.sma_indicator(data.Close, window=10)
+    data['sma20']=ta.trend.sma_indicator(data.Close, window=20)
+    data['sma60']=ta.trend.sma_indicator(data.Close, window=60)
+    data['sma120']=ta.trend.sma_indicator(data.Close, window=120)
+    data['sma240']=ta.trend.sma_indicator(data.Close, window=240)
+
+    data['rsi']=rsi(close=data['종가'],window=10)
+    indicator_bb = BollingerBands(close=data["종가"], window=40, window_dev=2)
+    data['bb_bbm'] = indicator_bb.bollinger_mavg()
+    data['bb_bbh'] = indicator_bb.bollinger_hband()
+    data['bb_bbl'] = indicator_bb.bollinger_lband()
+
+    return data
 
 def get_CompanyGuide자료(ticker):
 
