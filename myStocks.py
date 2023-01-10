@@ -203,7 +203,7 @@ def main():
             st.text('꼭 확인해야 할 사항 4가지')
             st.text('1:부채비율, 2:유보율, 3:유통주식수, 4:적자흑자유무')
 
-        col1, col2, col3=st.columns(3)
+        col1, col2, col3=st.columns([1,2,2])
         with col1:
             참조링크보기(티커)
         with col2:
