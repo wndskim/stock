@@ -198,7 +198,7 @@ def main():
 
         종목=st.selectbox('발굴종목',종목명s)
         티커=df[df['종목']==종목]['티커'].values[0]
-        col, col2, col3=st.columns(3)
+        col1, col2, col3=st.columns(3)
         with col1:
             참조링크보기(티커)
     
