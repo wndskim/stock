@@ -196,6 +196,8 @@ def main():
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
+        st.component(width=None, use_container_width=True)
+
         종목=st.selectbox('발굴종목',종목명s)
         티커=df[df['종목']==종목]['티커'].values[0]
         col1, col2, col3=st.columns(3)
