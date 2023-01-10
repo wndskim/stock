@@ -92,6 +92,8 @@ def get_CompanyGuide자료(ticker):
         재무비율=tables[0]
         재무비율=재무비율.set_index(재무비율.columns[0])
 
+        st.write(재무비율)
+
         ### 재무제표
         # 팻도시 5원칙 체크사항용(ROE>15%, ROA>7%, ROIC>7%~15%, 당기순이익/매출액*100>15, 잉여현금흐름(FCF)/매출액*100>5, 재고자산회전율)
         매출액=손익계산서.loc[['매출액']]
@@ -103,8 +105,8 @@ def get_CompanyGuide자료(ticker):
         투자활동FCF=현금흐름표.loc[['투자활동으로인한현금흐름']]
         투자활동FCF=투자활동FCF.astype(float)
 
-        st.dataframe(손익계산서)
-        st.write(매출액)
+        # st.dataframe(손익계산서)
+        # st.write(매출액)
         # st.write(당기순이익)
         # st.write(영업활동FCF)
         # st.write(투자활동FCF)
