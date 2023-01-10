@@ -81,6 +81,8 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
     return df
 def Stock_OHLCV_조회(시작일, 종료일, 티커):
     data=stock.get_market_ohlcv(시작일,종료일, 티커)
+    data.reset_index(inplace=True)
+    data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
     data['등락']=data.종가.diff(periods=1)
     data['등락률']=data.종가.pct_change(periods=1)
     data['Low52']=data.종가.rolling(min_periods=1, window=262, center=False).min()
