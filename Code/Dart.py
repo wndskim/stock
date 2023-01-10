@@ -104,7 +104,7 @@ def get_CompanyGuide자료(ticker):
         투자활동FCF=투자활동FCF.astype(float)
 
         st.write(매출액)
-        st.write(당기순이익)
+        # st.write(당기순이익)
         # st.write(영업활동FCF)
         # st.write(투자활동FCF)
         
