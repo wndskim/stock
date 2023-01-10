@@ -105,7 +105,7 @@ def main():
             종료일=str(조회일).replace('-','')
             df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
             df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
-            kospi_pbr=df_kospi._get_value(13, 'PBR')
+            kospi_pbr=df_kospi._get_value(13, 'PBR').astype(float)
 
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001') # 250일전 날짜 구해서 작업 수행
 
@@ -113,12 +113,12 @@ def main():
             kospi_bbl=df_index['bb_bbl'].iloc[-1].round(2)
             kospi_지수=df_index['종가'].iloc[-1].round(2)
 
-            if kospi_pbr < 0.9: 시장평가='폭락장인 상태이다'
-            elif (kospi_pbr > 0.89999) and (kospi_pbr < 1.0): 시장평가='정상적인 상태이다'
-            elif (kospi_pbr > 0.99999) and (kospi_pbr < 1.2): 시장평가=' 고평가 상태이다'
-            else: 시장평가=' 매우 고평가 상태이다'
-            st.markdown(f'''###### :orange[{조회일}일 기준으로 PBR이 {kospi_pbr}이므로 {시장평가}]''')
-            
+            if kospi_pbr < 0.9: 시장상태='폭락장인 상태이다'
+            elif (kospi_pbr > 0.89999) and (kospi_pbr < 1.0): 시장상태='정상적인 상태이다'
+            elif (kospi_pbr > 0.99999) and (kospi_pbr < 1.2): 시장상태=' 고평가 상태이다'
+            else: 시장상태=' 매우 고평가 상태이다'
+            st.markdown(f'''###### :orange[{조회일}일 기준으로 PBR이 {kospi_pbr}이므로 {시장상태}]''')
+
             col1, col2, col3, col4, col5=st.columns(5)
             with col1:
                 st.markdown(f'''
