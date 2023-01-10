@@ -223,6 +223,15 @@ def main():
             펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
             st.text('펀더멘털 정보')
             st.dataframe(펀더멘털)
+
+        # 개별종목 주가 가져오기
+        시작일=str(get_date(조회일, 2000)).replace('-','')
+        종료일=str(조회일).replace('-','')
+        주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커)
+
+        st.dataframe(주가정보)
+
+        
     
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
