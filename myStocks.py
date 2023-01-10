@@ -198,7 +198,9 @@ def main():
 
         종목=st.selectbox('발굴종목',종목명s)
         티커=df[df['종목']==종목]['티커'].values[0]
-        참조링크보기(티커)
+        col, col2, col3=st.columns(3)
+        with col1:
+            참조링크보기(티커)
     
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
