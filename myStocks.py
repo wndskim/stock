@@ -37,7 +37,7 @@ def 코스피200_등락률(sYear, sort_order):
 
 def 참조링크보기(티커):
     종목=stock.get_market_ticker_name(티커)
-    st.write(f'[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(종목))
+    st.write(f'[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={종목}&nav=1)')
     st.write(f'[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(종목))
     st.write(f'[네이버금융(종합정보)](https://finance.naver.com/item/main.naver?code={})'.format(종목))
     st.write(f'[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(종목))
