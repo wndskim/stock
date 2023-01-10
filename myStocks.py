@@ -80,7 +80,6 @@ def main():
                         ###### :red[1. 코스피의 PBR이 1.2 이상이면 미친 고평가]
                         ###### :blue[2. 코스피의 PBR이 1 이하이면 저평가]
                         ###### :green[3. 코스피의 PBR이 0.9 이하이면 폭락장/하락장]
-                        ###### :orange[2023년1월6일 기준으로 PBR이 0.86이므로 폭락장인 상태이다]
                     ''')
             with col2:
                 st.markdown('''
@@ -114,6 +113,11 @@ def main():
             kospi_bbl=df_index['bb_bbl'].iloc[-1].round(2)
             kospi_지수=df_index['종가'].iloc[-1].round(2)
 
+            if kospi_pbr < 0.9: 시장평가='폭락장인 상태이다'
+            elif (kospi_pbr > 0.89999) and (kospi_pbr < 1.0): 시장평가='정상적인 상태이다'
+            elif (kospi_pbr > 0.99999) and (kospi_pbr < 1.2): 시장평가=' 고평가 상태이다'
+            else: 시장평가=' 매우 고평가 상태이다'
+            st.markdown(f'''###### :orange[{조회일}일 기준으로 PBR이 {kospi_pbr}이므로 폭락장인 상태이다]''')
             col1, col2, col3, col4, col5=st.columns(5)
             with col1:
                 st.markdown(f'''
@@ -121,15 +125,15 @@ def main():
                     ''')
             with col2:
                 st.markdown(f'''
-                            ###### :green[2. PBR: {kospi_pbr}]
+                            ###### :violet[4. 볼리저밴드 하단선: {kospi_bbl}]
                     ''')
             with col3:
                 st.markdown(f'''
-                            ###### :blue[3. RSI: {kospi_rsi}]
+                            ###### :green[2. PBR: {kospi_pbr}]
                     ''')
             with col4:
                 st.markdown(f'''
-                            ###### :violet[4. 볼리저밴드 하단선: {kospi_bbl}]
+                            ###### :blue[3. RSI: {kospi_rsi}]
                     ''')
 
             # st.dataframe(df_index)
