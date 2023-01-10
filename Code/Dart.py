@@ -76,11 +76,11 @@ def get_CompanyGuide자료(ticker):
         page=requests.get(url)
         tables=pd.read_html(page.text)
 
-        st.write(tables)
-
-        
         손익계산서=tables[0]
         손익계산서=손익계산서.set_index(손익계산서.columns[0])
+
+        st.write(손익계산서)
+
 
         재무상태표=tables[2]
         재무상태표=재무상태표.set_index(재무상태표.columns[0])
