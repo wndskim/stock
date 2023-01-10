@@ -124,21 +124,13 @@ def main():
 
             col1, col2, col3, col4, col5=st.columns(5)
             with col1:
-                st.markdown(f'''
-                            ###### :orange[1. 코스피지수: {kospi_지수}]
-                    ''')
+                st.markdown(f'''###### :orange[1. 코스피지수: {kospi_지수}]''')
             with col2:
-                st.markdown(f'''
-                            ###### :violet[4. 볼리저밴드 하단선: {kospi_bbl}]
-                    ''')
+                st.markdown(f'''###### :violet[4. 볼리저밴드 하단선: {kospi_bbl}]''')
             with col3:
-                st.markdown(f'''
-                            ###### :green[2. PBR: {kospi_pbr}]
-                    ''')
+                st.markdown(f'''###### :green[2. PBR: {kospi_pbr}]''')
             with col4:
-                st.markdown(f'''
-                            ###### :blue[3. RSI: {kospi_rsi}]
-                    ''')
+                st.markdown(f'''###### :blue[3. RSI: {kospi_rsi}]''')
 
             # st.dataframe(df_index)
 
