@@ -241,8 +241,6 @@ def main():
 
         st.dataframe(주가정보)
 
-        
-    
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
