@@ -223,4 +223,4 @@ def get_CompanyGuide자료(ticker):
     except:
         return df
 
-    return df.transpose()
+    return df
