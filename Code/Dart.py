@@ -68,6 +68,8 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
 
 def get_CompanyGuide자료(ticker):
 
+    st.write(ticker)
+
     df=pd.DataFrame()
 
     try:
