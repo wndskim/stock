@@ -96,11 +96,11 @@ def get_CompanyGuide자료(ticker):
         # 팻도시 5원칙 체크사항용(ROE>15%, ROA>7%, ROIC>7%~15%, 당기순이익/매출액*100>15, 잉여현금흐름(FCF)/매출액*100>5, 재고자산회전율)
         st.dataframe(손익계산서)
 
-        매출액=손익계산서.loc[손익계산서.index == '매출액'].index[0]
+        매출액=손익계산서.loc[손익계산서.index == '매출액']
 
         st.dataframe(매출액)
 
-        
+
         매출액=손익계산서.loc[['매출액']]
         매출액=매출액.astype(float)
         당기순이익=손익계산서.loc[['당기순이익']]
