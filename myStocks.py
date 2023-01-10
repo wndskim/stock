@@ -196,7 +196,8 @@ def main():
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
-        티커=st.selectbox('발굴종목',종목명s)
+        종목=st.selectbox('발굴종목',종목명s)
+        티커=df[df['종목']==종목].values[0]
         참조링크보기(티커)
     
     if job=='관심주 및 보유주':
