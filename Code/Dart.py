@@ -79,18 +79,11 @@ def get_CompanyGuide자료(ticker):
         손익계산서=tables[0]
         손익계산서=손익계산서.set_index(손익계산서.columns[0])
 
-
-
         재무상태표=tables[2]
         재무상태표=재무상태표.set_index(재무상태표.columns[0])
 
-
-
         현금흐름표=tables[4]
         현금흐름표=현금흐름표.set_index(현금흐름표.columns[0])
-
-        st.write(현금흐름표)
-
 
         ### 재무비율
         url=f'https://comp.fnguide.com/SVO2/ASP/SVD_FinanceRatio.asp?pGB=1&gicode=A{ticker}&cID=&MenuYn=Y&ReportGB=&NewMenuID=104&stkGb=701'
@@ -98,6 +91,8 @@ def get_CompanyGuide자료(ticker):
         tables=pd.read_html(page.text)
         재무비율=tables[0]
         재무비율=재무비율.set_index(재무비율.columns[0])
+
+        st.write(재무비율)
 
         ### 재무제표
         # 팻도시 5원칙 체크사항용(ROE>15%, ROA>7%, ROIC>7%~15%, 당기순이익/매출액*100>15, 잉여현금흐름(FCF)/매출액*100>5, 재고자산회전율)
