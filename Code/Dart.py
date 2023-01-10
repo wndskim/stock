@@ -98,7 +98,7 @@ def get_CompanyGuide자료(ticker):
 
     매출액=손익계산서.loc[손익계산서.index=='매출액']
     # 매출액=손익계산서.loc[['매출액']]
-    매출액=매출액.astype(float)
+    # 매출액=매출액.astype(float)
     
     st.write(매출액)
 
