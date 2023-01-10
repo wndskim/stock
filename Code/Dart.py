@@ -104,7 +104,7 @@ def get_CompanyGuide자료(ticker):
 
     당기순이익=손익계산서.loc[손익계산서.index=='당기순이익']
     # 당기순이익=손익계산서.loc[['당기순이익']]
-    당기순이익=당기순이익.astype(float)
+    # 당기순이익=당기순이익.astype(float)
 
     st.write(당기순이익)
 
