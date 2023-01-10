@@ -68,8 +68,6 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
 
 def get_CompanyGuide자료(ticker):
 
-    st.write(ticker)
-
     df=pd.DataFrame()
 
     try:
@@ -77,6 +75,10 @@ def get_CompanyGuide자료(ticker):
         url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Finance.asp?pGB=1&gicode=A{ticker}&cID=&MenuYn=Y&ReportGB=&NewMenuID=103&stkGb=701'
         page=requests.get(url)
         tables=pd.read_html(page.text)
+
+        st.write(tables)
+
+        
         손익계산서=tables[0]
         손익계산서=손익계산서.set_index(손익계산서.columns[0])
 
