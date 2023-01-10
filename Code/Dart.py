@@ -84,12 +84,12 @@ def get_CompanyGuide자료(ticker):
         재무상태표=tables[2]
         재무상태표=재무상태표.set_index(재무상태표.columns[0])
 
+        st.write(재무상태표)
 
 
         현금흐름표=tables[4]
         현금흐름표=현금흐름표.set_index(현금흐름표.columns[0])
 
-        st.write(현금흐름표)
 
 
         ### 재무비율
