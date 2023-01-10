@@ -1,6 +1,9 @@
 import streamlit as st
 
 def 주식시장순환원리_나바로():
+
+    st.write('설명보기기능 추가 및 현단계 추가')
+
     st.markdown('''
             ###### :red[1. 강세장 초반]
             ###### :red[- 주도업종: 운송]
