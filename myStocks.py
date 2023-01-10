@@ -106,9 +106,6 @@ def main():
             df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
             df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
 
-            st.dataframe(df_kospi)
-
-
             # kospi_pbr=df_kospi._get_value(13, 'PBR')
             df_kospi['PBR']=df_kospi['PBR'].astype(float)
             kospi_pbr=df_kospi['PBR'].iloc[0]
