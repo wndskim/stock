@@ -110,6 +110,7 @@ def main():
 
 
             # kospi_pbr=df_kospi._get_value(13, 'PBR')
+            df_kospi['PBR']=df_kospi['PBR'].astype(float)
             kospi_pbr=df_kospi['PBR'].iloc[0]
             st.write(type(kospi_pbr))
 
