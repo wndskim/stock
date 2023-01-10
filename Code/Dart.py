@@ -104,13 +104,15 @@ def get_CompanyGuide자료(ticker):
         # 당기순이익=손익계산서.loc[['당기순이익']]
         당기순이익=당기순이익.astype(float)
 
+        st.write(매출액)
+        st.write(당기순이익)
+
+        
         영업활동FCF=현금흐름표.loc[['영업활동으로인한현금흐름']]
         영업활동FCF=영업활동FCF.astype(float)
         투자활동FCF=현금흐름표.loc[['투자활동으로인한현금흐름']]
         투자활동FCF=투자활동FCF.astype(float)
 
-        st.write(매출액)
-        st.write(당기순이익)
         # st.write(영업활동FCF)
         # st.write(투자활동FCF)
         
