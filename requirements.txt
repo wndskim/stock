@@ -11,3 +11,4 @@ datetime
 timedelta
 plotly
 ta
+requests
