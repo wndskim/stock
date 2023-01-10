@@ -96,7 +96,7 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커):
     data['sma120']=ta.trend.sma_indicator(data.종가, window=120)
     data['sma240']=ta.trend.sma_indicator(data.종가, window=240)
 
-    data['rsi']=rsi(close=data['종가'],window=10)
+    data['rsi10']=rsi(close=data['종가'],window=10)
     indicator_bb = BollingerBands(close=data["종가"], window=40, window_dev=2)
     data['bb_bbm'] = indicator_bb.bollinger_mavg()
     data['bb_bbh'] = indicator_bb.bollinger_hband()
