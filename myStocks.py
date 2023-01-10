@@ -105,7 +105,11 @@ def main():
             종료일=str(조회일).replace('-','')
             df_kospi=Dart.Index_Fundamental_조회(시작일,종료일,'코스피')
             df_kosdaq=Dart.Index_Fundamental_조회(시작일,종료일,'코스닥')
-            kospi_pbr=df_kospi._get_value(13, 'PBR').astype(float)
+
+            st.dataframe(df_kospi)
+
+            
+            kospi_pbr=df_kospi._get_value(13, 'PBR')
 
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001') # 250일전 날짜 구해서 작업 수행
 
