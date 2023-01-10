@@ -108,7 +108,7 @@ def main():
 
             st.dataframe(df_kospi)
 
-            
+
             kospi_pbr=df_kospi._get_value(13, 'PBR')
 
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001') # 250일전 날짜 구해서 작업 수행
@@ -117,7 +117,7 @@ def main():
             kospi_bbl=df_index['bb_bbl'].iloc[-1].round(2)
             kospi_지수=df_index['종가'].iloc[-1].round(2)
 
-            if kospi_pbr < 0.9: 시장상태='폭락장인 상태이다'
+            if (kospi_pbr < 0.9): 시장상태='폭락장인 상태이다'
             elif (kospi_pbr > 0.89999) and (kospi_pbr < 1.0): 시장상태='정상적인 상태이다'
             elif (kospi_pbr > 0.99999) and (kospi_pbr < 1.2): 시장상태=' 고평가 상태이다'
             else: 시장상태=' 매우 고평가 상태이다'
