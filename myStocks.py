@@ -191,19 +191,18 @@ def main():
         if 상승하락=='하락순':
             df.sort_values(by=['등락률'], ascending=False, inplace=False)
         
-        # 발굴종목s=df['티커'].unique()
         종목명s=df['종목'].unique()
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
-        col1, col2, col3=st.columns(3)
+        col1, col2, col3=st.columns([1,2,1])
         with col1:
             종목=st.selectbox('발굴종목',종목명s)
             티커=df[df['종목']==종목]['티커'].values[0]
         with col2:
             st.text('꼭 확인해야 할 사항 4가지')
             st.text('1:부채비율, 2:유보율, 3:유통주식수, 4:적자흑자유무')
-            
+
         col1, col2, col3=st.columns(3)
         with col1:
             참조링크보기(티커)
