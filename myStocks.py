@@ -117,7 +117,8 @@ def main():
             elif (kospi_pbr > 0.89999) and (kospi_pbr < 1.0): 시장평가='정상적인 상태이다'
             elif (kospi_pbr > 0.99999) and (kospi_pbr < 1.2): 시장평가=' 고평가 상태이다'
             else: 시장평가=' 매우 고평가 상태이다'
-            st.markdown(f'''###### :orange[{조회일}일 기준으로 PBR이 {kospi_pbr}이므로 폭락장인 상태이다]''')
+            st.markdown(f'''###### :orange[{조회일}일 기준으로 PBR이 {kospi_pbr}이므로 {시장평가}]''')
+            
             col1, col2, col3, col4, col5=st.columns(5)
             with col1:
                 st.markdown(f'''
