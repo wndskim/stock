@@ -109,7 +109,8 @@ def main():
             st.dataframe(df_kospi)
 
 
-            kospi_pbr=df_kospi._get_value(13, 'PBR')
+            # kospi_pbr=df_kospi._get_value(13, 'PBR')
+            kospi_pbr=df_kospi['PBR'].iloc[0]
             st.write(type(kospi_pbr))
 
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001') # 250일전 날짜 구해서 작업 수행
