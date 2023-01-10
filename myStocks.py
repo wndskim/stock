@@ -59,6 +59,10 @@ def main():
                 #### My Stock Management System(Web Version)
                 streamlit version is {version}
                 ''')
+
+    Strategy.주식시장순환원리_나바로()
+
+    
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','매매기술 설명 보기',\
                              '가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
