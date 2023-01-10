@@ -105,7 +105,7 @@ def get_CompanyGuide자료(ticker):
 
         st.write(매출액)
         st.write(당기순이익)
-        st.write(영업활동FCF)
+        # st.write(영업활동FCF)
         # st.write(투자활동FCF)
         
         # 벤자민 그레이엄 적정가치 계산용 항목
