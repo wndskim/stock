@@ -235,10 +235,11 @@ def main():
         st.text('특징주 내역')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
+        df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
         st.dataframe(df)
 
         종목명s=df['종목명'].unique().tolist()
-        종목명=st.selectbox('티커선택',종목명s)
+        종목명=st.selectbox('선택',종목명s)
 
         df_종목=df[df['종목명']==종목명]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
