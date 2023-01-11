@@ -12,6 +12,23 @@ def Chart_002(data):
                         low=data["저가"],
                         close=data["종가"])])
 
+    color_hi_fill = 'red'
+    color_hi_line = 'red'
+
+    color_lo_fill = 'blue'
+    color_lo_line = 'blue'
+
+    fig.data[1].increasing.fillcolor = color_hi_fill
+    fig.data[1].increasing.line.color = color_hi_line
+    fig.data[1].decreasing.fillcolor = 'rgba(0,0,0,0)'
+    fig.data[1].decreasing.line.color = 'rgba(0,0,0,0)'
+
+    fig.data[2].increasing.fillcolor = 'rgba(0,0,0,0)'
+    fig.data[2].increasing.line.color = 'rgba(0,0,0,0)'
+    fig.data[2].decreasing.fillcolor = color_lo_fill
+    fig.data[2].decreasing.line.color = color_lo_line
+
+
     # Add the chart to the app
     st.plotly_chart(fig)
 
