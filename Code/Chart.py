@@ -2,16 +2,18 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
-# Load data
-# df = px.data.gapminder()
+import datetime
 
 def Chart_002(data):
     # Create the chart
-    fig = go.Figure(data=[go.Candlestick(x=data.날짜,
+    data['날짜']=data['날짜'].year
+    fig = go.Figure(data=[go.Candlestick(x=data,
                         open=data["시가"],
                         high=data["고가"],
                         low=data["저가"],
                         close=data["종가"])])
+
+    # year = datetime.date.today().year
 
     # Add the chart to the app
     st.plotly_chart(fig)
