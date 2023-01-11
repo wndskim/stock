@@ -214,7 +214,7 @@ def main():
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'y')
         st.dataframe(df)
 
-        Chart.Chart_002(df)
+        Chart.Chart_002(df,종목)
 
         # 개별종목 주가 가져오기
         # 시작일=str(get_date(조회일, 2000)).replace('-','')
