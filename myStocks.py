@@ -242,6 +242,8 @@ def main():
 
         st.dataframe(df)
 
+
+### 특징주
     if job=='특징주':
         st.text('특징주 내역')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
@@ -255,6 +257,9 @@ def main():
         df_종목=df[df['종목명']==종목]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
+
+        시작일=str(get_date(조회일, 2000)).replace('-','')
+        종료일=str(조회일).replace('-','')
         Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
     if job=='가격 변동률(년간)':
