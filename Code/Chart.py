@@ -3,11 +3,8 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-def extract_year(x):
-    return x.split('-')[0]
-
 def Chart_002(data):
-    data['년도'] = data['날짜'].apply(extract_year)
+    
     # Create the chart
     fig = go.Figure(data=[go.Candlestick(x=data['년도'],
                         open=data["시가"],
