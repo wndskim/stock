@@ -213,9 +213,12 @@ def main():
         시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
         freq='y'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
-        # st.dataframe(df)
-
         Chart.Chart_002(df,종목,freq)
+
+        freq='m'
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+        Chart.Chart_002(df,종목,freq)
+
 
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
