@@ -13,7 +13,7 @@ def Chart_002(data):
                         open=data["시가"],
                         high=data["고가"],
                         low=data["저가"],
-                        close=data["종가"]
+                        close=data["종가"],
                         increasing_line_color='blue',
                         increasing_fillcolor='blue',
                         decreasing_line_color='red',
