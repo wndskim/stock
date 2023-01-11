@@ -250,10 +250,12 @@ def main():
         st.dataframe(df)
 
         종목명s=df['종목명'].unique().tolist()
-        종목명=st.selectbox('선택',종목명s)
+        종목=st.selectbox('선택',종목명s)
 
-        df_종목=df[df['종목명']==종목명]
+        df_종목=df[df['종목명']==종목]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
+
+        Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
     if job=='가격 변동률(년간)':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
