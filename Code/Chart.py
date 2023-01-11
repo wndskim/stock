@@ -12,6 +12,12 @@ def Chart_002(data):
                         low=data["저가"],
                         close=data["종가"])])
 
+    # set up trace with extreme highs
+    fig.add_traces(go.Candlestick(x=data['년도'],
+                open=data['시가'], high=data['고가'],
+                low=data['저가'], close=data['종가']))
+
+
     color_hi_fill = 'red'
     color_hi_line = 'red'
 
@@ -28,6 +34,7 @@ def Chart_002(data):
     fig.data[2].decreasing.fillcolor = color_lo_fill
     fig.data[2].decreasing.line.color = color_lo_line
 
+    fig.update_layout(title='년간 주가', xaxis_rangeslider_visible = False)
 
     # Add the chart to the app
     st.plotly_chart(fig)
