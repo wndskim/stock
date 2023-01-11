@@ -3,9 +3,11 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-def Chart_002(data,종목):
+def Chart_002(data,종목, freq):
 
     이격률3=data['이격률3'].iloc[-1].round(0)
+    if freq=='y': title=' 연봉 차트 / 3년 이격률: '
+    else: title=' 월봉 차트 / 20개월 이격률: '
 
     # Create the chart
     fig = go.Figure(data=[go.Candlestick(x=data['년도'],
@@ -27,7 +29,7 @@ def Chart_002(data,종목):
                     )
             ])
 
-    fig.update_layout(title=종목+' 연봉 차트 / 3년이격률: '+str(이격률3),
+    fig.update_layout(title=종목+title+str(이격률3),
                       xaxis_title='년도',
                       yaxis_title='가격',
                       xaxis_rangeslider_visible = False)
