@@ -209,9 +209,10 @@ def main():
             st.text('펀더멘털 정보')
             st.dataframe(펀더멘털)
 
+        시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'y')
         st.dataframe(df)
-        
+
         # 개별종목 주가 가져오기
         # 시작일=str(get_date(조회일, 2000)).replace('-','')
         # 종료일=str(조회일).replace('-','')
