@@ -4,10 +4,9 @@ import pandas as pd
 import plotly.graph_objects as go
 
 def Chart_002(data):
+    data['년도']=data['날짜'].split('-')[0]
     # Create the chart
-    # data['날짜']=pd.to_datetime(data['날짜']).year
-
-    fig = go.Figure(data=[go.Candlestick(x=data['날짜'],
+    fig = go.Figure(data=[go.Candlestick(x=data['년도'],
                         open=data["시가"],
                         high=data["고가"],
                         low=data["저가"],
