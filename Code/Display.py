@@ -50,11 +50,11 @@ def 재무정보_보여주기(시작일, 종료일, 티커, 종목):
             for col_name in col_names:
                 재무정보.loc[:, col_name]=재무정보[col_name].map('{:.2f}'.format)
             st.dataframe(재무정보)
-    with col3:
-        시작일=str(get_date(조회일, 2000)).replace('-','')
-        종료일=str(조회일).replace('-','')
-        펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
-        st.text('펀더멘털 정보')
-        st.dataframe(펀더멘털)
+    # with col3:
+    #     시작일=str(get_date(조회일, 2000)).replace('-','')
+    #     종료일=str(조회일).replace('-','')
+    #     펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
+    #     st.text('펀더멘털 정보')
+    #     st.dataframe(펀더멘털)
 
     return
