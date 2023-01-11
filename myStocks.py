@@ -61,8 +61,7 @@ def main():
                              '가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
 
     if job=='시장 상황 확인':
-        chk0=st.checkbox('피터 나바로의 주식시장 순환에 대한 정리 보기',value=False)
-        if chk0: Strategy.주식시장순환원리_나바로()
+        Strategy.주식시장순환원리_나바로()
         return
 
     if job=='체크 리스트':
