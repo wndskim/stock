@@ -91,7 +91,7 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
     if freq=='y':
         data['sma3']=ta.trend.sma_indicator(data.종가, window=3)
         data['이격률3']=data['종가']/data['sma3']*100
-        
+
     if freq=='d':
         data['Low52']=data.저가.rolling(min_periods=1, window=262, center=False).min()
         data['High52']=data.고가.rolling(min_periods=1, window=262, center=False).max()
@@ -103,6 +103,8 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
         data['sma60']=ta.trend.sma_indicator(data.종가, window=60)
         data['sma120']=ta.trend.sma_indicator(data.종가, window=120)
         data['sma240']=ta.trend.sma_indicator(data.종가, window=240)
+
+        data['이격률120']=data['종가']/data['sma120']*100
 
         data['rsi10']=rsi(close=data['종가'],window=10)
         indicator_bb = BollingerBands(close=data["종가"], window=40, window_dev=2)
