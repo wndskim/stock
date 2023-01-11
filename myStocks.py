@@ -50,18 +50,14 @@ def get_date(기준일, delta):
 # ##### Main
 ##############################################################
 def main():
-    # st.set_page_config(page_title='My Stock Management',
-    # st.set_page_config(layout='wide'
-    #                 )
-
     version=st.__version__
     st.markdown(f'''
                 #### My Stock Management System(Web Version)
                 streamlit version is {version}
                 ''')
 
-    Strategy.주식시장순환원리_나바로()
-
+    chk0=st.checkbox('피터 나바로의 주식시장 순환에 대한 정리 보기',value=False)
+    if chk0: Strategy.주식시장순환원리_나바로()
     
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','년도별 가격 변동률 조회','관심주 및 보유주','특징주','매매기술 설명 보기',\
