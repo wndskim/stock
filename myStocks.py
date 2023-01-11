@@ -211,7 +211,8 @@ def main():
             st.dataframe(펀더멘털)
 
         시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
-        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'y')
+        freq='y'
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         # st.dataframe(df)
 
         Chart.Chart_002(df,종목)
