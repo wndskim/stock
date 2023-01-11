@@ -29,8 +29,8 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
 
     st.write(조회일, 시작일, 종료일, 티커, 종목)
 
-    col1, col2, col3=st.columns([1,2,2])
-    with col1:
+    col4, col5, col6=st.columns([1,2,2])
+    with col4:
         st.text('')
         # 개별종목 주가 가져오기
 
@@ -49,7 +49,7 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         # 참조링크보기
         참조링크보기(티커)
 
-    with col2:
+    with col5:
         재무정보=Dart.get_CompanyGuide자료(티커).transpose()
         col_names=재무정보.columns
         if len(재무정보)>0:
@@ -57,7 +57,7 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
             for col_name in col_names:
                 재무정보.loc[:, col_name]=재무정보[col_name].map('{:.2f}'.format)
             st.dataframe(재무정보)
-    with col3:
+    with col6:
         시작일=str(get_date(조회일, 2000)).replace('-','')
         종료일=str(조회일).replace('-','')
         펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
