@@ -220,12 +220,13 @@ def main():
         #     st.dataframe(펀더멘털)
 # ###########################################
 
-
+        # 년간 차트 그리기
         시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
         freq='y'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         Chart.Chart_002(df,종목,freq)
 
+        # 월간 차트 그리기
         freq='m'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         Chart.Chart_002(df,종목,freq)
@@ -257,14 +258,22 @@ def main():
         df_종목=df[df['종목명']==종목]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
-
+        # 재무정보 보여주기
         시작일=str(get_date(조회일, 2000)).replace('-','')
         종료일=str(조회일).replace('-','')
         티커=df[df['종목명']==종목]['티커'].values[0]
-
-        st.write(조회일, 시작일, 종료일, 티커, 종목)
-
         Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
+
+        # 년간 차트 그리기
+        시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
+        freq='y'
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+        Chart.Chart_002(df,종목,freq)
+
+        # 월간 차트 그리기
+        freq='m'
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+        Chart.Chart_002(df,종목,freq)        
 
     if job=='가격 변동률(년간)':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
