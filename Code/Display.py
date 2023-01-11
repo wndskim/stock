@@ -3,7 +3,7 @@ import streamlit as st
 def 종목명_티커_선택(종목명s, df):
     col1, col2, col3=st.columns([1,2,1])
     with col1:
-        종목=st.selectbox('발굴종목',종목명s)
+        종목=st.selectbox('종목선택',종목명s)
         티커=df[df['종목']==종목]['티커'].values[0]
     with col2:
         st.markdown('''
