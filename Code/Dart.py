@@ -30,6 +30,7 @@ def 금감원_공시내역_보기(조회일):
     st.text('금일 금감원 공시 건수:'+str(len(df))+'건')
     st.dataframe(df)
     return
+
 def Stock_Fundamental_조회(시작일, 종료일, 티커):
     펀더멘털=stock.get_market_fundamental(시작일,종료일, 티커, freq='y')
     펀더멘털['년도'] = pd.DatetimeIndex(펀더멘털.index).year
@@ -79,8 +80,9 @@ def Index_OHLCV_조회(시작일, 종료일, idx):
     df['bb_bbl'] = indicator_bb.bollinger_lband()
 
     return df
-def Stock_OHLCV_조회(시작일, 종료일, 티커):
-    data=stock.get_market_ohlcv(시작일,종료일, 티커)
+
+def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
+    data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
     data.reset_index(inplace=True)
     data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
     data['등락']=data.종가.diff(periods=1)
