@@ -3,7 +3,7 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
-def Chart_002(data,종목, freq):
+def Chart_002(data,종목,freq):
 
     이격률3=data['이격률3'].iloc[-1].round(0)
     if freq=='y': title=' 연봉 차트 / 3년 이격률: '
