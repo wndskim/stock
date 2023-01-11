@@ -88,6 +88,7 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
     data['등락']=data.종가.diff(periods=1)
     data['등락률']=data.종가.pct_change(periods=1)*100
 
+    data['sma3']=ta.trend.sma_indicator(data.종가, window=3)
     if freq=='d':
         data['Low52']=data.종가.rolling(min_periods=1, window=262, center=False).min()
         data['High52']=data.종가.rolling(min_periods=1, window=262, center=False).max()
