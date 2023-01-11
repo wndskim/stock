@@ -11,13 +11,18 @@ def Chart_002(data,종목):
                         high=data["고가"],
                         low=data["저가"],
                         close=data["종가"],
-                        increasing_line_color='blue',
-                        increasing_fillcolor='blue',
-                        decreasing_line_color='red',
-                        decreasing_fillcolor='red'
-                    )])
+                        increasing_line_color='red',
+                        increasing_fillcolor='red',
+                        decreasing_line_color='blue',
+                        decreasing_fillcolor='blue'
+                    ),
+                        go.Scatter(
+                        x=data['년도'],
+                        y=data['sma3']
+                    )
+            ])
 
-    fig.update_layout(title=종목+' 년간 차트', xaxis_rangeslider_visible = False)
+    fig.update_layout(title=종목+' 연봉 차트', xaxis_rangeslider_visible = False)
 
     # Add the chart to the app
     st.plotly_chart(fig)
