@@ -215,7 +215,7 @@ def main():
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         # st.dataframe(df)
 
-        Chart.Chart_002(df,종목)
+        Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
