@@ -180,7 +180,7 @@ def main():
             # 개별종목 주가 가져오기
             시작일=str(get_date(조회일, 2000)).replace('-','')
             종료일=str(조회일).replace('-','')
-            주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커)
+            주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
 
             종가='종가: '+str(주가정보['종가'].iloc[-1].round(0))+'\n'
             최고가52='52주최고가: '+str(주가정보['High52'].iloc[-1].round(0))+'\n'
@@ -209,6 +209,9 @@ def main():
             st.text('펀더멘털 정보')
             st.dataframe(펀더멘털)
 
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'y')
+        st.dataframe(df)
+        
         # 개별종목 주가 가져오기
         # 시작일=str(get_date(조회일, 2000)).replace('-','')
         # 종료일=str(조회일).replace('-','')
