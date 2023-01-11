@@ -225,12 +225,23 @@ def main():
         종료일=str(조회일).replace('-','')
         주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커)
 
-        종가=주가정보['종가'].iloc[-1].round(0)
-        최고가52=주가정보['High52'].iloc[-1].round(0)
-        최저가52=주가정보['Low52'].iloc[-1].round(0)
-        이평120=주가정보['sma120'].iloc[-1].round(2)
-        rsi10=주가정보['rsi10'].iloc[-1].round(2)
-        bbl=주가정보['bb_bbl'].iloc[-1].round(2)
+        종가=str(주가정보['종가'].iloc[-1].round(0))+'\n'
+        최고가52=str(주가정보['High52'].iloc[-1].round(0))+'\n'
+        최저가52=str(주가정보['Low52'].iloc[-1].round(0))+'\n'
+        이평120=str(주가정보['sma120'].iloc[-1].round(2))+'\n'
+        rsi10=str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
+        bbl=str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
+
+
+            # 티커='티커  : '+ 종목선택+'\n'
+            # 종목명='종목명: '+ df[df['티커']==종목선택]['종목명'].values[0]+'\n'
+            # 업종명='업종명: '+ df[df['티커']==종목선택]['업종'].values[0]+'\n'
+            # 마켓='마켓:  '+ df[df['티커']==종목선택]['마켓'].values[0]+'\n'
+            # 대중소='대중소:  '+ df[df['티커']==종목선택]['대중소'].values[0]+'\n'
+            # 종가='종가:  '+ str(df[df['티커']==종목선택]['주가'].values[0])+'\n'
+            # 배당율='배당율:  '+ str(df[df['티커']==종목선택]['DIV'].values[0].round(2))+'\n'
+            # 배당금='배당금:  '+ str(df[df['티커']==종목선택]['DPS'].values[0])+'\n'
+
 
         st.markdown(f'''###### :orange[종가:{종가}, 52주최고가:{최고가52}, 52 주최저가: {최저가52}]''')
         st.markdown(f'''###### :orange[120일이평값:{이평120}, rsi(10):{rsi10}, 볼린저하한값: {bbl}]''')
