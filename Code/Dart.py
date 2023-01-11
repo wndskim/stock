@@ -10,6 +10,10 @@ from ta.momentum import rsi
 
 API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
 dart=OpenDartReader(API_KEY)
+
+def extract_year(x):
+    return x.split('-')[0]
+
 # @st.cache(suppress_st_warning=True)
 def 금감원_공시내역_보기(조회일):
     # 금일 금강원 공시 내역
@@ -89,6 +93,7 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
     data['등락률']=data.종가.pct_change(periods=1)*100
 
     if freq=='y':
+        data['년도'] = data['날짜'].apply(extract_year)
         data['sma3']=ta.trend.sma_indicator(data.종가, window=3)
         data['이격률3']=data['종가']/data['sma3']*100
 
