@@ -225,12 +225,12 @@ def main():
         종료일=str(조회일).replace('-','')
         주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커)
 
-        종가=str(주가정보['종가'].iloc[-1].round(0))+'\n'
-        최고가52=str(주가정보['High52'].iloc[-1].round(0))+'\n'
-        최저가52=str(주가정보['Low52'].iloc[-1].round(0))+'\n'
-        이평120=str(주가정보['sma120'].iloc[-1].round(2))+'\n'
-        rsi10=str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
-        bbl=str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
+        종가='종가: '+str(주가정보['종가'].iloc[-1].round(0))+'\n'
+        최고가52='52주최고가: '+str(주가정보['High52'].iloc[-1].round(0))+'\n'
+        최저가52='52주최저가: '+str(주가정보['Low52'].iloc[-1].round(0))+'\n'
+        이평120='120이평값: '+str(주가정보['sma120'].iloc[-1].round(2))+'\n'
+        rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
+        bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
 
 
             # 티커='티커  : '+ 종목선택+'\n'
@@ -242,9 +242,10 @@ def main():
             # 배당율='배당율:  '+ str(df[df['티커']==종목선택]['DIV'].values[0].round(2))+'\n'
             # 배당금='배당금:  '+ str(df[df['티커']==종목선택]['DPS'].values[0])+'\n'
 
+        st.text(종가+최고가52+최저가52+이평120++종가+rsi10+bbl)
 
-        st.markdown(f'''###### :orange[종가:{종가}, 52주최고가:{최고가52}, 52 주최저가: {최저가52}]''')
-        st.markdown(f'''###### :orange[120일이평값:{이평120}, rsi(10):{rsi10}, 볼린저하한값: {bbl}]''')
+        # st.markdown(f'''###### :orange[종가:{종가}, 52주최고가:{최고가52}, 52 주최저가: {최저가52}]''')
+        # st.markdown(f'''###### :orange[120일이평값:{이평120}, rsi(10):{rsi10}, 볼린저하한값: {bbl}]''')
 
         st.dataframe(주가정보)
 
