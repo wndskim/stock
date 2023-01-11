@@ -40,10 +40,6 @@ def Stock_Fundamental_조회(시작일, 종료일, 티커):
     펀더멘털['년도'] = pd.DatetimeIndex(펀더멘털.index).year
     펀더멘털.reset_index(inplace=True)
     펀더멘털.set_index('년도', inplace=True)
-
-    st.dataframe(펀더멘털)
-
-    
     펀더멘털.drop('날짜', axis=1, inplace=True)
     펀더멘털.sort_index(inplace=True, ascending=False)
     펀더멘털.loc[:, "PER"] = 펀더멘털["PER"].map('{:.2f}'.format)
