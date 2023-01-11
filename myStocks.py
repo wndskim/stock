@@ -176,44 +176,48 @@ def main():
         #         ###### :orange[1:부채비율, 2:유보율, 3:유통주식수, 4:적자흑자유무]
         #         ''')
 
-        col1, col2, col3=st.columns([1,2,2])
-        with col1:
-            st.text('')
-            # 개별종목 주가 가져오기
-            시작일=str(get_date(조회일, 2000)).replace('-','')
-            종료일=str(조회일).replace('-','')
-            Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
+        시작일=str(get_date(조회일, 2000)).replace('-','')
+        종료일=str(조회일).replace('-','')
+        Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
+
+        # col1, col2, col3=st.columns([1,2,2])
+        # with col1:
+        #     st.text('')
+        #     # 개별종목 주가 가져오기
+        #     시작일=str(get_date(조회일, 2000)).replace('-','')
+        #     종료일=str(조회일).replace('-','')
+        #     Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
 
-            # 주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
+        #     # 주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
 
-            # 종가='종가: '+str(주가정보['종가'].iloc[-1].round(0))+'\n'
-            # 최고가52='52주최고가: '+str(주가정보['High52'].iloc[-1].round(0))+'\n'
-            # 최저가52='52주최저가: '+str(주가정보['Low52'].iloc[-1].round(0))+'\n'
-            # 이평120='120이평값: '+str(주가정보['sma120'].iloc[-1].round(2))+'\n'
-            # 이격률120='120이격률: '+str(주가정보['이격률120'].iloc[-1].round(2))+'\n'
-            # rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
-            # bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
+        #     # 종가='종가: '+str(주가정보['종가'].iloc[-1].round(0))+'\n'
+        #     # 최고가52='52주최고가: '+str(주가정보['High52'].iloc[-1].round(0))+'\n'
+        #     # 최저가52='52주최저가: '+str(주가정보['Low52'].iloc[-1].round(0))+'\n'
+        #     # 이평120='120이평값: '+str(주가정보['sma120'].iloc[-1].round(2))+'\n'
+        #     # 이격률120='120이격률: '+str(주가정보['이격률120'].iloc[-1].round(2))+'\n'
+        #     # rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
+        #     # bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
 
-            # st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl)
+        #     # st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl)
 
-            # # 참조링크보기
-            # 참조링크보기(티커)
+        #     # # 참조링크보기
+        #     # 참조링크보기(티커)
 
-        with col2:
-            재무정보=Dart.get_CompanyGuide자료(티커).transpose()
-            col_names=재무정보.columns
-            if len(재무정보)>0:
-                st.text('재무정보')
-                for col_name in col_names:
-                    재무정보.loc[:, col_name]=재무정보[col_name].map('{:.2f}'.format)
-                st.dataframe(재무정보)
-        with col3:
-            시작일=str(get_date(조회일, 2000)).replace('-','')
-            종료일=str(조회일).replace('-','')
-            펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
-            st.text('펀더멘털 정보')
-            st.dataframe(펀더멘털)
+        # with col2:
+        #     재무정보=Dart.get_CompanyGuide자료(티커).transpose()
+        #     col_names=재무정보.columns
+        #     if len(재무정보)>0:
+        #         st.text('재무정보')
+        #         for col_name in col_names:
+        #             재무정보.loc[:, col_name]=재무정보[col_name].map('{:.2f}'.format)
+        #         st.dataframe(재무정보)
+        # with col3:
+        #     시작일=str(get_date(조회일, 2000)).replace('-','')
+        #     종료일=str(조회일).replace('-','')
+        #     펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
+        #     st.text('펀더멘털 정보')
+        #     st.dataframe(펀더멘털)
 # ###########################################
 
 
