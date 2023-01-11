@@ -5,34 +5,61 @@ import plotly.graph_objects as go
 
 def Chart_002(data,종목,freq):
 
-    이격률3=data['이격률3'].iloc[-1].round(0)
-    if freq=='y': title=' 연봉 차트 / 3년 이격률: '
-    else: title=' 월봉 차트 / 20개월 이격률: '
+    # 이격률3=data['이격률3'].iloc[-1].round(0)
+    if freq=='y': title=' 연봉 차트 / 3년 이격률: '; 이격률3=data['이격률3'].iloc[-1].round(0)
+    else: title=' 월봉 차트 / 20개월 이격률: '; 이격률20=data['이격률20'].iloc[-1].round(0)
 
     # Create the chart
-    fig = go.Figure(data=[go.Candlestick(x=data['년도'],
-                        open=data["시가"],
-                        high=data["고가"],
-                        low=data["저가"],
-                        close=data["종가"],
-                        name='연봉',
-                        increasing_line_color='red',
-                        increasing_fillcolor='red',
-                        decreasing_line_color='blue',
-                        decreasing_fillcolor='blue'
-                    ),
-                        go.Scatter(
-                        x=data['년도'],
-                        y=data['sma3'],
-                        name='3년평균',
-                        line_color="yellow"
-                    )
-            ])
+    if freq=='y':
+        fig = go.Figure(data=[go.Candlestick(x=data['년도'],
+                            open=data["시가"],
+                            high=data["고가"],
+                            low=data["저가"],
+                            close=data["종가"],
+                            name='연봉',
+                            increasing_line_color='red',
+                            increasing_fillcolor='red',
+                            decreasing_line_color='blue',
+                            decreasing_fillcolor='blue'
+                        ),
+                            go.Scatter(
+                            x=data['년도'],
+                            y=data['sma3'],
+                            name='3년평균',
+                            line_color="yellow"
+                        )
+                ])
 
-    fig.update_layout(title=종목+title+str(이격률3),
-                      xaxis_title='년도',
-                      yaxis_title='가격',
-                      xaxis_rangeslider_visible = False)
+        fig.update_layout(title=종목+title+str(이격률3),
+                        xaxis_title='년도',
+                        yaxis_title='가격',
+                        xaxis_rangeslider_visible = False)
+
+    else:
+        # Create the chart
+        fig = go.Figure(data=[go.Candlestick(x=data['년도'],
+                            open=data["시가"],
+                            high=data["고가"],
+                            low=data["저가"],
+                            close=data["종가"],
+                            name='연봉',
+                            increasing_line_color='red',
+                            increasing_fillcolor='red',
+                            decreasing_line_color='blue',
+                            decreasing_fillcolor='blue'
+                        ),
+                            go.Scatter(
+                            x=data['년도'],
+                            y=data['sma20'],
+                            name='20개월평균',
+                            line_color="yellow"
+                        )
+                ])
+
+        fig.update_layout(title=종목+title+str(이격률20),
+                        xaxis_title='년도',
+                        yaxis_title='가격',
+                        xaxis_rangeslider_visible = False)
 
     # Add the chart to the app
     st.plotly_chart(fig)
