@@ -27,8 +27,6 @@ def 종목명_티커_선택(종목명s, df):
 
 def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
 
-    st.write(조회일, 시작일, 종료일, 티커, 종목)
-
     col4, col5, col6=st.columns([1,2,2])
     with col4:
         st.text('')
