@@ -61,7 +61,7 @@ def Chart_002(data,종목,freq):
         fig.update_layout(title=종목+title+str(이격률20),
                         xaxis_title='년월',
                         yaxis_title='가격',
-                        width=1400,
+                        width=1000,
                         height=400,
                         xaxis_rangeslider_visible = False)
 
