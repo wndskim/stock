@@ -164,7 +164,7 @@ def main():
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
-        티커=Display.종목명_티커_선택(종목명s, df)
+        티커, 종목=Display.종목명_티커_선택(종목명s, df)
         
         # col1, col2, col3=st.columns([1,2,1])
         # with col1:
