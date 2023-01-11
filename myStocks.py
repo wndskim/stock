@@ -204,8 +204,6 @@ def main():
         col1, col2, col3=st.columns([1,2,2])
         with col1:
             st.text('')
-            참조링크보기(티커)
-
             # 개별종목 주가 가져오기
             시작일=str(get_date(조회일, 2000)).replace('-','')
             종료일=str(조회일).replace('-','')
@@ -220,6 +218,8 @@ def main():
 
             st.text(종목+'\n'+종가+최고가52+최저가52+이평120+rsi10+bbl)
 
+            # 참조링크보기
+            참조링크보기(티커)
 
         with col2:
             재무정보=Dart.get_CompanyGuide자료(티커).transpose()
