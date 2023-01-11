@@ -39,19 +39,19 @@ def Chart_002(data,종목,freq):
 
     else:
         # Create the chart
-        fig = go.Figure(data=[go.Candlestick(x=data['년도'],
+        fig = go.Figure(data=[go.Candlestick(x=data['년월'],
                             open=data["시가"],
                             high=data["고가"],
                             low=data["저가"],
                             close=data["종가"],
-                            name='연봉',
+                            name='월봉',
                             increasing_line_color='red',
                             increasing_fillcolor='red',
                             decreasing_line_color='blue',
                             decreasing_fillcolor='blue'
                         ),
                             go.Scatter(
-                            x=data['년도'],
+                            x=data['년월'],
                             y=data['sma20'],
                             name='20개월평균',
                             line_color="yellow"
@@ -59,7 +59,7 @@ def Chart_002(data,종목,freq):
                 ])
 
         fig.update_layout(title=종목+title+str(이격률20),
-                        xaxis_title='년도',
+                        xaxis_title='년월',
                         yaxis_title='가격',
                         xaxis_rangeslider_visible = False)
 
