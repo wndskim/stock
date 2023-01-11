@@ -232,7 +232,7 @@ def main():
         rsi10=주가정보['rsi10'].iloc[-1].round(2)
         bbl=주가정보['bb_bbl'].iloc[-1].round(2)
 
-        st.markdown(f'''###### :orange[종가:{종가}, 52주최고가:{최고가52}, 52주최저가: {최저가52}]''')
+        st.markdown(f'''###### :orange[종가:{종가} \n, 52주최고가:{최고가52}, 52주최저가: {최저가52}]''')
         st.markdown(f'''###### :orange[120일이평값:{이평120}, rsi(10):{rsi10}, 볼린저하한값: {bbl}]''')
 
         st.dataframe(주가정보)
