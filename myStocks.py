@@ -202,7 +202,7 @@ def main():
         # df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
         # 종목선택
-        col1, col2, col3=st.columns([1,2,2])
+        col1, col2, col3=st.columns([1,1,3])
         with col1:
             radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
         with col2:
@@ -213,16 +213,16 @@ def main():
 
             # 전체 또는 해당일자 보기
             df_선택일=df[df['날짜']==str(선택일)]
-            if radio1=='전체 보기': st.dataframe(df)
-            else:
-                if len(df_선택일)<1: st.write('해당일에는 특징주 정보가 없음')
-                else: st.dataframe(df_선택일)
         with col3:
-            종목명s=df['종목명'].unique().tolist()
+            종목명s=df_선택일['종목명'].unique().tolist()
             종목=st.selectbox('선택',종목명s)
             df_종목=df[df['종목명']==종목]
 
-
+        # 화면에 전송
+        if radio1=='전체 보기': st.dataframe(df)
+        else:
+            if len(df_선택일)<1: st.write('해당일에는 특징주 정보가 없음')
+            else: st.dataframe(df_선택일)
 
         # 선택된 종목 보기
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
