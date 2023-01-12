@@ -162,9 +162,6 @@ def main():
         
         # 종목선택 후 조회
         종목명s=(df['종목'].unique()).tolist()
-
-        st.write(종목명s)
-        
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
