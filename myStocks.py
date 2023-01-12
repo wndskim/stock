@@ -196,7 +196,7 @@ def main():
 
 ### 특징주
     if job=='특징주':
-        st.markdown(''' ###### :orange[상한가/1000만주 이상 거래] 종목''')
+        st.markdown(''' ##### :orange[상한가/1000만주 이상 거래 종목]''')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
