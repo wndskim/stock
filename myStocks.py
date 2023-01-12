@@ -174,6 +174,10 @@ def main():
         df_관심종목=pd.read_excel('./Data/관심종목.xlsx')
         # Create the new row
         new_row = {'날짜': 조회일, '티커': 티커, '종목명':종목}
+
+        st.write(new_row)
+
+        
         # Append the new row to the DataFrame
         df_관심종목=df_관심종목.append(new_row, ignore_index=True)
         # Save the DataFrame to the Excel file
