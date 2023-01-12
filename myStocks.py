@@ -175,7 +175,7 @@ def main():
         시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
         freq='y'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
-        이평3년=df['이격률3'].iloc[-1].round(0)
+        이평3년=df['sma3'].iloc[-1].round(0)
 
         st.dataframe(df.tail(5))
         st.write(이평3년)
