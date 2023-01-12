@@ -180,10 +180,10 @@ def main():
 
         # Append the new row to the DataFrame
         df_관심종목=df_관심종목.append(new_row, ignore_index=True)
+        st.write(df_관심종목)
         # Save the DataFrame to the Excel file
         df_관심종목.to_excel('./Data/관심종목.xlsx', index=False)
 
-        st.write(df_관심종목)
 
 
         # # 년간 차트 그리기
