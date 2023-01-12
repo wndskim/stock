@@ -175,7 +175,6 @@ def main():
         # Create the new row
         new_row = {'날짜': 조회일, '티커': 티커, '종목명':종목}
 
-        st.write(df_관심종목)
         st.write(new_row)
 
 
@@ -184,6 +183,7 @@ def main():
         # Save the DataFrame to the Excel file
         df_관심종목.to_excel('./Data/관심종목.xlsx', index=False)
 
+        st.write(df_관심종목)
 
 
         # # 년간 차트 그리기
