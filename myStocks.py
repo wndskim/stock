@@ -211,12 +211,14 @@ def main():
             선택일=st.date_input('날짜선택')
             st.write(선택일)
         with col3:
-            radio1=st.radio("선택", ('전체 보기', '선택일 보기'))
+            radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
 
         # 전체 또는 해당일자 보기
         df_선택일=df[df['날짜']==str(선택일)]
         if radio1=='전체 보기': st.dataframe(df)
-        else: st.dataframe(df_선택일)
+        else:
+            if len(df_선택일)<1: st.write('해당일에는 특징주 정보가 없음')
+            else: st.dataframe(df_선택일)
 
         # 선택된 종목 보기
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
