@@ -196,29 +196,33 @@ def main():
 
 ### 특징주
     if job=='특징주':
-        st.text('특징주 내역')
-        df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
-        df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
-        df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
+        # st.text('특징주 내역')
+        # df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
+        # df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
+        # df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
         # 종목선택
         col1, col2, col3=st.columns([1,1,1])
         with col1:
+            radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
+        with col2:
+            선택일=st.date_input('날짜선택')
+            df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
+            df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
+            df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
+
+            # 전체 또는 해당일자 보기
+            df_선택일=df[df['날짜']==str(선택일)]
+            if radio1=='전체 보기': st.dataframe(df)
+            else:
+                if len(df_선택일)<1: st.write('해당일에는 특징주 정보가 없음')
+                else: st.dataframe(df_선택일)
+        with col3:
             종목명s=df['종목명'].unique().tolist()
             종목=st.selectbox('선택',종목명s)
             df_종목=df[df['종목명']==종목]
-        with col2:
-            선택일=st.date_input('날짜선택')
-            st.write(선택일)
-        with col3:
-            radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
 
-        # 전체 또는 해당일자 보기
-        df_선택일=df[df['날짜']==str(선택일)]
-        if radio1=='전체 보기': st.dataframe(df)
-        else:
-            if len(df_선택일)<1: st.write('해당일에는 특징주 정보가 없음')
-            else: st.dataframe(df_선택일)
+
 
         # 선택된 종목 보기
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
