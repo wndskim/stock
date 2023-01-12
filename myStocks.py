@@ -68,7 +68,7 @@ def main():
         Strategy.Define_매매기술_설명()
         return
 
-    조회일=st.date_input('조회일')
+    조회일=st.sidebar.date_input('조회일')
 
     if job=='선택':
 
@@ -202,7 +202,7 @@ def main():
         # df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
         # 종목선택
-        col1, col2, col3=st.columns([1,1,1])
+        col1, col2, col3=st.columns([1,2,2])
         with col1:
             radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
         with col2:
