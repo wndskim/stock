@@ -240,7 +240,7 @@ def main():
 
         # st.dataframe(df_특징주)
         # st.dataframe(내재가치)
-        st.write('내재가치',내재가치)
+        st.write('내재가치',type(내재가치))
 
 
 
