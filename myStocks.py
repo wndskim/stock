@@ -199,6 +199,7 @@ def main():
 
         st.write(종목,티커)
         ########################################
+        st.dataframe(df)
 
 
         st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
@@ -206,7 +207,6 @@ def main():
         st.write('[KT(030200) 보유주](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
         st.write('[유라테크(048430) 관심주](https://docs.google.com/spreadsheets/d/1IwcqZpn8_yiw-ZwX8kJW3na9d5Xy_aLY9Bv4X1WruLY/edit#gid=743352833)')
 
-        st.dataframe(df)
 
 ### 특징주
     if job=='특징주':
