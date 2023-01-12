@@ -212,7 +212,7 @@ def main():
             st.write(선택일)
 
         st.dataframe(df)
-        df=df[df['날짜']==선택일]
+        df=df[df['날짜']==str(선택일)]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
         # 재무정보 보여주기
