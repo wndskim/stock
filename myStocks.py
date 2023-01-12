@@ -221,7 +221,7 @@ def main():
         # 화면에 전송
         if radio1=='전체 보기': st.dataframe(df)
         else:
-            if len(df_선택일)<1: st.write('해당일에는 특징주 정보가 없음')
+            if len(df_선택일)<1: st.write('해당일에는 특징주 정보가 없음'); return
             else: st.dataframe(df_선택일)
 
         # 선택된 종목 보기
