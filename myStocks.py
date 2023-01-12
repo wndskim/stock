@@ -202,6 +202,7 @@ def main():
     if job=='특징주':
         st.markdown(''' ##### :orange[상한가/1000만주 이상 거래 종목]''')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx',sheet_name=0)
+        df_특징주=pd.read_excel('./Data/특징주.xlsx',sheet_name=0)
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
@@ -232,6 +233,12 @@ def main():
         시작일=str(get_date(조회일, 2000)).replace('-','')
         종료일=str(조회일).replace('-','')
         티커=df[df['종목명']==종목]['티커'].values[0]
+        
+        내재가치=df_특징주[df_특징주['티커']==티커]['내재가치100'].values[0]
+        st.write('내재가치',내재가치)
+
+
+
         Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
         # 년간 차트 그리기
