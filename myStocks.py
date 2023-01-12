@@ -171,36 +171,21 @@ def main():
         종료일=str(조회일).replace('-','')
         Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
-        df_관심종목=pd.read_excel('./Data/관심종목.xlsx')
-        # Create the new row
-        new_row = {'날짜': 조회일, '티커': 티커, '종목명':종목}
+        # 년간 차트 그리기
+        시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
+        freq='y'
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+        이평3년=df['sma3'].iloc[-1].round(0)
 
-        st.write(new_row)
+        st.dataframe(df.tail(5))
+        st.write(이평3년)
 
+        Chart.Chart_002(df,종목,freq)
 
-        # Append the new row to the DataFrame
-        df_관심종목=df_관심종목.append(new_row, ignore_index=True)
-        st.write(df_관심종목)
-        # Save the DataFrame to the Excel file
-        df_관심종목.to_excel('./Data/관심종목.xlsx', index=False)
-
-
-
-        # # 년간 차트 그리기
-        # 시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
-        # freq='y'
-        # df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
-        # 이평3년=df['sma3'].iloc[-1].round(0)
-
-        # st.dataframe(df.tail(5))
-        # st.write(이평3년)
-
-        # Chart.Chart_002(df,종목,freq)
-
-        # # 월간 차트 그리기
-        # freq='m'
-        # df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
-        # Chart.Chart_002(df,종목,freq)
+        # 월간 차트 그리기
+        freq='m'
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+        Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심종목.xlsx')
