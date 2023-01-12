@@ -200,7 +200,6 @@ def main():
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
-        st.dataframe(df)
 
         # 종목선택
         col1, col2=st.columns([1,1])
@@ -209,10 +208,11 @@ def main():
             종목=st.selectbox('선택',종목명s)
             df_종목=df[df['종목명']==종목]
         with col2:
-            st.text('조회를 원하는 날짜 선택')
             선택일=st.date_input('날짜선택')
             st.write(선택일)
 
+        st.dataframe(df)
+        df=df[df['날짜']==선택일]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
         # 재무정보 보여주기
