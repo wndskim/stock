@@ -175,6 +175,10 @@ def main():
         시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
         freq='y'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+
+        st.dataframe(df.tail(5))
+
+        # data['이격률3'].iloc[-1].round(0)
         Chart.Chart_002(df,종목,freq)
 
         # 월간 차트 그리기
