@@ -196,7 +196,7 @@ def main():
 
 ### 특징주
     if job=='특징주':
-        st.text('특징주(상한가/1000만주 이상 거래) 종목')
+        st.text('상한가/1000만주 이상 거래) 종목')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
@@ -207,9 +207,6 @@ def main():
             radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
         with col2:
             선택일=st.date_input('날짜선택')
-            # df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx')
-            # df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
-            # df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
             # 전체 또는 해당일자 보기
             df_선택일=df[df['날짜']==str(선택일)]
