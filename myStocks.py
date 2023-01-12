@@ -193,7 +193,7 @@ def main():
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
-        종목명s=df_선택일['종목명'].unique().tolist()
+        종목명s=df['종목명'].unique().tolist()
         종목=st.selectbox('선택',종목명s)
         티커=df[df['종목명']==종목]['티커'].values[0]
 
