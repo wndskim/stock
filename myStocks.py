@@ -205,6 +205,7 @@ def main():
         df_특징주=pd.read_excel('./Data/특징주.xlsx',sheet_name=0)
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
+        df_특징주["티커"] = df_특징주["티커"].apply(lambda x: str(x).zfill(6))
 
         # 종목선택
         col1, col2, col3=st.columns([1,1,3])
