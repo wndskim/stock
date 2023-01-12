@@ -160,65 +160,16 @@ def main():
         if 상승하락=='하락순':
             df.sort_values(by=['등락률'], ascending=False, inplace=False)
         
+        # 종목선택 후 조회
         종목명s=df['종목'].unique()
         st.write(시트선택, len(종목명s),'종목')
         st.dataframe(df)
 
+        # 재무정보 보여주기
         티커, 종목=Display.종목명_티커_선택(종목명s, df)
-        
-        # col1, col2, col3=st.columns([1,2,1])
-        # with col1:
-        #     종목=st.selectbox('발굴종목',종목명s)
-        #     티커=df[df['종목']==종목]['티커'].values[0]
-        # with col2:
-        #     st.markdown('''
-        #         ###### :orange[꼭 확인해야 할 사항 4가지]
-        #         ###### :orange[1:부채비율, 2:유보율, 3:유통주식수, 4:적자흑자유무]
-        #         ''')
-
         시작일=str(get_date(조회일, 2000)).replace('-','')
         종료일=str(조회일).replace('-','')
         Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
-
-        # col1, col2, col3=st.columns([1,2,2])
-        # with col1:
-        #     st.text('')
-        #     # 개별종목 주가 가져오기
-        #     시작일=str(get_date(조회일, 2000)).replace('-','')
-        #     종료일=str(조회일).replace('-','')
-        #     Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
-
-
-        #     # 주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
-
-        #     # 종가='종가: '+str(주가정보['종가'].iloc[-1].round(0))+'\n'
-        #     # 최고가52='52주최고가: '+str(주가정보['High52'].iloc[-1].round(0))+'\n'
-        #     # 최저가52='52주최저가: '+str(주가정보['Low52'].iloc[-1].round(0))+'\n'
-        #     # 이평120='120이평값: '+str(주가정보['sma120'].iloc[-1].round(2))+'\n'
-        #     # 이격률120='120이격률: '+str(주가정보['이격률120'].iloc[-1].round(2))+'\n'
-        #     # rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
-        #     # bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
-
-        #     # st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl)
-
-        #     # # 참조링크보기
-        #     # 참조링크보기(티커)
-
-        # with col2:
-        #     재무정보=Dart.get_CompanyGuide자료(티커).transpose()
-        #     col_names=재무정보.columns
-        #     if len(재무정보)>0:
-        #         st.text('재무정보')
-        #         for col_name in col_names:
-        #             재무정보.loc[:, col_name]=재무정보[col_name].map('{:.2f}'.format)
-        #         st.dataframe(재무정보)
-        # with col3:
-        #     시작일=str(get_date(조회일, 2000)).replace('-','')
-        #     종료일=str(조회일).replace('-','')
-        #     펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
-        #     st.text('펀더멘털 정보')
-        #     st.dataframe(펀더멘털)
-# ###########################################
 
         # 년간 차트 그리기
         시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
@@ -243,7 +194,6 @@ def main():
 
         st.dataframe(df)
 
-
 ### 특징주
     if job=='특징주':
         st.text('특징주 내역')
@@ -252,10 +202,17 @@ def main():
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
         st.dataframe(df)
 
-        종목명s=df['종목명'].unique().tolist()
-        종목=st.selectbox('선택',종목명s)
+        # 종목선택
+        col1, col2=st.columns([1,1])
+        with col1:
+            종목명s=df['종목명'].unique().tolist()
+            종목=st.selectbox('선택',종목명s)
+            df_종목=df[df['종목명']==종목]
+        with col2:
+            st.text('조회를 원하는 날짜 선택')
+            선택일=st.date_input('날짜선택')
+            st.write(선택일)
 
-        df_종목=df[df['종목명']==종목]
         st.dataframe(df_종목[['날짜','티커','종목명','사유_뉴스']])
 
         # 재무정보 보여주기
