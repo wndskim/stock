@@ -48,7 +48,7 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         page=requests.get(url)
         tables=pd.read_html(page.text)
         df=tables[0]
-        시가총액='시가총액:'+df.iloc[[4]][1].values[0]
+        시가총액='시가총액:'+df.iloc[[4]][1].values[0]+'(억)'
 
 
         st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액)
