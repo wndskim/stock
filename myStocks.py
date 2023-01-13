@@ -177,10 +177,6 @@ def main():
         freq='y'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         이평3년=df['sma3'].iloc[-1].round(0)
-
-        st.dataframe(df.tail(5))
-        st.write(이평3년)
-
         Chart.Chart_002(df,종목,freq)
 
         # 월간 차트 그리기
