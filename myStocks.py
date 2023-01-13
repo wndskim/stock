@@ -185,7 +185,7 @@ def main():
         Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
-        df=pd.read_excel('./Data/관심주.xlsx')
+        df=pd.read_excel('./Data/관심주.xlsx',sheet_name=0)
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
