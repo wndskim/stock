@@ -8,7 +8,7 @@ def 현장세_보기():
             ''')
 
     st.write('[2023-01-13_US annual CPI inflation drops to "6.5%" in December as expected]\
-              (https://www.fxstreet.com/news/breaking-us-annual-cpi-inflation-drops-to-65-in-december-as-expected-202301121330')
+              (https://www.fxstreet.com/news/breaking-us-annual-cpi-inflation-drops-to-65-in-december-as-expected-202301121330)')
 
     st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
 
