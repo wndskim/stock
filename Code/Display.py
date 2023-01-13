@@ -92,10 +92,34 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보):
 
         # kospi_rsi=df_index['rsi'].iloc[-1].round(2)
         종가=상승파동비율.loc['종가'].values[0]
+        내재가치=상승파동비율.loc['내재가치'].values[0]
         파동001=상승파동비율.loc['0.01'].values[0]
+        파동007=상승파동비율.loc['0.07'].values[0]
+        파동014=상승파동비율.loc['0.14'].values[0]
+        파동021=상승파동비율.loc['0.21'].values[0]
+        파동025=상승파동비율.loc['0.25'].values[0]
+        파동382=상승파동비율.loc['0.382'].values[0]
+        파동050=상승파동비율.loc['0.5'].values[0]
+        파동068=상승파동비율.loc['0.68'].values[0]
+        파동832=상승파동비율.loc['0.832'].values[0]
+        파동100=상승파동비율.loc['1'].values[0]
+        파동1618=상승파동비율.loc['1.618'].values[0]
+        파동200=상승파동비율.loc['2'].values[0]
 
         st.write(종가)
+        st.write(내재가치)
         st.write(파동001)
+        st.write(파동007)
+        st.write(파동014)
+        st.write(파동021)
+        st.write(파동025)
+        st.write(파동382)
+        st.write(파동050)
+        st.write(파동068)
+        st.write(파동832)
+        st.write(파동100)
+        st.write(파동1618)
+        st.write(파동200)
 
 
 
