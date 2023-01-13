@@ -185,18 +185,21 @@ def main():
         Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
-        df=pd.read_excel('./Data/관심주.xlsx',sheet_name=0)
-        df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
-        df['최저가일']=df['최저가일'].dt.strftime('%Y-%m-%d')
-        df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
-
-        st.dataframe(df)
+        df1=pd.read_excel('./Data/관심주.xlsx',sheet_name=0)
+        df2=pd.read_excel('./Data/관심주.xlsx',sheet_name=1)
+        df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
+        df1['최저가일']=df1['최저가일'].dt.strftime('%Y-%m-%d')
+        df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
+        df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
+        df2['최저가일']=df2['최저가일'].dt.strftime('%Y-%m-%d')
+        df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
         종목s=df['종목'].unique().tolist()
         종목=st.selectbox('선택',종목s)
         티커=df[df['종목']==종목]['티커'].values[0]
 
         st.write(티커, 종목)
+        Display.관심주_보기(티커, 종목, df1, df2)
 
         st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
         st.write('[기법정리](https://docs.google.com/spreadsheets/d/1tJg4kfIIpt17LNKXoKwzzallnXPmyCzMF1DhIIw1Q-8/edit#gid=1186881965)')
