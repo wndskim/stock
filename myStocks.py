@@ -194,9 +194,9 @@ def main():
         df2['최저가일']=df2['최저가일'].dt.strftime('%Y-%m-%d')
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
-        종목s=df['종목'].unique().tolist()
+        종목s=df1['종목'].unique().tolist()
         종목=st.selectbox('선택',종목s)
-        티커=df[df['종목']==종목]['티커'].values[0]
+        티커=df1[df1['종목']==종목]['티커'].values[0]
 
         st.write(티커, 종목)
         Display.관심주_보기(티커, 종목, df1, df2)
