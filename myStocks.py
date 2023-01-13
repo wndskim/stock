@@ -226,18 +226,22 @@ def main():
         df_특징주["티커"] = df_특징주["티커"].apply(lambda x: str(x).zfill(6))
 
         # 종목선택
-        col1, col2, col3=st.columns([1,1,3])
-        with col1:
-            radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
-        with col2:
-            선택일=st.date_input('날짜선택')
+        종목명s=df_선택일['종목명'].unique().tolist()
+        종목=st.sidebar.selectbox('선택',종목명s)
+        df_종목=df[df['종목명']==종목]
 
+        col1, col2=st.columns([1,1,3])
+        with col1:
+            선택일=st.date_input('날짜선택')
             # 전체 또는 해당일자 보기
             df_선택일=df[df['날짜']==str(선택일)]
-        with col3:
-            종목명s=df_선택일['종목명'].unique().tolist()
-            종목=st.selectbox('선택',종목명s)
-            df_종목=df[df['종목명']==종목]
+        with col2:
+            radio1=st.radio("선택", ('선택일 보기', '전체 보기'))
+            
+        # with col3:
+        #     종목명s=df_선택일['종목명'].unique().tolist()
+        #     종목=st.selectbox('선택',종목명s)
+        #     df_종목=df[df['종목명']==종목]
 
         # 화면에 전송
         if radio1=='전체 보기': st.dataframe(df)
