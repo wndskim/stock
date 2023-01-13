@@ -91,7 +91,7 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보):
         st.markdown(f'''###### :orange[{티커}]''')
 
         # kospi_rsi=df_index['rsi'].iloc[-1].round(2)
-        종가=상승파동비율.loc['종가']
+        종가=상승파동비율.loc['종가'][-1]
 
         st.write(종가)
 
