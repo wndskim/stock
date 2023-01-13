@@ -226,7 +226,7 @@ def main():
         df_특징주["티커"] = df_특징주["티커"].apply(lambda x: str(x).zfill(6))
 
 
-        col1, col2=st.columns([1,1,3])
+        col1, col2, col3=st.columns([1,1,3])
         with col1:
             선택일=st.date_input('날짜선택')
             # 전체 또는 해당일자 보기
