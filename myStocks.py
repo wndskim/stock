@@ -186,9 +186,8 @@ def main():
 
     if job=='관심주 및 보유주':
         df=pd.read_excel('./Data/관심주.xlsx',sheet_name=0)
-        st.dataframe(df)
-
         df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
+        df['최저가일']=df['최저가'].dt.strftime('%Y-%m-%d')
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
 
         st.dataframe(df)
@@ -196,6 +195,8 @@ def main():
         종목s=df['종목'].unique().tolist()
         종목=st.selectbox('선택',종목s)
         티커=df[df['종목']==종목]['티커'].values[0]
+
+        st.write(티커, 종목)
 
         st.write(종목,티커)
         ########################################
