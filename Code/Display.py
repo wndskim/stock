@@ -57,8 +57,6 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목, �
         df=tables[0]
         시가총액='시가총액(억):'+df.iloc[[4]][1].values[0]+'\n'
         내재가치='내재가치: '+str(내재가치)
-
-
         st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액+내재가치)
 
         # 참조링크보기
@@ -80,5 +78,16 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목, �
             st.text('펀더멘털 정보')
             st.dataframe(펀더멘털)
         except: st.write('펀더멘털 정보 없음 !!')
+
+    return
+
+
+def 관심주_보기(티커, 종목, df1, df2):
+
+    col1, col2=st.columns([1,1])
+    with col1:
+        st.dataframe(df1)
+    with col2:
+        st.dataframe(df2)
 
     return
