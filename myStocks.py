@@ -195,13 +195,12 @@ def main():
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
         종목s=df1['종목'].unique().tolist()
-        종목=st.selectbox('선택',종목s)
+        종목=st.sidebar.selectbox('선택',종목s)
         티커=df1[df1['종목']==종목]['티커'].values[0]
 
         상승파동비율=df1[df1['티커']==티커].transpose()
         위치정보=df2[df2['티커']==티커].transpose()
 
-        st.write(티커, 종목)
         Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보)
 
         st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
