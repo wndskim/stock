@@ -7,8 +7,10 @@ def 현장세_보기():
             ###### :orange[최고 종목: 음료수, 화장품, 식품, 의료, 제약, 담배]
             ''')
 
-    st.write('[2023-01-13_US annual CPI inflation drops to 6.5% in December as expected] \
+    st.write('[2023-01-13_US annual CPI inflation drops to "6.5%" in December as expected] \
               (https://www.fxstreet.com/news/breaking-us-annual-cpi-inflation-drops-to-65-in-december-as-expected-202301121330')
+
+    st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
 
     st.text('2023년 1월 3일 코스피 2218.68, RSI10이 23.42, 볼린저 하단선 2254를 하향 돌파 후 반등하여 단기 반등 중이다.'+'\n'
             '추세는 여전히 하락 중이나 2023년 1월, 2월은 단기 상승 후 3,4월 고점을 형성 후 다시 하락 할 것으로 예상 된다.')
