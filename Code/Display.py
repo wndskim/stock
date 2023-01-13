@@ -88,7 +88,7 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보):
     with col1:
         st.text('상승파동비율')
 
-        # st.dataframe(상승파동비율)
+        st.dataframe(상승파동비율)
 
         st.markdown(f'''###### :orange[{티커}]''')
 
