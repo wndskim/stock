@@ -125,7 +125,7 @@ def main():
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
-        col1, col2, col3=st.columns(3)
+        col1, col2, col3=st.columns([1,1,2])
         with col1:
             상승하락=st.radio('상승하락선택',('상승순','하락순'))
         if 상승하락=='상승순':
@@ -143,7 +143,7 @@ def main():
         else:
             with col2:
                 하락률=['하락0%~10%','하락11%~20%','하락21%~30%','하락31%~40%','하락41%~50%','하락50%이상']
-                시트선택=st.selectbox('선택',하락률)
+                시트선택=st.sidebar.selectbox('선택',하락률)
 
             if 시트선택=='하락0%~10%': sheet_name=5
             elif 시트선택=='하락11%~20%': sheet_name=6
@@ -160,6 +160,16 @@ def main():
         if 상승하락=='하락순':
             df.sort_values(by=['등락률'], ascending=False, inplace=False)
         
+###########################
+        with col3:
+            if 시트선택=='상승50%까지':
+                범위=st.selectbox('선택',['0%~10%','11%~20%','21%~30%','31%~40%','41%~50%'])
+                if 범위=='0%~10%': df=df.loc[(df['등락률'] >= 0) & (df['등락률'] < 11)]
+                elif 범위=='11%~20%': df=df.loc[(df['등락률'] >= 11) & (df['등락률'] < 21)]
+                elif 범위=='21%~30%': df=df.loc[(df['등락률'] >= 21) & (df['등락률'] < 31)]
+                elif 범위=='31%~40%': df=df.loc[(df['등락률'] >= 31) & (df['등락률'] < 41)]
+                else: df=df[(df['등락률'] >= 41)]
+
         # 종목선택 후 조회
         종목명s=(df['종목'].unique()).tolist()
         st.write(시트선택, len(종목명s),'종목')
@@ -238,10 +248,6 @@ def main():
         종목명s=df_선택일['종목명'].unique().tolist()
         종목=st.sidebar.selectbox('선택',종목명s)
         df_종목=df[df['종목명']==종목]
-        # with col3:
-        #     종목명s=df_선택일['종목명'].unique().tolist()
-        #     종목=st.selectbox('선택',종목명s)
-        #     df_종목=df[df['종목명']==종목]
 
         # 화면에 전송
         if radio1=='전체 보기': st.dataframe(df)
