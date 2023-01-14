@@ -88,7 +88,7 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
 
     with col1:
         st.markdown(f'''###### :orange[{종목}]''')
-        st.text('일 이동평균120 기준 위치')
+        st.text('일 이동평균120 기준')
 
         현재가=최근주가['종가'].iloc[-1]
 
@@ -122,7 +122,7 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
         st.write('[기법정리](https://docs.google.com/spreadsheets/d/1tJg4kfIIpt17LNKXoKwzzallnXPmyCzMF1DhIIw1Q-8/edit#gid=1186881965)')
         st.write('[KT(030200) 보유주](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
         st.write('[유라테크(048430) 관심주](https://docs.google.com/spreadsheets/d/1IwcqZpn8_yiw-ZwX8kJW3na9d5Xy_aLY9Bv4X1WruLY/edit#gid=743352833)')
-        
+
     with col2:
         st.markdown(f'''###### :orange[{티커}]''')
         종가=상승파동비율.loc['종가'].values[0]
@@ -140,7 +140,7 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
         st.text('3년 이동평균 이격률: 차후보완')
 
     with col3:
-        st.text('상승파동비율(피보나치비율) 위치')
+        st.markdown(''' orange[상승파동비율(피보나치비율)위치]''')
         파동001=상승파동비율.loc['PCT001'].values[0]
         파동007=상승파동비율.loc['PCT007'].values[0]
         파동014=상승파동비율.loc['PCT014'].values[0]
