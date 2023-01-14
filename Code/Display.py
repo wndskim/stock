@@ -125,9 +125,10 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
     with col2:
         st.markdown(f'''###### :orange[{티커}]''')
         st.text('상승파동비율(피보나치비율) 위치')
-
         종가=상승파동비율.loc['종가'].values[0]
         숙향가치=상승파동비율.loc['내재가치'].values[0]
+
+    with col3:
         파동001=상승파동비율.loc['PCT001'].values[0]
         파동007=상승파동비율.loc['PCT007'].values[0]
         파동014=상승파동비율.loc['PCT014'].values[0]
