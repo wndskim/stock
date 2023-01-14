@@ -87,6 +87,9 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
     # 최근주가.reset_index(inplace=True)
     st.dataframe(최근주가)
 
+    st.write(최근주가['종가'].iloc[-1])
+    # 최근주가['종가'].iloc[-1].values[0]
+
     col1, col2, col3=st.columns([2,1,1])
 
     with col1:
