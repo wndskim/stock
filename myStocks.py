@@ -218,9 +218,8 @@ def main():
         # 최근주가 가져오기
         시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
-        최근주가=stock.get_market_ohlcv(시작일, 종료일, 티커)
 
-        Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주가.iloc[-1])
+        Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커))
 
 
         st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
