@@ -219,7 +219,7 @@ def main():
         종료일=str(조회일).replace('-','')
         최근주가=stock.get_market_ohlcv(시작일, 종료일, 티커)
 
-        st.dataframe(최근주가.iloc[-1])
+        st.dataframe(최근주가.loc[-1])
 
         # Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보)
 
