@@ -201,7 +201,7 @@ def main():
         st.dataframe(df1)
 
         df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
-        df1['최저가일']=df1['기간최저가일'].dt.strftime('%Y-%m-%d')
+        df1['최저가일']=df1['최저가일'].dt.strftime('%Y-%m-%d')
         df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
         df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
         df2['최저가일']=df2['기간최저가일'].dt.strftime('%Y-%m-%d')
