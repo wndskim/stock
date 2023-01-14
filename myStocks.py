@@ -205,7 +205,7 @@ def main():
         # df1['최저가일']=df1['최저가일'].dt.strftime('%Y-%m-%d')
         df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
         df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
-        df2['최저가일']=df2['기간최저가일'].dt.strftime('%Y-%m-%d')
+        # df2['최저가일']=df2['기간최저가일'].dt.strftime('%Y-%m-%d')
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
         종목s=df1['종목'].unique().tolist()
