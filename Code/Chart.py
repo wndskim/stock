@@ -40,7 +40,9 @@ def Chart_002(data,종목,freq):
         fig.update_layout(title=종목+title+str(이격률120),
                         xaxis_title='날짜',
                         yaxis_title='가격',
-                        autosize=True,
+                        # autosize=True,
+                        width=1400,
+                        height=400,                        
                         xaxis_rangeslider_visible = False)
 
     elif freq=='y':
