@@ -35,14 +35,6 @@ def 코스피200_등락률(sYear, sort_order):
     df.sort_values(by='등락률', ascending=sort_order, inplace=True)
     return df
 
-# def 참조링크보기(티커):
-#     st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
-#     st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
-#     st.write('[네이버금융(종합정보)](https://finance.naver.com/item/main.naver?code={})'.format(티커))
-#     st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
-#     st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
-#     return
-
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
@@ -72,10 +64,18 @@ def main():
     if job=='조회':
         시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
-        idx='1028'; freq='d'
-        df_kospi200=Dart.Index_OHLCV_조회(시작일, 종료일, idx, freq)
+        조회선택=st.sidebar.selectbox('선택',['선택','코스피200','인덱스종료','종목별 OHLCV'])
+        if 조회선택=='인덱스 종류':
+            for ticker in stock.get_index_ticker_list():
+                st.write(ticker, stock.get_index_ticker_name(ticker))
+            return
+        
+        if 조회선택=='코스피200':
+            idx='1028'; freq='d'
+            df_kospi200=Dart.Index_OHLCV_조회(시작일, 종료일, idx, freq)
 
-        st.dataframe(df_kospi200)
+            st.dataframe(df_kospi200)
+            return
 
         return
 
@@ -237,7 +237,6 @@ def main():
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         Chart.Chart_002(df,종목,freq)
 
-
     if job=='특징주':
         st.markdown(''' ##### :orange[상한가/1000만주 이상 거래 종목]''')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx',sheet_name=0)
@@ -317,10 +316,6 @@ def main():
             st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
             st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
 
-    if job=='인덱스 종류':
-        for ticker in stock.get_index_ticker_list():
-            st.write(ticker, stock.get_index_ticker_name(ticker))
-
     return
 
 #####################################################
@@ -328,47 +323,4 @@ def main():
 #####################################################
 if __name__ == '__main__':
     main()
-
-
-
-
-
-# df=yf.download('005930.KS', start='2012-01-01', end='2022-12-31', interval='1mo')
-
-# st.dataframe(df)
-
-
-
-
-######################################################################################################################
-# file_upload = st.file_uploader("data", type="xlsx")
-# st.write(pd.read_excel(file_upload), index=False)
-######################################################################################################################
-# st.write('Download 삼성 Historical Data..!!')
-
-# # Get the data for the stock Apple by specifying the stock ticker, start date, and end date
-# data = yf.download('005930.KS', start='2020-01-01', end='2022-12-31')
-# data.reset_index(inplace=True)
-# data.to_csv('./samsung.csv', index=False)
-
-# # data.to
-
-# # Print the data
-# st.dataframe(data)
-#####################################################################################################################
-# url = 'https://github.com/wndskim/stock/blob/main/data.xlsx'
-# data = pd.read_excel(url)
-
-# st.dataframe(data)
-######################################################################################################################
-
-# Read the Excel file from GitHub
-# df = pd.read_excel('https://github.com/YourGitHubName/YourRepositoryName/YourExcelFileName.xlsx')
-
-# Print the contents of the Excel file
-# print(df)
-
-
-
-
 
