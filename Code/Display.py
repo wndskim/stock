@@ -116,7 +116,7 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
 
 def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주가):
 
-    col1, col2, col3, col4=st.columns([1,1,1,1])
+    col1, col2, col3, col4=st.columns([2,2,1,1])
 
     with col1:
         st.markdown(f'''###### :orange[{종목}]''')
