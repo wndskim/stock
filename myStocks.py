@@ -58,7 +58,11 @@ def main():
     
     # Side Bar 생성
     job=st.sidebar.selectbox('선택',['선택','시장 상황 확인','년도별 가격 변동률 조회','관심주 및 보유주','특징주','체크 리스트',\
-                             '가격 변동률(년간)','종목별 OHLCV','인덱스 종류'])
+                             '가격 변동률(년간)','조회','종목별 OHLCV','인덱스 종류'])
+
+    if job=='조회':
+        pass
+        return
 
     if job=='시장 상황 확인':
         Strategy.주식시장순환원리_나바로()
@@ -87,7 +91,8 @@ def main():
             df_kospi['PBR']=df_kospi['PBR'].astype(float)
             kospi_pbr=df_kospi['PBR'].iloc[0]
 
-            df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001') # 250일전 날짜 구해서 작업 수행
+            freq='d'
+            df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001', freq=freq) # 250일전 날짜 구해서 작업 수행
 
             kospi_rsi=df_index['rsi'].iloc[-1].round(2)
             kospi_bbl=df_index['bb_bbl'].iloc[-1].round(2)
