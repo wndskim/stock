@@ -67,23 +67,17 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
 
 def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 
-    st.write(시작일,종료일,idx,freq)
-
-
     df=stock.get_index_ohlcv(시작일, 종료일, idx, freq)
     df.reset_index(inplace=True)
-
-    df['등락']=df.종가.diff(periods=1)
-    df['등락률']=df.종가.pct_change(periods=1)*100
-
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
     df['거래대금(억)']=df['거래대금']/100000000
     df['상장시가총액(억)']=df['상장시가총액']/100000000
-
     df['거래대금(억)']=df['거래대금(억)'].map('{:,.2f}'.format)
     df['상장시가총액(억)']=df['상장시가총액(억)'].map('{:,.2f}'.format)
     df.drop(['거래대금','상장시가총액'], inplace=True, axis=1)
 
+    df['등락']=df.종가.diff(periods=1)
+    df['등락률']=df.종가.pct_change(periods=1)*100
     df['rsi']=rsi(close=df['종가'],window=10)
     indicator_bb = BollingerBands(close=df["종가"], window=40, window_dev=2)
     df['bb_bbm'] = indicator_bb.bollinger_mavg()
