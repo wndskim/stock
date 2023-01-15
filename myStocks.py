@@ -60,10 +60,6 @@ def main():
     job=st.sidebar.selectbox('선택',['선택','시장 상황 확인','년도별 가격 변동률 조회','관심주 및 보유주','특징주','체크 리스트',\
                              '가격 변동률(년간)','조회','종목별 OHLCV','인덱스 종류'])
 
-    if job=='조회':
-        pass
-        return
-
     if job=='시장 상황 확인':
         Strategy.주식시장순환원리_나바로()
         return
@@ -73,6 +69,16 @@ def main():
         return
 
     조회일=st.sidebar.date_input('조회일')
+
+    if job=='조회':
+        시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
+        종료일=str(조회일).replace('-','')
+        idx='2008'; freq='d'
+        df_kospi200=Dart.Index_OHLCV_조회Index_OHLCV_조회(시작일, 종료일, idx, freq)
+
+        st.dataframe(df_kospi200)
+
+        return
 
     if job=='선택':
 
