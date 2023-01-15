@@ -65,9 +65,9 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
     df['배당수익률'] = df['배당수익률'].map('{:,.2f}'.format)
     return df
 
-def Index_OHLCV_조회(시작일, 종료일, idx):
+def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 
-    df=stock.get_index_ohlcv(시작일, 종료일, idx)
+    df=stock.get_index_ohlcv(시작일, 종료일, idx, freq)
     df.reset_index(inplace=True)
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
     df['거래대금(억)']=df['거래대금']/100000000
