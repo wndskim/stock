@@ -225,7 +225,7 @@ def main():
         # 일간 차트 그리기
         freq='y'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
-        Chart.Chart_002(주가정보,종목,freq)
+        Chart.Chart_002(df,종목,freq)
 
 
     if job=='특징주':
@@ -264,7 +264,6 @@ def main():
         종료일=str(조회일).replace('-','')
         티커=df[df['종목명']==종목]['티커'].values[0]
         주가정보,내재가치=Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
-
 
         # 년간 차트 그리기
         시작일=str(get_date(조회일, 2500)).replace('-','') # 10년전 일자 산출
