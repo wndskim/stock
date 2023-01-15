@@ -223,7 +223,7 @@ def main():
         주가정보,내재가치=Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
         # 일간 차트 그리기
-        freq='y'
+        freq='d'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         Chart.Chart_002(df,종목,freq)
 
