@@ -69,7 +69,8 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 
     st.write(시작일,종료일,idx,freq)
 
-    df=stock.get_index_ohlcv(시작일, 종료일, idx, freq)
+    df=stock.get_index_ohlcv('20221226', '20230115', '2008', 'd')
+    # df=stock.get_index_ohlcv(시작일, 종료일, idx, freq)
     df.reset_index(inplace=True)
 
     df['등락']=df.종가.diff(periods=1)
