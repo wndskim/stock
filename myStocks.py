@@ -72,9 +72,12 @@ def main():
         
         if 조회선택=='코스피200':
             idx='1028'; freq='d'
-            df_kospi200=Dart.Index_OHLCV_조회(시작일, 종료일, idx, freq)
+            # df_kospi200=Dart.Index_OHLCV_조회(시작일, 종료일, idx, freq)
+            # st.dataframe(df_kospi200)
+            인덱스s=stock.get_index_portfolio_deposit_file(idx)
+            for 티커 in 인덱스s:
+                st.write(티커)
 
-            st.dataframe(df_kospi200)
             return
 
         return
