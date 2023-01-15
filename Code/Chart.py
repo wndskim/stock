@@ -9,7 +9,7 @@ def Chart_002(data,종목,freq):
     else: title=' 월봉 차트 / 20개월 이격률: '; 이격률20=data['이격률20'].iloc[-1].round(2)
 
     # Create the chart
-    if freq='d':
+    if freq=='d':
         # Create the chart
         fig = go.Figure(data=[go.Candlestick(x=data['날짜'],
                             open=data["시가"],
