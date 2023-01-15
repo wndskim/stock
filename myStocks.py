@@ -79,7 +79,8 @@ def main():
             # for 티커 in 인덱스s:
             #     st.write(티커,stock.get_market_ticker_name(티커))
 
-            data = yf.download("^KS200", start="2023-01-01", end="2023-01-15")
+            # data = yf.download("^KS200", start="2023-01-01", end="2023-01-15")
+            data = yf.download("AAPL", start="2021-01-01", end="2022-12-31")
             st.dataframe(data)
 
 
