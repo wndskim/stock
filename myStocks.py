@@ -78,7 +78,7 @@ def main():
             인덱스s=stock.get_index_portfolio_deposit_file(idx)
             for 티커 in 인덱스s[:10]:
                 st.write(티커,stock.get_market_ticker_name(티커))
-                data = yf.download(티커+".KS", start=시작일, end=종료일).loc[-1]
+                data = yf.download(티커+".KS", start=시작일, end=종료일)
 
                 st.dataframe(data)
             # data = yf.download("^KS200", start="2023-01-01", end="2023-01-15")
