@@ -76,7 +76,7 @@ def main():
             # st.dataframe(df_kospi200)
 
             인덱스s=stock.get_index_portfolio_deposit_file(idx)
-            for 티커 in 인덱스s:
+            for 티커 in 인덱스s[:10]:
                 st.write(티커,stock.get_market_ticker_name(티커))
                 data = yf.download(티커+".KS", start=시작일, end=종료일).loc[-1]
 
