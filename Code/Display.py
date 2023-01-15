@@ -7,6 +7,31 @@ import requests
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
+def 내재가치계산(df1,df2,펀더멘털):
+
+    발행주식수=df1.iloc[[6]][1].values[0].replace(',','')
+    pos=발행주식수.find('/')
+    발행주식수=int(발행주식수[:pos])
+    유통주식수=df1.iloc[[6]][3].values[0].replace(',','')
+    pos=유통주식수.find('/')
+    유통주식수=int(유통주식수[:pos])
+
+    try:
+        자사주수=int(df2[df2['항목']=='자사주']['보통주'].values[0])
+    except: 자사주수=0
+
+    eps1=int(펀더멘털['EPS'].iloc[0].replace(',',''))*3
+    eps2=int(펀더멘털['EPS'].iloc[1].replace(',',''))*2
+    eps3=int(펀더멘털['EPS'].iloc[2].replace(',',''))*1
+    bps=int(펀더멘털['BPS'].iloc[0].replace(',',''))*1
+
+    유통주식가능비율=(발행주식수-자사주수)/발행주식수
+
+    eps=(eps1+eps2+eps3)/6
+    내재가치=(bps+eps*10)/2/유통주식가능비율
+
+    return 내재가치
+
 def 참조링크보기(티커):
     st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
     st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
@@ -51,13 +76,23 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목, �
         rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
         bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
 
+        # url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
+        # page=requests.get(url)
+        # tables=pd.read_html(page.text)
+        # df=tables[0]
+        # 시가총액='시가총액(억):'+df.iloc[[4]][1].values[0]+'\n'
+        # 내재가치='내재가치: '+str(내재가치)
+
+        # st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액+내재가치)
+
         url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
         page=requests.get(url)
         tables=pd.read_html(page.text)
-        df=tables[0]
-        시가총액='시가총액(억):'+df.iloc[[4]][1].values[0]+'\n'
-        내재가치='내재가치: '+str(내재가치)
-        st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액+내재가치)
+        df1=tables[0]
+        df2=tables[3]
+        시가총액='시가총액(억):'+df1.iloc[[4]][1].values[0]+'\n'
+
+        st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액)
 
         # 참조링크보기
         참조링크보기(티커)
@@ -79,7 +114,15 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목, �
             st.dataframe(펀더멘털)
         except: st.write('펀더멘털 정보 없음 !!')
 
-    return
+    내재가치=int(내재가치계산(df1,df2,펀더멘털))
+
+    내재가치값='내재가치: '+str(내재가치)
+    st.text(내재가치값)
+
+    return 주가정보.iloc[-1],내재가치
+
+
+    # return
 
 
 def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주가):
