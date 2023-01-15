@@ -130,7 +130,7 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
     st.dataframe(업종_테마가져오기(티커)[['테마','업종']])
     st.dataframe(특징주내역가져오기(티커)[['마켓','종류','등락률','사유_뉴스']])
 
-    col1, col2, col3, col4=st.columns([2,2,1,1])
+    col1, col2, col3, col4=st.columns([2,2,2,1])
     with col1:
         st.markdown(f'''###### :orange[{종목}]''')
         st.text('(이동평균120 기준)')
