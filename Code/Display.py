@@ -14,7 +14,7 @@ def 업종_테마가져오기(티커):
 
     return 업종테마
 
-def 특징주내가져오기(티커):
+def 특징주내역가져오기(티커):
 
     df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx',sheet_name=0)
     특징주내역=df[df['티커']==티커]
