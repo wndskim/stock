@@ -216,6 +216,11 @@ def main():
 
         Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커))
 
+
+
+
+
+
     if job=='특징주':
         st.markdown(''' ##### :orange[상한가/1000만주 이상 거래 종목]''')
         df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx',sheet_name=0)
