@@ -80,7 +80,7 @@ def main():
                 st.write(티커,stock.get_market_ticker_name(티커))
                 data = yf.download(티커+".KS", start=str(get_date(조회일, 20)), end=조회일)
 
-                st.dataframe(data.iloc[-1])
+                st.dataframe(data.iloc[-1].transpose())
             # data = yf.download("^KS200", start="2023-01-01", end="2023-01-15")
 
 
