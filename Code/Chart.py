@@ -41,7 +41,7 @@ def Chart_002(data,종목,freq):
                         xaxis_title='날짜',
                         yaxis_title='가격',
                         # autosize=True,
-                        width=1200,
+                        width=1100,
                         height=400,                        
                         xaxis_rangeslider_visible = False)
 
