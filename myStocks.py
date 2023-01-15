@@ -78,8 +78,10 @@ def main():
             df_ks200=[]
             인덱스s=stock.get_index_portfolio_deposit_file(idx)
             for 티커 in 인덱스s[:10]:
-                st.write(티커,stock.get_market_ticker_name(티커))
+                종목=stock.get_market_ticker_name(티커)
                 data=yf.download(티커+".KS", start=str(get_date(조회일, 20)), end=조회일)
+                data['티커']=티커
+                data['종목']=종목
 
                 df_ks200.append(data.iloc[-1])
 
