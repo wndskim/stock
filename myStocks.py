@@ -75,13 +75,13 @@ def main():
             # df_kospi200=Dart.Index_OHLCV_조회(시작일, 종료일, idx, freq)
             # st.dataframe(df_kospi200)
 
-            # 인덱스s=stock.get_index_portfolio_deposit_file(idx)
-            # for 티커 in 인덱스s:
-            #     st.write(티커,stock.get_market_ticker_name(티커))
+            인덱스s=stock.get_index_portfolio_deposit_file(idx)
+            for 티커 in 인덱스s:
+                st.write(티커,stock.get_market_ticker_name(티커))
+                data = yf.download(티커+".KS", start=시작일, end=종료일).loc[-1]
 
+                st.dataframe(data)
             # data = yf.download("^KS200", start="2023-01-01", end="2023-01-15")
-            data = yf.download("^KS11", start="2021-01-01", end="2023-12-31")
-            st.dataframe(data)
 
 
             return
