@@ -8,17 +8,13 @@ def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
 def 업종_테마가져오기(티커):
-
     df=pd.read_excel('./Data/2022_종목별_년간등락.xlsx',sheet_name='전체')
     업종테마=df[df['티커']==티커]
-
     return 업종테마
 
 def 특징주내역가져오기(티커):
-
     df=pd.read_excel('./Data/상한가_300억이상_거래 종목.xlsx',sheet_name=0)
     특징주내역=df[df['티커']==티커]
-
     return 특징주내역
 
 
@@ -132,8 +128,8 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
 def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주가):
 
     ################################
-    st.write(업종_테마가져오기(티커))
-    st.write(특징주내역가져오기(티커))
+    st.dataframe(업종_테마가져오기(티커))
+    st.dataframe(특징주내역가져오기(티커))
 
 
     ################################
