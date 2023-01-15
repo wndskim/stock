@@ -5,7 +5,8 @@ import plotly.graph_objects as go
 
 def Chart_002(data,종목,freq):
 
-    if freq=='d': title=' 일봉 차트 / 20일 이격률: '; 이격률3=data['sam20'].iloc[-1].round(2)
+    # if freq=='d': title=' 일봉 차트 / 20일 이격률: '; 이격률3=data['sam20'].iloc[-1].round(2)
+    if freq=='d': title=' 일봉 차트'
     elif freq=='y': title=' 연봉 차트 / 3년 이격률: '; 이격률3=data['이격률3'].iloc[-1].round(2)
     else: title=' 월봉 차트 / 20개월 이격률: '; 이격률20=data['이격률20'].iloc[-1].round(2)
 
