@@ -222,6 +222,8 @@ def main():
         # 티커=df[df['종목명']==종목]['티커'].values[0]
         주가정보,내재가치=Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
+        st.dataframe(주가정보)
+
         # 일간 차트 그리기
         freq='d'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
