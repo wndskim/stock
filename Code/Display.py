@@ -120,7 +120,7 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
 
     with col1:
         st.markdown(f'''###### :orange[{종목}]''')
-        st.text('일 이동평균120 기준')
+        st.text('(이동평균120 기준)')
 
         현재가=최근주가['종가'].iloc[-1]
 
@@ -149,6 +149,9 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
         위치2값='파동위치2: '+위치2+'\n'
 
         st.text(현재가값+발굴일값+기간최고가값+기간최저가값+최고가52값+최저가52값+위치1값+위치2값)
+
+        # 참조링크보기
+        참조링크보기(티커)
 
         st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
         st.write('[기법정리](https://docs.google.com/spreadsheets/d/1tJg4kfIIpt17LNKXoKwzzallnXPmyCzMF1DhIIw1Q-8/edit#gid=1186881965)')
