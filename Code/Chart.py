@@ -31,10 +31,16 @@ def Chart_002(data,종목,freq):
                             y=data['sma20'],
                             name='20일평균',
                             line_color="yellow"
+                        ),
+                            go.Scatter(
+                            x=data['날짜'],
+                            y=data['sma120'],
+                            name='120일평균',
+                            line_color="yellow"
                         )
                 ])
 
-        fig.update_layout(title=종목+title+str(이격률20),
+        fig.update_layout(title=종목+title,
                         xaxis_title='날짜',
                         yaxis_title='가격',
                         width=1000,
