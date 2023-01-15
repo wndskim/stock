@@ -216,14 +216,16 @@ def main():
 
         Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커))
 
-
-
         # 재무정보 보여주기
         시작일=str(get_date(조회일, 2000)).replace('-','')
         종료일=str(조회일).replace('-','')
         # 티커=df[df['종목명']==종목]['티커'].values[0]
         주가정보,내재가치=Display.재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
+        # 일간 차트 그리기
+        freq='y'
+        df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+        Chart.Chart_002(주가정보,종목,freq)
 
 
     if job=='특징주':
