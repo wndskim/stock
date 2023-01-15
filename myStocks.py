@@ -64,7 +64,7 @@ def main():
     if job=='조회':
         시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
-        조회선택=st.sidebar.selectbox('선택',['선택','코스피200','인덱스종료','종목별 OHLCV'])
+        조회선택=st.sidebar.selectbox('선택',['선택','코스피200','인덱스종류','종목별 OHLCV'])
         if 조회선택=='인덱스 종류':
             for ticker in stock.get_index_ticker_list():
                 st.write(ticker, stock.get_index_ticker_name(ticker))
