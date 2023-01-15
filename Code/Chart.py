@@ -10,6 +10,8 @@ def Chart_002(data,종목,freq):
     elif freq=='y': title=' 연봉 차트 / 3년 이격률: '; 이격률3=data['이격률3'].iloc[-1].round(2)
     else: title=' 월봉 차트 / 20개월 이격률: '; 이격률20=data['이격률20'].iloc[-1].round(2)
 
+    st.dataframe(data)
+
     # Create the chart
     if freq=='d':
         # Create the chart
