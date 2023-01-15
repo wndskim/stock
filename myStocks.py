@@ -74,7 +74,7 @@ def main():
         시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
         idx='2008'; freq='d'
-        df_kospi200=Dart.Index_OHLCV_조회Index_OHLCV_조회(시작일, 종료일, idx, freq)
+        df_kospi200=Dart.Index_OHLCV_조회(시작일, 종료일, idx, freq)
 
         st.dataframe(df_kospi200)
 
