@@ -5,8 +5,7 @@ import plotly.graph_objects as go
 
 def Chart_002(data,종목,freq):
 
-    # if freq=='d': title=' 일봉 차트 / 20일 이격률: '; 이격률3=data['sam20'].iloc[-1].round(2)
-    if freq=='d': title=' 일봉 차트'
+    if freq=='d': title=' 일봉 차트 / 20일 이격률: '; 이격률120=data['이격률120'].iloc[-1].round(2); data=data.loc[119:]
     elif freq=='y': title=' 연봉 차트 / 3년 이격률: '; 이격률3=data['이격률3'].iloc[-1].round(2)
     else: title=' 월봉 차트 / 20개월 이격률: '; 이격률20=data['이격률20'].iloc[-1].round(2)
 
@@ -36,11 +35,11 @@ def Chart_002(data,종목,freq):
                             x=data['날짜'],
                             y=data['sma120'],
                             name='120일평균',
-                            line_color="yellow"
+                            line_color="green"
                         )
                 ])
 
-        fig.update_layout(title=종목+title,
+        fig.update_layout(title=종목+title+str(이격률120),
                         xaxis_title='날짜',
                         yaxis_title='가격',
                         width=1000,
