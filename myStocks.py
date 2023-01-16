@@ -223,8 +223,8 @@ def main():
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
         보기순서=st.sidebar.radio('보기순서',['최근3년 이격률이 적은순으로 보기','최근3년 이격률이 큰순으로 보기'])
-        if 보기순서=='최근3년 이격률이 적은순으로 보기': df2.sort_values(by='3년이격률최근', ascending=False, inplace=True)
-        else: df2.sort_values(by='3년이격률최근', ascending=True, inplace=True)
+        if 보기순서=='최근3년 이격률이 적은순으로 보기': df2.sort_values(by='3년이격률최근', ascending=True, inplace=True)
+        else: df2.sort_values(by='3년이격률최근', ascending=False, inplace=True)
 
         종목s=df2['종목'].unique().tolist()
         종목=st.sidebar.selectbox('선택',종목s)
