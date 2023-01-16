@@ -222,7 +222,7 @@ def main():
         # df2['최저가일']=df2['기간최저가일'].dt.strftime('%Y-%m-%d')
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
-        보기순서=st.radio('보기순서',['최근3년 이격률이 적은순으로 보기','최근3년 이격률이 큰순으로 보기'])
+        보기순서=st.sidebar.radio('보기순서',['최근3년 이격률이 적은순으로 보기','최근3년 이격률이 큰순으로 보기'])
         if 보기순서=='최근3년 이격률이 적은순으로 보기': df2.sort_values(by='3년이격률최근', ascending=False, inplace=True)
         else: df2.sort_values(by='3년이격률최근', ascending=True, inplace=True)
 
