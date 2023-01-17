@@ -212,18 +212,22 @@ def main():
         Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
-        df1=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=0)
-        df2=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=1)
-        df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
-        # df1['최저가일']=df1['최저가일'].dt.strftime('%Y-%m-%d')
-        df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
-        df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
-        # df2['최저가일']=df2['기간최저가일'].dt.strftime('%Y-%m-%d')
-        df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
+        보기기준=st.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목'])
+        if 보기기준=='선택': return
+        elif 보기기준=='전월이평 돌파 종목': return
+        elif 보기기준=='전년도 상승 종목': 
+            df1=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=0)
+            df2=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=1)
+            df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
+            # df1['최저가일']=df1['최저가일'].dt.strftime('%Y-%m-%d')
+            df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
+            df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
+            # df2['최저가일']=df2['기간최저가일'].dt.strftime('%Y-%m-%d')
+            df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
-        보기순서=st.sidebar.radio('보기순서',['최근3년 이격률이 적은순으로 보기','최근3년 이격률이 큰순으로 보기'])
-        if 보기순서=='최근3년 이격률이 적은순으로 보기': df2.sort_values(by='3년이격률최근', ascending=True, inplace=True)
-        else: df2.sort_values(by='3년이격률최근', ascending=False, inplace=True)
+            보기순서=st.sidebar.radio('보기순서',['최근3년 이격률이 적은순으로 보기','최근3년 이격률이 큰순으로 보기'])
+            if 보기순서=='최근3년 이격률이 적은순으로 보기': df2.sort_values(by='3년이격률최근', ascending=True, inplace=True)
+            else: df2.sort_values(by='3년이격률최근', ascending=False, inplace=True)
 
         종목s=df2['종목'].unique().tolist()
         종목=st.sidebar.selectbox('선택',종목s)
