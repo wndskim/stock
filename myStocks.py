@@ -217,10 +217,10 @@ def main():
         elif 보기기준=='전월 10이평 돌파 종목':
             df1=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=0)
             df2=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=1)
-            df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
+            # df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
             # df1['최저가일']=df1['최저가일'].dt.strftime('%Y-%m-%d')
             df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
-            df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
+            # df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
             # df2['최저가일']=df2['기간최저가일'].dt.strftime('%Y-%m-%d')
             df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
