@@ -214,7 +214,8 @@ def main():
     if job=='관심주 및 보유주':
         보기기준=st.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목'])
         if 보기기준=='선택': return
-        elif 보기기준=='전월이평 돌파 종목': return
+        elif 보기기준=='전월 10이평 돌파 종목':
+            return
         elif 보기기준=='전년도 상승 종목': 
             df1=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=0)
             df2=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=1)
