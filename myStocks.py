@@ -83,7 +83,6 @@ def main():
 
             st.dataframe(df_ks200)
 
-
             return
 
         return
@@ -213,8 +212,8 @@ def main():
         Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
-        df1=pd.read_excel('./Data/관심주.xlsx',sheet_name=0)
-        df2=pd.read_excel('./Data/관심주.xlsx',sheet_name=1)
+        df1=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=0)
+        df2=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=1)
         df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
         # df1['최저가일']=df1['최저가일'].dt.strftime('%Y-%m-%d')
         df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
