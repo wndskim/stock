@@ -212,7 +212,7 @@ def main():
         Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
-        보기기준=st.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목'])
+        보기기준=st.sidebar.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목'])
         if 보기기준=='선택': return
         elif 보기기준=='전월 10이평 돌파 종목':
             df1=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=0)
