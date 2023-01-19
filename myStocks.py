@@ -212,8 +212,14 @@ def main():
         Chart.Chart_002(df,종목,freq)
 
     if job=='관심주 및 보유주':
-        보기기준=st.sidebar.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목'])
+        보기기준=st.sidebar.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목','수급주'])
         if 보기기준=='선택': return
+        elif 보기기준=='수급주':
+
+            st.write('다음번에 추가할 것','엑셀파일은 관심주_수급주.xlsx')
+
+
+            
         elif 보기기준=='전월 10이평 돌파 종목':
             df1=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=0)
             df2=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=1)
@@ -221,8 +227,8 @@ def main():
             df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
 
         elif 보기기준=='전년도 상승 종목': 
-            df1=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=0)
-            df2=pd.read_excel('./Data/관심주_전년기준.xlsx',sheet_name=1)
+            df1=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=0)
+            df2=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=1)
             df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
             df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
             df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
