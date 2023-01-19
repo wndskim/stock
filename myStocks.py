@@ -218,8 +218,9 @@ def main():
 
             st.write('다음번에 추가할 것','엑셀파일은 관심주_수급주.xlsx')
 
+            return
 
-            
+
         elif 보기기준=='전월 10이평 돌파 종목':
             df1=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=0)
             df2=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=1)
