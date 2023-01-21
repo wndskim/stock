@@ -247,16 +247,8 @@ def main():
         위치정보=df2[df2['티커']==티커].transpose()
 
         # 최근주가 가져오기
-        시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
+        시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 5일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
-
-
-
-        st.write(시작일, 종료일, 티커, 종목)
-        # temp=stock.get_market_ohlcv(시작일, 종료일, str(티커),'d')
-        # st.dataframe(temp)
-        data=stock.get_market_ohlcv('20230114','20230119', '000950', 'd')
-
         Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커))
 
         # 재무정보 보여주기
