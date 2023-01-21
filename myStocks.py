@@ -253,7 +253,8 @@ def main():
 
 
         st.write(시작일, 종료일, 티커, 종목)
-        temp=stock.get_market_ohlcv(시작일, 종료일, 티커,'d')
+        temp=stock.get_market_ohlcv(시작일, 종료일, str(티커),'d')
+        # data=stock.get_market_ohlcv('20230114','20230119', '000950', 'd')
         st.dataframe(temp)
 
         Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커))
