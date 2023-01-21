@@ -8,7 +8,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from pykrx import stock
-import matplotlib as plt
 import yfinance as yf
 import datetime
 from datetime import date, timedelta
