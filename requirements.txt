@@ -3,7 +3,6 @@ pandas
 streamlit
 numpy
 pykrx
-matplotlib
 yfinance
 openpyxl
 OpenDartReader
