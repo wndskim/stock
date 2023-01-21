@@ -253,10 +253,6 @@ def main():
 
 
         st.write(시작일, 종료일, 티커, 종목)
-
-        st.write(상승파동비율)
-        st.write(위치정보)
-
         temp=stock.get_market_ohlcv(시작일, 종료일, 티커)
         st.dataframe(temp)
 
