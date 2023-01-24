@@ -125,7 +125,7 @@ def Define_매매기술_설명():
     #         ##### **:red[전고점 돌파매매 설명 보기]**
     #         ''')
 
-    col1, col2=st.columns([1,1])
+    col1, col2=st.columns([1,3])
     with col1:
         선택=st.selectbox('큰 흐름상 돌파매매 설명보기',['연봉돌파','월봉돌파','주봉돌파'])
     with col2:
