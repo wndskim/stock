@@ -248,7 +248,7 @@ def main():
         # 최근주가 가져오기
         시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 5일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
-        Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커))
+        Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커),보기기준)
 
         # 재무정보 보여주기
         시작일=str(get_date(조회일, 2000)).replace('-','')
