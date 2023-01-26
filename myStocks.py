@@ -223,8 +223,10 @@ def main():
         elif 보기기준=='전월 10이평 돌파 종목':
             df1=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=0)
             df2=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=1)
+            df3=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=2)
             df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
             df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
+            df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
 
         elif 보기기준=='전년도 상승 종목': 
             df1=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=0)
@@ -245,6 +247,10 @@ def main():
         상승파동비율=df1[df1['티커']==티커].transpose()
         위치정보=df2[df2['티커']==티커].transpose()
 
+        # 발굴사유 보여주기
+        발굴사유=df3[df3['티커']==티커]['발굴사유']
+        st.dataframe(발굴사유)
+        
         # 최근주가 가져오기
         시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 5일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
