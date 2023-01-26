@@ -212,30 +212,36 @@ def main():
 
     if job=='관심주 및 보유주':
         보기기준=st.sidebar.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목','수급주'])
+        folder='./Data/'
         if 보기기준=='선택': return
         elif 보기기준=='수급주':
 
             st.write('다음번에 추가할 것','엑셀파일은 관심주_수급주.xlsx')
 
             return
-
-
         elif 보기기준=='전월 10이평 돌파 종목':
-            df1=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=0)
-            df2=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=1)
-            df3=pd.read_excel('./Data/관심주_전월10이평돌파.xlsx',sheet_name=2)
-            df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
-            df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
-            df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
+            작업파일='관심주_전월10이평돌파.xlsx'
+        elif 보기기준=='전년도 상승 종목':
+            작업파일='관심주_년도별.xlsx'
 
-        elif 보기기준=='전년도 상승 종목': 
-            df1=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=0)
-            df2=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=1)
-            df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
-            df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
-            df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
-            df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
+        df1=pd.read_excel(folder+작업파일,sheet_name=0)
+        df2=pd.read_excel(folder+작업파일,sheet_name=1)
+        df3=pd.read_excel(folder+작업파일,sheet_name=2)
+        df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
+        df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
+        df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
+        df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
+        df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
+        df3['날짜']=df3['날짜'].dt.strftime('%Y-%m-%d')
 
+            # df1=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=0)
+            # df2=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=1)
+            # df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
+            # df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
+            # df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
+            # df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
+
+        if 보기기준=='전년도 상승 종목':
             보기순서=st.sidebar.radio('보기순서',['최근3년 이격률이 적은순으로 보기','최근3년 이격률이 큰순으로 보기'])
             if 보기순서=='최근3년 이격률이 적은순으로 보기': df2.sort_values(by='3년이격률최근', ascending=True, inplace=True)
             else: df2.sort_values(by='3년이격률최근', ascending=False, inplace=True)
