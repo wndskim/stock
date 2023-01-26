@@ -230,9 +230,9 @@ def main():
         df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
         df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
-        df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
-        df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
-        df3['날짜']=df3['날짜'].dt.strftime('%Y-%m-%d')
+        # df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
+        # df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
+        # df3['날짜']=df3['날짜'].dt.strftime('%Y-%m-%d')
 
             # df1=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=0)
             # df2=pd.read_excel('./Data/관심주_년도별.xlsx',sheet_name=1)
