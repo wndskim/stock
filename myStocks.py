@@ -13,6 +13,25 @@ import datetime
 from datetime import date, timedelta
 from Code import Dart, Chart, Strategy, Display
 
+def 현재위치_이격률기준(이격률120):
+
+    위치분류 = {
+        이격률120 < 75: "겨울3",
+        75 <= 이격률120 < 90: "겨울2",
+        90 <= 이격률120 < 100: "겨울1",
+        100 <= 이격률120 < 105: "봄1",
+        105 <= 이격률120 < 110: "봄2",
+        110 <= 이격률120 < 115: "봄3",
+        115 <= 이격률120 < 120: "여름1",
+        120 <= 이격률120 < 125: "여름2",
+        125 <= 이격률120 < 130: "여름3",
+        130 <= 이격률120 < 135: "가을1",
+        135 <= 이격률120 < 140: "가을2",
+        이격률120 >= 140: "가을3"
+    }
+
+    return 위치분류.get(True, "120이격률 기준 위치산정 불가")
+
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear, sort_order):
     startDate=sYear+'0101'; endDate=sYear+'1231'
