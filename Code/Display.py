@@ -97,14 +97,6 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
 
         주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
 
-        # 종가='종가: '+str(주가정보['종가'].iloc[-1].round(0))+'\n'
-        # 최고가52='52주최고가: '+str(주가정보['High52'].iloc[-1].round(0))+'\n'
-        # 최저가52='52주최저가: '+str(주가정보['Low52'].iloc[-1].round(0))+'\n'
-        # 이평120='120이평값: '+str(주가정보['sma120'].iloc[-1].round(2))+'\n'
-        # 이격률120='120이격률: '+str(주가정보['이격률120'].iloc[-1].round(2))+'\n'
-        # rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
-        # bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
-
         이격률120=int(주가정보['이격률120'].iloc[-1])
         위치=현재위치_이격률기준(이격률120)
 
@@ -114,7 +106,7 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         이평120='120이평값: '+str(int(주가정보['sma120'].iloc[-1]))+'\n'
         이격률120='120이격률: '+str(이격률120)+'('+위치+')'+'\n'
         rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
-        bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
+        bbl='볼린저하단값: '+str(int(주가정보['bb_bbl'].iloc[-1]))+'\n'
 
         url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
         page=requests.get(url)
