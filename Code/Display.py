@@ -1,11 +1,30 @@
 import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
-from Code import Dart, MyStock
+from Code import Dart
 import requests
 
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
+
+def 현재위치_이격률기준(이격률120):
+
+    위치분류 = {
+        이격률120 < 75: "겨울3",
+        75 <= 이격률120 < 90: "겨울2",
+        90 <= 이격률120 < 100: "겨울1",
+        100 <= 이격률120 < 105: "봄1",
+        105 <= 이격률120 < 110: "봄2",
+        110 <= 이격률120 < 115: "봄3",
+        115 <= 이격률120 < 120: "여름1",
+        120 <= 이격률120 < 125: "여름2",
+        125 <= 이격률120 < 130: "여름3",
+        130 <= 이격률120 < 135: "가을1",
+        135 <= 이격률120 < 140: "가을2",
+        이격률120 >= 140: "가을3"
+    }
+
+    return 위치분류.get(True, "120이격률 기준 위치산정 불가")
 
 def 업종_테마가져오기(티커):
     df=pd.read_excel('./Data/2022_종목별_년간등락.xlsx',sheet_name='전체')
@@ -87,7 +106,7 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         # bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
 
         이격률120=int(주가정보['이격률120'].iloc[-1])
-        위치=MyStock.현재위치_이격률기준(이격률120)
+        위치=현재위치_이격률기준(이격률120)
 
         종가='종가: '+str(int(주가정보['종가'].iloc[-1]))+'\n'
         최고가52='52주최고가: '+str(int(주가정보['High52'].iloc[-1]))+'\n'
@@ -96,9 +115,6 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         이격률120='120이격률: '+str(이격률120)+'('+위치+')'+'\n'
         rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
         bbl='볼린저하단값: '+str(주가정보['bb_bbl'].iloc[-1].round(2))+'\n'
-
-
-
 
         url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
         page=requests.get(url)
