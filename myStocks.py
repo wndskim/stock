@@ -64,17 +64,19 @@ def main():
             return
         
         if 조회선택=='코스피200':
-            idx='1028'; freq='d'; df_ks200=[]
-            인덱스s=stock.get_index_portfolio_deposit_file(idx)
-            for 티커 in 인덱스s[:10]:
-                종목=stock.get_market_ticker_name(티커)
-                data=yf.download(티커+".KS", start=str(get_date(조회일, 20)), end=조회일)
-                data['티커']=티커
-                data['종목']=종목
+            Display.코스피200상승률하락률순으로보기()
+            
+            # idx='1028'; freq='d'; df_ks200=[]
+            # 인덱스s=stock.get_index_portfolio_deposit_file(idx)
+            # for 티커 in 인덱스s[:10]:
+            #     종목=stock.get_market_ticker_name(티커)
+            #     data=yf.download(티커+".KS", start=str(get_date(조회일, 20)), end=조회일)
+            #     data['티커']=티커
+            #     data['종목']=종목
 
-                df_ks200.append(data.iloc[-1])
+            #     df_ks200.append(data.iloc[-1])
 
-            st.dataframe(df_ks200)
+            # st.dataframe(df_ks200)
 
             return
 
