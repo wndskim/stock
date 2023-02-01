@@ -27,7 +27,7 @@ def 현재위치_이격률기준(이격률120):
 
 def 코스피200상승률하락률순으로보기():
 
-    df=pd.read_excel(r"C:\Google Drive (wndskim.eric@gmail.com)\MySystem\Temp\코스피200위치.xlsx")
+    df=pd.read_excel("C:\\Google Drive (wndskim.eric@gmail.com)\\MySystem\\Temp\\코스피200위치.xlsx")
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
 
     radio=st.radio('선택',('상승/하락순 보기','최고가대비 하락/상승순 보기'))
