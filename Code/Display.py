@@ -23,8 +23,44 @@ def 현재위치_이격률기준(이격률120):
         135 <= 이격률120 < 140: "가을2",
         이격률120 >= 140: "가을3"
     }
-
     return 위치분류.get(True, "120이격률 기준 위치산정 불가")
+
+def 코스피200상승률하락률순으로보기():
+
+    df=pd.read_excel(r"C:\Google Drive (wndskim.eric@gmail.com)\MySystem\Temp\코스피200위치.xlsx")
+    df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+
+    radio=st.radio('선택',('상승/하락순 보기','최고가대비 하락/상승순 보기'))
+    if radio=='상승/하락순 보기':
+        col1,col2=st.columns([1,1])
+        with col1:
+            st.text('-- 상승률순 --')
+            df.sort_values(by='등락률', ascending=False, inplace=True)
+            df.reset_index(inplace=True)
+            df.drop('index', axis=1, inplace=True)
+            st.dataframe(df)
+        with col2:
+            st.text('-- 하락순 --')
+            df.sort_values(by='등락률', ascending=True, inplace=True)
+            df.reset_index(inplace=True)
+            df.drop('index', axis=1, inplace=True)
+            st.dataframe(df)
+    else:
+        col1,col2=st.columns([1,1])
+        with col1:
+            st.text('-- 하락률큰순(52최고가/최저가대비) --')
+            df.sort_values(by='최고가대비등락률', ascending=True, inplace=True)
+            df.reset_index(inplace=True)
+            df.drop('index', axis=1, inplace=True)
+            st.dataframe(df)
+        with col2:
+            st.text('-- 하락률적은순(52최고가/최저가대비) --')
+            df.sort_values(by='최고가대비등락률', ascending=False, inplace=True)
+            df.reset_index(inplace=True)
+            df.drop('index', axis=1, inplace=True)
+            st.dataframe(df)
+
+    return
 
 def 업종_테마가져오기(티커):
     df=pd.read_excel('./Data/2022_종목별_년간등락.xlsx',sheet_name='전체')
