@@ -11,3 +11,4 @@ timedelta
 plotly
 ta
 requests
+matplotlib
