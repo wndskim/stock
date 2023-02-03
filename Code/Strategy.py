@@ -134,11 +134,15 @@ def Define_매매기술_설명():
 
     return
 
-def Strategy_2023(월):
-    # 'https://docs.google.com/spreadsheets/d/1sHyoHX7zW9kaMTFzEptQqRDP00MVAEN_mthdvljF1oM/edit#gid=0'
+def Strategy_2023():
 
-    if 월=='2월': st.write('[2023년2월 매매전락](https://docs.google.com/spreadsheets/d/1sHyoHX7zW9kaMTFzEptQqRDP00MVAEN_mthdvljF1oM/edit#gid=)')
-    else: st.text('준비중..!!')
+    st.write('[2023년2월 매매전락](https://docs.google.com/spreadsheets/d/1sHyoHX7zW9kaMTFzEptQqRDP00MVAEN_mthdvljF1oM/edit#gid=)')
+    st.text('3월 준비중')
+    st.text('4월 준비중')
+    st.text('5월 준비중')
+    st.text('6월 준비중')
+    st.text('7월 준비중')
+    
 
     return
 
