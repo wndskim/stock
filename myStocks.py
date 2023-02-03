@@ -57,7 +57,7 @@ def main():
 
     chk4=st.sidebar.checkbox('2023년 투자전략 보기', value=False)
     if chk4:
-        선택=st.selectbox('선택',['선택','2023년2월 이후','2023년1월'])
+        선택=st.sidebar.selectbox('선택',['선택','2023년2월 이후','2023년1월'])
         if 선택=='선택': return
         if 선택=='2023년2월 이후': Strategy.Strategy_2023()
         else: Strategy.Strategy_2023_01(kospi_pbr)
