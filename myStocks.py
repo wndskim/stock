@@ -54,6 +54,13 @@ def main():
         return
 
     조회일=st.sidebar.date_input('조회일')
+
+    chk4=st.checkbox('2023년 투자전략 보기', value=False)
+    if chk4:
+        선택=st.selectbox('선택',['2023년2월 이후','2023년1월'])
+        if 선택=='2023년2월 이후': Strategy.Strategy_2023()
+        else: Strategy.Strategy_2023_01(kospi_pbr)
+
     if job=='조회':
         시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
@@ -115,11 +122,7 @@ def main():
                 chk3=st.checkbox('코스피 PBR 차트보기',value=False)
                 if chk3: Chart.Chart_001(df_kospi)
 
-            chk4=st.checkbox('2023년 투자전략 보기', value=False)
-            if chk4:
-                선택=st.selectbox('선택',['2023년2월 이후','2023년1월'])
-                if 선택=='2023년2월 이후': Strategy.Strategy_2023()
-                else: Strategy.Strategy_2023_01(kospi_pbr)
+
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
