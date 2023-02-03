@@ -65,18 +65,6 @@ def main():
         
         if 조회선택=='코스피200':
             Display.코스피200상승률하락률순으로보기()
-            
-            # idx='1028'; freq='d'; df_ks200=[]
-            # 인덱스s=stock.get_index_portfolio_deposit_file(idx)
-            # for 티커 in 인덱스s[:10]:
-            #     종목=stock.get_market_ticker_name(티커)
-            #     data=yf.download(티커+".KS", start=str(get_date(조회일, 20)), end=조회일)
-            #     data['티커']=티커
-            #     data['종목']=종목
-
-            #     df_ks200.append(data.iloc[-1])
-
-            # st.dataframe(df_ks200)
 
             return
 
@@ -84,11 +72,11 @@ def main():
 
     if job=='선택':
 
-        chk1=st.checkbox('금감원 공시내역을 확일할려면 틱 하세요..!!', value=False)
+        chk1=st.checkbox('금감원 공시내역을 확인', value=False)
         if chk1:
             Dart.금감원_공시내역_보기(조회일)
 
-        chk2=st.checkbox('시장지표를 확인할려면 틱 하세요..!!', value=False)
+        chk2=st.checkbox('시장지표를 확인..!!', value=False)
         if chk2:
             시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
             종료일=str(조회일).replace('-','')
