@@ -118,7 +118,7 @@ def main():
             chk4=st.checkbox('2023년 투자전략 보기', value=False)
             if chk4:
                 선택=st.selectbox('선택',['2023년2월 이후','2023년1월'])
-                if 선택=='2023년2월': Strategy.Strategy_2023()
+                if 선택=='2023년2월 이후': Strategy.Strategy_2023()
                 else: Strategy.Strategy_2023_01(kospi_pbr)
 
     if job=='년도별 가격 변동률 조회':
