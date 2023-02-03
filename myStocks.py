@@ -55,7 +55,7 @@ def main():
 
     조회일=st.sidebar.date_input('조회일')
 
-    chk4=st.checkbox('2023년 투자전략 보기', value=False)
+    chk4=st.sidebar.checkbox('2023년 투자전략 보기', value=False)
     if chk4:
         선택=st.selectbox('선택',['2023년2월 이후','2023년1월'])
         if 선택=='2023년2월 이후': Strategy.Strategy_2023()
