@@ -42,7 +42,7 @@ def main():
                 ''')
     
     # Side Bar 생성
-    job=st.sidebar.selectbox('선택',['선택','시장 상황 확인','년도별 가격 변동률 조회','관심주 및 보유주','특징주','체크 리스트',\
+    job=st.sidebar.selectbox('선택',['선택','시장 상황 확인','년도별 가격 변동률 조회','관심주','특징주','체크 리스트',\
                              '조회','가격 변동률(년간)'])
 
     if job=='시장 상황 확인':
@@ -195,7 +195,7 @@ def main():
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         Chart.Chart_002(df,종목,freq)
 
-    if job=='관심주 및 보유주':
+    if job=='관심주':
         보기기준=st.sidebar.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목','수급주'])
         folder='./Data/'
         if 보기기준=='선택': return
