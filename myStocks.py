@@ -196,9 +196,11 @@ def main():
         Chart.Chart_002(df,종목,freq)
 
     if job=='관심주':
-        보기기준=st.sidebar.selectbox('선택',['선택','전월 10이평 돌파 종목','전년도 상승 종목','수급주'])
+        보기기준=st.sidebar.selectbox('선택',['선택','테마별 발굴 종목','전월 10이평 돌파 종목','전년도 상승 종목','수급주'])
         folder='./Data/'
         if 보기기준=='선택': return
+        elif 보기기준=='테마별 발굴 종목':
+            pass
         elif 보기기준=='수급주':
             작업파일='관심주_수급주.xlsx'
         elif 보기기준=='전월 10이평 돌파 종목':
