@@ -21,6 +21,9 @@ def 테마별_관심주보기():
     df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
     df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
 
+    radio=st.radio('선택',('테마별 보기','전체보기'))
+
+
     st.dataframe(df1)
     st.dataframe(df2)
     st.dataframe(df3)
