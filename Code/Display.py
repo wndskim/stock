@@ -31,11 +31,15 @@ def 테마별_관심주보기():
         df2=df2[df2["티커"].isin(티커s)]
         df1=df1[df1["티커"].isin(티커s)]
 
-        st.dataframe(df3)
+        st.dataframe(df2)
 
-    st.dataframe(df1)
-    st.dataframe(df2)
-    st.dataframe(df3)
+    else:
+        st.dataframe(df2)
+
+
+    # st.dataframe(df1)
+    # st.dataframe(df2)
+    # st.dataframe(df3)
 
     return
 
