@@ -123,8 +123,6 @@ def main():
                 chk3=st.checkbox('코스피 PBR 차트보기',value=False)
                 if chk3: Chart.Chart_001(df_kospi)
 
-
-
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
         col1, col2, col3=st.columns([1,1,2])
@@ -201,10 +199,9 @@ def main():
         if 보기기준=='선택': return
         elif 보기기준=='테마별 발굴 종목':
 
-            Display.테마별_관심주보기()
+            Display.테마별_관심주보기(조회일)
 
             return
-
             
         elif 보기기준=='수급주':
             작업파일='관심주_수급주.xlsx'
@@ -244,7 +241,7 @@ def main():
         # 최근주가 가져오기
         시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 5일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
-        Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커),보기기준)
+        Display.관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커),'수급주')
 
         # 재무정보 보여주기
         시작일=str(get_date(조회일, 2000)).replace('-','')
