@@ -7,6 +7,16 @@ import requests
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
+def 테마별_관심주보기():
+
+    작업파일='관심주_테마별.xlsx'
+    folder='./Data/'
+    df=pd.read_excel(folder+작업파일)
+    st.dataframe(df)
+
+    return
+
+
 def 현재위치_이격률기준(이격률120):
 
     위치분류 = {
