@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
-from Code import Dart
+from Code import Dart, Chart
 import requests
 from pykrx import stock
 
@@ -67,6 +67,10 @@ def 테마별_관심주보기(조회일):
     종료일=str(조회일).replace('-','')
     주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
+    # 일간 차트 그리기
+    freq='d'
+    df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+    Chart.Chart_002(df,종목,freq)
 
     return
 
