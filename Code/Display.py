@@ -27,10 +27,11 @@ def 테마별_관심주보기():
         테마선택=st.selectbox('선택',테마s)
 
         df3=df3[df3['설명']==테마선택]
+        티커s=df3['티커'].tolist()
+        df2=df2[df2["티커"].isin(티커s)]
+        df1=df1[df1["티커"].isin(티커s)]
 
         st.dataframe(df3)
-
-        st.write(테마s)
 
     st.dataframe(df1)
     st.dataframe(df2)
