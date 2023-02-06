@@ -3,11 +3,12 @@ import pandas as pd
 from datetime import date, timedelta
 from Code import Dart
 import requests
+from pykrx import stock
 
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
-def 테마별_관심주보기():
+def 테마별_관심주보기(조회일):
 
     작업파일='관심주_테마별.xlsx'
     folder='./Data/'
@@ -42,6 +43,30 @@ def 테마별_관심주보기():
     df1=df1[df1["티커"].isin(티커s)]
 
     st.dataframe(df2)
+
+
+    종목s=df2['종목'].unique().tolist()
+    종목=st.sidebar.selectbox('선택',종목s)
+    티커=df2[df2['종목']==종목]['티커'].values[0]
+
+    상승파동비율=df1[df1['티커']==티커].transpose()
+    위치정보=df2[df2['티커']==티커].transpose()
+
+    # 발굴사유 보여주기
+    st.text('발굴사유')
+    발굴사유=df3[df3['티커']==티커]
+    st.dataframe(발굴사유)
+
+    # 최근주가 가져오기
+    시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 5일전 부터 데이타 가져오기
+    종료일=str(조회일).replace('-','')
+    관심주_보기(티커, 종목, 상승파동비율, 위치정보, stock.get_market_ohlcv(시작일, 종료일, 티커),보기기준)
+
+    # 재무정보 보여주기
+    시작일=str(get_date(조회일, 2000)).replace('-','')
+    종료일=str(조회일).replace('-','')
+    주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
+
 
     return
 
