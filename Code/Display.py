@@ -24,6 +24,11 @@ def 테마별_관심주보기():
     radio=st.radio('선택',('테마별 보기','전체보기'))
     if radio=='테마별 보기':
         테마s=df3['설명'].unique().tolist()
+        테마선택=st.selectbox('선택',테마s)
+
+        df3=df3[df1['설명']=='테마선택']
+
+        st.text(df3)
 
         st.write(테마s)
 
