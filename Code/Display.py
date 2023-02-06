@@ -21,13 +21,20 @@ def 테마별_관심주보기():
     df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
     df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
 
-    radio=st.radio('선택',('테마별 보기','전체보기'))
-    if radio=='테마별 보기':
+    col1, col2=st.columns([1,1])
+    with col1:
+        radio1=st.radio('선택',('테마별 보기','전체보기'))
+    with col2:
+        radio2=st.radio('선택',('120이평 작은순 보기', '120이평 큰순 보기'))
+    if radio1=='테마별 보기':
         테마s=df3['설명'].unique().tolist()
         테마선택=st.selectbox('선택',테마s)
 
         df3=df3[df3['설명']==테마선택]
         티커s=df3['티커'].tolist()
+        if radio2='120이평 작은순 보기':
+            df2.values(by='이평120이격률',ascending=True,inplace=True)
+        else: df2.values(by='이평120이격률',ascending=False,inplace=True)
         df2=df2[df2["티커"].isin(티커s)]
         df1=df1[df1["티커"].isin(티커s)]
 
