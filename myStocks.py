@@ -211,6 +211,7 @@ def main():
         df1=pd.read_excel(folder+작업파일,sheet_name=0)
         df2=pd.read_excel(folder+작업파일,sheet_name=1)
         df3=pd.read_excel(folder+작업파일,sheet_name=2)
+        if len(df1)<1: st.text('자료가 없음'); return
         df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
         df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
