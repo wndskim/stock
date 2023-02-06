@@ -35,6 +35,8 @@ def 테마별_관심주보기(조회일):
             df2.sort_values(by='이평120이격률',ascending=True,inplace=True)
         else: df2.sort_values(by='이평120이격률',ascending=False,inplace=True)
     with col3:
+        st.text('')
+        st.text('')
         st.write('총', str(len(df3)),'건')
 
     티커s=df3['티커'].tolist()
