@@ -203,6 +203,8 @@ def main():
 
             Display.테마별_관심주보기()
 
+            return
+
             
         elif 보기기준=='수급주':
             작업파일='관심주_수급주.xlsx'
