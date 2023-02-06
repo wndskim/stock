@@ -34,17 +34,16 @@ def 테마별_관심주보기(조회일):
         if radio2=='120이평 작은순 보기':
             df2.sort_values(by='이평120이격률',ascending=True,inplace=True)
         else: df2.sort_values(by='이평120이격률',ascending=False,inplace=True)
-    # with col3:
+    with col3:
+        st.write('총', str(len(df3)),'건')
 
     티커s=df3['티커'].tolist()
     df2=df2[df2["티커"].isin(티커s)]
-    
-
     df1=df1[df1["티커"].isin(티커s)]
 
     st.dataframe(df2)
 
-
+    ######
     종목s=df2['종목'].unique().tolist()
     종목=st.sidebar.selectbox('선택',종목s)
     티커=df2[df2['종목']==종목]['티커'].values[0]
