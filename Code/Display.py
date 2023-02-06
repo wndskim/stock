@@ -28,7 +28,7 @@ def 테마별_관심주보기():
 
         df3=df3[df1['설명']=='테마선택']
 
-        st.text(df3)
+        st.dataframe(df3)
 
         st.write(테마s)
 
