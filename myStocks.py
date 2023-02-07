@@ -218,7 +218,10 @@ def main():
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
         df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
 
-        if 보기기준=='전년도 상승 종목':
+        if 보기기준=='수급주':
+            df2.sort_values(by='날짜', ascending=False, inplace=True)
+
+        elif 보기기준=='전년도 상승 종목':
             df1['날짜']=df1['날짜'].dt.strftime('%Y-%m-%d')
             df2['날짜']=df2['날짜'].dt.strftime('%Y-%m-%d')
             df3['날짜']=df3['날짜'].dt.strftime('%Y-%m-%d')
