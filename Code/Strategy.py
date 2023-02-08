@@ -142,11 +142,8 @@ def Strategy_2023():
     st.text('5월 준비중')
     st.text('6월 준비중')
     st.text('7월 준비중')
-    
 
     return
-
-
 
 def Strategy_2023_01(pbr):
 
