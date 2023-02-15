@@ -8,6 +8,25 @@ from pykrx import stock
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
+def 골든크로스_2060():
+
+    df=pd.read_excel('./Data/이동평균120기준 위치.xlsx')
+    col1,col2=st.columns([1,4])
+    with col1:
+        radio=st.radio('선택',['골든크로스(20/60)','데드크로스(20/60)'])
+        container=st.container()
+    with col2:
+        if radio=='골든크로스(20/60)':
+            df=df[df['position2060']==1]
+        else:
+            df=df[df['position2060']==-1]
+        
+        tickers=df['티커'].unique()
+        container.write(len(tickers))
+        df.sort_values(by='위치',ascending=True,inplace=False)
+        st.dataframe(df)
+    return
+
 def 테마별_관심주보기(조회일):
 
     작업파일='관심주_테마별.xlsx'
