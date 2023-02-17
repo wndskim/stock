@@ -51,8 +51,6 @@ def 테마별_관심주보기(조회일):
         df1=df1[df1['날짜'].str.startswith(년월)]
         df2=df2[df2['날짜'].str.startswith(년월)]
         df3=df3[df3['날짜'].str.startswith(년월)]
-        st.text(년월)
-
     with col2:
         radio1=st.radio('선택',('테마별 보기','전체보기'))
     with col3:
