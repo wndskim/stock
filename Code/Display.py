@@ -45,24 +45,23 @@ def 테마별_관심주보기(조회일):
     with col1:
         선정년월=['202303','202302']
         년월=st.selectbox('선택',선정년월)
-        # try:
-            # select rows from dataframe when the column A value start with 202302
         df1['날짜']=df1['날짜'].astype(str)
         df2['날짜']=df2['날짜'].astype(str)
         df3['날짜']=df3['날짜'].astype(str)
         df1=df1[df1['날짜'].str.startswith(년월)]
         df2=df2[df2['날짜'].str.startswith(년월)]
         df3=df3[df3['날짜'].str.startswith(년월)]
-        # except: st.text('해당년월 자료 없음..!!'); return
         st.text(년월)
 
     with col2:
         radio1=st.radio('선택',('테마별 보기','전체보기'))
     with col3:
         if radio1=='테마별 보기':
-            테마s=df3['설명'].unique().tolist()
-            테마선택=st.selectbox('선택',테마s)
-            df3=df3[df3['설명']==테마선택]
+            if len(df3)>0:
+                테마s=df3['설명'].unique().tolist()
+                테마선택=st.selectbox('선택',테마s)
+                df3=df3[df3['설명']==테마선택]
+            else: st.text('해당년월 자료 없음..!!'); return
     with col4:
         radio2=st.radio('선택',('120이평 작은순 보기', '120이평 큰순 보기'))
         if radio2=='120이평 작은순 보기':
