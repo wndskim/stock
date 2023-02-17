@@ -41,7 +41,7 @@ def 테마별_관심주보기(조회일):
     df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
     df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
 
-    col1, col2, col3, col4=st.columns([1,2,2,1])
+    col1, col2, col3, col4=st.columns([1,1,1,1])
     with col1:
         선정년월=['202303','202302']
         년월=st.selectbox('선택',선정년월)
@@ -60,12 +60,7 @@ def 테마별_관심주보기(조회일):
         if radio2=='120이평 작은순 보기':
             df2.sort_values(by='이평120이격률',ascending=True,inplace=True)
         else: df2.sort_values(by='이평120이격률',ascending=False,inplace=True)
-        # if radio1=='테마별 보기':
-        #     테마s=df3['설명'].unique().tolist()
-        #     테마선택=st.selectbox('선택',테마s)
-        #     df3=df3[df3['설명']==테마선택]
-        # # st.text('')
-        # # st.text('')
+  
         st.write('총', str(len(df3)),'건')
 
     티커s=df3['티커'].tolist()
