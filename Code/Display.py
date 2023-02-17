@@ -47,6 +47,7 @@ def 테마별_관심주보기(조회일):
         년월=st.selectbox('선택',선정년월)
         # try:
             # select rows from dataframe when the column A value start with 202302
+        df['날짜']=df1['날짜'].dt.strftime('%Y%m%d')
         df1=df1[df1['날짜'].str.startswith(년월)]
         df2=df2[df2['날짜'].str.startswith(년월)]
         df3=df3[df3['날짜'].str.startswith(년월)]
