@@ -50,7 +50,7 @@ def 테마별_관심주보기(조회일):
             df1=df1['날짜'].str.startswith(년월)
             df2=df2['날짜'].str.startswith(년월)
             df3=df3['날짜'].str.startswith(년월)
-        except: st.text('해당년월 자료 없음..!!')
+        except: st.text('해당년월 자료 없음..!!'); return
         st.text(년월)
 
     with col2:
