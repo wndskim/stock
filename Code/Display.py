@@ -41,11 +41,15 @@ def 테마별_관심주보기(조회일):
     df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
     df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
 
-    col1, col2, col3, col4=st.columns([1,1,1,1])
+    col1, col2, col3, col4=st.columns([1,1,2,2])
     with col1:
         선정년월=['202303','202302']
         년월=st.selectbox('선택',선정년월)
-
+        try:
+            df1=df1[df1['날짜'][:5]==선정년월]
+            df2=df2[df2['날짜'][:5]==선정년월]
+            df3=df3[df3['날짜'][:5]==선정년월]
+        except: st.text('해당년월 자료 없음..!!')
         st.text(년월)
 
     with col2:
