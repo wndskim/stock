@@ -40,6 +40,7 @@ def 테마별_관심주보기(조회일):
     df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
     df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
     df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
+    df1['해당년월']=df1['해당년월'].astype(str)
 
     col1, col2, col3, col4=st.columns([1,1,2,2])
     with col1:
