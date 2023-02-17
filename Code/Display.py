@@ -48,6 +48,8 @@ def 테마별_관심주보기(조회일):
         # try:
             # select rows from dataframe when the column A value start with 202302
         df1['날짜']=df1['날짜'].astype(str)
+        df2['날짜']=df2['날짜'].astype(str)
+        df3['날짜']=df3['날짜'].astype(str)
         df1=df1[df1['날짜'].str.startswith(년월)]
         df2=df2[df2['날짜'].str.startswith(년월)]
         df3=df3[df3['날짜'].str.startswith(년월)]
