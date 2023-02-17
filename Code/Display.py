@@ -47,7 +47,7 @@ def 테마별_관심주보기(조회일):
         년월=st.selectbox('선택',선정년월)
         # try:
             # select rows from dataframe when the column A value start with '202302'
-        df1=df1.loc[df1['날짜'].str.startswith(str(년월))]
+        df1=df1.loc[df1['날짜'].startswith(년월)]
         df2=df2.loc[df2['날짜'].str.startswith(년월)]
         df3=df3.loc[df3['날짜'].str.startswith(년월)]
         # except: st.text('해당년월 자료 없음..!!'); return
