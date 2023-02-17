@@ -50,22 +50,22 @@ def 테마별_관심주보기(조회일):
 
     with col2:
         radio1=st.radio('선택',('테마별 보기','전체보기'))
+    with col3:
         if radio1=='테마별 보기':
             테마s=df3['설명'].unique().tolist()
             테마선택=st.selectbox('선택',테마s)
             df3=df3[df3['설명']==테마선택]
-    with col3:
+    with col4:
         radio2=st.radio('선택',('120이평 작은순 보기', '120이평 큰순 보기'))
         if radio2=='120이평 작은순 보기':
             df2.sort_values(by='이평120이격률',ascending=True,inplace=True)
         else: df2.sort_values(by='이평120이격률',ascending=False,inplace=True)
-    with col4:
-        if radio1=='테마별 보기':
-            테마s=df3['설명'].unique().tolist()
-            테마선택=st.selectbox('선택',테마s)
-            df3=df3[df3['설명']==테마선택]
-        # st.text('')
-        # st.text('')
+        # if radio1=='테마별 보기':
+        #     테마s=df3['설명'].unique().tolist()
+        #     테마선택=st.selectbox('선택',테마s)
+        #     df3=df3[df3['설명']==테마선택]
+        # # st.text('')
+        # # st.text('')
         st.write('총', str(len(df3)),'건')
 
     티커s=df3['티커'].tolist()
