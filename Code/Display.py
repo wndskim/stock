@@ -50,7 +50,7 @@ def 테마별_관심주보기(조회일):
         
         st.dataframe(df1)
 
-        df1=df1[df['해당년월']==년월]
+        df1=df1[df1['해당년월']==년월]
 
         st.dataframe(df1)
 
