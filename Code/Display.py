@@ -47,13 +47,7 @@ def 테마별_관심주보기(조회일):
         선정년월=['202303','202302']
         년월=st.selectbox('선택',선정년월)
 
-        
-        st.dataframe(df1)
-
         df1=df1[df1['해당년월']==년월]
-
-        st.dataframe(df1)
-
         df2=df2[df2['티커'].isin(df1['티커'])]
         df3=df3[df3['티커'].isin(df1['티커'])]
         # df1['날짜']=df1['날짜'].astype(str)
