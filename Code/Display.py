@@ -76,7 +76,7 @@ def 테마별_관심주보기(조회일):
         df1=df1[df1["티커"].isin(티커s)]
         df3=df3[df3["티커"].isin(티커s)]
   
-        st.write('총', str(len(df3)),'건')
+        st.write('총', str(len(df2)),'건')
 
     st.dataframe(df2)
 
