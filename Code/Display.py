@@ -76,7 +76,7 @@ def 테마별_관심주보기(조회일):
 
     티커s=df2['티커'].tolist()
     df1=df1[df1["티커"].isin(티커s)]
-    df3=df3[df1["티커"].isin(티커s)]
+    df3=df3[df3["티커"].isin(티커s)]
 
     st.dataframe(df2)
 
