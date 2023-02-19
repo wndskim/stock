@@ -44,7 +44,7 @@ def 테마별_관심주보기(조회일):
     df2['해당년월']=df2['해당년월'].astype(str)
     df3['해당년월']=df3['해당년월'].astype(str)
 
-    col1, col2, col3, col4=st.columns([1,1,2,2])
+    col1, col2, col3, col4, col5=st.columns([1,1,2,1,2])
     with col1:
         선정년월=['202303','202302']
         년월=st.selectbox('선택',선정년월)
@@ -62,6 +62,13 @@ def 테마별_관심주보기(조회일):
                 df3=df3[df3['설명']==테마선택]
             else: st.text('해당년월 자료 없음..!!'); return
     with col4:
+        선택위치=st.selectbox('위치',['전체','겨울3','겨울2','겨울1','봄1','봄2','봄3','여름1','여름2','여름3','가을1','가을2','가을3'])
+        if 선택위치!='전체':
+            df1=df1[df1['위치']==선택위치]
+            df2=df2[df2['위치']==선택위치]
+            df3=df3[df3['위치']==선택위치]
+
+    with col5:
         radio2=st.radio('선택',('120이평 작은순 보기', '120이평 큰순 보기'))
         if radio2=='120이평 작은순 보기':
             df2.sort_values(by='이평120이격률',ascending=True,inplace=True)
@@ -333,9 +340,6 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
     with col2:
         st.markdown(f'''###### :orange[{티커}]''')
         종가=상승파동비율.loc['종가'].values[0]
-
-        st.text(보기기준)
-
 
         if (보기기준=='전월 10이평 돌파 종목') or (보기기준=='수급주'):
             숙향가치=상승파동비율.loc['내재가치'].values[0]
