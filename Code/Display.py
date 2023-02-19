@@ -60,7 +60,13 @@ def 테마별_관심주보기(조회일):
                 테마s=df3['설명'].unique().tolist()
                 테마선택=st.selectbox('선택',테마s)
                 df3=df3[df3['설명']==테마선택]
+
+
                 티커s=df3['티커'].tolist()
+
+                st.write(티커s)
+
+                
                 df1=df1[df1["티커"].isin(티커s)]
                 df2=df2[df2["티커"].isin(티커s)]
             else: st.text('해당년월 자료 없음..!!'); return
