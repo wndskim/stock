@@ -71,12 +71,12 @@ def 테마별_관심주보기(조회일):
         if radio2=='120이평 작은순 보기':
             df2.sort_values(by='이평120이격률',ascending=True,inplace=True)
         else: df2.sort_values(by='이평120이격률',ascending=False,inplace=True)
+
+        티커s=df2['티커'].tolist()
+        df1=df1[df1["티커"].isin(티커s)]
+        df3=df3[df3["티커"].isin(티커s)]
   
         st.write('총', str(len(df3)),'건')
-
-    티커s=df2['티커'].tolist()
-    df1=df1[df1["티커"].isin(티커s)]
-    df3=df3[df3["티커"].isin(티커s)]
 
     st.dataframe(df2)
 
@@ -287,8 +287,6 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
     return 주가정보.iloc[-1],내재가치
 
 def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주가,보기기준):
-
-    ################################
     col1, col2=st.columns([1,1])
     with col1:
         st.text('테마들')
