@@ -61,23 +61,21 @@ def 테마별_관심주보기(조회일):
                 테마선택=st.selectbox('선택',테마s)
                 df3=df3[df3['설명']==테마선택]
                 티커s=df3['티커'].tolist()
-                if len(티커s)>0:
-                    df1=df1[df1["티커"].isin(티커s)]
-                    df2=df2[df2["티커"].isin(티커s)]
-                else: st.text('해당위치 자료 없음..!!'); return
             else: st.text('해당년월 자료 없음..!!'); return
     with col4:
         선택위치=st.selectbox('위치',['전체','겨울3','겨울2','겨울1','봄1','봄2','봄3','여름1','여름2','여름3','가을1','가을2','가을3'])
         if 선택위치!='전체':
             df2=df2[df2['파동위치1']==선택위치]
             티커s=df2['티커'].tolist()
-
+            if len(티커s)>0:
+                df1=df1[df1["티커"].isin(티커s)]
+                df3=df3[df3["티커"].isin(티커s)]
+            else: st.text('해당위치 자료 없음..!!'); return            
     with col5:
         radio2=st.radio('선택',('120이평 작은순 보기', '120이평 큰순 보기'))
         if radio2=='120이평 작은순 보기':
             df2.sort_values(by='이평120이격률',ascending=True,inplace=True)
         else: df2.sort_values(by='이평120이격률',ascending=False,inplace=True)
-
   
         st.write('총', str(len(df2)),'건')
 
