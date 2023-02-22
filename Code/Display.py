@@ -34,6 +34,7 @@ def 거래량폭증_종목보기():
         종목s=df['종목'].unique().tolist()
         st.write(len(종목s),'건')
     with col2:
+        if len(df)<1: st.markdown('''###### :orange[해당종목 없음..!!]'''); return
         st.dataframe(df)
 
     col1,col2=st.columns([1,5])
