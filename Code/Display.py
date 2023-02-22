@@ -9,7 +9,7 @@ def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
 def 거래량폭증_종목보기():
-    df=pd.read_excel(r'.\Data\이동평균120기준 위치.xlsx')
+    df=pd.read_excel('./Data/이동평균120기준 위치.xlsx')
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
     col1,col2=st.columns([1,5])
     with col1:
@@ -92,10 +92,6 @@ def 거래량폭증_종목보기():
         st.text(값)
 
     return
-
-
-
-
 
 def 골든크로스_2060():
 
