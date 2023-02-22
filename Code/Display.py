@@ -12,10 +12,11 @@ def 거래량폭증_종목보기():
     df=pd.read_excel('./Data/거래량폭증종목.xlsx')
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
     날짜s=df['날짜'].unique().tolist()
+    날짜=st.selectbox('날짜선택',날짜s)
+    df=df[df['날짜']==날짜]
+    
     col1,col2=st.columns([1,5])
     with col1:
-        날짜=st.selectbox('날짜선택',날짜s)
-        df=df[df['날짜']==날짜]        
         radio=st.radio('선택',('평균거래량 10배이상','평균거래량 5배이상','기타'))
         if radio=='평균거래량 5배이상': df=df[(df['거래량20대비']>4.99) & (df['거래량20대비']<10)]
         elif radio=='평균거래량 10배이상': df=df[df['거래량20대비']>9.99]
