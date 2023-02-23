@@ -13,8 +13,8 @@ def 거래량폭증_종목보기(조회일):
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
     날짜s=df['날짜'].unique().tolist()
     날짜=st.selectbox('날짜선택',날짜s)
+    날짜s=reversed(날짜s)
     df=df[df['날짜']==날짜]
-    
     col1,col2=st.columns([1,5])
     with col1:
         radio=st.radio('선택',('평균거래량 10배이상','평균거래량 5배이상','기타'))
