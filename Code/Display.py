@@ -8,7 +8,7 @@ from pykrx import stock
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
-def 거래량폭증_종목보기():
+def 거래량폭증_종목보기(조회일):
     df=pd.read_excel('./Data/거래량폭증종목.xlsx')
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
     날짜s=df['날짜'].unique().tolist()
@@ -96,6 +96,13 @@ def 거래량폭증_종목보기():
         st.text('피보나치비율값(최고가/최저가 차액기준(영웅문))'+'\n--------------------')
         st.text(값)
 
+    # 재무정보 보여주기
+    시작일=str(get_date(조회일, 2000)).replace('-','')
+    종료일=str(조회일).replace('-','')
+    주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목선택)
+
+
+
     return
 
 def 골든크로스_2060():
@@ -180,11 +187,6 @@ def 테마별_관심주보기(조회일):
 
     상승파동비율=df1[df1['티커']==티커].transpose()
     위치정보=df2[df2['티커']==티커].transpose()
-
-    # # 발굴사유 보여주기
-    # st.text('발굴사유')
-    # 발굴사유=df3[df3['티커']==티커]
-    # st.dataframe(발굴사유)
 
     # 최근주가 가져오기
     시작일=str(get_date(조회일, 5)).replace('-','')  # 조회일로부터 5일전 부터 데이타 가져오기
