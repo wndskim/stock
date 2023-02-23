@@ -198,7 +198,7 @@ def main():
         folder='./Data/'
         if 보기기준=='선택': return
         elif 보기기준=='거래량 폭증 종목 보기':
-            Display.거래량폭증_종목보기()
+            Display.거래량폭증_종목보기(조회일)
             return
         elif 보기기준=='골든크로스 20/60':
             Display.골든크로스_2060()
