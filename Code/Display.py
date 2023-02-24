@@ -106,6 +106,7 @@ def 거래량폭증_종목보기(조회일):
 def 골든크로스_2060(조회일):
 
     df=pd.read_excel('./Data/이동평균120기준 위치.xlsx')
+    df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
     col1,col2=st.columns([1,4])
     with col1:
         radio=st.radio('선택',['골든크로스(20/60)','데드크로스(20/60)'])
