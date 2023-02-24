@@ -103,7 +103,7 @@ def 거래량폭증_종목보기(조회일):
 
     return
 
-def 골든크로스_2060():
+def 골든크로스_2060(조회일):
 
     df=pd.read_excel('./Data/이동평균120기준 위치.xlsx')
     col1,col2=st.columns([1,4])
@@ -115,11 +115,24 @@ def 골든크로스_2060():
             df=df[df['position2060']==1]
         else:
             df=df[df['position2060']==-1]
-        
-        tickers=df['티커'].unique()
-        container.write(len(tickers))
         df.sort_values(by='위치',ascending=True,inplace=False)
         st.dataframe(df)
+        
+
+    종목s=df['종목'].unique().tolist()
+    container.write(len(종목s))
+    종목선택=container.selectbox('선택',종목s)
+    티커=df[df['종목']==종목선택]['티커'].values[0]
+    
+    # 재무정보 보여주기
+    시작일=str(get_date(조회일, 2000)).replace('-','')
+    종료일=str(조회일).replace('-','')
+    주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목선택)
+
+
+
+        # tickers=df['티커'].unique()
+        # container.write(len(tickers))
     return
 
 def 테마별_관심주보기(조회일):
