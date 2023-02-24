@@ -119,21 +119,30 @@ def 골든크로스_2060(조회일):
         df.sort_values(by='위치',ascending=True,inplace=False)
         st.dataframe(df)
         
+    바닥=['겨울3','겨울2','겨울1']
+    상승초=['봄1','봄2','봄3']
+    상승중=['여름1','여름2','여름3']
+    하락=['가을1','가을2','가을3']
+    선택=container.selectbox('선택',['바닥기','상승초기','상승중기','하락기'])
 
+    if 선택=='바닥기': 위치=container.radio('단계선택',바닥)
+    elif 선택=='상승초기': 위치=container.radio('단계선택',상승초)
+    elif 선택=='상승중기': 위치=container.radio('단계선택',상승중)
+    else: 위치=container.radio('단계선택',하락)
+    df=df[df['위치']==위치]
+
+    if len(df)<1: st.text('해당위치 종목 없음..!!'); return
     종목s=df['종목'].unique().tolist()
     container.write(len(종목s))
     종목선택=container.selectbox('선택',종목s)
     티커=df[df['종목']==종목선택]['티커'].values[0]
+    container.caption(티커)
     
     # 재무정보 보여주기
     시작일=str(get_date(조회일, 2000)).replace('-','')
     종료일=str(조회일).replace('-','')
     주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목선택)
-
-
-
-        # tickers=df['티커'].unique()
-        # container.write(len(tickers))
+    
     return
 
 def 테마별_관심주보기(조회일):
