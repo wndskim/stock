@@ -201,7 +201,7 @@ def main():
             Display.거래량폭증_종목보기(조회일)
             return
         elif 보기기준=='골든크로스 20/60':
-            Display.골든크로스_2060()
+            Display.골든크로스_2060(조회일)
             return
         elif 보기기준=='테마별 발굴 종목':
             Display.테마별_관심주보기(조회일)
