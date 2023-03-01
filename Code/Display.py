@@ -26,7 +26,7 @@ def 거래량폭증_종목보기(조회일):
             종목=st.selectbox('종목선택',종목s)
             설명=df3[df3['종목']==종목]['설명'].tolist()
         with col2:
-            st.write(설명)
+            st.text(설명[0])
 
         st.dataframe(df1)  
         st.dataframe(df2)
