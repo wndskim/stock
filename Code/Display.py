@@ -16,6 +16,17 @@ def 거래량폭증_종목보기(조회일):
         df1=pd.read_excel(folder+작업파일,sheet_name=0)
         df2=pd.read_excel(folder+작업파일,sheet_name=1)
         df3=pd.read_excel(folder+작업파일,sheet_name=2)
+        df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
+        df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
+        df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))        
+
+        종목s=df3['종목'].tolist()
+        col1, col2=st.columns([1,5])
+        with col1:
+            종목=st.selectbox('종목선택',종목s)
+            설명=df3[df3['종목']==종목]['설명'].tolist()
+        with col2:
+            st.write(설명)
 
         st.dataframe(df1)  
         st.dataframe(df2)
