@@ -21,17 +21,16 @@ def 거래량폭증_종목보기(조회일):
         df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))        
 
         종목s=df3['종목'].tolist()
-        col1, col2=st.columns([1,5])
+        col1, col2, col3=st.columns([3,1,10])
         with col1:
             종목=st.selectbox('종목선택',종목s)
             설명=df3[df3['종목']==종목]['설명'].tolist()
-        with col2:
+        with col3:
             st.text(설명[0])
 
         st.dataframe(df1)  
         st.dataframe(df2)
         st.dataframe(df3)
-
 
     else:
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
