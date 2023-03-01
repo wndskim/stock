@@ -9,7 +9,7 @@ def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
 def 거래량폭증_종목보기(조회일):
-    radio=st.radio('선택','발굴된 종목 보기', '발굴하기')
+    radio=st.radio('선택',('발굴된 종목 보기', '발굴하기'))
     if radio=='발굴된 종목 보기':
         folder='./Data/'
         작업파일='관심주_기타.xlsx'
