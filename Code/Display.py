@@ -9,97 +9,111 @@ def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
 def 거래량폭증_종목보기(조회일):
-    df=pd.read_excel('./Data/거래량폭증종목.xlsx')
-    df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
-    날짜s=df['날짜'].unique().tolist()
-    # 날짜s=reversed(날짜s)
-    날짜=st.selectbox('날짜선택',날짜s)
-    df=df[df['날짜']==날짜]
-    col1,col2=st.columns([1,5])
-    with col1:
-        radio=st.radio('선택',('평균거래량 10배이상','평균거래량 5배이상','기타'))
-        if radio=='평균거래량 5배이상': df=df[(df['거래량20대비']>4.99) & (df['거래량20대비']<10)]
-        elif radio=='평균거래량 10배이상': df=df[df['거래량20대비']>9.99]
-        else: df=df[df['거래량20대비']<5]
+    radio=st.radio('선택','발굴된 종목 보기', '발굴하기')
+    if radio=='발굴된 종목 보기':
+        folder='./Data/'
+        작업파일='관심주_기타.xlsx'
+        df1=pd.read_excel(folder+작업파일,sheet_name=0)
+        df2=pd.read_excel(folder+작업파일,sheet_name=1)
+        df3=pd.read_excel(folder+작업파일,sheet_name=2)
 
-        바닥=['겨울3','겨울2','겨울1']
-        상승초=['봄1','봄2','봄3']
-        상승중=['여름1','여름2','여름3']
-        하락=['가을1','가을2','가을3']
-        선택=st.selectbox('선택',['바닥기','상승초기','상승중기','하락기'])
+        st.dataframe(df1)  
+        st.dataframe(df2)
+        st.dataframe(df3)
 
-        if 선택=='바닥기': 위치=st.radio('단계선택',바닥)
-        elif 선택=='상승초기': 위치=st.radio('단계선택',상승초)
-        elif 선택=='상승중기': 위치=st.radio('단계선택',상승중)
-        else: 위치=st.radio('단계선택',하락)
-        df=df[df['위치']==위치]
-        df.sort_values(by='거래대금20대비', ascending=False, inplace=True)
 
-        종목s=df['종목'].unique().tolist()
-        st.write(len(종목s),'건')
-    with col2:
-        if len(df)<1: st.markdown('''###### :orange[해당종목 없음..!!]'''); return
-        st.dataframe(df)
+    else:
+        df=pd.read_excel('./Data/거래량폭증종목.xlsx')
+        df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+        날짜s=df['날짜'].unique().tolist()
+        # 날짜s=reversed(날짜s)
+        날짜=st.selectbox('날짜선택',날짜s)
+        df=df[df['날짜']==날짜]
+        col1,col2=st.columns([1,5])
+        with col1:
+            radio=st.radio('선택',('평균거래량 10배이상','평균거래량 5배이상','기타'))
+            if radio=='평균거래량 5배이상': df=df[(df['거래량20대비']>4.99) & (df['거래량20대비']<10)]
+            elif radio=='평균거래량 10배이상': df=df[df['거래량20대비']>9.99]
+            else: df=df[df['거래량20대비']<5]
 
-    col1,col2=st.columns([1,5])
-    with col1:
-        종목선택=st.selectbox('테마종목보기',종목s)
-    with col2:
-        df_종목=df[df['종목']==종목선택]
-        
-        티커=df_종목['티커'].values[0]
-        최고가=df_종목['기간최고가'].values[0]
-        최저가=df_종목['기간최저가'].values[0]
-        st.dataframe(df_종목)
+            바닥=['겨울3','겨울2','겨울1']
+            상승초=['봄1','봄2','봄3']
+            상승중=['여름1','여름2','여름3']
+            하락=['가을1','가을2','가을3']
+            선택=st.selectbox('선택',['바닥기','상승초기','상승중기','하락기'])
 
-        계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
+            if 선택=='바닥기': 위치=st.radio('단계선택',바닥)
+            elif 선택=='상승초기': 위치=st.radio('단계선택',상승초)
+            elif 선택=='상승중기': 위치=st.radio('단계선택',상승중)
+            else: 위치=st.radio('단계선택',하락)
+            df=df[df['위치']==위치]
+            df.sort_values(by='거래대금20대비', ascending=False, inplace=True)
 
-    col1,col2,col3,col4=st.columns([2,2,3,3])
-    with col1:
-        참조링크보기(티커)
-    with col2:
-        종가='{:,}'.format(df_종목['종가'].tail(1).values[0])
-        등락='{:,}'.format(df_종목['등락'].tail(1).values[0])
-        등락률=format(float(df_종목['등락률'].tail(1).values[0]),f'.2f')
-        이동평균120='{:,}'.format(df_종목['sma120'].tail(1).values[0])
-        이격률120=format(float(df_종목['이격률120'].tail(1).values[0]),f'.0f')
+            종목s=df['종목'].unique().tolist()
+            st.write(len(종목s),'건')
+        with col2:
+            if len(df)<1: st.markdown('''###### :orange[해당종목 없음..!!]'''); return
+            st.dataframe(df)
 
-        기간최고가일=df_종목['기간최고가일'].values[0]
-        기간최저가일=df_종목['기간최저가일'].values[0]
-        
-        str종가='종가: '+종가+'\n'
-        str등락='등락: '+등락+'\n'
-        str등락률='등락률: '+등락률+'\n'
-        str이동평균120='이동평균120: '+이동평균120+'\n'
-        str이격률120='이격률120: '+이격률120+'\n'
-        str기간최고가='기간최고가: '+str(최고가)+'('+기간최고가일+')'+'\n'
-        str기간최저가='기간최저가: '+str(최저가)+'('+기간최저가일+')'+'\n'
+        col1,col2=st.columns([1,5])
+        with col1:
+            종목선택=st.selectbox('테마종목보기',종목s)
+        with col2:
+            df_종목=df[df['종목']==종목선택]
+            
+            티커=df_종목['티커'].values[0]
+            최고가=df_종목['기간최고가'].values[0]
+            최저가=df_종목['기간최저가'].values[0]
+            st.dataframe(df_종목)
 
-        st.text('기본정보'+'\n--------------------')
-        st.text(str종가+str등락+str등락률+str이동평균120+str이격률120+str기간최고가+str기간최저가)
-    with col3:
-        값=''
-        for i,value in enumerate(피보값):
-            if value==100: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'(**2배상승**)'+'\n'
-            elif value==200: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'(***3배상승***)'+'\n'
-            else: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'\n'
-        
-        st.text('피보나치비율값(최저가기준)'+'\n--------------------')
-        st.text(값)
-    with col4:
-        값=''
-        for i,value in enumerate(피보값):
-            if value==100: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'(**기간최고가)'+'\n'
-            elif value==200: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'(***매우과매수)'+'\n'
-            else: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'\n'
+            계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
 
-        st.text('피보나치비율값(최고가/최저가 차액기준(영웅문))'+'\n--------------------')
-        st.text(값)
+        col1,col2,col3,col4=st.columns([2,2,3,3])
+        with col1:
+            참조링크보기(티커)
+        with col2:
+            종가='{:,}'.format(df_종목['종가'].tail(1).values[0])
+            등락='{:,}'.format(df_종목['등락'].tail(1).values[0])
+            등락률=format(float(df_종목['등락률'].tail(1).values[0]),f'.2f')
+            이동평균120='{:,}'.format(df_종목['sma120'].tail(1).values[0])
+            이격률120=format(float(df_종목['이격률120'].tail(1).values[0]),f'.0f')
 
-    # 재무정보 보여주기
-    시작일=str(get_date(조회일, 2000)).replace('-','')
-    종료일=str(조회일).replace('-','')
-    주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목선택)
+            기간최고가일=df_종목['기간최고가일'].values[0]
+            기간최저가일=df_종목['기간최저가일'].values[0]
+            
+            str종가='종가: '+종가+'\n'
+            str등락='등락: '+등락+'\n'
+            str등락률='등락률: '+등락률+'\n'
+            str이동평균120='이동평균120: '+이동평균120+'\n'
+            str이격률120='이격률120: '+이격률120+'\n'
+            str기간최고가='기간최고가: '+str(최고가)+'('+기간최고가일+')'+'\n'
+            str기간최저가='기간최저가: '+str(최저가)+'('+기간최저가일+')'+'\n'
+
+            st.text('기본정보'+'\n--------------------')
+            st.text(str종가+str등락+str등락률+str이동평균120+str이격률120+str기간최고가+str기간최저가)
+        with col3:
+            값=''
+            for i,value in enumerate(피보값):
+                if value==100: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'(**2배상승**)'+'\n'
+                elif value==200: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'(***3배상승***)'+'\n'
+                else: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'\n'
+            
+            st.text('피보나치비율값(최저가기준)'+'\n--------------------')
+            st.text(값)
+        with col4:
+            값=''
+            for i,value in enumerate(피보값):
+                if value==100: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'(**기간최고가)'+'\n'
+                elif value==200: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'(***매우과매수)'+'\n'
+                else: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'\n'
+
+            st.text('피보나치비율값(최고가/최저가 차액기준(영웅문))'+'\n--------------------')
+            st.text(값)
+
+        # 재무정보 보여주기
+        시작일=str(get_date(조회일, 2000)).replace('-','')
+        종료일=str(조회일).replace('-','')
+        주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목선택)
 
     return
 
