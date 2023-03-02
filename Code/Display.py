@@ -95,9 +95,6 @@ def 거래량폭증_종목보기(조회일):
         공용화면보기1(조회일,종목선택,티커,df_종목,최고가,최저가,계산값1,계산값2,피보값)
 
         st.dataframe(df_종목)
-        st.dataframe(df1)  
-        st.dataframe(df2)
-        st.dataframe(df3)
 
     else:
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
