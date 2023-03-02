@@ -81,8 +81,8 @@ def 거래량폭증_종목보기(조회일):
             발굴일자=df3[df3['종목']==종목선택]['날짜'].tolist()
             st.text('')
             st.text('')
-            st.caption(구분[0])
-            st.caption(발굴일자[0])
+            칼럼2정보=구분[0]+'\n'+발굴일자[0]
+            st.text(칼럼2정보)
         with col3:
             st.text(설명[0])
 
