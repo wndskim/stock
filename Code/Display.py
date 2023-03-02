@@ -74,16 +74,25 @@ def 거래량폭증_종목보기(조회일):
         종목s=df3['종목'].tolist()
         col1, col2, col3=st.columns([3,3,10])
         with col1:
-            종목=st.selectbox('종목선택',종목s)
-            설명=df3[df3['종목']==종목]['설명'].tolist()
+            종목선택=st.selectbox('종목선택',종목s)
+            설명=df3[df3['종목']==종목선택]['설명'].tolist()
         with col2:
-            구분=df3[df3['종목']==종목]['구분'].tolist()
+            구분=df3[df3['종목']==종목선택]['구분'].tolist()
             st.text('')
             st.text('')
             st.text(구분[0])
         with col3:
             st.text(설명[0])
 
+        df_종목=df2[df2['종목']==종목선택]
+        티커=df_종목['티커'].values[0]
+        최고가=df_종목['기간최고가'].values[0]
+        최저가=df_종목['기간최저가'].values[0]
+        계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
+
+        공용화면보기1(조회일,종목선택,티커,df_종목,최고가,최저가,계산값1,계산값2,피보값)
+
+        st.dataframe(df_종목)
         st.dataframe(df1)  
         st.dataframe(df2)
         st.dataframe(df3)
