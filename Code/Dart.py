@@ -67,11 +67,6 @@ def Index_Fundamental_조회(시작일, 종료일, 마켓):
 
 def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 
-
-
-#######
-    st.write(시작일,종료일,idx,freq)
-
     df=stock.get_index_ohlcv(시작일, 종료일, idx, freq)
     df.reset_index(inplace=True)
     df['날짜']=df['날짜'].dt.strftime('%Y-%m-%d')
@@ -92,6 +87,12 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
     return df
 
 def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
+
+
+
+#######
+    st.write(시작일,종료일,티커,freq)
+
     data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
     data.reset_index(inplace=True)
     data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
