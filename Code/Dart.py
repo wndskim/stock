@@ -92,6 +92,7 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
 #######
     st.write(시작일,종료일,티커,freq)
+    print(시작일,종료일,티커,freq)
 
     data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
     data.reset_index(inplace=True)
