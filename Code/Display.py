@@ -8,6 +8,15 @@ from pykrx import stock
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
+def 참조링크보기(티커):
+    st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
+    st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
+    # st.write('[네이버금융(종합정보)](https://finance.naver.com/item/main.naver?code={})'.format(티커))
+    st.write('[네이버(통합검색)](https://search.naver.com/search.naver?where=nexearch&sm=top_sug.pre&fbm=0&acr=1&acq=%EB%94%94%EC%BC%80%EC%9D%B4%EC%95%A4&qdt=0&ie=utf8&query={})'.format(티커))
+    st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
+    st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
+    return
+
 def 공용화면보기1(조회일,종목선택,티커,df_종목,최고가,최저가,계산값1,계산값2,피보값):
 
     col1,col2,col3,col4=st.columns([2,2,3,3])
@@ -144,55 +153,8 @@ def 거래량폭증_종목보기(조회일):
 
             계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
 
-##################################
+        # 공용화면보기1
         공용화면보기1(조회일,종목선택,티커,df_종목,최고가,최저가,계산값1,계산값2,피보값)
-
-        # col1,col2,col3,col4=st.columns([2,2,3,3])
-        # with col1:
-        #     참조링크보기(티커)
-        # with col2:
-        #     종가='{:,}'.format(df_종목['종가'].tail(1).values[0])
-        #     등락='{:,}'.format(df_종목['등락'].tail(1).values[0])
-        #     등락률=format(float(df_종목['등락률'].tail(1).values[0]),f'.2f')
-        #     이동평균120='{:,}'.format(df_종목['sma120'].tail(1).values[0])
-        #     이격률120=format(float(df_종목['이격률120'].tail(1).values[0]),f'.0f')
-
-        #     기간최고가일=df_종목['기간최고가일'].values[0]
-        #     기간최저가일=df_종목['기간최저가일'].values[0]
-            
-        #     str종가='종가: '+종가+'\n'
-        #     str등락='등락: '+등락+'\n'
-        #     str등락률='등락률: '+등락률+'\n'
-        #     str이동평균120='이동평균120: '+이동평균120+'\n'
-        #     str이격률120='이격률120: '+이격률120+'\n'
-        #     str기간최고가='기간최고가: '+str(최고가)+'('+기간최고가일+')'+'\n'
-        #     str기간최저가='기간최저가: '+str(최저가)+'('+기간최저가일+')'+'\n'
-
-        #     st.text('기본정보'+'\n--------------------')
-        #     st.text(str종가+str등락+str등락률+str이동평균120+str이격률120+str기간최고가+str기간최저가)
-        # with col3:
-        #     값=''
-        #     for i,value in enumerate(피보값):
-        #         if value==100: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'(**2배상승**)'+'\n'
-        #         elif value==200: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'(***3배상승***)'+'\n'
-        #         else: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값1[i]))+'\n'
-            
-        #     st.text('피보나치비율값(최저가기준)'+'\n--------------------')
-        #     st.text(값)
-        # with col4:
-        #     값=''
-        #     for i,value in enumerate(피보값):
-        #         if value==100: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'(**기간최고가)'+'\n'
-        #         elif value==200: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'(***매우과매수)'+'\n'
-        #         else: 값+='피보값('+str(value)+'):'+'{:,}'.format(int(계산값2[i]))+'\n'
-
-        #     st.text('피보나치비율값(최고가/최저가 차액기준(영웅문))'+'\n--------------------')
-        #     st.text(값)
-
-        # # 재무정보 보여주기
-        # 시작일=str(get_date(조회일, 2000)).replace('-','')
-        # 종료일=str(조회일).replace('-','')
-        # 주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목선택)
 
     return
 
@@ -409,14 +371,6 @@ def 내재가치계산(df1,df2,펀더멘털):
     내재가치=(bps+eps*10)/2/유통주식가능비율
 
     return 내재가치
-
-def 참조링크보기(티커):
-    st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
-    st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
-    st.write('[네이버금융(종합정보)](https://finance.naver.com/item/main.naver?code={})'.format(티커))
-    st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
-    st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
-    return
 
 def 종목명_티커_선택(종목명s, df):
 
