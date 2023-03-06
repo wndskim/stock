@@ -12,3 +12,4 @@ ta
 requests
 matplotlib
 pykrx
+fredapi
