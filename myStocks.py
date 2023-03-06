@@ -269,7 +269,6 @@ def main():
         df["티커"] = df["티커"].apply(lambda x: str(x).zfill(6))
         df_특징주["티커"] = df_특징주["티커"].apply(lambda x: str(x).zfill(6))
 
-
         col1, col2, col3=st.columns([1,1,3])
         with col1:
             선택일=st.date_input('날짜선택')
