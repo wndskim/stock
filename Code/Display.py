@@ -114,7 +114,7 @@ def 거래량폭증_종목보기(조회일):
         # 날짜s=reversed(날짜s)
         날짜=st.selectbox('날짜선택',날짜s)
         df=df[df['날짜']==날짜]
-        col1,col2=st.columns([1,5])
+        col1,col2=st.columns([1,4])
         with col1:
             radio=st.radio('선택',('20일 평균거래량 10배이상','20일 평균거래량 5배이상','기타'))
             if radio=='20일 평균거래량 5배이상': df=df[(df['거래량20대비']>4.99) & (df['거래량20대비']<10)]
