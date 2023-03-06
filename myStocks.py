@@ -89,9 +89,11 @@ def main():
             # wcurcir.name='wcurcir'
 
             # uemp_results=fred.search('unemployment')
-            unrate=Fred.get_series('UNRATE')
+            # unrate=Fred.get_series('UNRATE')
 
-            st.write(unrate)
+            미실업률=Fred.get_series('UNRATE')
+
+            st.write(미실업률)
 
         chk1=st.checkbox('금감원 공시내역을 확인', value=False)
         if chk1:
