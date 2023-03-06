@@ -7,7 +7,7 @@ import datetime
 from datetime import date, timedelta
 from Code import Dart, Chart, Strategy, Display
 
-from fredapi import fred
+from fredapi import Fred
 fred_api='817eada9ca7f5d5bd631bd6fa8ae2d67'
 
 # @st.cache(suppress_st_warning=True)
@@ -85,7 +85,7 @@ def main():
 
         chk0=st.checkbox('미연방은행(FRED) 주요지표 확인',value=False)
         if chk0:
-            wcurcir=fred.get_series('WCURCIR')
+            wcurcir=Fred.get_series('WCURCIR')
             wcurcir.name='wcurcir'
 
             st.write(wcurcir)
