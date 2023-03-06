@@ -7,9 +7,6 @@ import datetime
 from datetime import date, timedelta
 from Code import Dart, Chart, Strategy, Display
 
-from fredapi import Fred
-fred_api='817eada9ca7f5d5bd631bd6fa8ae2d67'
-
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear, sort_order):
     startDate=sYear+'0101'; endDate=sYear+'1231'
@@ -82,18 +79,6 @@ def main():
         return
 
     if job=='선택':
-
-        chk0=st.checkbox('미연방은행(FRED) 주요지표 확인',value=False)
-        if chk0:
-            # wcurcir=Fred.get_series('WCURCIR')
-            # wcurcir.name='wcurcir'
-
-            # uemp_results=fred.search('unemployment')
-            # unrate=Fred.get_series('UNRATE')
-
-            미실업률=Fred.get_series('UNRATE')
-
-            st.write(미실업률)
 
         chk1=st.checkbox('금감원 공시내역을 확인', value=False)
         if chk1:
