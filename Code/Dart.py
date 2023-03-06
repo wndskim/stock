@@ -88,8 +88,6 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 
 def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
-
-
 #######
     st.write(시작일,종료일,티커,freq)
 
