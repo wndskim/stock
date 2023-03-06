@@ -457,14 +457,14 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         # rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
         # bbl='볼린저하단값: '+str(int(주가정보['bb_bbl'].iloc[-1]))+'\n'
 
-        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
-        page=requests.get(url)
-        tables=pd.read_html(page.text)
-        df1=tables[0]
-        df2=tables[3]
-        시가총액='시가총액(억):'+df1.iloc[[4]][1].values[0]+'\n'
+        # url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
+        # page=requests.get(url)
+        # tables=pd.read_html(page.text)
+        # df1=tables[0]
+        # df2=tables[3]
+        # 시가총액='시가총액(억):'+df1.iloc[[4]][1].values[0]+'\n'
 
-        st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액)
+        # st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액)
 
         # 참조링크보기
         참조링크보기(티커)
