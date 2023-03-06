@@ -85,10 +85,13 @@ def main():
 
         chk0=st.checkbox('미연방은행(FRED) 주요지표 확인',value=False)
         if chk0:
-            wcurcir=Fred.get_series('WCURCIR')
-            wcurcir.name='wcurcir'
+            # wcurcir=Fred.get_series('WCURCIR')
+            # wcurcir.name='wcurcir'
 
-            st.write(wcurcir)
+            # uemp_results=fred.search('unemployment')
+            unrate=Fred.get_series('UNRATE')
+
+            st.write(unrate)
 
         chk1=st.checkbox('금감원 공시내역을 확인', value=False)
         if chk1:
