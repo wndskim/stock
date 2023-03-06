@@ -2,7 +2,6 @@ altair
 pandas
 streamlit
 numpy
-pykrx
 yfinance
 openpyxl
 OpenDartReader
@@ -12,3 +11,4 @@ plotly
 ta
 requests
 matplotlib
+pykrx
