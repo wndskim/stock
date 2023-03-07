@@ -432,20 +432,30 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
                 재무정보.loc[:, col_name]=재무정보[col_name].map('{:.2f}'.format)
             st.dataframe(재무정보)
     with col3:
-        try:
-            시작일=str(get_date(조회일, 2000)).replace('-','')
-            종료일=str(조회일).replace('-','')
-            펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
-            st.text('펀더멘털 정보')
-            st.dataframe(펀더멘털)
+        시작일=str(get_date(조회일, 2000)).replace('-','')
+        종료일=str(조회일).replace('-','')
+        펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
+        st.text('펀더멘털 정보')
+        st.dataframe(펀더멘털)
 
-            내재가치=int(내재가치계산(df1,df2,펀더멘털))
-            내재가치값='내재가치: '+str(내재가치)
-            st.text(내재가치값)
-        except:
-            st.write('펀더멘털 정보 없음 !!')
-            st.write('내재가치 계산 못함 !!')
-            내재가치=-9999999999
+        내재가치=int(내재가치계산(df1,df2,펀더멘털))
+        내재가치값='내재가치: '+str(내재가치)
+        st.text(내재가치값)
+ 
+        # try:
+        #     시작일=str(get_date(조회일, 2000)).replace('-','')
+        #     종료일=str(조회일).replace('-','')
+        #     펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
+        #     st.text('펀더멘털 정보')
+        #     st.dataframe(펀더멘털)
+
+        #     내재가치=int(내재가치계산(df1,df2,펀더멘털))
+        #     내재가치값='내재가치: '+str(내재가치)
+        #     st.text(내재가치값)
+        # except:
+        #     st.write('펀더멘털 정보 없음 !!')
+        #     st.write('내재가치 계산 못함 !!')
+        #     내재가치=-9999999999
 
     return 주가정보.iloc[-1],내재가치
 
