@@ -39,7 +39,9 @@ def Stock_Fundamental_조회(시작일, 종료일, 티커):
     펀더멘털=stock.get_market_fundamental(시작일,종료일, 티커, freq='y')
     펀더멘털['년도'] = pd.DatetimeIndex(펀더멘털.index).year
 
-    펀더멘털['년도']=펀더멘털['년도'].str.replace(',','')
+    # 펀더멘털['년도']=펀더멘털['년도'].str.replace(',','')
+    펀더멘털['년도']=펀더멘털['년도'].apply(lambda x: str(x).replace(",",""))
+
 
 
     펀더멘털.reset_index(inplace=True)
@@ -95,9 +97,6 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
     return df
 
 def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
-
-#######
-    st.write(시작일,종료일,티커,freq)
 
     data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
     data.reset_index(inplace=True)
