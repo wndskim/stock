@@ -62,6 +62,8 @@ def main():
         if 선택=='2023년2월 이후': Strategy.Strategy_2023()
         else: Strategy.Strategy_2023_01(kospi_pbr)
 
+        return
+
     if job=='조회':
         시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
