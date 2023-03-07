@@ -437,14 +437,17 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
         st.text('펀더멘털 정보')
         st.dataframe(펀더멘털)
- 
-        st.dataframe(df1)
-        st.dataframe(df2)
 
-        내재가치=int(내재가치계산(df1,df2,펀더멘털))
-        내재가치값='내재가치: '+str(내재가치)
-        st.text(내재가치값)
+        if len(펀더멘털)>2:
+            내재가치=int(내재가치계산(df1,df2,펀더멘털))
+            내재가치값='내재가치: '+str(내재가치)
+            st.text(내재가치값)
+        else:
+            st.text('펀더멘털 정보 부족(없음) !!')
+            st.text('내재가치 계산 못함 !!')
+            내재가치=-9999999999
 
+        #          
         # try:
         #     시작일=str(get_date(조회일, 2000)).replace('-','')
         #     종료일=str(조회일).replace('-','')
