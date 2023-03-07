@@ -442,6 +442,9 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         내재가치값='내재가치: '+str(내재가치)
         st.text(내재가치값)
  
+        st.dataframe(df1)
+        st.dataframe(df2)
+
         # try:
         #     시작일=str(get_date(조회일, 2000)).replace('-','')
         #     종료일=str(조회일).replace('-','')
