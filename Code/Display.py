@@ -398,27 +398,27 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         st.text('')
         # 개별종목 주가 가져오기
 
-        # 주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
+        주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
 
-        # 이격률120=int(주가정보['이격률120'].iloc[-1])
-        # 위치=현재위치_이격률기준(이격률120)
+        이격률120=int(주가정보['이격률120'].iloc[-1])
+        위치=현재위치_이격률기준(이격률120)
 
-        # 종가='종가: '+str(int(주가정보['종가'].iloc[-1]))+'\n'
-        # 최고가52='52주최고가: '+str(int(주가정보['High52'].iloc[-1]))+'\n'
-        # 최저가52='52주최저가: '+str(int(주가정보['Low52'].iloc[-1]))+'\n'
-        # 이평120='120이평값: '+str(int(주가정보['sma120'].iloc[-1]))+'\n'
-        # 이격률120='120이격률: '+str(이격률120)+'('+위치+')'+'\n'
-        # rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
-        # bbl='볼린저하단값: '+str(int(주가정보['bb_bbl'].iloc[-1]))+'\n'
+        종가='종가: '+str(int(주가정보['종가'].iloc[-1]))+'\n'
+        최고가52='52주최고가: '+str(int(주가정보['High52'].iloc[-1]))+'\n'
+        최저가52='52주최저가: '+str(int(주가정보['Low52'].iloc[-1]))+'\n'
+        이평120='120이평값: '+str(int(주가정보['sma120'].iloc[-1]))+'\n'
+        이격률120='120이격률: '+str(이격률120)+'('+위치+')'+'\n'
+        rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
+        bbl='볼린저하단값: '+str(int(주가정보['bb_bbl'].iloc[-1]))+'\n'
 
-        # url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
-        # page=requests.get(url)
-        # tables=pd.read_html(page.text)
-        # df1=tables[0]
-        # df2=tables[3]
-        # 시가총액='시가총액(억):'+df1.iloc[[4]][1].values[0]+'\n'
+        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
+        page=requests.get(url)
+        tables=pd.read_html(page.text)
+        df1=tables[0]
+        df2=tables[3]
+        시가총액='시가총액(억):'+df1.iloc[[4]][1].values[0]+'\n'
 
-        # st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액)
+        st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액)
 
         # 참조링크보기
         참조링크보기(티커)
