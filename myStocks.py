@@ -80,7 +80,7 @@ def main():
 
         chk0=st.checkbox('증시관련 주요 뉴스 링크 보기',value=False)
         if chk0:
-            st.write('[700조 규모 "네옴시티"도 결국은 "물"…수처리 건설사들 노났다](https://biz.newdaily.co.kr/site/data/html/2023/03/06/2023030600073.html)')
+            st.write('[2023-03-07(월): 700조 규모 "네옴시티"도 결국은 "물"…수처리 건설사들 노났다](https://biz.newdaily.co.kr/site/data/html/2023/03/06/2023030600073.html)')
 
         chk1=st.checkbox('금감원 공시내역을 확인', value=False)
         if chk1:
