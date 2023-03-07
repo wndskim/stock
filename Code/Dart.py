@@ -37,7 +37,7 @@ def 금감원_공시내역_보기(조회일):
 
 def Stock_Fundamental_조회(시작일, 종료일, 티커):
     펀더멘털=stock.get_market_fundamental(시작일,종료일, 티커, freq='y')
-    펀더멘털['년도'] = pd.DatetimeIndex(펀더멘털.index).year()
+    펀더멘털['년도'] = pd.DatetimeIndex(펀더멘털.index).year
     펀더멘털.reset_index(inplace=True)
 
     st.dataframe(펀더멘털)
