@@ -39,15 +39,19 @@ def Stock_Fundamental_조회(시작일, 종료일, 티커):
     펀더멘털=stock.get_market_fundamental(시작일,종료일, 티커, freq='y')
     펀더멘털['년도'] = pd.DatetimeIndex(펀더멘털.index).year
     펀더멘털.reset_index(inplace=True)
+
+    st.dataframe(펀더멘털)
+
+
     펀더멘털.set_index('년도', inplace=True)
     펀더멘털.drop('날짜', axis=1, inplace=True)
     펀더멘털.sort_index(inplace=True, ascending=False)
-    # 펀더멘털.loc[:, "PER"] = 펀더멘털["PER"].map('{:.2f}'.format)
-    # 펀더멘털.loc[:, "PBR"] = 펀더멘털["PBR"].map('{:.2f}'.format)
-    # 펀더멘털.loc[:, "DIV"] = 펀더멘털["DIV"].map('{:.2f}'.format)
-    # 펀더멘털.loc[:, "BPS"] = 펀더멘털["BPS"].map('{:,d}'.format)
-    # 펀더멘털.loc[:, "EPS"] = 펀더멘털["EPS"].map('{:,d}'.format)
-    # 펀더멘털.loc[:, "DPS"] = 펀더멘털["DPS"].map('{:,d}'.format)
+    펀더멘털.loc[:, "PER"] = 펀더멘털["PER"].map('{:.2f}'.format)
+    펀더멘털.loc[:, "PBR"] = 펀더멘털["PBR"].map('{:.2f}'.format)
+    펀더멘털.loc[:, "DIV"] = 펀더멘털["DIV"].map('{:.2f}'.format)
+    펀더멘털.loc[:, "BPS"] = 펀더멘털["BPS"].map('{:,d}'.format)
+    펀더멘털.loc[:, "EPS"] = 펀더멘털["EPS"].map('{:,d}'.format)
+    펀더멘털.loc[:, "DPS"] = 펀더멘털["DPS"].map('{:,d}'.format)
     return 펀더멘털
 
 def Index_Fundamental_조회(시작일, 종료일, 마켓):
