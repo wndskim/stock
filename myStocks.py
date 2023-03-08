@@ -50,7 +50,7 @@ def main():
         return
 
     if job=='체크 리스트':
-        Strategy.Define_매매기술_설명()
+        Strategy.매매기술_설명()
         return
 
     조회일=st.sidebar.date_input('조회일')
