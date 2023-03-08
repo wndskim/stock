@@ -78,15 +78,22 @@ def main():
 
     if job=='선택':
 
+        chk00=st.checkbox('미연방은행(FRED) 주요지표 보기',value=False)
+        if chk00:
+            Display.연방은행주요지표보기()
+            return
+
         chk0=st.checkbox('증시관련 주요 뉴스 링크 보기',value=False)
         if chk0:
             st.write('[2023-03-07(월): 700조 규모 "네옴시티"도 결국은 "물"…수처리 건설사들 노났다](https://biz.newdaily.co.kr/site/data/html/2023/03/06/2023030600073.html)')
+            return
 
         chk1=st.checkbox('금감원 공시내역을 확인', value=False)
         if chk1:
             Dart.금감원_공시내역_보기(조회일)
+            return
 
-        chk2=st.checkbox('시장지표를 확인..!!', value=False)
+        chk2=st.checkbox('시장지표를 확인', value=False)
         if chk2:
             시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
             종료일=str(조회일).replace('-','')
@@ -124,6 +131,7 @@ def main():
             with col1:
                 chk3=st.checkbox('코스피 PBR 차트보기',value=False)
                 if chk3: Chart.Chart_001(df_kospi)
+            return
 
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
@@ -194,6 +202,7 @@ def main():
         freq='m'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         Chart.Chart_002(df,종목,freq)
+        return
 
     if job=='관심주':
         보기기준=st.sidebar.selectbox('선택',['선택','거래량 폭증 종목 보기','골든크로스 20/60','테마별 발굴 종목','전월 10이평 돌파 종목','전년도 상승 종목','수급주'])
@@ -262,6 +271,7 @@ def main():
         freq='d'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
         Chart.Chart_002(df,종목,freq)
+        return
 
     if job=='특징주':
         st.markdown(''' ##### :orange[상한가/1000만주 이상 거래 종목]''')
@@ -308,7 +318,8 @@ def main():
         # 월간 차트 그리기
         freq='m'
         df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
-        Chart.Chart_002(df,종목,freq)        
+        Chart.Chart_002(df,종목,freq)  
+        return      
 
     if job=='가격 변동률(년간)':
         s선택=st.sidebar.selectbox('선택',['전체','코스피200','코스피','코스닥'])
