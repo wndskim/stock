@@ -77,7 +77,6 @@ def main():
             return
 
     if job=='선택':
-
         chk00=st.checkbox('미연방은행(FRED) 주요지표 보기',value=False)
         if chk00:
             Display.연방은행주요지표보기()
@@ -133,7 +132,12 @@ def main():
                 chk3=st.checkbox('코스피 PBR 차트보기',value=False)
                 if chk3: Chart.Chart_001(df_kospi)
             return
-
+        
+        chk01=st.checkbox('급등 예상주 발굴 매매 기법',value=False)
+        if chk01:
+            Strategy.급등예상주발굴매매법()
+            return
+    
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
         col1, col2, col3=st.columns([1,1,2])
