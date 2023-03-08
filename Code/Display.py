@@ -8,6 +8,17 @@ from pykrx import stock
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
+def 연방은행주요지표보기():
+
+    st.text('미연방은행 주요지표 보기..!!')
+    st.write('[10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity](https://fred.stlouisfed.org/series/{})'.format('T10Y2Y'))
+    st.write('[Continued Claims (Insured Unemployment)(실업수당 청구 건수)](https://fred.stlouisfed.org/series/{})'.format('CCSA'))
+    st.write('[ Consumer Price Index for All Urban Consumers: All Items in U.S. City Average](https://fred.stlouisfed.org/series/{})'.format('CPIAUCSL'))
+
+    # fred = Fred(api_key=fred_api)
+
+    return
+
 def 참조링크보기(티커):
     st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
     st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
