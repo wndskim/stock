@@ -85,6 +85,7 @@ def main():
 
         chk0=st.checkbox('증시관련 주요 뉴스 링크 보기',value=False)
         if chk0:
+            st.write('[2023-03-08(화):  하나기술, 올해 매출 2배 성장 목표..."노르웨이서만 1조 수주 전망"](https://m.newspim.com/news/view/20230304000030)')
             st.write('[2023-03-07(월): 700조 규모 "네옴시티"도 결국은 "물"…수처리 건설사들 노났다](https://biz.newdaily.co.kr/site/data/html/2023/03/06/2023030600073.html)')
             return
 
