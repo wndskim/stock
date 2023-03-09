@@ -19,7 +19,7 @@ def 연방은행주요지표보기():
 
     return
 
-def 참조링크보기(티커):
+def 참조링크보기(종목):
     st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
     st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
     st.write('[네이버금융(선도주확인용)](https://finance.naver.com/item/coinfo.naver?code={})'.format(티커))
@@ -28,11 +28,11 @@ def 참조링크보기(티커):
     st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
     return
 
-def 공용화면보기1(조회일,종목선택,티커,df_종목,최고가,최저가,계산값1,계산값2,피보값):
+def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가,최저가,계산값1,계산값2,피보값):
 
     col1,col2,col3,col4=st.columns([2,2,3,3])
     with col1:
-        참조링크보기(티커)
+        참조링크보기(종목)
     with col2:
         종가='{:,}'.format(df_종목['종가'].tail(1).values[0])
         등락='{:,}'.format(df_종목['등락'].tail(1).values[0])
@@ -114,7 +114,7 @@ def 거래량폭증_종목보기(조회일):
         최저가=df_종목['기간최저가'].values[0]
         계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
 
-        공용화면보기1(조회일,종목선택,티커,df_종목,최고가,최저가,계산값1,계산값2,피보값)
+        공용화면보기1(조회일,종목선택,티커,종목선택,df_종목,최고가,최저가,계산값1,계산값2,피보값)
 
         st.dataframe(df_종목)
 
@@ -165,7 +165,7 @@ def 거래량폭증_종목보기(조회일):
             계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
 
         # 공용화면보기1
-        공용화면보기1(조회일,종목선택,티커,df_종목,최고가,최저가,계산값1,계산값2,피보값)
+        공용화면보기1(조회일,종목선택,티커,종목선택,df_종목,최고가,최저가,계산값1,계산값2,피보값)
 
     return
 
