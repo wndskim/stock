@@ -128,6 +128,14 @@ def main():
             with col4:
                 st.markdown(f'''###### :blue[3. RSI: {kospi_rsi}]''')
 
+
+            st.markdown('''
+                ###### :orange[2023-03-09(목) 새로운 종목이 나타남(코스피200 종목 기준)]
+                ###### :blue[-한미사이언스/HDC현대산업개발/한전기술/두산에너빌리티/SK바이오사이언스/에스엘]
+            ''')
+
+
+
             col1, col2=st.columns(2)
             with col1:
                 chk3=st.checkbox('코스피 PBR 차트보기',value=False)
