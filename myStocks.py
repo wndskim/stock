@@ -68,8 +68,13 @@ def main():
         종료일=str(조회일).replace('-','')
         조회선택=st.sidebar.selectbox('선택',['선택','코스피200','인덱스종류','종목별 OHLCV'])
         if 조회선택=='인덱스종류':
-            for ticker in stock.get_index_ticker_list():
-                st.write(ticker, stock.get_index_ticker_name(ticker))
+            col1,col2=st.columns(2)
+            with col1:
+                for ticker in stock.get_index_ticker_list(market='KOSPI'):
+                    st.write(ticker, stock.get_index_ticker_name(ticker))
+            with col2:
+                for ticker in stock.get_index_ticker_list(market='KOSDAQ'):
+                    st.write(ticker, stock.get_index_ticker_name(ticker))
             return
         
         if 조회선택=='코스피200':
