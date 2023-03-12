@@ -120,7 +120,10 @@ def 거래량폭증_종목보기(조회일):
 
     else:
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
-        # df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+        df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+        
+        df["티커"]=df["티커"].astype(str)
+
         날짜s=df['날짜'].unique().tolist()
         # 날짜s=reversed(날짜s)
         날짜=st.selectbox('날짜선택',날짜s)
