@@ -119,6 +119,7 @@ def 거래량폭증_종목보기(조회일):
         st.dataframe(df_종목)
 
     else:
+        st.caption('120일 상승종목은 2023년 3월 10일 부터 가능..!!')
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
         df["티커"]=df["티커"].astype(int)
         df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
