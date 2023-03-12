@@ -120,7 +120,7 @@ def 거래량폭증_종목보기(조회일):
 
     else:
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
-        df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+        # df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
         날짜s=df['날짜'].unique().tolist()
         # 날짜s=reversed(날짜s)
         날짜=st.selectbox('날짜선택',날짜s)
@@ -132,8 +132,6 @@ def 거래량폭증_종목보기(조회일):
             elif radio=='20일 평균거래량 10배이상': df=df[df['거래량20대비']>9.99]
             elif radio=='120일평 상승중 종목': df=df.query('상태120=="120이평 상승중"')
             else: df=df[df['거래량20대비']<5]
-
-            df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
 
             바닥=['겨울3','겨울2','겨울1']
             상승초=['봄1','봄2','봄3']
@@ -161,8 +159,6 @@ def 거래량폭증_종목보기(조회일):
             종목선택=st.selectbox('테마종목보기',종목s)
         with col2:
             df_종목=df[df['종목']==종목선택]
-            df_종목["티커"]=df_종목["티커"].apply(lambda x: str(x).zfill(6))
-            
             티커=df_종목['티커'].values[0]
             최고가=df_종목['기간최고가'].values[0]
             최저가=df_종목['기간최저가'].values[0]
