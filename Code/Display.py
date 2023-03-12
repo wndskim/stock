@@ -122,7 +122,6 @@ def 거래량폭증_종목보기(조회일):
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
         df["티커"]=df["티커"].astype(int)
         df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
-        
 
         날짜s=df['날짜'].unique().tolist()
         # 날짜s=reversed(날짜s)
@@ -154,6 +153,7 @@ def 거래량폭증_종목보기(조회일):
             종목s=df['종목'].unique().tolist()
             st.write(len(종목s),'건')
         with col2:
+            if radio=='120일평 상승중 종목': st.caption('2023년 3월 10일 부터 가능..!!')
             if len(df)<1: st.markdown('''###### :orange[해당종목 없음..!!]'''); return
             st.dataframe(df)
 
