@@ -32,10 +32,7 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
     col1,col2,col3,col4=st.columns([2,2,3,3])
     with col1:
-        # 참조링크보기(티커,종목)
-        st.text(df_종목['단기상태'].values[0]+'\n'+df_종목['상태60'].values[0]+'\n'+df_종목['상태120'].values[0]+'\n'+df_종목['상태240'].values[0])
-
-        
+        참조링크보기(티커,종목)
     with col2:
         종가='{:,}'.format(df_종목['종가'].tail(1).values[0])
         등락='{:,}'.format(df_종목['등락'].tail(1).values[0])
