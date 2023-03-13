@@ -111,7 +111,7 @@ def 거래량폭증_종목보기(조회일):
 
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
         df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
-        df['기간최저가일']=pd.to_datetime(df['기간최저가일']).dt.strftime('%Y-%m-%d')
+        df['기간최고가일']=pd.to_datetime(df['기간최고가일']).dt.strftime('%Y-%m-%d')
         df['기간최저가일']=pd.to_datetime(df['기간최저가일']).dt.strftime('%Y-%m-%d')
         df_종목=df[df['종목']==종목선택]
         티커=df_종목['티커'].values[0]
