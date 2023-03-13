@@ -159,7 +159,7 @@ def 거래량폭증_종목보기(조회일):
             if len(df)<1: st.markdown('''###### :orange[해당종목 없음..!!]'''); return
             st.dataframe(df)
 
-            st.write(df.loc['단기상태'])
+            st.write(df.loc['단기상태'][0])
 
         col1,col2=st.columns([1,5])
         with col1:
