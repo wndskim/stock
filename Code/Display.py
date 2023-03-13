@@ -177,7 +177,7 @@ def 거래량폭증_종목보기(조회일):
 
         container.text(df_종목['단기상태'].values[0]+'\n'+df_종목['상태60'].values[0]+'\n'+df_종목['상태120'].values[0]+'\n'+df_종목['상태240'].values[0])
 
-        st.write('{:,2f}'.format(df_종목['RS'].values[0]))
+        st.write(round(df_종목['RS'].values[0],2))
 
         # 공용화면보기1
         공용화면보기1(조회일,종목선택,티커,종목선택,df_종목,최고가,최저가,계산값1,계산값2,피보값)
