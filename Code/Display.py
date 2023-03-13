@@ -133,11 +133,11 @@ def 거래량폭증_종목보기(조회일):
         df=df[df['날짜']==날짜]
         col1,col2=st.columns([1,4])
         with col1:
-            radio=st.radio('선택',('20일 평균거래량 10배이상','20일 평균거래량 5배이상','120일평 상승중 종목','240일펴 상승중 종목','기타'))
+            radio=st.radio('선택',('20일 평균거래량 10배이상','20일 평균거래량 5배이상','120이평 상승중 종목','240이평 상승중 종목','기타'))
             if radio=='20일 평균거래량 5배이상': df=df[(df['거래량20대비']>4.99) & (df['거래량20대비']<10)]
             elif radio=='20일 평균거래량 10배이상': df=df[df['거래량20대비']>9.99]
-            elif radio=='120일평 상승중 종목': df=df.query('상태120=="120이평 상승중"')
-            elif radio=='240일평 상승중 종목': df=df.query('상태240=="240이평 상승중"')
+            elif radio=='120이평 상승중 종목': df=df.query('상태120=="120이평 상승중"')
+            elif radio=='240이평 상승중 종목': df=df.query('상태240=="240이평 상승중"')
             else: df=df[df['거래량20대비']<5]
 
             바닥=['겨울3','겨울2','겨울1']
@@ -161,11 +161,11 @@ def 거래량폭증_종목보기(조회일):
             if radio=='120일평 상승중 종목': st.caption('2023년 3월 10일 부터 가능..!!')
             if len(df)<1: st.markdown('''###### :orange[해당종목 없음..!!]'''); return
             st.dataframe(df)
-            container=st.container()
 
         col1,col2=st.columns([1,5])
         with col1:
-            종목선택=st.selectbox('테마종목보기',종목s)
+            종목선택=st.selectbox('종목선택',종목s)
+            container=st.container()
         with col2:
             df_종목=df[df['종목']==종목선택]
             티커=df_종목['티커'].values[0]
@@ -174,6 +174,8 @@ def 거래량폭증_종목보기(조회일):
             st.dataframe(df_종목)
 
             계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
+
+        container.text(df_종목['단기상태'].values[0]+'\n'+df_종목['상태60'].values[0]+'\n'+df_종목['상태120'].values[0]+'\n'+df_종목['상태240'].values[0])
 
         # 공용화면보기1
         공용화면보기1(조회일,종목선택,티커,종목선택,df_종목,최고가,최저가,계산값1,계산값2,피보값)
