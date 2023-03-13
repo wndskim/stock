@@ -32,6 +32,7 @@ def 현장세_보기():
 
 def 급등예상주발굴매매법():
 
+    st.write('[주식투자 최적의 타이밍을 잡는 범/스탠 와인스타인/부자회사원](https://myrichlife.tistory.com/474)')
     st.write('[주식매매 관련 기법 총정리](https://m.blog.naver.com/hankng/221560696297)')
     st.write('[급등 예상주 발굴 매매 기법(전체)](https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=tujadr&logNo=80135979205)')
 
