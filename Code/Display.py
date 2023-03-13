@@ -175,8 +175,9 @@ def 거래량폭증_종목보기(조회일):
 
             계산값1,계산값2,피보값=Strategy.피보나치_위치별가격(최고가,최저가)
 
-        container.text(df_종목['단기상태'].values[0]+'\n'+df_종목['상태60'].values[0]+'\n'+df_종목['상태120'].values[0]+'\n'+df_종목['상태240'].values[0])
-        container.text('RS: '+str(df_종목['RS'].value[0].round(2)))
+        container.text(df_종목['단기상태'].values[0]+'\n'+df_종목['상태60'].values[0]+'\n'+df_종목['상태120'].values[0]+'\n'+df_종목['상태240'].values[0]+'\n'
+                       'RS: '+str(df_종목['RS'].value[0].round(2)))
+        # container.text('RS: '+str(df_종목['RS'].value[0].round(2)))
 
         # 공용화면보기1
         공용화면보기1(조회일,종목선택,티커,종목선택,df_종목,최고가,최저가,계산값1,계산값2,피보값)
