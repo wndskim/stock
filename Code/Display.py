@@ -42,12 +42,9 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
         최고가=df_종목['기간최고가'].values[0]
         최저가=df_종목['기간최저가'].values[0]
-
         기간최고가일=df_종목['기간최고가일'].values[0]
         기간최저가일=df_종목['기간최저가일'].values[0]
 
-        df_종목['기간최저가일']=pd.to_datetime(df_종목['기간최저가일']).dt.strftime('%Y-%m-%d')
-        df_종목['기간최저가일']=pd.to_datetime(df_종목['기간최저가일']).dt.strftime('%Y-%m-%d')
 
         str종가='종가: '+종가+'\n'
         str등락='등락: '+등락+'\n'
@@ -113,7 +110,9 @@ def 거래량폭증_종목보기(조회일):
             st.text(설명[0])
 
         df=pd.read_excel('./Data/거래량폭증종목.xlsx')
-        df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))    
+        df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+        df['기간최저가일']=pd.to_datetime(df['기간최저가일']).dt.strftime('%Y-%m-%d')
+        df['기간최저가일']=pd.to_datetime(df['기간최저가일']).dt.strftime('%Y-%m-%d')
         df_종목=df[df['종목']==종목선택]
         티커=df_종목['티커'].values[0]
         최고가=df_종목['기간최고가'].values[0]
