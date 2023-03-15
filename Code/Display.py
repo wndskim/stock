@@ -40,11 +40,6 @@ def 연방은행주요지표보기():
 
 def 참조링크보기(티커,종목):
 
-    st.write(티커, 종목)
-
-    # 'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A124500&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
-    # 'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=%EC%95%84%EC%9D%B4%ED%8B%B0%EC%84%BC&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
-
     st.write('[NICE CompanySearch](https://comp.kisline.com/hi/HI0100M010GE.nice?stockcd={}&nav=1)'.format(티커))
     st.write('[CompanyGuide](https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701)'.format(티커))
     st.write('[네이버금융(선도주확인용)](https://finance.naver.com/item/coinfo.naver?code={})'.format(티커))
