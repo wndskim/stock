@@ -91,11 +91,6 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
     data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
     data.reset_index(inplace=True)
-    
-    
-    st.dataframe(data)
-
-
     data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
     data['등락']=data.종가.diff(periods=1)
     data['등락률']=data.종가.pct_change(periods=1)*100
@@ -316,6 +311,8 @@ def get_CompanyGuide자료(ticker):
         return 재무정보, df.T
 
     return 재무정보, df.T
+
+
 # def get_CompanyGuide자료(ticker):
 
 #     df=pd.DataFrame()
