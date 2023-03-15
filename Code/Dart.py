@@ -14,6 +14,18 @@ dart=OpenDartReader(API_KEY)
 def extract_year(x):
     return x.split('-')[0]
 
+def make_week(data):
+
+    try:
+        df=data.resample('W').agg({'시가':'first','고가':'max','저가':'min','종가':'last','거래량':'sum'})
+        df=df.dropna()
+        df['시가'] = df['시가'].astype(int)
+        df['고가'] = df['고가'].astype(int)
+        df['저가'] = df['저가'].astype(int)
+        df['종가'] = df['종가'].astype(int)
+    except: df=pd.DataFrame()
+    return df
+
 # @st.cache(suppress_st_warning=True)
 def 금감원_공시내역_보기(조회일):
     # 금일 금강원 공시 내역
@@ -87,9 +99,51 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 
     return df
 
+# def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
+
+#     data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
+#     data.reset_index(inplace=True)
+#     data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
+#     data['등락']=data.종가.diff(periods=1)
+#     data['등락률']=data.종가.pct_change(periods=1)*100
+
+#     if freq=='y':
+#         data['년도'] = data['날짜'].apply(extract_year)
+#         data['sma3']=ta.trend.sma_indicator(data.종가, window=3)
+#         data['이격률3']=data['종가']/data['sma3']*100
+
+#     else:
+#         # data['년월'] = data['날짜'].dt.strftime('%Y-%m')
+#         data['년월']=pd.to_datetime(data['날짜']).dt.strftime('%Y-%m')
+#         data['Low52']=data.저가.rolling(min_periods=1, window=262, center=False).min()
+#         data['High52']=data.고가.rolling(min_periods=1, window=262, center=False).max()
+#         data['Mid52']=(data['High52']+data['Low52'])/2
+
+#         data['sma5']=ta.trend.sma_indicator(data.종가, window=5)
+#         data['sma10']=ta.trend.sma_indicator(data.종가, window=10)
+#         data['sma20']=ta.trend.sma_indicator(data.종가, window=20)
+#         data['sma60']=ta.trend.sma_indicator(data.종가, window=60)
+#         data['sma120']=ta.trend.sma_indicator(data.종가, window=120)
+#         data['sma240']=ta.trend.sma_indicator(data.종가, window=240)
+
+#         data['이격률20']=data['종가']/data['sma20']*100
+#         data['이격률120']=data['종가']/data['sma120']*100
+
+#         data['rsi10']=rsi(close=data['종가'],window=10)
+#         indicator_bb = BollingerBands(close=data["종가"], window=40, window_dev=2)
+#         data['bb_bbm'] = indicator_bb.bollinger_mavg()
+#         data['bb_bbh'] = indicator_bb.bollinger_hband()
+#         data['bb_bbl'] = indicator_bb.bollinger_lband()
+
+#     return data, data_week
+
 def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
-    data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
+    data_week=pd.DataFrame()
+    data=stock.get_market_ohlcv(시작일,종료일,티커,freq)
+    if freq=='d':
+        data_week=make_week(data)
+
     data.reset_index(inplace=True)
     data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
     data['등락']=data.종가.diff(periods=1)
@@ -99,6 +153,10 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
         data['년도'] = data['날짜'].apply(extract_year)
         data['sma3']=ta.trend.sma_indicator(data.종가, window=3)
         data['이격률3']=data['종가']/data['sma3']*100
+        data['sma5']=ta.trend.sma_indicator(data.종가, window=5)
+        data['이격률5']=data['종가']/data['sma5']*100
+        data['sma10']=ta.trend.sma_indicator(data.종가, window=10)        
+        data['이격률10']=data['종가']/data['sma10']*100
 
     else:
         # data['년월'] = data['날짜'].dt.strftime('%Y-%m')
@@ -123,7 +181,7 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
         data['bb_bbh'] = indicator_bb.bollinger_hband()
         data['bb_bbl'] = indicator_bb.bollinger_lband()
 
-    return data
+    return data, data_week
 
 
 # def get_CompanyGuide자료(ticker):
