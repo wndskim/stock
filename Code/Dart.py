@@ -90,6 +90,10 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
     data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
+
+    st.dataframe(data)
+
+    
     data.reset_index(inplace=True)
     data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
     data['등락']=data.종가.diff(periods=1)
