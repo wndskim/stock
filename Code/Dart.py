@@ -140,6 +140,10 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
 def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
     data_week=pd.DataFrame()
+
+    st.write(시작일, 종료일, 티커, freq)
+
+    
     data=stock.get_market_ohlcv(시작일,종료일,티커,freq)
 
 
