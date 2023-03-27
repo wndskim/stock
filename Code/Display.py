@@ -114,10 +114,6 @@ def 거래량폭증_종목보기(조회일):
         df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
         df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
 
-        st.dataframe(df1)
-        st.dataframe(df2)
-        st.dataframe(df3)
-
         종목s=df3['종목'].tolist()
         col1, col2, col3=st.columns([3,2,10])
         with col1:
@@ -137,6 +133,10 @@ def 거래량폭증_종목보기(조회일):
         df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
         df['기간최고가일']=pd.to_datetime(df['기간최고가일']).dt.strftime('%Y-%m-%d')
         df['기간최저가일']=pd.to_datetime(df['기간최저가일']).dt.strftime('%Y-%m-%d')
+
+        st.dataframe(df)
+
+        
         df_종목=df[df['종목']==종목선택]
         티커=df_종목['티커'].values[0]
         최고가=df_종목['기간최고가'].values[0]
