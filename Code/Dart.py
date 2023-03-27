@@ -141,15 +141,15 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
     data_week=pd.DataFrame()
     data=stock.get_market_ohlcv(시작일,종료일,티커,freq)
-    if freq=='d':
-        data_week=make_week(data)
-
-    data.reset_index(inplace=True)
 
 
     st.dataframe(data)
 
-    
+    if freq=='d':
+        data_week=make_week(data)
+
+
+    data.reset_index(inplace=True)
     # data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
     data['등락']=data.종가.diff(periods=1)
     data['등락률']=data.종가.pct_change(periods=1)*100
