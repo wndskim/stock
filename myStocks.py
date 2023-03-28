@@ -35,6 +35,16 @@ def get_date(기준일, delta):
 # ##### Main
 ##############################################################
 def main():
+
+    hide_menu_style="""
+            <style>
+            #MainMenu {visibility: hidden; }
+            footer {visibility: hidden; }
+            </style>
+    """
+    st.markdown(hide_menu_style, unsafe_allow_html=True)
+
+
     version=st.__version__
     st.markdown(f'''
                 #### My Stock Management System(Web Version)
