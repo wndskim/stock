@@ -65,14 +65,6 @@ def main():
 
     조회일=st.sidebar.date_input('조회일')
 
-    chk4=st.sidebar.checkbox('2023년 투자전략 보기', value=False)
-    if chk4:
-        선택=st.sidebar.selectbox('선택',['선택','2023년2월 이후','2023년1월'])
-        if 선택=='선택': return
-        if 선택=='2023년2월 이후': Strategy.Strategy_2023()
-        else: Strategy.Strategy_2023_01(kospi_pbr)
-        return
-
     if job=='조회':
         시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
@@ -382,7 +374,21 @@ def main():
             st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
             st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
 
+
+
+    chk4=st.sidebar.checkbox('2023년 투자전략 보기', value=False)
+    if chk4:
+        선택=st.sidebar.selectbox('선택',['선택','2023년2월 이후','2023년1월'])
+        if 선택=='선택': return
+        if 선택=='2023년2월 이후': Strategy.Strategy_2023()
+        else: Strategy.Strategy_2023_01(kospi_pbr)
+        return
+
     return
+
+
+
+
 
 #####################################################
 ##### Main ##########################################
