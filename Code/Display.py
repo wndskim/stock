@@ -481,13 +481,9 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         if len(재무정보)>0:
             st.text('재무정보(연간)')
             st.dataframe(재무정보[:4].T)
-            # st.text('재무정보(분기)')
-            # st.dataframe(재무정보[4:].T)
     with col3:
         if len(재무정보)>0:
             st.text('재무비율')
-            # for col_name in col_names:
-            #     재무비율.loc[:, col_name]=재무비율[col_name].map('{:.2f}'.format)
             st.dataframe(재무비율[4:])
     with col4:
         try:
@@ -564,22 +560,6 @@ def x재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
             st.text('내재가치 계산 못함 !!')
             내재가치=-9999999999
 
-        #          
-        # try:
-        #     시작일=str(get_date(조회일, 2000)).replace('-','')
-        #     종료일=str(조회일).replace('-','')
-        #     펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
-        #     st.text('펀더멘털 정보')
-        #     st.dataframe(펀더멘털)
-
-        #     내재가치=int(내재가치계산(df1,df2,펀더멘털))
-        #     내재가치값='내재가치: '+str(내재가치)
-        #     st.text(내재가치값)
-        # except:
-        #     st.write('펀더멘털 정보 없음 !!')
-        #     st.write('내재가치 계산 못함 !!')
-        #     내재가치=-9999999999
-
     return 주가정보.iloc[-1],내재가치
 
 def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주가,보기기준):
@@ -624,10 +604,10 @@ def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주
 
         st.text(현재가값+발굴일값+기간최고가값+기간최저가값+최고가52값+최저가52값+위치1값+위치2값)
 
-        st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
-        st.write('[기법정리](https://docs.google.com/spreadsheets/d/1tJg4kfIIpt17LNKXoKwzzallnXPmyCzMF1DhIIw1Q-8/edit#gid=1186881965)')
-        st.write('[KT(030200) 보유주](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
-        st.write('[유라테크(048430) 관심주](https://docs.google.com/spreadsheets/d/1IwcqZpn8_yiw-ZwX8kJW3na9d5Xy_aLY9Bv4X1WruLY/edit#gid=743352833)')
+        # st.write('[경기상황정리](https://docs.google.com/spreadsheets/d/14OhuYvmkb3dZUIpxP9mu9uS1zNxUY3gFnafHOWOYs5o/edit#gid=719655173)')
+        # st.write('[기법정리](https://docs.google.com/spreadsheets/d/1tJg4kfIIpt17LNKXoKwzzallnXPmyCzMF1DhIIw1Q-8/edit#gid=1186881965)')
+        # st.write('[KT(030200) 보유주](https://docs.google.com/spreadsheets/d/1A_8rYBwU35sfWJezUcKGaFiofMc0cp39TZQCkdSA6Rw/edit#gid=0)')
+        # st.write('[유라테크(048430) 관심주](https://docs.google.com/spreadsheets/d/1IwcqZpn8_yiw-ZwX8kJW3na9d5Xy_aLY9Bv4X1WruLY/edit#gid=743352833)')
 
     with col2:
         st.markdown(f'''###### :orange[{티커}]''')
