@@ -267,16 +267,12 @@ def 테마별_관심주보기(조회일):
     df1['해당년월']=df1['해당년월'].astype(str)
     df2['해당년월']=df2['해당년월'].astype(str)
     df3['해당년월']=df3['해당년월'].astype(str)
-
     선정년월s=df1.해당년월.unique().tolist()
-
-    # 임시
-    st.write(선정년월s)
 
     col1, col2, col3, col4, col5=st.columns([1,1,2,1,2])
     with col1:
-        선정년월=['202303','202302']
-        년월=st.selectbox('선택',선정년월)
+        # 선정년월=['202303','202302']
+        년월=st.selectbox('선택',선정년월s)
         df1=df1[df1['해당년월']==년월]
         df2=df2[df2['해당년월']==년월]
         df3=df3[df3['해당년월']==년월]
