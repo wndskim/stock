@@ -329,6 +329,11 @@ def 테마별_관심주보기(조회일):
     # 일간 차트 그리기
     freq='d'
     df=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,freq)
+
+    # 임시
+    st.dataframe(df)
+
+
     Chart.Chart_002(df,종목,freq)
 
     return
