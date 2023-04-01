@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
-from Code import Dart, Chart, Strategy
+from Code import Dart, Chart, Strategy, GetData
 import requests, os
 from pykrx import stock
 
@@ -124,7 +124,11 @@ def 차트영웅_저평가종목(조회일):
     종료일=str(조회일).replace('-','')
     주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
 
-    # st.write(주가정보)
+    시작일=str(get_date(조회일, 2000)).replace('-','')
+    종료일=str(조회일).replace('-','')
+    df_거래대금=GetData.종목별_거래대금(시작일,종료일,티커)
+
+    st.dataframe(df_거래대금)
 
     return
 
