@@ -115,7 +115,7 @@ def 차트영웅_저평가종목(조회일):
     with col1:
         종목=st.selectbox('선택',종목s)
         티커=_dict[종목]
-        st.text(종목+티커)
+        st.text(종목+' : '+티커)
     with col2:
         st.dataframe(df[['티커','종목명','Theme','Sector','Total_Rank']])
 
