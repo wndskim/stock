@@ -107,7 +107,14 @@ def 차트영웅_저평가종목(조회일):
     df=pd.read_excel('./Data/관심주_차트영웅저평가.xlsx')
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
 
-    st.dataframe(df[['티커','종목명','Theme','Sector','Total_Rank']])
+    종목s=df['종목명'].unique().tolist()
+
+    col1, col2=st.columns([1,3])
+    with col1:
+        종목=st.selectbox('선택',종목s)
+        st.text(종목)
+    with col2:
+        st.dataframe(df[['티커','종목명','Theme','Sector','Total_Rank']])
 
 
     return
