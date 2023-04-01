@@ -102,10 +102,19 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
     return
 
+def 차트영웅_저평가_종목(조회일):
+
+    df=pd.read_excel('./Data/거래량폭증종목.xlsx')
+
+    st.dataframe(df)
+
+
+    return
+
+
+
+
 def 거래량폭증_종목보기(조회일):
-
-
-    st.write(os.getcwd())
 
     radio=st.radio('선택',('발굴된 종목 보기', '발굴하기'))
     if radio=='발굴된 종목 보기':
