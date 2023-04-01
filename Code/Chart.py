@@ -10,13 +10,17 @@ def 차트_일봉(df,종목):
 
     fig = go.Figure()
 
-    fig.add_trace(go.Scatter(x=df.index, y=df.기관합계, name='기관'))
-    fig.add_trace(go.Scatter(x=df.index, y=df.개인, name='개인'))
-    fig.add_trace(go.Scatter(x=df.index, y=df.외국인합계, name='외인'))
+    # fig.add_trace(go.Bar(x=df_ply.index, y=df_ply[col], name = col))
+    fig.add_trace(go.Bar(x=df.index, y=df.기관합계, name='기관'))
+    fig.add_trace(go.Bar(x=df.index, y=df.개인, name='개인'))
+    fig.add_trace(go.Bar(x=df.index, y=df.외국인합계, name='외인'))
+    # fig.add_trace(go.Scatter(x=df.index, y=df.기관합계, name='기관'))
+    # fig.add_trace(go.Scatter(x=df.index, y=df.개인, name='개인'))
+    # fig.add_trace(go.Scatter(x=df.index, y=df.외국인합계, name='외인'))
 
     fig.update_layout(title=종목,
-            xaxis_title='거래대금',
-            yaxis_title='',
+            xaxis_title='날짜',
+            yaxis_title='거래대금',
             width=1100,
             height=1200,                        
             xaxis_rangeslider_visible = False)
