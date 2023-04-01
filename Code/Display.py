@@ -135,7 +135,9 @@ def 차트영웅_저평가종목(조회일):
     st.dataframe(df_w)
     st.dataframe(df_m)
 
-    # Chart.차트_일봉(df_거래대금,종목)
+    Chart.차트_거래대금(df_거래대금,종목)
+    Chart.차트_거래대금(df_w,종목)
+    Chart.차트_거래대금(df_m,종목)
 
     return
 
