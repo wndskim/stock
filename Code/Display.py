@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
 from Code import Dart, Chart, Strategy
-import requests
+import requests, os
 from pykrx import stock
 
 def get_date(기준일, delta):
@@ -103,6 +103,10 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
     return
 
 def 거래량폭증_종목보기(조회일):
+
+
+    st.write(os.getcwd())
+
     radio=st.radio('선택',('발굴된 종목 보기', '발굴하기'))
     if radio=='발굴된 종목 보기':
         folder='./Data/'
