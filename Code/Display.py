@@ -107,14 +107,23 @@ def 차트영웅_저평가종목(조회일):
     df=pd.read_excel('./Data/관심주_차트영웅저평가.xlsx')
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
 
+    티커s=df['티커'].unique().tolist()
     종목s=df['종목명'].unique().tolist()
+    _dict=dict(zip(종목s,티커s))
 
     col1, col2=st.columns([1,3])
     with col1:
         종목=st.selectbox('선택',종목s)
-        st.text(종목)
+        티커=_dict(종목)
+        st.text(종목+티커)
     with col2:
         st.dataframe(df[['티커','종목명','Theme','Sector','Total_Rank']])
+
+    # 재무정보 보여주기
+    시작일=str(get_date(조회일, 2000)).replace('-','')
+    종료일=str(조회일).replace('-','')
+    주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목)
+
 
 
     return
