@@ -105,6 +105,7 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 def 차트영웅_저평가종목(조회일):
 
     df=pd.read_excel('./Data/관심주_차트영웅저평가.xlsx')
+    df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
 
     st.dataframe(df)
 
