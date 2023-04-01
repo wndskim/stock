@@ -3,6 +3,24 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
+
+def 차트_일봉(df,종목):
+
+    st.text(종목)
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter(x=df.index, y=df.기관합계, name='기관'))
+
+
+
+
+    st.plotly_chart(fig)
+
+    return
+
+
+
 def Chart_002(data,종목,freq):
 
     if freq=='d': title=' 일봉 차트 / 120일 이격률: '; 이격률120=data['이격률120'].iloc[-1].round(2); data=data.loc[500:]
