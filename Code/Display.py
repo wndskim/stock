@@ -104,7 +104,7 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
 def 차트영웅_저평가종목(조회일):
 
-    df=pd.read_excel('./Data/거래량폭증종목.xlsx')
+    df=pd.read_excel('./Data/차트영웅저평가.xlsx')
 
     st.dataframe(df)
 
