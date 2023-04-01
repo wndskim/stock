@@ -128,9 +128,14 @@ def 차트영웅_저평가종목(조회일):
     종료일=str(조회일).replace('-','')
     df_거래대금=GetData.종목별_거래대금(시작일,종료일,티커)
 
-    st.dataframe(df_거래대금)
+    df_w=df_거래대금.resample('W').agg({'기관합계':'sum','기타법인':'sum','개인':'sum','외국인합계':'sum'})
+    df_m=df_거래대금.resample('M',closed='right',label='right').agg({'기관합계':'sum','기타법인':'sum','개인':'sum','외국인합계':'sum'})
 
-    Chart.차트_일봉(df_거래대금,종목)
+    st.dataframe(df_거래대금)
+    st.dataframe(df_w)
+    st.dataframe(df_m)
+
+    # Chart.차트_일봉(df_거래대금,종목)
 
     return
 
