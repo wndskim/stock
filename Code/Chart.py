@@ -18,7 +18,7 @@ def 차트_일봉(df,종목):
             xaxis_title='거래대금',
             yaxis_title='',
             width=1100,
-            height=400,                        
+            height=1200,                        
             xaxis_rangeslider_visible = False)
 
     st.plotly_chart(fig)
