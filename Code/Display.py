@@ -131,13 +131,9 @@ def 차트영웅_저평가종목(조회일):
     df_w=df_거래대금.resample('W').agg({'기관합계':'sum','기타법인':'sum','개인':'sum','외국인합계':'sum'})
     df_m=df_거래대금.resample('M',closed='right',label='right').agg({'기관합계':'sum','기타법인':'sum','개인':'sum','외국인합계':'sum'})
 
-    st.dataframe(df_거래대금)
-    st.dataframe(df_w)
-    st.dataframe(df_m)
-
-    Chart.차트_거래대금(df_거래대금,종목)
-    Chart.차트_거래대금(df_w,종목)
-    Chart.차트_거래대금(df_m,종목)
+    Chart.차트_거래대금(df_거래대금[100:],종목,'일')
+    Chart.차트_거래대금(df_w,종목,'주')
+    Chart.차트_거래대금(df_m,종목,'월')
 
     return
 
