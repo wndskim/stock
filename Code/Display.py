@@ -457,12 +457,8 @@ def 코스피200상승률하락률순으로보기():
             st.text(티커2+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
             st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
 
-            # 종목2=종목
-
-
-        ####
-        st.write('-----')
         # 재무정보 보여주기
+        st.write('-----')
         조회일=datetime.datetime.today()
         종료일=datetime.datetime.today()
         시작일=get_date(종료일,1000).replace('-','')
@@ -470,8 +466,6 @@ def 코스피200상승률하락률순으로보기():
         종료일=종료일.strftime('%Y-%m-%d').replace('-','')
         주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커1, 종목1)
         주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커2, 종목2)    
-
-
 
     else:
         col1,col2=st.columns([1,1])
@@ -551,14 +545,6 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         st.text('')
         # 개별종목 주가 가져오기
         주가정보,주봉정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커, 'd')
-
-
-        st.text(티커)
-        st.dataframe(주가정보)
-
-
-
-
         이격률120=int(주가정보['이격률120'].iloc[-1])
         위치=현재위치_이격률기준(이격률120)
 
@@ -607,64 +593,6 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
         except:
             st.write('펀더멘털 정보 없음 !!')
             st.write('내재가치 계산 못함 !!')
-            내재가치=-9999999999
-
-    return 주가정보.iloc[-1],내재가치
-
-
-def x재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
-
-    col1, col2, col3=st.columns([1,2,2])
-    with col1:
-        st.text('')
-        # 개별종목 주가 가져오기
-
-        주가정보=Dart.Stock_OHLCV_조회(시작일, 종료일, 티커,'d')
-        이격률120=int(주가정보['이격률120'].iloc[-1])
-        위치=현재위치_이격률기준(이격률120)
-
-        종가='종가: '+str(int(주가정보['종가'].iloc[-1]))+'\n'
-        최고가52='52주최고가: '+str(int(주가정보['High52'].iloc[-1]))+'\n'
-        최저가52='52주최저가: '+str(int(주가정보['Low52'].iloc[-1]))+'\n'
-        이평120='120이평값: '+str(int(주가정보['sma120'].iloc[-1]))+'\n'
-        이격률120='120이격률: '+str(이격률120)+'('+위치+')'+'\n'
-        rsi10='RSI10: '+str(주가정보['rsi10'].iloc[-1].round(2))+'\n'
-        bbl='볼린저하단값: '+str(int(주가정보['bb_bbl'].iloc[-1]))+'\n'
-
-        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
-        page=requests.get(url)
-        tables=pd.read_html(page.text)
-        df1=tables[0]
-        df2=tables[3]
-        시가총액='시가총액(억):'+df1.iloc[[4]][1].values[0]+'\n'
-
-        st.text(종목+'\n'+종가+최고가52+최저가52+이평120+이격률120+rsi10+bbl+시가총액)
-
-        # 참조링크보기
-        참조링크보기(티커,종목)
-
-    with col2:
-        재무정보=Dart.get_CompanyGuide자료(티커).transpose()
-        col_names=재무정보.columns
-        if len(재무정보)>0:
-            st.text('재무정보')
-            for col_name in col_names:
-                재무정보.loc[:, col_name]=재무정보[col_name].map('{:.2f}'.format)
-            st.dataframe(재무정보)
-    with col3:
-        시작일=str(get_date(조회일, 2000)).replace('-','')
-        종료일=str(조회일).replace('-','')
-        펀더멘털=Dart.Stock_Fundamental_조회(시작일, 종료일, 티커)
-        st.text('펀더멘털 정보')
-        st.dataframe(펀더멘털)
-
-        if len(펀더멘털)>2:
-            내재가치=int(내재가치계산(df1,df2,펀더멘털))
-            내재가치값='내재가치: '+str(내재가치)
-            st.text(내재가치값)
-        else:
-            st.text('펀더멘털 정보 부족(없음) !!')
-            st.text('내재가치 계산 못함 !!')
             내재가치=-9999999999
 
     return 주가정보.iloc[-1],내재가치
