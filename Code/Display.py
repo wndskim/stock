@@ -414,7 +414,7 @@ def 코스피200상승률하락률순으로보기():
             st.dataframe(df1)
 
             종목1s=df1['종목'].tolist()
-            종목1=st.selectbox('선택',종목1s)
+            종목1=st.selectbox('선택',종목1s,key='종목1')
 
             티커=df1[df1['종목']==종목1]['티커'].values[0]
             위치=df1[df1['종목']==종목1]['위치'].values[0]
@@ -445,7 +445,7 @@ def 코스피200상승률하락률순으로보기():
             st.dataframe(df2)
 
             종목2s=df2['종목'].tolist()
-            종목2=st.selectbox('선택',종목2s)
+            종목2=st.selectbox('선택',종목2s,key='종목2')
             티커=df2[df2['종목']==종목2]['티커'].values[0]
             위치=df2[df2['종목']==종목2]['위치'].values[0]
 
