@@ -397,17 +397,20 @@ def 코스피200상승률하락률순으로보기():
     df=pd.read_excel("./Data/코스피200위치.xlsx")
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
 
-    radio=st.radio('선택',('상승/하락순 보기','최고가대비 하락/상승순 보기'))
+    col1,col2=st.columns([2,5])
+    with col1:
+        radio=st.radio('선택',('상승/하락순 보기','최고가대비 하락/상승순 보기'))
+        # radio=st.radio('선택',('코스피보다 더 상승한 종목보기', '상승/하락순 보기','최고가대비 하락/상승순 보기'))
+    with col2:
+        st.markdown('''
+            ###### :orange[2023-04-02(월) GS건설/현대건설/한화에어로스페이스/HDC현대산업개발/대우건설/대우조선해양/풍산/GKL/GS리테일/롯데칠성/현대로템/LX인터네셔널/팬오션]
+            ###### :blue[-(2023-03-09(목) 한미사이언스/HDC현대산업개발/한전기술/두산에너빌리티/SK바이오사이언스/에스엘]
+        ''')
+
     if radio=='상승/하락순 보기':
         col1,col2=st.columns([1,1])
         with col1:
             st.text('-- 상승률순 --')
-            # df.sort_values(by='등락률', ascending=False, inplace=True)
-            # df.reset_index(inplace=True)
-            # df.drop('index', axis=1, inplace=True)
-            # st.dataframe(df)
-
-
             df.sort_values(by='등락률', ascending=False, inplace=True)
             df.reset_index(inplace=True)
             df.drop('index', axis=1, inplace=True)
