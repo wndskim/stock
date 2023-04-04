@@ -408,29 +408,28 @@ def 코스피200상승률하락률순으로보기():
             # st.dataframe(df)
 
 
-            df1=df[df['등락률(주)']>df['코스피등락률(주)']]
-            df1.sort_values(by='등락률',ascending=False, inplace=True)
-            st.write('코스피 지수보다 더 상승한 종목(주)',len(df1),'건')
-            st.dataframe(df1)
+            df.sort_values(by='등락률', ascending=False, inplace=True)
+            df.reset_index(inplace=True)
+            df.drop('index', axis=1, inplace=True)
+            st.dataframe(df)
 
-            종목1s=df1['종목'].tolist()
-            종목1=st.selectbox('선택',종목1s,key='종목1')
+            종목1s=df['종목'].tolist()
+            종목=st.selectbox('선택',종목1s,key='종목1')
+            티커=df[df['종목']==종목]['티커'].values[0]
+            위치=df[df['종목']==종목]['위치'].values[0]
 
-            티커=df1[df1['종목']==종목1]['티커'].values[0]
-            위치=df1[df1['종목']==종목1]['위치'].values[0]
-
-            결과단기=df1[df1['종목']==종목1]['단기상태'].values[0]
-            결과60=df1[df1['종목']==종목1]['상태60'].values[0]
-            결과120=df1[df1['종목']==종목1]['상태120'].values[0]
-            결과240=df1[df1['종목']==종목1]['상태240'].values[0]
-            RS일=df1[df1['종목']==종목1]['RS(일)'].values[0]
-            RS주=df1[df1['종목']==종목1]['RS(주)'].values[0]
-            RS월=df1[df1['종목']==종목1]['RS(월)'].values[0]
+            결과단기=df[df['종목']==종목]['단기상태'].values[0]
+            결과60=df[df['종목']==종목]['상태60'].values[0]
+            결과120=df[df['종목']==종목]['상태120'].values[0]
+            결과240=df[df['종목']==종목]['상태240'].values[0]
+            RS일=df[df['종목']==종목]['RS(일)'].values[0]
+            RS주=df[df['종목']==종목]['RS(주)'].values[0]
+            RS월=df[df['종목']==종목]['RS(월)'].values[0]
 
             st.text(티커+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
             st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
 
-            # 종목1=종목
+            종목1=종목
 
         with col2:
             st.text('-- 하락순 --')
@@ -439,28 +438,25 @@ def 코스피200상승률하락률순으로보기():
             # df.drop('index', axis=1, inplace=True)
             # st.dataframe(df)
 
-            df2=df[df['등락률(월)']>df['코스피등락률(월)']]
-            df2.sort_values(by='등락률',ascending=False, inplace=True)
-            st.write('코스피 지수보다 더 상승한 종목(월)',len(df2),'건')
-            st.dataframe(df2)
 
-            종목2s=df2['종목'].tolist()
-            종목2=st.selectbox('선택',종목2s,key='종목2')
-            티커=df2[df2['종목']==종목2]['티커'].values[0]
-            위치=df2[df2['종목']==종목2]['위치'].values[0]
 
-            결과단기=df2[df2['종목']==종목2]['단기상태'].values[0]
-            결과60=df2[df2['종목']==종목2]['상태60'].values[0]
-            결과120=df2[df2['종목']==종목2]['상태120'].values[0]
-            결과240=df2[df2['종목']==종목2]['상태240'].values[0]
-            RS일=df2[df2['종목']==종목2]['RS(일)'].values[0]
-            RS주=df2[df2['종목']==종목2]['RS(주)'].values[0]
-            RS월=df2[df2['종목']==종목2]['RS(월)'].values[0]
+            종목2s=df['종목'].tolist()
+            종목=st.selectbox('선택',종목2s,key='종목2')
+            티커=df[df['종목']==종목]['티커'].values[0]
+            위치=df[df['종목']==종목]['위치'].values[0]
+
+            결과단기=df[df['종목']==종목]['단기상태'].values[0]
+            결과60=df[df['종목']==종목]['상태60'].values[0]
+            결과120=df[df['종목']==종목]['상태120'].values[0]
+            결과240=df[df['종목']==종목]['상태240'].values[0]
+            RS일=df[df['종목']==종목]['RS(일)'].values[0]
+            RS주=df[df['종목']==종목]['RS(주)'].values[0]
+            RS월=df[df['종목']==종목]['RS(월)'].values[0]
 
             st.text(티커+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
             st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
 
-            # 종목2=종목
+            종목2=종목
 
 
         ####
