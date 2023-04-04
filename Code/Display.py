@@ -414,7 +414,7 @@ def 코스피200상승률하락률순으로보기():
             st.dataframe(df1)
 
             종목1s=df1['종목'].tolist()
-            종목=st.selectbox('선택',종목1s)
+            종목1=st.selectbox('선택',종목1s)
 
             티커=df1[df1['종목']==종목]['티커'].values[0]
             위치=df1[df1['종목']==종목]['위치'].values[0]
@@ -430,7 +430,7 @@ def 코스피200상승률하락률순으로보기():
             st.text(티커+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
             st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
 
-            종목1=종목
+            # 종목1=종목
 
         with col2:
             st.text('-- 하락순 --')
@@ -445,7 +445,7 @@ def 코스피200상승률하락률순으로보기():
             st.dataframe(df2)
 
             종목2s=df2['종목'].tolist()
-            종목=st.selectbox('선택',종목2s)
+            종목2=st.selectbox('선택',종목2s)
             티커=df2[df2['종목']==종목]['티커'].values[0]
             위치=df2[df2['종목']==종목]['위치'].values[0]
 
@@ -460,7 +460,7 @@ def 코스피200상승률하락률순으로보기():
             st.text(티커+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
             st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
 
-            종목2=종목
+            # 종목2=종목
 
 
         ####
