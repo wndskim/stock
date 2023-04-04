@@ -433,12 +433,10 @@ def 코스피200상승률하락률순으로보기():
 
         with col2:
             st.text('-- 하락순 --')
-            # df.sort_values(by='등락률', ascending=True, inplace=True)
-            # df.reset_index(inplace=True)
-            # df.drop('index', axis=1, inplace=True)
-            # st.dataframe(df)
-
-
+            df.sort_values(by='등락률', ascending=True, inplace=True)
+            df.reset_index(inplace=True)
+            df.drop('index', axis=1, inplace=True)
+            st.dataframe(df)
 
             종목2s=df['종목'].tolist()
             종목=st.selectbox('선택',종목2s,key='종목2')
