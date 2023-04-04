@@ -432,18 +432,6 @@ def 코스피200상승률하락률순으로보기():
 
             종목1=종목
 
-        ####
-        st.write('-----')
-        # 재무정보 보여주기
-        조회일=datetime.datetime.today()
-        종료일=datetime.datetime.today()
-        시작일=get_date(종료일,1000).replace('-','')
-        조회일=조회일.strftime('%Y-%m-%d').replace('-','')
-        종료일=종료일.strftime('%Y-%m-%d').replace('-','')
-        주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목1)
-        주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목2)        
-
-
         with col2:
             st.text('-- 하락순 --')
             # df.sort_values(by='등락률', ascending=True, inplace=True)
@@ -475,6 +463,16 @@ def 코스피200상승률하락률순으로보기():
             종목2=종목
 
 
+        ####
+        st.write('-----')
+        # 재무정보 보여주기
+        조회일=datetime.datetime.today()
+        종료일=datetime.datetime.today()
+        시작일=get_date(종료일,1000).replace('-','')
+        조회일=조회일.strftime('%Y-%m-%d').replace('-','')
+        종료일=종료일.strftime('%Y-%m-%d').replace('-','')
+        주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목1)
+        주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목2)    
 
 
 
