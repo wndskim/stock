@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
 from Code import Dart, Chart, Strategy, GetData
-import requests, os
+import requests, os, datetime
 from pykrx import stock
 
 def get_date(기준일, delta):
@@ -402,16 +402,82 @@ def 코스피200상승률하락률순으로보기():
         col1,col2=st.columns([1,1])
         with col1:
             st.text('-- 상승률순 --')
-            df.sort_values(by='등락률', ascending=False, inplace=True)
-            df.reset_index(inplace=True)
-            df.drop('index', axis=1, inplace=True)
-            st.dataframe(df)
+            # df.sort_values(by='등락률', ascending=False, inplace=True)
+            # df.reset_index(inplace=True)
+            # df.drop('index', axis=1, inplace=True)
+            # st.dataframe(df)
+
+
+            df1=df[df['등락률(주)']>df['코스피등락률(주)']]
+            df1.sort_values(by='등락률',ascending=False, inplace=True)
+            st.write('코스피 지수보다 더 상승한 종목(주)',len(df1),'건')
+            st.dataframe(df1)
+
+            종목1s=df1['종목'].tolist()
+            종목=st.selectbox('선택',종목1s)
+
+            티커=df1[df1['종목']==종목]['티커'].values[0]
+            위치=df1[df1['종목']==종목]['위치'].values[0]
+
+            결과단기=df1[df1['종목']==종목]['단기상태'].values[0]
+            결과60=df1[df1['종목']==종목]['상태60'].values[0]
+            결과120=df1[df1['종목']==종목]['상태120'].values[0]
+            결과240=df1[df1['종목']==종목]['상태240'].values[0]
+            RS일=df1[df1['종목']==종목]['RS(일)'].values[0]
+            RS주=df1[df1['종목']==종목]['RS(주)'].values[0]
+            RS월=df1[df1['종목']==종목]['RS(월)'].values[0]
+
+            st.text(티커+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
+            st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
+
+            종목1=종목
+
+        ####
+        st.write('-----')
+        # 재무정보 보여주기
+        조회일=datetime.datetime.today()
+        종료일=datetime.datetime.today()
+        시작일=get_date(종료일,1000).replace('-','')
+        조회일=조회일.strftime('%Y-%m-%d').replace('-','')
+        종료일=종료일.strftime('%Y-%m-%d').replace('-','')
+        주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목1)
+        주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목2)        
+
+
         with col2:
             st.text('-- 하락순 --')
-            df.sort_values(by='등락률', ascending=True, inplace=True)
-            df.reset_index(inplace=True)
-            df.drop('index', axis=1, inplace=True)
-            st.dataframe(df)
+            # df.sort_values(by='등락률', ascending=True, inplace=True)
+            # df.reset_index(inplace=True)
+            # df.drop('index', axis=1, inplace=True)
+            # st.dataframe(df)
+
+            df2=df[df['등락률(월)']>df['코스피등락률(월)']]
+            df2.sort_values(by='등락률',ascending=False, inplace=True)
+            st.write('코스피 지수보다 더 상승한 종목(월)',len(df2),'건')
+            st.dataframe(df2)
+
+            종목2s=df2['종목'].tolist()
+            종목=st.selectbox('선택',종목2s)
+            티커=df2[df2['종목']==종목]['티커'].values[0]
+            위치=df2[df2['종목']==종목]['위치'].values[0]
+
+            결과단기=df2[df2['종목']==종목]['단기상태'].values[0]
+            결과60=df2[df2['종목']==종목]['상태60'].values[0]
+            결과120=df2[df2['종목']==종목]['상태120'].values[0]
+            결과240=df2[df2['종목']==종목]['상태240'].values[0]
+            RS일=df2[df2['종목']==종목]['RS(일)'].values[0]
+            RS주=df2[df2['종목']==종목]['RS(주)'].values[0]
+            RS월=df2[df2['종목']==종목]['RS(월)'].values[0]
+
+            st.text(티커+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
+            st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
+
+            종목2=종목
+
+
+
+
+
     else:
         col1,col2=st.columns([1,1])
         with col1:
