@@ -208,7 +208,9 @@ def 거래량폭증_종목보기(조회일):
             if 선택=='바닥기': 위치=st.radio('단계선택',바닥)
             elif 선택=='상승초기': 위치=st.radio('단계선택',상승초)
             elif 선택=='상승중기': 위치=st.radio('단계선택',상승중)
-            else: 위치=st.radio('단계선택',하락)
+            elif 선택=='하락기': 위치=st.radio('단계선택',하락)
+            else: pass
+            # else: 위치=st.radio('단계선택',하락)
             
             if 선택=='전체': pass
             else: df=df[df['위치']==위치]
