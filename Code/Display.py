@@ -400,6 +400,7 @@ def 코스피200상승률하락률순으로보기():
     col1,col2=st.columns([2,5])
     with col1:
         radio=st.radio('선택',('상승/하락순 보기','최고가대비 하락/상승순 보기'))
+        container=st.container()
         # radio=st.radio('선택',('코스피보다 더 상승한 종목보기', '상승/하락순 보기','최고가대비 하락/상승순 보기'))
     with col2:
         st.markdown('''
@@ -410,10 +411,18 @@ def 코스피200상승률하락률순으로보기():
         ''')
 
     if radio=='상승/하락순 보기':
+        보기기준=container.selectbox('선택',['일자순','주간순','월간순'])
         col1,col2=st.columns([1,1])
         with col1:
-            st.text('-- 상승률순 --')
-            df.sort_values(by='등락률', ascending=False, inplace=True)
+            # st.text('-- 상승률순 --')
+            # df.sort_values(by='등락률', ascending=False, inplace=True)
+
+
+            if 보기기준=='일자순': st.text('-- 상승률순(일자순) --'); df.sort_values(by='등락률', ascending=False, inplace=True)
+            elif 보기기준=='주간순': st.text('-- 상승률순(주간순) --'); df.sort_values(by='등락률(주)', ascending=False, inplace=True)
+            else: st.text('-- 상승률순(월간순) --'); df.sort_values(by='등락률(주)', ascending=False, inplace=True)
+
+
             df.reset_index(inplace=True)
             df.drop('index', axis=1, inplace=True)
             st.dataframe(df)
@@ -434,11 +443,15 @@ def 코스피200상승률하락률순으로보기():
             st.text(티커1+'\n'+위치+'\n'+결과단기+'\n'+결과60+'\n'+결과120+'\n'+결과240)
             st.text('RS(일): '+str(round(RS일,2))+'\n'+'RS(주): '+str(round(RS주,2))+'\n'+'RS(월): '+str(round(RS월,2)))
 
-            # 종목1=종목
-
         with col2:
-            st.text('-- 하락순 --')
-            df.sort_values(by='등락률', ascending=True, inplace=True)
+            # st.text('-- 하락순 --')
+            # df.sort_values(by='등락률', ascending=True, inplace=True)
+
+            if 보기기준=='일자순': st.text('-- 하락률순(일자순) --'); df.sort_values(by='등락률', ascending=True, inplace=True)
+            elif 보기기준=='주간순': st.text('-- 하락률순(주간순) --'); df.sort_values(by='등락률(주)', ascending=True, inplace=True)
+            else: st.text('-- 하락률순(월간순) --'); df.sort_values(by='등락률(주)', ascending=True, inplace=True)
+
+
             df.reset_index(inplace=True)
             df.drop('index', axis=1, inplace=True)
             st.dataframe(df)
