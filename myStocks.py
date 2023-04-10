@@ -130,7 +130,7 @@ def main():
             else: 시장상태=' 매우 고평가 상태이다'
             st.markdown(f'''###### :orange[{조회일}일 기준으로 PBR이 {kospi_pbr}이므로 {시장상태}]''')
 
-            col1, col2, col3, col4, col5=st.columns(5)
+            col1, col2, col3, col4=st.columns(4)
             with col1:
                 st.markdown(f'''###### :orange[1. 코스피지수: {kospi_지수}]''')
             with col2:
