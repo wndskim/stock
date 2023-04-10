@@ -113,7 +113,9 @@ def main():
 
             # kospi_pbr=df_kospi._get_value(13, 'PBR')
             df_kospi['PBR']=df_kospi['PBR'].astype(float)
+            df_kospi['PER']=df_kospi['PER'].astype(float)
             kospi_pbr=df_kospi['PBR'].iloc[0]
+            kospi_per=df_kospi['PER'].iloc[0]
 
             freq='d'
             df_index=Dart.Index_OHLCV_조회(str(get_date(조회일, 250)).replace('-',''),종료일, '1001', freq=freq) # 250일전 날짜 구해서 작업 수행
@@ -132,11 +134,12 @@ def main():
             with col1:
                 st.markdown(f'''###### :orange[1. 코스피지수: {kospi_지수}]''')
             with col2:
-                st.markdown(f'''###### :violet[4. 볼리저밴드 하단선: {kospi_bbl}]''')
+                st.markdown(f'''###### :violet[2. 볼리저밴드 하단선: {kospi_bbl}]''')
             with col3:
-                st.markdown(f'''###### :green[2. PBR: {kospi_pbr}]''')
+                st.markdown(f'''###### :green[3. PBR: {kospi_pbr}]''')
+                st.markdown(f'''###### :green[4. PER: {kospi_per}]''')
             with col4:
-                st.markdown(f'''###### :blue[3. RSI: {kospi_rsi}]''')
+                st.markdown(f'''###### :blue[5. RSI: {kospi_rsi}]''')
 
             st.markdown('-----')
             st.markdown('''
