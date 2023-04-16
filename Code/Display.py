@@ -240,7 +240,7 @@ def 거래량폭증_종목보기(조회일):
 
         try:
             container.text(df_종목['단기상태'].values[0]+'\n'+df_종목['상태60'].values[0]+'\n'+df_종목['상태120'].values[0]+'\n'+df_종목['상태240'].values[0]+'\n' \
-                        ++'RSi: '+str(round(df_종목['rsi'].values[0],2))+'\n'+'RS: '+str(round(df_종목['RS'].values[0],2)))
+                        +'rsi: '+str(round(df_종목['rsi'].values[0],2))+'\n'+'RS: '+str(round(df_종목['RS'].values[0],2)))
         except:
             container.text('120/240 상승중 족목은 2023년3월10일 이후부터 가능..!!'+'\n'+'30주 골든 크로스는 2023년3월13일 부터 가능..!!')
 
