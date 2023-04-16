@@ -215,8 +215,7 @@ def 거래량폭증_종목보기(조회일):
             # else: 위치=st.radio('단계선택',하락)
             
             if 선택=='전체': df.sort_values(by='위치', ascending=False, inplace=True)
-            else: df=df[df['위치']==위치]
-            df.sort_values(by='거래대금20대비', ascending=False, inplace=True)
+            else: df=df[df['위치']==위치]; df.sort_values(by='거래대금20대비', ascending=False, inplace=True)
 
             종목s=df['종목'].unique().tolist()
             st.write(len(종목s),'건')
