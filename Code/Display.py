@@ -197,8 +197,10 @@ def 거래량폭증_종목보기(조회일):
             elif radio=='20일 평균거래량 10배이상': df=df[df['거래량20대비']>9.99]
             elif radio=='120이평 상승중 종목': df=df.query('상태120=="120이평 상승중"')
             elif radio=='30주 골든크로스': df=df.query('주30돌파==1')
-            elif radio=='RSI30이하': df=df.query('rsi<30.001')
-            elif radio=='RSI70이상': df=df.query('rsi>69.999')
+            elif radio=='RSI30이하': df=df.query('rsi14<30.001')
+            elif radio=='RSI70이상': df=df.query('rsi14>69.999')
+            # elif radio=='RSI30이하': df=df.query('rsi<30.001')
+            # elif radio=='RSI70이상': df=df.query('rsi>69.999')
             else: df=df[df['position2060']==1]
 
             바닥=['겨울3','겨울2','겨울1']
