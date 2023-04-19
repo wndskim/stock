@@ -18,6 +18,7 @@ def 강영현투자법():
                 ###### :blue[- 그러므로 박스권이 어디인가를 판단 하는것이 중요하다.]
                 ###### :blue[- 박스권 저점은 신용잔고가 털리는 것을 확인한다. 신용이 털렸다는 뉴스가 나오면 KODEX200 ETF를 매수 한다.]
                 ###### :blue[- 신용잔고 확인법 설명: https://economyplay.tistory.com/310]
+                ###### :blue[- 네이버 고객예탹금 & 신용잔고: https://finance.naver.com/sise/sise_deposit.naver]
                 ###### :blue[- 금융투자협회 신용공여 잔고 추이: http://freesis.kofia.or.kr/]
                 ###### :blue[- 매수한 ETF의 수익이 15%~30%를 달성하면 매도 한다.]
                 ###### :blue[- 1년 3,4회 이것을 반복한다.]
