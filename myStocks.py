@@ -162,6 +162,11 @@ def main():
         if chk02:
             Strategy.강영현투자법()
             return
+        
+        chk03=st.checkbox('강영현 투자법',value=False)
+        if chk03:
+            Display.고객예탁금_신용잔고()
+            return
     
     if job=='년도별 가격 변동률 조회':
         년도=st.sidebar.selectbox('년도선택',('2023','2022','2021','2020','2019','2018'))
