@@ -39,7 +39,7 @@ def 고객예탁금_신용잔고():
     st.text('향후 차트를 추가 한다')
     st.write('[참고 웹사이트](https://m.blog.naver.com/jongy0644/222845544363)')
     df_concat=pd.DataFrame()
-    for i in range(1,4):
+    for i in range(1,10):
         dfs=scrap_고객예탁금_신용잔고(i)[0]
         날짜=dfs.iloc[:,0].dropna().tolist()
         고객예탁금1=dfs.iloc[:,1].dropna().tolist()
