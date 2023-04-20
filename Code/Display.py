@@ -36,7 +36,7 @@ def scrap_고객예탁금_신용잔고(page):
 
 def 고객예탁금_신용잔고():
     df_concat=pd.DataFrame()
-    for i in range(1,3):
+    for i in range(1,4):
         dfs=scrap_고객예탁금_신용잔고(i)[0]
         날짜=dfs.iloc[:,0].dropna().tolist()
         고객예탁금1=dfs.iloc[:,1].dropna().tolist()
