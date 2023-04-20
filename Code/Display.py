@@ -49,6 +49,7 @@ def 고객예탁금_신용잔고():
         df['신용잔고비율']=df.신용잔고/df.고객예탁금
         df['날짜']='20'+df['날짜']
         df['날짜']=pd.to_datetime(df.날짜)
+        df['날짜']=df.날짜.dt.strftime('%Y/%m/%d')
         df_concat=pd.concat([df_concat,df],axis=0)
 
     st.dataframe(df_concat)
