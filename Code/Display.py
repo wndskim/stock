@@ -5,6 +5,8 @@ from Code import Dart, Chart, Strategy, GetData
 import requests, os, datetime
 from pykrx import stock
 
+headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
+
 def get_date(기준일, delta):
     return (기준일 - timedelta(days=delta)).strftime("%Y-%m-%d")
 
@@ -26,6 +28,31 @@ def 현재위치_이격률기준(이격률120):
     }
 
     return 위치분류.get(True, "120이격률 기준 위치산정 불가")
+
+def scrap_고객예탁금_신용잔고(page):
+    print(page)
+    url = f'https://finance.naver.com/sise/sise_deposit.naver?&page={page}'
+    return pd.read_html(url,encoding='utf-8')
+
+def 고객예탁금_신용잔고():
+    df_concat=pd.DataFrame()
+    for i in range(1,3):
+        dfs=scrap_고객예탁금_신용잔고(i)[0]
+        날짜=dfs.iloc[:,0].dropna().tolist()
+        고객예탁금1=dfs.iloc[:,1].dropna().tolist()
+        고객예탁금2=dfs.iloc[:,2].dropna().tolist()
+        신용잔고1=dfs.iloc[:,3].dropna().tolist()
+        신용잔고2=dfs.iloc[:,4].dropna().tolist()
+        df = pd.DataFrame({'날짜': 날짜, '고객예탁금1': 고객예탁금1, '고객예탁금2': 고객예탁금2, '신용잔고1': 신용잔고1, '신용잔고2': 신용잔고2})
+        df['고객예탁금']=df['고객예탁금1']+df.고객예탁금2
+        df['신용잔고']=df['신용잔고1']+df.신용잔고2
+        df['신용잔고비율']=df.신용잔고/df.고객예탁금
+        df['날짜']='20'+df['날짜']
+        df['날짜']=pd.to_datetime(df.날짜)
+        df_concat=pd.concat([df_concat,df],axis=0)
+
+    st.dataframe(df_concat)
+    return
 
 def 연방은행주요지표보기():
 
