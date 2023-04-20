@@ -163,7 +163,7 @@ def main():
             Strategy.강영현투자법()
             return
         
-        chk03=st.checkbox('강영현 투자법',value=False)
+        chk03=st.checkbox('고객예탁금 & 신용잔고 보기',value=False)
         if chk03:
             Display.고객예탁금_신용잔고()
             return
