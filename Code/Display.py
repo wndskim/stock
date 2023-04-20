@@ -35,6 +35,7 @@ def scrap_고객예탁금_신용잔고(page):
     return pd.read_html(url,encoding='utf-8')
 
 def 고객예탁금_신용잔고():
+    st.text('고객예탁금 대비 신용잔구 비율이 35%이상이면 과열신호로 관심을 가지고 본다(35%는 확인 필요)')
     df_concat=pd.DataFrame()
     for i in range(1,4):
         dfs=scrap_고객예탁금_신용잔고(i)[0]
