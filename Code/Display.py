@@ -30,8 +30,8 @@ def 현재위치_이격률기준(이격률120):
     return 위치분류.get(True, "120이격률 기준 위치산정 불가")
 
 def scrap_고객예탁금_신용잔고(page):
-    print(page)
     url = f'https://finance.naver.com/sise/sise_deposit.naver?&page={page}'
+    print(url)
     return pd.read_html(url,encoding='utf-8')
 
 def 고객예탁금_신용잔고():
@@ -54,6 +54,39 @@ def 고객예탁금_신용잔고():
         df['날짜']=pd.to_datetime(df.날짜)
         df['날짜']=df.날짜.dt.strftime('%Y/%m/%d')
         df_concat=pd.concat([df_concat,df],axis=0)
+
+    columns=['날짜','고객예탁금','신용잔고','신용잔고비율']
+    df_concat=df_concat.reindex(columns = columns)
+
+    df_concat['예탁금증감']=df_concat['고객예탁금'].diff()*-1
+    df_concat['신용잔고증감']=df_concat['신용잔고'].diff()*-1
+
+    df_concat.set_index('날짜',inplace=True)
+    예탁금최고='{:,}'.format(int(df_concat['고객예탁금'].max()))
+    예탁금최저='{:,}'.format(int(df_concat['고객예탁금'].min()))
+    신용잔고최고='{:,}'.format(int(df_concat['신용잔고'].max()))
+    신용잔고최저='{:,}'.format(int(df_concat['신용잔고'].min()))
+    신용잔고비율최고='{:.2f}'.format(df_concat['신용잔고비율'].max())
+    신용잔고비율최저='{:.2f}'.format(df_concat['신용잔고비율'].min())
+
+    예탁금최고일=df_concat['고객예탁금'].idxmax()
+    예탁금최저일=df_concat['고객예탁금'].idxmin()
+    신용잔고최고일=df_concat['신용잔고'].idxmax()
+    신용잔고최저일=df_concat['신용잔고'].idxmin()
+    신용잔고비율최고일=df_concat['신용잔고비율'].idxmax()
+    신용잔고비율최저일=df_concat['신용잔고비율'].idxmin()
+
+    고객예탁금최고='고객예탁금최고: '+str(예탁금최고)+' ('+str(예탁금최고일)+')\n'
+    고객예탁금최저='고객예탁금최저: '+str(예탁금최저)+' ('+str(예탁금최저일)+')\n'
+    신용잔고최고='신용잔고최고: '+str(신용잔고최고)+' ('+str(신용잔고최고일)+')\n'
+    신용잔고최저='신용잔고최저: '+str(신용잔고최저)+' ('+str(신용잔고최저일)+')\n'
+    신용잔고비율최고='신용잔고비율최고: '+str(신용잔고비율최고)+' ('+str(신용잔고비율최고일)+')\n'
+    신용잔고비율최저='신용잔고비율최저: '+str(신용잔고비율최저)+' ('+str(신용잔고비율최저일)+')\n'
+    # container.text(고객예탁금최고+고객예탁금최저+신용잔고최고+신용잔고최저+신용잔고비율최고+신용잔고비율최저)
+    st.text(고객예탁금최고+고객예탁금최저+신용잔고최고+신용잔고최저+신용잔고비율최고+신용잔고비율최저)
+
+    # df_sort=df_concat.sort_values(by='날짜')
+    # Chart.Chart_003(df_sort)
 
     st.dataframe(df_concat)
     return
