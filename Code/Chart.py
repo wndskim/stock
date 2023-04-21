@@ -22,6 +22,31 @@ def 차트_거래대금(df,종목,기간):
 
     return
 
+def Chart_003(df):
+
+    예탁금최고=int(df['고객예탁금'].max())
+    예탁금최저=int(df['고객예탁금'].min())
+    예탁금최고일=df['고객예탁금'].idxmax()
+    예탁금최저일=df['고객예탁금'].idxmin()
+
+    trace1=go.Scatter(x=df.index, y=df.고객예탁금, name='고객예탁금')
+    trace2=go.Scatter(x=df.index, y=df.신용잔고, name='신용잔고')
+    vline1=go.Scatter(x=[예탁금최저일,예탁금최저일], y=[150000, 예탁금최저], mode='lines', name='예탁금최저일')
+    vline2=go.Scatter(x=[예탁금최고일,예탁금최고일], y=[150000, 예탁금최고], mode='lines', name='예탁금최고일')
+
+    # Put the traces in a list
+    data = [trace1, trace2, vline1, vline2]
+
+    # Create the layout
+    layout = go.Layout(title='고객예탁금 및 신용잔고', xaxis=dict(title='날짜'), yaxis=dict(title='금액(천억)'), width=600, height=400)
+
+    # Create the figure
+    fig = go.Figure(data=data, layout=layout)
+
+    # Add the chart to the app
+    st.plotly_chart(fig)
+
+    return
 
 
 def Chart_002(data,종목,freq):
