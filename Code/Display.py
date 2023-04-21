@@ -83,10 +83,13 @@ def 고객예탁금_신용잔고():
     신용잔고비율최고='신용잔고비율최고: '+str(신용잔고비율최고)+' ('+str(신용잔고비율최고일)+')\n'
     신용잔고비율최저='신용잔고비율최저: '+str(신용잔고비율최저)+' ('+str(신용잔고비율최저일)+')\n'
     # container.text(고객예탁금최고+고객예탁금최저+신용잔고최고+신용잔고최저+신용잔고비율최고+신용잔고비율최저)
-    st.text(고객예탁금최고+고객예탁금최저+신용잔고최고+신용잔고최저+신용잔고비율최고+신용잔고비율최저)
 
-    # df_sort=df_concat.sort_values(by='날짜')
-    # Chart.Chart_003(df_sort)
+    col1,col2=st.columns([1,3])
+    with col1:
+        st.text(고객예탁금최고+고객예탁금최저+신용잔고최고+신용잔고최저+신용잔고비율최고+신용잔고비율최저)
+    with col2:
+        df_sort=df_concat.sort_values(by='날짜')
+        Chart.Chart_003(df_sort)
 
     st.dataframe(df_concat)
     return
