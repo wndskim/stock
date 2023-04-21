@@ -36,8 +36,6 @@ def scrap_고객예탁금_신용잔고(page):
 
 def 고객예탁금_신용잔고():
     st.text('고객예탁금 대비 신용잔고 비율이 35%이상이면 과열신호로 관심을 가지고 본다(35%는 확인 필요)')
-    st.text('향후 차트를 추가 한다')
-    st.write('[참고 웹사이트](https://m.blog.naver.com/jongy0644/222845544363)')
     df_concat=pd.DataFrame()
     for i in range(1,6):
         dfs=scrap_고객예탁금_신용잔고(i)[0]
@@ -86,6 +84,7 @@ def 고객예탁금_신용잔고():
 
     col1,col2=st.columns([1,3])
     with col1:
+        st.write('[참고 웹사이트](https://m.blog.naver.com/jongy0644/222845544363)')
         st.text(고객예탁금최고+고객예탁금최저+신용잔고최고+신용잔고최저+신용잔고비율최고+신용잔고비율최저)
     with col2:
         df_sort=df_concat.sort_values(by='날짜')
