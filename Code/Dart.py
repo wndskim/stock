@@ -182,10 +182,238 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
     return data, data_week
 
+def get_CompanyGuide자료(ticker):
 
+    df=pd.DataFrame()
+
+    url = 'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'.format(ticker)
+    dfs = pd.read_html(url)
+
+    col_names=[]
+    for cols in dfs[10].columns:
+        col_names.append(cols[1])
+
+    col_names
+    df_재무정보=dfs[10]
+    df_재무정보.columns=col_names
+    df_재무정보=df_재무정보.set_index('IFRS(연결)')
+
+    매출액=pd.DataFrame(df_재무정보.loc['매출액'].tolist())
+    영업이익=pd.DataFrame(df_재무정보.loc['영업이익'].tolist())
+    당기순이익=pd.DataFrame(df_재무정보.loc['당기순이익'].tolist())
+    부채비율=pd.DataFrame(df_재무정보.loc['부채비율'].tolist())
+    유보율=pd.DataFrame(df_재무정보.loc['유보율'].tolist())
+    영업이익률=pd.DataFrame(df_재무정보.loc['영업이익률'].tolist())
+    ROA=pd.DataFrame(df_재무정보.loc['ROA'].tolist())
+    ROE=pd.DataFrame(df_재무정보.loc['ROE'].tolist())
+    EPS=pd.DataFrame(df_재무정보.loc['EPS(원)'].tolist())
+    BPS=pd.DataFrame(df_재무정보.loc['BPS(원)'].tolist())
+    PER=pd.DataFrame(df_재무정보.loc['PER'].tolist())
+    PBR=pd.DataFrame(df_재무정보.loc['PBR'].tolist())
+
+    재무정보=pd.concat([매출액,영업이익,당기순이익,부채비율,유보율,영업이익률,ROA,ROE,EPS,BPS,PER,PBR],axis=1)
+    재무정보.columns=['매출액','영업이익','당기순이익','부채비율','영업이익률','유보율','ROA','ROE','EPS','BPS','PER','PBR']
+    재무정보.index=col_names[1:]
+
+    try:
+        ### 재무제표
+        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Finance.asp?pGB=1&gicode=A{ticker}&cID=&MenuYn=Y&ReportGB=&NewMenuID=103&stkGb=701'
+        page=requests.get(url)
+        tables=pd.read_html(page.text)
+
+        손익계산서=tables[0]
+        손익계산서=손익계산서.set_index(손익계산서.columns[0])
+
+        재무상태표=tables[2]
+        재무상태표=재무상태표.set_index(재무상태표.columns[0])
+
+        현금흐름표=tables[4]
+        현금흐름표=현금흐름표.set_index(현금흐름표.columns[0])
+
+        ### 재무비율
+        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_FinanceRatio.asp?pGB=1&gicode=A{ticker}&cID=&MenuYn=Y&ReportGB=&NewMenuID=104&stkGb=701'
+        page=requests.get(url)
+        tables=pd.read_html(page.text)
+        재무비율=tables[0]
+        재무비율=재무비율.set_index(재무비율.columns[0])
+
+        ### 재무제표
+        # 팻도시 5원칙 체크사항용(ROE>15%, ROA>7%, ROIC>7%~15%, 당기순이익/매출액*100>15, 잉여현금흐름(FCF)/매출액*100>5, 재고자산회전율)
+
+
+        매출액=손익계산서.loc[['매출액']]
+
+        ################################################################################
+        영업이익=손익계산서.loc[['영업이익']]
+
+        당기순이익=손익계산서.loc[['당기순이익']]
+
+        재무활동FCF=현금흐름표.loc[['재무활동으로인한현금흐름']]
+        재무활동FCF=재무활동FCF.astype(float)
+        투자활동FCI=현금흐름표.loc[['투자활동으로인한현금흐름']]
+        투자활동FCI=투자활동FCI.astype(float)
+        영업활동FCO=현금흐름표.loc[['영업활동으로인한현금흐름']]
+        영업활동FCO=영업활동FCO.astype(float)
+
+        # st.write(영업활동FCF)
+        # st.write(투자활동FCF)
+        
+        # 벤자민 그레이엄 적정가치 계산용 항목
+        # 유동자산
+        # 총부채
+        # 유동부채
+        유동자산=재무상태표.loc[['유동자산계산에 참여한 계정 펼치기']]
+        유동자산=유동자산.astype(float)
+        유동부채=재무상태표.loc[['유동부채계산에 참여한 계정 펼치기']]
+        유동부채=유동부채.astype(float)
+        총부채=재무상태표.loc[['부채']]
+        총부채=총부채.astype(float)
+
+        # 안정성비율(재무건전성)
+        # 유동비율=유동자산/유동부채 > 150%
+        # 당좌비율=(유동자산-재고자산)/유동부채 > 100%
+        # 부채비율 < 100%
+        # 이자보상배율 > 2
+        유동비율=재무비율.loc[['유동비율계산에 참여한 계정 펼치기']]
+        col_name=유동비율.columns.to_list()[:1][0]
+        유동비율.drop(col_name, axis=1, inplace=True)
+        유동비율=유동비율.astype(float)
+
+        당좌비율=재무비율.loc[['당좌비율계산에 참여한 계정 펼치기']]
+        col_name=당좌비율.columns.to_list()[:1][0]
+        당좌비율.drop(col_name, axis=1, inplace=True)
+        당좌비율=당좌비율.astype(float)
+
+        부채비율=재무비율.loc[['부채비율계산에 참여한 계정 펼치기']]
+        col_name=부채비율.columns.to_list()[:1][0]
+        부채비율.drop(col_name, axis=1, inplace=True)
+        부채비율=부채비율.astype(float)
+
+        이자보상배율=재무비율.loc[['이자보상배율계산에 참여한 계정 펼치기']]
+        col_name=이자보상배율.columns.to_list()[:1][0]
+        이자보상배율.drop(col_name, axis=1, inplace=True)
+        이자보상배율=이자보상배율.astype(float)
+
+        # 성장성 비율
+        # 매출액증가율
+        # 판매관리비증가율
+        # 영업이익증가율
+        매출액증가율=재무비율.loc[['매출액증가율계산에 참여한 계정 펼치기']]
+        col_name=매출액증가율.columns.to_list()[:1][0]
+        매출액증가율.drop(col_name, axis=1, inplace=True)
+        매출액증가율=매출액증가율.astype(float)
+
+        판매비와관리비증가율=재무비율.loc[['판매비와관리비증가율계산에 참여한 계정 펼치기']]
+        col_name=판매비와관리비증가율.columns.to_list()[:1][0]
+        판매비와관리비증가율.drop(col_name, axis=1, inplace=True)
+        판매비와관리비증가율=판매비와관리비증가율.astype(float)
+
+        영업이익증가율=재무비율.loc[['영업이익증가율계산에 참여한 계정 펼치기']]
+        col_name=영업이익증가율.columns.to_list()[:1][0]
+        영업이익증가율.drop(col_name, axis=1, inplace=True)
+        영업이익증가율=영업이익증가율.astype(float)
+        # 수익성 비율
+        # 매출총이익율
+        # 세전계속사업이익률
+        # 영업이익률
+        # ROA > 7%
+        # ROE > 15%
+        # ROIC > 7%~15%
+        매출총이익율=재무비율.loc[['매출총이익율계산에 참여한 계정 펼치기']]
+        col_name=매출총이익율.columns.to_list()[:1][0]
+        매출총이익율.drop(col_name, axis=1, inplace=True)
+        매출총이익율=매출총이익율.astype(float)
+
+        세전계속사업이익률=재무비율.loc[['세전계속사업이익률계산에 참여한 계정 펼치기']]
+        col_name=세전계속사업이익률.columns.to_list()[:1][0]
+        세전계속사업이익률.drop(col_name, axis=1, inplace=True)
+        세전계속사업이익률=세전계속사업이익률.astype(float)
+
+        영업이익률=재무비율.loc[['영업이익률계산에 참여한 계정 펼치기']]
+        col_name=영업이익률.columns.to_list()[:1][0]
+        영업이익률.drop(col_name, axis=1, inplace=True)
+        영업이익률=영업이익률.astype(float)
+
+        ROA=재무비율.loc[['ROA계산에 참여한 계정 펼치기']]
+        col_name=ROA.columns.to_list()[:1][0]
+        ROA.drop(col_name, axis=1, inplace=True)
+        ROA=ROA.astype(float)
+
+        ROE=재무비율.loc[['ROE계산에 참여한 계정 펼치기']]
+        col_name=ROE.columns.to_list()[:1][0]
+        ROE.drop(col_name, axis=1, inplace=True)
+        ROE=ROE.astype(float)
+
+        ROIC=재무비율.loc[['ROIC계산에 참여한 계정 펼치기']]
+        col_name=ROIC.columns.to_list()[:1][0]
+        ROIC.drop(col_name, axis=1, inplace=True)
+        ROIC=ROIC.astype(float)
+
+        # df=pd.concat([매출액, 당기순이익, 유동자산, 유동부채, 총부채, 유동비율, 당좌비율, 부채비율, 이자보상배율, \
+        df=pd.concat([매출액, 매출액증가율, 영업이익, 영업이익증가율, 영업이익률, 당기순이익, 부채비율, 유동자산, 유동부채, 총부채, 유동비율, 당좌비율, 이자보상배율, \
+                        판매비와관리비증가율, 매출총이익율, 세전계속사업이익률, 재무활동FCF, 투자활동FCI, 영업활동FCO, ROA, ROE, ROIC], axis=0)
+
+        df.drop(['전년동기','전년동기(%)'], axis=1, inplace=True)
+        
+        df=df.transpose()
+        df=df.rename(columns={'유동자산계산에 참여한 계정 펼치기':'유동자산','유동부채계산에 참여한 계정 펼치기':'유동부채','부채':'총부채'})
+        df=df.rename(columns={'유동비율계산에 참여한 계정 펼치기':'유동비율','당좌비율계산에 참여한 계정 펼치기':'당좌비율','부채비율계산에 참여한 계정 펼치기':'부채비율','이자보상배율계산에 참여한 계정 펼치기':'이자보상배율'})
+        df=df.rename(columns={'매출액증가율계산에 참여한 계정 펼치기':'매출액증가율','판매비와관리비증가율계산에 참여한 계정 펼치기':'판매비와관리비증가율','영업이익증가율계산에 참여한 계정 펼치기':'영업이익증가율'})
+        df=df.rename(columns={'매출총이익율계산에 참여한 계정 펼치기':'매출총이익율','세전계속사업이익률계산에 참여한 계정 펼치기':'세전계속사업이익률','영업이익률계산에 참여한 계정 펼치기':'영업이익률'})
+        df=df.rename(columns={'ROA계산에 참여한 계정 펼치기':'ROA','ROE계산에 참여한 계정 펼치기':'ROE','ROIC계산에 참여한 계정 펼치기':'ROIC'})
+        df=df.rename(columns={'재무활동으로인한현금흐름':'재무활동FCF','투자활동으로인한현금흐름':'투자활동FCI','영업활동으로인한현금흐름':'영업활동FCO'})
+
+        df['잉여현금FCF']=df['영업활동FCF']+df['투자활동FCF']
+        df['잉여현금비율']=df['잉여현금FCF']/df['매출액']*100
+
+        # 이익수익률=EPS/주가 > 채권수익률(현재 3년 국채 수익률 또는 10년 국채 수익률)
+        # 안전마진(순유동자산, 적정주가) => (유동자산 - 유동부채) / 총발행주식수
+        # 안전마진(순순유동자산, 적정주가) => (유동자산 - 부채총계) / 총발행주식수
+        # df=df.transpose()
+    except:
+        return 재무정보, df.T
+
+    return 재무정보, df.T
+
+
+
+
+
+
+
+    
 # def get_CompanyGuide자료(ticker):
 
 #     df=pd.DataFrame()
+
+#     url = 'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'.format(ticker)
+#     dfs = pd.read_html(url)
+
+#     col_names=[]
+#     for cols in dfs[10].columns:
+#         col_names.append(cols[1])
+
+#     col_names
+#     df_재무정보=dfs[10]
+#     df_재무정보.columns=col_names
+#     df_재무정보=df_재무정보.set_index('IFRS(연결)')
+
+#     매출액=pd.DataFrame(df_재무정보.loc['매출액'].tolist())
+#     영업이익=pd.DataFrame(df_재무정보.loc['영업이익'].tolist())
+#     당기순이익=pd.DataFrame(df_재무정보.loc['당기순이익'].tolist())
+#     부채비율=pd.DataFrame(df_재무정보.loc['부채비율'].tolist())
+#     유보율=pd.DataFrame(df_재무정보.loc['유보율'].tolist())
+#     영업이익률=pd.DataFrame(df_재무정보.loc['영업이익률'].tolist())
+#     ROA=pd.DataFrame(df_재무정보.loc['ROA'].tolist())
+#     ROE=pd.DataFrame(df_재무정보.loc['ROE'].tolist())
+#     EPS=pd.DataFrame(df_재무정보.loc['EPS(원)'].tolist())
+#     BPS=pd.DataFrame(df_재무정보.loc['BPS(원)'].tolist())
+#     PER=pd.DataFrame(df_재무정보.loc['PER'].tolist())
+#     PBR=pd.DataFrame(df_재무정보.loc['PBR'].tolist())
+
+#     재무정보=pd.concat([매출액,영업이익,당기순이익,부채비율,유보율,영업이익률,ROA,ROE,EPS,BPS,PER,PBR],axis=1)
+#     재무정보.columns=['매출액','영업이익','당기순이익','부채비율','유보율','영업이익률','ROA','ROE','EPS','BPS','PER','PBR']
+#     재무정보.index=col_names[1:]
 
 #     try:
 #         ### 재무제표
@@ -211,6 +439,8 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
 #         ### 재무제표
 #         # 팻도시 5원칙 체크사항용(ROE>15%, ROA>7%, ROIC>7%~15%, 당기순이익/매출액*100>15, 잉여현금흐름(FCF)/매출액*100>5, 재고자산회전율)
+
+
 #         매출액=손익계산서.loc[['매출액']]
 #         당기순이익=손익계산서.loc[['당기순이익']]
 
@@ -335,194 +565,6 @@ def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 #         # 안전마진(순순유동자산, 적정주가) => (유동자산 - 부채총계) / 총발행주식수
 #         # df=df.transpose()
 #     except:
-#         return df
+#         return 재무정보, df.T
 
-#     return df
-
-
-def get_CompanyGuide자료(ticker):
-
-    df=pd.DataFrame()
-
-    url = 'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'.format(ticker)
-    dfs = pd.read_html(url)
-
-    col_names=[]
-    for cols in dfs[10].columns:
-        col_names.append(cols[1])
-
-    col_names
-    df_재무정보=dfs[10]
-    df_재무정보.columns=col_names
-    df_재무정보=df_재무정보.set_index('IFRS(연결)')
-
-    매출액=pd.DataFrame(df_재무정보.loc['매출액'].tolist())
-    영업이익=pd.DataFrame(df_재무정보.loc['영업이익'].tolist())
-    당기순이익=pd.DataFrame(df_재무정보.loc['당기순이익'].tolist())
-    부채비율=pd.DataFrame(df_재무정보.loc['부채비율'].tolist())
-    유보율=pd.DataFrame(df_재무정보.loc['유보율'].tolist())
-    영업이익률=pd.DataFrame(df_재무정보.loc['영업이익률'].tolist())
-    ROA=pd.DataFrame(df_재무정보.loc['ROA'].tolist())
-    ROE=pd.DataFrame(df_재무정보.loc['ROE'].tolist())
-    EPS=pd.DataFrame(df_재무정보.loc['EPS(원)'].tolist())
-    BPS=pd.DataFrame(df_재무정보.loc['BPS(원)'].tolist())
-    PER=pd.DataFrame(df_재무정보.loc['PER'].tolist())
-    PBR=pd.DataFrame(df_재무정보.loc['PBR'].tolist())
-
-    재무정보=pd.concat([매출액,영업이익,당기순이익,부채비율,유보율,영업이익률,ROA,ROE,EPS,BPS,PER,PBR],axis=1)
-    재무정보.columns=['매출액','영업이익','당기순이익','부채비율','유보율','영업이익률','ROA','ROE','EPS','BPS','PER','PBR']
-    재무정보.index=col_names[1:]
-
-    try:
-        ### 재무제표
-        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Finance.asp?pGB=1&gicode=A{ticker}&cID=&MenuYn=Y&ReportGB=&NewMenuID=103&stkGb=701'
-        page=requests.get(url)
-        tables=pd.read_html(page.text)
-
-        손익계산서=tables[0]
-        손익계산서=손익계산서.set_index(손익계산서.columns[0])
-
-        재무상태표=tables[2]
-        재무상태표=재무상태표.set_index(재무상태표.columns[0])
-
-        현금흐름표=tables[4]
-        현금흐름표=현금흐름표.set_index(현금흐름표.columns[0])
-
-        ### 재무비율
-        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_FinanceRatio.asp?pGB=1&gicode=A{ticker}&cID=&MenuYn=Y&ReportGB=&NewMenuID=104&stkGb=701'
-        page=requests.get(url)
-        tables=pd.read_html(page.text)
-        재무비율=tables[0]
-        재무비율=재무비율.set_index(재무비율.columns[0])
-
-        ### 재무제표
-        # 팻도시 5원칙 체크사항용(ROE>15%, ROA>7%, ROIC>7%~15%, 당기순이익/매출액*100>15, 잉여현금흐름(FCF)/매출액*100>5, 재고자산회전율)
-
-
-        매출액=손익계산서.loc[['매출액']]
-        당기순이익=손익계산서.loc[['당기순이익']]
-
-        영업활동FCF=현금흐름표.loc[['영업활동으로인한현금흐름']]
-        영업활동FCF=영업활동FCF.astype(float)
-        투자활동FCF=현금흐름표.loc[['투자활동으로인한현금흐름']]
-        투자활동FCF=투자활동FCF.astype(float)
-
-        # st.write(영업활동FCF)
-        # st.write(투자활동FCF)
-        
-        # 벤자민 그레이엄 적정가치 계산용 항목
-        # 유동자산
-        # 총부채
-        # 유동부채
-        유동자산=재무상태표.loc[['유동자산계산에 참여한 계정 펼치기']]
-        유동자산=유동자산.astype(float)
-        유동부채=재무상태표.loc[['유동부채계산에 참여한 계정 펼치기']]
-        유동부채=유동부채.astype(float)
-        총부채=재무상태표.loc[['부채']]
-        총부채=총부채.astype(float)
-
-        # 안정성비율(재무건전성)
-        # 유동비율=유동자산/유동부채 > 150%
-        # 당좌비율=(유동자산-재고자산)/유동부채 > 100%
-        # 부채비율 < 100%
-        # 이자보상배율 > 2
-        유동비율=재무비율.loc[['유동비율계산에 참여한 계정 펼치기']]
-        col_name=유동비율.columns.to_list()[:1][0]
-        유동비율.drop(col_name, axis=1, inplace=True)
-        유동비율=유동비율.astype(float)
-
-        당좌비율=재무비율.loc[['당좌비율계산에 참여한 계정 펼치기']]
-        col_name=당좌비율.columns.to_list()[:1][0]
-        당좌비율.drop(col_name, axis=1, inplace=True)
-        당좌비율=당좌비율.astype(float)
-
-        부채비율=재무비율.loc[['부채비율계산에 참여한 계정 펼치기']]
-        col_name=부채비율.columns.to_list()[:1][0]
-        부채비율.drop(col_name, axis=1, inplace=True)
-        부채비율=부채비율.astype(float)
-
-        이자보상배율=재무비율.loc[['이자보상배율계산에 참여한 계정 펼치기']]
-        col_name=이자보상배율.columns.to_list()[:1][0]
-        이자보상배율.drop(col_name, axis=1, inplace=True)
-        이자보상배율=이자보상배율.astype(float)
-
-        # 성장성 비율
-        # 매출액증가율
-        # 판매관리비증가율
-        # 영업이익증가율
-        매출액증가율=재무비율.loc[['매출액증가율계산에 참여한 계정 펼치기']]
-        col_name=매출액증가율.columns.to_list()[:1][0]
-        매출액증가율.drop(col_name, axis=1, inplace=True)
-        매출액증가율=매출액증가율.astype(float)
-
-        판매비와관리비증가율=재무비율.loc[['판매비와관리비증가율계산에 참여한 계정 펼치기']]
-        col_name=판매비와관리비증가율.columns.to_list()[:1][0]
-        판매비와관리비증가율.drop(col_name, axis=1, inplace=True)
-        판매비와관리비증가율=판매비와관리비증가율.astype(float)
-
-        영업이익증가율=재무비율.loc[['영업이익증가율계산에 참여한 계정 펼치기']]
-        col_name=영업이익증가율.columns.to_list()[:1][0]
-        영업이익증가율.drop(col_name, axis=1, inplace=True)
-        영업이익증가율=영업이익증가율.astype(float)
-        # 수익성 비율
-        # 매출총이익율
-        # 세전계속사업이익률
-        # 영업이익률
-        # ROA > 7%
-        # ROE > 15%
-        # ROIC > 7%~15%
-        매출총이익율=재무비율.loc[['매출총이익율계산에 참여한 계정 펼치기']]
-        col_name=매출총이익율.columns.to_list()[:1][0]
-        매출총이익율.drop(col_name, axis=1, inplace=True)
-        매출총이익율=매출총이익율.astype(float)
-
-        세전계속사업이익률=재무비율.loc[['세전계속사업이익률계산에 참여한 계정 펼치기']]
-        col_name=세전계속사업이익률.columns.to_list()[:1][0]
-        세전계속사업이익률.drop(col_name, axis=1, inplace=True)
-        세전계속사업이익률=세전계속사업이익률.astype(float)
-
-        영업이익률=재무비율.loc[['영업이익률계산에 참여한 계정 펼치기']]
-        col_name=영업이익률.columns.to_list()[:1][0]
-        영업이익률.drop(col_name, axis=1, inplace=True)
-        영업이익률=영업이익률.astype(float)
-
-        ROA=재무비율.loc[['ROA계산에 참여한 계정 펼치기']]
-        col_name=ROA.columns.to_list()[:1][0]
-        ROA.drop(col_name, axis=1, inplace=True)
-        ROA=ROA.astype(float)
-
-        ROE=재무비율.loc[['ROE계산에 참여한 계정 펼치기']]
-        col_name=ROE.columns.to_list()[:1][0]
-        ROE.drop(col_name, axis=1, inplace=True)
-        ROE=ROE.astype(float)
-
-        ROIC=재무비율.loc[['ROIC계산에 참여한 계정 펼치기']]
-        col_name=ROIC.columns.to_list()[:1][0]
-        ROIC.drop(col_name, axis=1, inplace=True)
-        ROIC=ROIC.astype(float)
-
-        df=pd.concat([매출액, 당기순이익, 유동자산, 유동부채, 총부채, 유동비율, 당좌비율, 부채비율, 이자보상배율, \
-                        매출액증가율, 판매비와관리비증가율, 영업이익증가율, 매출총이익율, \
-                        세전계속사업이익률, 영업이익률, 영업활동FCF, 투자활동FCF, ROA, ROE, ROIC], axis=0)
-
-        df.drop(['전년동기','전년동기(%)'], axis=1, inplace=True)
-        
-        df=df.transpose()
-        df=df.rename(columns={'유동자산계산에 참여한 계정 펼치기':'유동자산','유동부채계산에 참여한 계정 펼치기':'유동부채','부채':'총부채'})
-        df=df.rename(columns={'유동비율계산에 참여한 계정 펼치기':'유동비율','당좌비율계산에 참여한 계정 펼치기':'당좌비율','부채비율계산에 참여한 계정 펼치기':'부채비율','이자보상배율계산에 참여한 계정 펼치기':'이자보상배율'})
-        df=df.rename(columns={'매출액증가율계산에 참여한 계정 펼치기':'매출액증가율','판매비와관리비증가율계산에 참여한 계정 펼치기':'판매비와관리비증가율','영업이익증가율계산에 참여한 계정 펼치기':'영업이익증가율'})
-        df=df.rename(columns={'매출총이익율계산에 참여한 계정 펼치기':'매출총이익율','세전계속사업이익률계산에 참여한 계정 펼치기':'세전계속사업이익률','영업이익률계산에 참여한 계정 펼치기':'영업이익률'})
-        df=df.rename(columns={'ROA계산에 참여한 계정 펼치기':'ROA','ROE계산에 참여한 계정 펼치기':'ROE','ROIC계산에 참여한 계정 펼치기':'ROIC'})
-        df=df.rename(columns={'영업활동으로인한현금흐름':'영업활동FCF','투자활동으로인한현금흐름':'투자활동FCF'})
-
-        df['잉여현금FCF']=df['영업활동FCF']+df['투자활동FCF']
-        df['잉여현금비율']=df['잉여현금FCF']/df['매출액']*100
-
-        # 이익수익률=EPS/주가 > 채권수익률(현재 3년 국채 수익률 또는 10년 국채 수익률)
-        # 안전마진(순유동자산, 적정주가) => (유동자산 - 유동부채) / 총발행주식수
-        # 안전마진(순순유동자산, 적정주가) => (유동자산 - 부채총계) / 총발행주식수
-        # df=df.transpose()
-    except:
-        return 재무정보, df.T
-
-    return 재무정보, df.T
+#     return 재무정보, df.T
