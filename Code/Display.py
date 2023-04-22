@@ -665,7 +665,7 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
     with col3:
         if len(재무정보)>0:
             st.text('재무정보(년간)')
-            st.dataframe(재무비율[:])
+            st.dataframe(재무비율.T)
     with col4:
         try:
             시작일=str(get_date(pd.to_datetime(조회일), 2000)).replace('-','')
