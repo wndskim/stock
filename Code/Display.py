@@ -203,6 +203,7 @@ def 매출증가_종목보기(날짜):
     주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
     st.write(len(df_merge))
+    df_merge.sort_values(by='전년대비증감율',ascending=False, inplace=True)
     st.dataframe(df_merge)
 
     return
