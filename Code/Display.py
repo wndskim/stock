@@ -168,6 +168,45 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
     return
 
+def 매출증가_종목보기(날짜):
+    folder='..\\Data\\'
+    file='매출액변동상태.xlsx'
+    df1=pd.read_excel(folder+file)
+    df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
+
+    file='종목별테마.parquet'
+    df2=pd.read_parquet(folder+file)[['티커','Theme','Sector']]
+    df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
+    df2=df2.rename(columns={'Theme':'테마','Sector':'업종'})
+
+    df_merge=pd.merge(df1, df2, on='티커',how='left')
+
+    df_merge=df_merge[df_merge['매출변동상태']==1]
+
+    테마s=df_merge['테마'].unique().tolist()
+
+    col1,col2=st.columns([1,4])
+    with col1:
+        테마=st.selectbox('테마선택',테마s)
+        df_테마=df_merge[df_merge['테마']==테마]
+        티커s=df_테마['티커'].unique().tolist()
+        종목s=df_테마['종목'].unique().tolist()
+        종목=st.selectbox('티커선택',종목s)
+        _dict=dict(zip(종목s,티커s))
+    with col2:
+        st.dataframe(df_테마)
+
+
+    # 재무정보 보여주기
+    시작일=str(get_date(날짜, 2000)).replace('-','')
+    종료일=str(날짜).replace('-','')
+    주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
+
+    st.write(len(df_merge))
+    st.dataframe(df_merge)
+
+    return
+
 def 차트영웅_저평가종목(조회일):
 
     df=pd.read_excel('./Data/관심주_차트영웅저평가.xlsx')
