@@ -169,7 +169,7 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
     return
 
 def 매출증가_종목보기(날짜):
-    folder='..\\Data\\'
+    folder='./Data/'
     file='매출액변동상태.xlsx'
     df1=pd.read_excel(folder+file)
     df1["티커"]=df1["티커"].apply(lambda x: str(x).zfill(6))
