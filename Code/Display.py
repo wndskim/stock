@@ -180,19 +180,19 @@ def 매출증가_종목보기(날짜):
     df2=df2.rename(columns={'Theme':'테마','Sector':'업종'})
 
     df_merge=pd.merge(df1, df2, on='티커',how='left')
-
     df_merge=df_merge[df_merge['매출변동상태']==1]
-
     테마s=df_merge['테마'].unique().tolist()
 
-    col1,col2=st.columns([1,4])
+    col1,col2=st.columns([1,3])
     with col1:
         테마=st.selectbox('테마선택',테마s)
         df_테마=df_merge[df_merge['테마']==테마]
+        df_테마.sort_values(by='전년대비증감율',ascending=False,inplace=True)        
         티커s=df_테마['티커'].unique().tolist()
         종목s=df_테마['종목'].unique().tolist()
         종목=st.selectbox('티커선택',종목s)
         _dict=dict(zip(종목s,티커s))
+        st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
     with col2:
         st.dataframe(df_테마)
 
