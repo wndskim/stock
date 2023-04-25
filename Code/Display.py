@@ -180,7 +180,9 @@ def 매출증가_종목보기(날짜):
     df2=df2.rename(columns={'Theme':'테마','Sector':'업종'})
 
     df_merge=pd.merge(df1, df2, on='티커',how='left')
-    df_merge=df_merge[df_merge['매출변동상태']==1]
+    df_merge['테마'] = df_merge['테마'].fillna('테마없음')
+    df_merge=df_merge[df_merge['매출변동상태']==1] # 매출액 3년연속 증가
+    df_merge=df_merge[df_merge['영업이익상태']<9] # 영업이익 최근3년중 2번이상 흑자
     테마s=df_merge['테마'].unique().tolist()
 
     col1,col2=st.columns([1,3])
@@ -202,7 +204,7 @@ def 매출증가_종목보기(날짜):
     종료일=str(날짜).replace('-','')
     주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
-    st.write(len(df_merge))
+    st.write(len(df_merge['티커'].unique().tolist()))
     df_merge.sort_values(by='전년대비증감율',ascending=False, inplace=True)
     st.dataframe(df_merge)
 
