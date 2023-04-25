@@ -169,6 +169,7 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
     return
 
 def 매출증가_종목보기(날짜):
+    st.text('최근3년 매출액 증가 및 영업이익 증가 종목 보기')
     folder='./Data/'
     file='매출액변동상태.xlsx'
     df1=pd.read_excel(folder+file)
