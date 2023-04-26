@@ -180,7 +180,14 @@ def 매출증가_종목보기(날짜):
     df2["티커"]=df2["티커"].apply(lambda x: str(x).zfill(6))
     df2=df2.rename(columns={'Theme':'테마','Sector':'업종'})
 
-    df_merge=pd.merge(df1, df2, on='티커',how='left')
+    file='이동평균120기준 위치.xlsx'
+    df3=pd.read_excel(folder+file)[['티커','위치']]
+    df3["티커"]=df3["티커"].apply(lambda x: str(x).zfill(6))
+    df3=df3.drop_duplicates(keep='first')
+
+    df_merge=pd.merge(df1, df3, on='티커',how='left')
+    df_merge=pd.merge(df_merge, df2, on='티커',how='left')
+    
     df_merge['테마'] = df_merge['테마'].fillna('테마없음')
     df_merge=df_merge[df_merge['매출변동상태']==1] # 매출액 3년연속 증가
     df_merge=df_merge[df_merge['영업이익상태']<9] # 영업이익 최근3년중 2번이상 흑자
