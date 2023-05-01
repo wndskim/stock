@@ -238,7 +238,6 @@ def 매출증가_종목보기(날짜):
 
         return
     
-    st.text('120이평 이격률 기준')
     if radio1=='바닥기 보기':
         바닥기=['겨울1','겨울2','겨울3']
         df_위치=df_merge[df_merge['위치'].isin(바닥기)].sort_values(by='전년대비증감율', ascending=False)
@@ -253,6 +252,7 @@ def 매출증가_종목보기(날짜):
         df_위치=df_merge[df_merge['위치'].isin(하락기)].sort_values(by='전년대비증감율', ascending=False)
 
     if len(df_위치)>0:
+        st.write('120이평 이격률 기준',len(df_위치))
         st.dataframe(df_위치)
         종목s=df_위치['종목'].unique().tolist()
         티커s=df_위치['티커'].unique().tolist()
