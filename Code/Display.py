@@ -230,8 +230,9 @@ def 매출증가_종목보기(날짜):
         st.dataframe(df_merge)
     if btn02:
         st.text('RSI값 30이하 보기')
-        df_rsi=df_merge[df_merge['rsi']<30.01]
-        st.dataframe(df_rsi)
+        바닥기=['겨울1','겨울2','겨울3']
+        df_위치=df_merge[df_merge['위치'] in 바닥기]
+        st.dataframe(df_위치)
 
     return
 
