@@ -222,7 +222,7 @@ def 매출증가_종목보기(날짜):
             df_테마.sort_values(by='전년대비증감율',ascending=False,inplace=True)        
             티커s=df_테마['티커'].unique().tolist()
             종목s=df_테마['종목'].unique().tolist()
-            종목=st.selectbox('티커선택',종목s)
+            종목=st.selectbox('선택',종목s)
             _dict=dict(zip(종목s,티커s))
             st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
         with col2:
@@ -249,8 +249,8 @@ def 매출증가_종목보기(날짜):
 
 
 
-    종목s=df_테마['종목'].unique().tolist()
-    종목=st.selectbox('티커선택',종목s)
+    종목s=df_위치['종목'].unique().tolist()
+    종목=st.selectbox('선택',종목s)
     _dict=dict(zip(종목s,티커s))
     주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
