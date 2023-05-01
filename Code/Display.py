@@ -194,6 +194,7 @@ def 매출증가_종목보기(날짜):
     테마s=df_merge['테마'].unique().tolist()
 
     테마s=[ x for x in 테마s if "신규상장" not in x ]
+    테마s=[ x for x in 테마s if "기업인수목적회사" not in x ]
 
     col1,col2=st.columns([1,3])
     with col1:
