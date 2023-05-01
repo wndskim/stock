@@ -191,7 +191,7 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
 
-    col1,col2,col3=st.columns([1,1,5])
+    col1,col2,col3=st.columns([1,2,4])
     with col1:
         radio1=st.radio('선택',('테마별로 보기','바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r1')
     with col2:
