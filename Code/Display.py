@@ -204,6 +204,7 @@ def 매출증가_종목보기(날짜):
         _dict=dict(zip(종목s,티커s))
         st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
     with col2:
+        st.write(len(테마s))
         st.dataframe(df_테마)
 
 
