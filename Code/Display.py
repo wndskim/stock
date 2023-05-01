@@ -192,7 +192,7 @@ def 매출증가_종목보기(날짜):
     with col1:
         btn01=st.button('테마별로 보기')
     with col2:
-        btn02=st.button('rsi값 30이하 보기')
+        btn02=st.button('바닥기 보기')
 
     if btn01:
         df_merge['테마'] = df_merge['테마'].fillna('테마없음')
@@ -229,7 +229,7 @@ def 매출증가_종목보기(날짜):
         df_merge.sort_values(by='전년대비증감율',ascending=False, inplace=True)
         st.dataframe(df_merge)
     if btn02:
-        st.text('RSI값 30이하 보기')
+        st.text('120이평기준 겨울1, 겨울2, 겨울3')
         바닥기=['겨울1','겨울2','겨울3']
         df_위치=df_merge[df_merge['위치'].isin(바닥기)].sort_values(by='전년대비증감율', ascending=False)
         st.dataframe(df_위치)
