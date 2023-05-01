@@ -188,8 +188,12 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
     
-    btn01=st.button('테마별로 보기')
-    btn02=st.button('rsi값 30이하 보기')
+    col1,col2,col3=st.columns([1,1,3])
+    with col1:
+        btn01=st.button('테마별로 보기')
+    with col2:
+        btn02=st.button('rsi값 30이하 보기')
+
     if btn01:
         df_merge['테마'] = df_merge['테마'].fillna('테마없음')
         df_merge=df_merge[df_merge['매출변동상태']==1] # 매출액 3년연속 증가
@@ -225,7 +229,9 @@ def 매출증가_종목보기(날짜):
         df_merge.sort_values(by='전년대비증감율',ascending=False, inplace=True)
         st.dataframe(df_merge)
     if btn02:
-        st.text('RSI값 30이사 보기')
+        st.text('RSI값 30이하 보기')
+        df_rsi=df_merge[df_merge['rsi']<30.01]
+        st.dataframe(df_rsi)
 
     return
 
