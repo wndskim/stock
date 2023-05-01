@@ -173,7 +173,6 @@ def 매출증가_종목보기(날짜):
     시작일=str(get_date(날짜, 2000)).replace('-','')
     종료일=str(날짜).replace('-','')
 
-
     folder='./Data/'
     file='매출액변동상태.xlsx'
     df1=pd.read_excel(folder+file)
@@ -192,7 +191,7 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
     
-    col1,col2,col3,col4,col5,col6=st.columns([1,1,1,1,1,3])
+    col1,col2,col3,col4,col5,col6=st.columns([1,1,1,1,1,2])
     with col1:
         btn01=st.button('테마별로 보기')
     with col2:
@@ -231,8 +230,6 @@ def 매출증가_종목보기(날짜):
 
 
         # 재무정보 보여주기
-        # 시작일=str(get_date(날짜, 2000)).replace('-','')
-        # 종료일=str(날짜).replace('-','')
         주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
         st.write(len(df_merge['티커'].unique().tolist()))
@@ -255,14 +252,13 @@ def 매출증가_종목보기(날짜):
         하락기=['가을1','가을2','가을3']
         df_위치=df_merge[df_merge['위치'].isin(하락기)].sort_values(by='전년대비증감율', ascending=False)
 
-
-
-    st.dataframe(df_위치)
-    종목s=df_위치['종목'].unique().tolist()
-    티커s=df_위치['티커'].unique().tolist()
-    종목=st.selectbox('선택',종목s)
-    _dict=dict(zip(종목s,티커s))
-    주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
+    if btn02 or btn03 or btn04 or btn05:
+        st.dataframe(df_위치)
+        종목s=df_위치['종목'].unique().tolist()
+        티커s=df_위치['티커'].unique().tolist()
+        종목=st.selectbox('선택',종목s)
+        _dict=dict(zip(종목s,티커s))
+        주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
     return
 
