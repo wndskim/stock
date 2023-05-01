@@ -192,7 +192,7 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
     
-    col1,col2,col3,col4,col5,col6=st.columns([1,1,1,1,1,1])
+    col1,col2,col3,col4,col5,col6=st.columns([1,1,1,1,1,3])
     with col1:
         btn01=st.button('테마별로 보기')
     with col2:
@@ -241,14 +241,23 @@ def 매출증가_종목보기(날짜):
 
         return
     
+    st.text('120이평 이격률 기준')
     if btn02:
-        st.text('120이평기준 겨울1, 겨울2, 겨울3')
         바닥기=['겨울1','겨울2','겨울3']
         df_위치=df_merge[df_merge['위치'].isin(바닥기)].sort_values(by='전년대비증감율', ascending=False)
-        st.dataframe(df_위치)
+    if btn03:
+        상승초기=['봄1','봄2','봄3']
+        df_위치=df_merge[df_merge['위치'].isin(상승초기)].sort_values(by='전년대비증감율', ascending=False)
+    if btn04:
+        상승중기=['여름1','여름2','여름3']
+        df_위치=df_merge[df_merge['위치'].isin(상승중기)].sort_values(by='전년대비증감율', ascending=False)
+    if btn05:
+        하락기=['가을1','가을2','가을3']
+        df_위치=df_merge[df_merge['위치'].isin(하락기)].sort_values(by='전년대비증감율', ascending=False)
 
 
 
+    st.dataframe(df_위치)
     종목s=df_위치['종목'].unique().tolist()
     티커s=df_위치['티커'].unique().tolist()
     종목=st.selectbox('선택',종목s)
