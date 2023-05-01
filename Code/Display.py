@@ -259,7 +259,11 @@ def 매출증가_종목보기(날짜):
         st.dataframe(df_위치)
         종목s=df_위치['종목'].unique().tolist()
         티커s=df_위치['티커'].unique().tolist()
-        종목=st.selectbox('선택',종목s)
+        col1,col2=st.columns([1,4])
+        with col1:
+            종목=st.selectbox('선택',종목s)
+        with col2:
+            st.dataframe(df_위치[df_위치['종목']==종목])
         _dict=dict(zip(종목s,티커s))
         주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
