@@ -190,25 +190,23 @@ def 매출증가_종목보기(날짜):
 
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
-    
-    # col1,col2,col3,col4,col5,col6=st.columns([1,1,1,1,1,2])
-    # with col1:
-    #     btn01=st.button('테마별로 보기')
-    # with col2:
-    #     btn02=st.button('바닥기 보기')
-    # with col3:
-    #     btn03=st.button('상승초기 보기')
-    # with col4:
-    #     btn04=st.button('상승중기 보기')
-    # with col5:
-    #     btn05=st.button('하락기 보기')
 
-    radio=st.radio('선택',('테마별로 보기','바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r1')
-
-    if radio=='테마별로 보기':
-        df_merge['테마'] = df_merge['테마'].fillna('테마없음')
+    col1,col2,col3=st.columns([1,1,5])
+    with col1:
+        radio1=st.radio('선택',('테마별로 보기','바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r1')
+    with col2:
+        radio2=st.radio('선택',('3년연속 매출상승 종목','전체'))
+    df_merge['테마'] = df_merge['테마'].fillna('테마없음')
+    if radio2=='전체':
+        pass
+    else:
         df_merge=df_merge[df_merge['매출변동상태']==1] # 매출액 3년연속 증가
         df_merge=df_merge[df_merge['영업이익상태']<9] # 영업이익 최근3년중 2번이상 흑자
+
+    if radio1=='테마별로 보기':
+        # df_merge['테마'] = df_merge['테마'].fillna('테마없음')
+        # df_merge=df_merge[df_merge['매출변동상태']==1] # 매출액 3년연속 증가
+        # df_merge=df_merge[df_merge['영업이익상태']<9] # 영업이익 최근3년중 2번이상 흑자
         테마s=df_merge['테마'].unique().tolist()
 
         테마s=[ x for x in 테마s if "신규상장" not in x ]
@@ -241,20 +239,19 @@ def 매출증가_종목보기(날짜):
         return
     
     st.text('120이평 이격률 기준')
-    if radio=='바닥기 보기':
+    if radio1=='바닥기 보기':
         바닥기=['겨울1','겨울2','겨울3']
         df_위치=df_merge[df_merge['위치'].isin(바닥기)].sort_values(by='전년대비증감율', ascending=False)
-    if radio=='상승초기 보기':
+    if radio1=='상승초기 보기':
         상승초기=['봄1','봄2','봄3']
         df_위치=df_merge[df_merge['위치'].isin(상승초기)].sort_values(by='전년대비증감율', ascending=False)
-    if radio=='상승중기 보기':
+    if radio1=='상승중기 보기':
         상승중기=['여름1','여름2','여름3']
         df_위치=df_merge[df_merge['위치'].isin(상승중기)].sort_values(by='전년대비증감율', ascending=False)
-    if radio=='하락기 보기':
+    if radio1=='하락기 보기':
         하락기=['가을1','가을2','가을3']
         df_위치=df_merge[df_merge['위치'].isin(하락기)].sort_values(by='전년대비증감율', ascending=False)
 
-    # if btn02 or btn03 or btn04 or btn05:
     if len(df_위치)>0:
         st.dataframe(df_위치)
         종목s=df_위치['종목'].unique().tolist()
