@@ -193,9 +193,17 @@ def 매출증가_종목보기(날짜):
 
     col1,col2,col3=st.columns([1,2,4])
     with col1:
-        radio1=st.radio('선택',('테마별로 보기','바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r1')
-    with col2:
-        radio2=st.radio('선택',('3년연속 매출상승 종목','전체'))
+        radio1=st.radio('선택',('테마별로 보기','위치별 보기'), key='r1')
+        # radio1=st.radio('선택',('테마별로 보기','바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r1')
+    if radio1=='테마별로 보기':
+        with col2:
+                radio2=st.radio('선택',('3년연속 매출상승 종목','전체'),key='r2')
+    else:
+        with col2:
+            radio3=st.radio('선택',('바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r3')
+        with col3:
+            radio2=st.radio('선택',('3년연속 매출상승 종목','전체'),key='r2')
+
     df_merge['테마'] = df_merge['테마'].fillna('테마없음')
     if radio2=='전체':
         pass
@@ -238,16 +246,16 @@ def 매출증가_종목보기(날짜):
 
         return
     
-    if radio1=='바닥기 보기':
+    if radio3=='바닥기 보기':
         바닥기=['겨울1','겨울2','겨울3']
         df_위치=df_merge[df_merge['위치'].isin(바닥기)].sort_values(by='전년대비증감율', ascending=False)
-    if radio1=='상승초기 보기':
+    if radio3=='상승초기 보기':
         상승초기=['봄1','봄2','봄3']
         df_위치=df_merge[df_merge['위치'].isin(상승초기)].sort_values(by='전년대비증감율', ascending=False)
-    if radio1=='상승중기 보기':
+    if radio3=='상승중기 보기':
         상승중기=['여름1','여름2','여름3']
         df_위치=df_merge[df_merge['위치'].isin(상승중기)].sort_values(by='전년대비증감율', ascending=False)
-    if radio1=='하락기 보기':
+    if radio3=='하락기 보기':
         하락기=['가을1','가을2','가을3']
         df_위치=df_merge[df_merge['위치'].isin(하락기)].sort_values(by='전년대비증감율', ascending=False)
 
