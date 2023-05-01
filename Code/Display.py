@@ -170,6 +170,10 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
 def 매출증가_종목보기(날짜):
     st.text('최근3년 매출액 증가 및 영업이익 증가 종목 보기')
+    시작일=str(get_date(날짜, 2000)).replace('-','')
+    종료일=str(날짜).replace('-','')
+
+
     folder='./Data/'
     file='매출액변동상태.xlsx'
     df1=pd.read_excel(folder+file)
@@ -188,11 +192,17 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
     
-    col1,col2,col3=st.columns([1,1,3])
+    col1,col2,col3,col4,col5,col6=st.columns([1,1,1,1,1,1])
     with col1:
         btn01=st.button('테마별로 보기')
     with col2:
         btn02=st.button('바닥기 보기')
+    with col3:
+        btn03=st.button('상승초기 보기')
+    with col4:
+        btn04=st.button('상승중기 보기')
+    with col5:
+        btn05=st.button('하락기(상승최고) 보기')
 
     if btn01:
         df_merge['테마'] = df_merge['테마'].fillna('테마없음')
@@ -221,18 +231,28 @@ def 매출증가_종목보기(날짜):
 
 
         # 재무정보 보여주기
-        시작일=str(get_date(날짜, 2000)).replace('-','')
-        종료일=str(날짜).replace('-','')
+        # 시작일=str(get_date(날짜, 2000)).replace('-','')
+        # 종료일=str(날짜).replace('-','')
         주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
         st.write(len(df_merge['티커'].unique().tolist()))
         df_merge.sort_values(by='전년대비증감율',ascending=False, inplace=True)
         st.dataframe(df_merge)
+
+        return
+    
     if btn02:
         st.text('120이평기준 겨울1, 겨울2, 겨울3')
         바닥기=['겨울1','겨울2','겨울3']
         df_위치=df_merge[df_merge['위치'].isin(바닥기)].sort_values(by='전년대비증감율', ascending=False)
         st.dataframe(df_위치)
+
+
+
+    종목s=df_테마['종목'].unique().tolist()
+    종목=st.selectbox('티커선택',종목s)
+    _dict=dict(zip(종목s,티커s))
+    주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
     return
 
