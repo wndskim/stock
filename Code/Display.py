@@ -201,7 +201,7 @@ def 매출증가_종목보기(날짜):
     with col4:
         btn04=st.button('상승중기 보기')
     with col5:
-        btn05=st.button('하락기(상승최고) 보기')
+        btn05=st.button('하락기 보기')
 
     if btn01:
         df_merge['테마'] = df_merge['테마'].fillna('테마없음')
