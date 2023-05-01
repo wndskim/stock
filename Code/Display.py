@@ -188,39 +188,44 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
     
-    df_merge['테마'] = df_merge['테마'].fillna('테마없음')
-    df_merge=df_merge[df_merge['매출변동상태']==1] # 매출액 3년연속 증가
-    df_merge=df_merge[df_merge['영업이익상태']<9] # 영업이익 최근3년중 2번이상 흑자
-    테마s=df_merge['테마'].unique().tolist()
+    btn01=st.button('테마별로 보기')
+    btn02=st.button('rsi값 30이하 보기')
+    if btn01:
+        df_merge['테마'] = df_merge['테마'].fillna('테마없음')
+        df_merge=df_merge[df_merge['매출변동상태']==1] # 매출액 3년연속 증가
+        df_merge=df_merge[df_merge['영업이익상태']<9] # 영업이익 최근3년중 2번이상 흑자
+        테마s=df_merge['테마'].unique().tolist()
 
-    테마s=[ x for x in 테마s if "신규상장" not in x ]
-    테마s=[ x for x in 테마s if "기업인수목적회사" not in x ]
-    테마s=[ x for x in 테마s if "창투사" not in x ]
-    테마s=[ x for x in 테마s if "지주사" not in x ]
+        테마s=[ x for x in 테마s if "신규상장" not in x ]
+        테마s=[ x for x in 테마s if "기업인수목적회사" not in x ]
+        테마s=[ x for x in 테마s if "창투사" not in x ]
+        테마s=[ x for x in 테마s if "지주사" not in x ]
 
-    col1,col2=st.columns([1,3])
-    with col1:
-        테마=st.selectbox('테마선택',테마s)
-        df_테마=df_merge[df_merge['테마']==테마]
-        df_테마.sort_values(by='전년대비증감율',ascending=False,inplace=True)        
-        티커s=df_테마['티커'].unique().tolist()
-        종목s=df_테마['종목'].unique().tolist()
-        종목=st.selectbox('티커선택',종목s)
-        _dict=dict(zip(종목s,티커s))
-        st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
-    with col2:
-        st.write(len(테마s))
-        st.dataframe(df_테마)
+        col1,col2=st.columns([1,3])
+        with col1:
+            테마=st.selectbox('테마선택',테마s)
+            df_테마=df_merge[df_merge['테마']==테마]
+            df_테마.sort_values(by='전년대비증감율',ascending=False,inplace=True)        
+            티커s=df_테마['티커'].unique().tolist()
+            종목s=df_테마['종목'].unique().tolist()
+            종목=st.selectbox('티커선택',종목s)
+            _dict=dict(zip(종목s,티커s))
+            st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
+        with col2:
+            st.write(len(테마s))
+            st.dataframe(df_테마)
 
 
-    # 재무정보 보여주기
-    시작일=str(get_date(날짜, 2000)).replace('-','')
-    종료일=str(날짜).replace('-','')
-    주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
+        # 재무정보 보여주기
+        시작일=str(get_date(날짜, 2000)).replace('-','')
+        종료일=str(날짜).replace('-','')
+        주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
-    st.write(len(df_merge['티커'].unique().tolist()))
-    df_merge.sort_values(by='전년대비증감율',ascending=False, inplace=True)
-    st.dataframe(df_merge)
+        st.write(len(df_merge['티커'].unique().tolist()))
+        df_merge.sort_values(by='전년대비증감율',ascending=False, inplace=True)
+        st.dataframe(df_merge)
+    if btn02:
+        st.text('RSI값 30이사 보기')
 
     return
 
