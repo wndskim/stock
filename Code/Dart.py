@@ -4,7 +4,7 @@ import streamlit as st
 import pandas as pd
 from datetime import datetime, timedelta
 from pykrx import stock
-import ta
+import ta,os
 from ta.volatility import BollingerBands
 from ta.momentum import rsi
 
