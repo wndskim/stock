@@ -8,8 +8,8 @@ import ta
 from ta.volatility import BollingerBands
 from ta.momentum import rsi
 
-API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
-dart=OpenDartReader(API_KEY)
+# API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
+# dart=OpenDartReader(API_KEY)
 
 def extract_year(x):
     return x.split('-')[0]
@@ -28,8 +28,8 @@ def make_week(data):
 
 # @st.cache(suppress_st_warning=True)
 def 금감원_공시내역_보기(조회일):
-    # 금일 금강원 공시 내역
-    # today=datetime.now().strftime('%Y%m%d')
+    API_KEY_DART=os.getenv("API_KEY_DART")
+    dart=OpenDartReader(API_KEY_DART)
     조회일=조회일.strftime('%Y%m%d')
     df=dart.list(start=조회일, end=조회일, final=False)
     if len(df)<1: st.text('금일 공시내역 없음..!!'); return
