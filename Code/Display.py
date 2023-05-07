@@ -788,6 +788,16 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
             st.write('내재가치 계산 못함 !!')
             내재가치=-9999999999
 
+    col1,col2=st.columns([1,4])
+    with col2:
+        ### 투자지표
+        url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Invest.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=105&stkGb=701'
+        page=requests.get(url)
+        tables=pd.read_html(page.text)
+        st.dataframe(tables[2])
+
+
+
     return 주가정보.iloc[-1],내재가치
 
 def 관심주_보기(티커, 종목, 상승파동비율, 위치정보, 최근주가,보기기준):
