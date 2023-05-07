@@ -8,9 +8,6 @@ import ta,os
 from ta.volatility import BollingerBands
 from ta.momentum import rsi
 
-# API_KEY="d538a1a0a4263cb8fbfa06a7429937ea86fc1aa1"
-# dart=OpenDartReader(API_KEY)
-
 def extract_year(x):
     return x.split('-')[0]
 
@@ -28,7 +25,7 @@ def make_week(data):
 
 # @st.cache(suppress_st_warning=True)
 def 금감원_공시내역_보기(조회일):
-    API_KEY_DART=os.getenv("API_KEY_DART")
+    API_KEY_DART=os.getenv("API_KEY_DART") 
     dart=OpenDartReader(API_KEY_DART)
     조회일=조회일.strftime('%Y%m%d')
     df=dart.list(start=조회일, end=조회일, final=False)
@@ -98,44 +95,6 @@ def Index_OHLCV_조회(시작일, 종료일, idx, freq):
     df['bb_bbl'] = indicator_bb.bollinger_lband()
 
     return df
-
-# def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
-
-#     data=stock.get_market_ohlcv(시작일,종료일, 티커, freq)
-#     data.reset_index(inplace=True)
-#     data['날짜']=data['날짜'].dt.strftime('%Y-%m-%d')
-#     data['등락']=data.종가.diff(periods=1)
-#     data['등락률']=data.종가.pct_change(periods=1)*100
-
-#     if freq=='y':
-#         data['년도'] = data['날짜'].apply(extract_year)
-#         data['sma3']=ta.trend.sma_indicator(data.종가, window=3)
-#         data['이격률3']=data['종가']/data['sma3']*100
-
-#     else:
-#         # data['년월'] = data['날짜'].dt.strftime('%Y-%m')
-#         data['년월']=pd.to_datetime(data['날짜']).dt.strftime('%Y-%m')
-#         data['Low52']=data.저가.rolling(min_periods=1, window=262, center=False).min()
-#         data['High52']=data.고가.rolling(min_periods=1, window=262, center=False).max()
-#         data['Mid52']=(data['High52']+data['Low52'])/2
-
-#         data['sma5']=ta.trend.sma_indicator(data.종가, window=5)
-#         data['sma10']=ta.trend.sma_indicator(data.종가, window=10)
-#         data['sma20']=ta.trend.sma_indicator(data.종가, window=20)
-#         data['sma60']=ta.trend.sma_indicator(data.종가, window=60)
-#         data['sma120']=ta.trend.sma_indicator(data.종가, window=120)
-#         data['sma240']=ta.trend.sma_indicator(data.종가, window=240)
-
-#         data['이격률20']=data['종가']/data['sma20']*100
-#         data['이격률120']=data['종가']/data['sma120']*100
-
-#         data['rsi10']=rsi(close=data['종가'],window=10)
-#         indicator_bb = BollingerBands(close=data["종가"], window=40, window_dev=2)
-#         data['bb_bbm'] = indicator_bb.bollinger_mavg()
-#         data['bb_bbh'] = indicator_bb.bollinger_hband()
-#         data['bb_bbl'] = indicator_bb.bollinger_lband()
-
-#     return data, data_week
 
 def Stock_OHLCV_조회(시작일, 종료일, 티커, freq):
 
@@ -260,11 +219,15 @@ def get_CompanyGuide자료(ticker):
         # 총부채
         # 유동부채
         유동자산=재무상태표.loc[['유동자산계산에 참여한 계정 펼치기']]
-        유동자산=유동자산.astype(float)
+        유동자산=유동자산.astype(int)
         유동부채=재무상태표.loc[['유동부채계산에 참여한 계정 펼치기']]
-        유동부채=유동부채.astype(float)
+        유동부채=유동부채.astype(int)
         총부채=재무상태표.loc[['부채']]
-        총부채=총부채.astype(float)
+        총부채=총부채.astype(int)
+        ##### 2023-05-07
+        총자본=재무상태표.loc[['자본']]
+        총자본=총자본.astype(int)
+
 
         # 안정성비율(재무건전성)
         # 유동비율=유동자산/유동부채 > 150%
@@ -347,7 +310,7 @@ def get_CompanyGuide자료(ticker):
         ROIC=ROIC.astype(float)
 
         # df=pd.concat([매출액, 당기순이익, 유동자산, 유동부채, 총부채, 유동비율, 당좌비율, 부채비율, 이자보상배율, \
-        df=pd.concat([매출액, 매출액증가율, 영업이익, 영업이익증가율, 영업이익률, 당기순이익, 부채비율, 유동자산, 유동부채, 총부채, 유동비율, 당좌비율, 이자보상배율, \
+        df=pd.concat([총자본, 매출액, 매출액증가율, 영업이익, 영업이익증가율, 영업이익률, 당기순이익, 부채비율, 유동자산, 유동부채, 총부채, 유동비율, 당좌비율, 이자보상배율, \
                         판매비와관리비증가율, 매출총이익율, 세전계속사업이익률, 재무활동FCF, 투자활동FCI, 영업활동FCO, ROA, ROE, ROIC], axis=0)
 
         df.drop(['전년동기','전년동기(%)'], axis=1, inplace=True)
