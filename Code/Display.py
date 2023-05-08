@@ -205,8 +205,8 @@ def 매출증가_종목보기(날짜):
             radio3=st.radio('선택',('바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r3')
         with col3:
             radio2=st.radio('선택',('3년연속 매출상승 종목','전체'),key='r2')
-        with col4:
-            radio4=st.radio('선택',('전체','시총이 자본총계보다 작은것'),key='r4')
+        # with col4:
+        #     radio4=st.radio('선택',('전체','시총이 자본총계보다 작은것'),key='r4')
 
     df_merge['테마'] = df_merge['테마'].fillna('테마없음')
     if radio2=='전체':
@@ -295,7 +295,7 @@ def 매출증가_종목보기(날짜):
 
         자본총계대비시총비율='자본총계대비 시총비율: '+시총자본비율
         container.write(자본총계대비시총비율)
-        container.text('1 이하가 좋은 것')
+        container.text('** 1 이하가 좋은 것 **')
 
         주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
     return
