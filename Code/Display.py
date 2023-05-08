@@ -247,7 +247,7 @@ def 매출증가_종목보기(날짜):
                         티커1s.append(티커)
                 종목1s=df_테마[df_테마['티커'].isin(티커1s)]['종목'].tolist()
 
-                티커s=티커1s: 종목s=종목1s
+                티커s=티커1s; 종목s=종목1s
 
             종목=st.selectbox('선택',종목s)
             _dict=dict(zip(종목s,티커s))
