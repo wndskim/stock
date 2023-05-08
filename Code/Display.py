@@ -235,8 +235,16 @@ def 매출증가_종목보기(날짜):
             종목=st.selectbox('선택',종목s)
             _dict=dict(zip(종목s,티커s))
             st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
+
+            for 티커 in 티커s:
+                자본총계,시가총액=GetData.종목별_현재_재무정보(티커)
+                st.write(티커,자본총계,시가총액)
+
+
+
+
         with col2:
-            st.write('테마종류',len(테마s),'선택된 테마의 종목수:',len(티커s))
+            st.write('테마종류:',len(테마s),'선택된 테마의 종목수:',len(티커s))
             st.dataframe(df_테마)
 
 
