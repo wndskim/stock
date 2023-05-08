@@ -74,4 +74,4 @@ def 종목별_현재_재무정보(티커):
     시세현황=tables[0]
     시가총액=시세현황.iloc[[4]][1].values[0]
 
-    return 자본총계,시가총액
+    return int(자본총계),int(시가총액)
