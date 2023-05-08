@@ -1,6 +1,8 @@
 import streamlit as st
 from pykrx import stock
 import ta
+import requests
+import pandas as pd
 
 @st.cache_resource
 def load_from_pykrx_해당일전체(조회일):
@@ -49,8 +51,27 @@ def set_indicator(data):
     # data['slowk']=slowk
     # data['slowd']=slowd
     # Volatility Indicator Functions
-    data['atr']=talib.ATR(data.고가, data.저가, data.종가, timeperiod=14)
+    # data['atr']=talib.ATR(data.고가, data.저가, data.종가, timeperiod=14)
     # # Volume indicator Functions
     # data['adosc']=talib.ADOSC(data.고가, data.저가, data.종가, data.Volume, fastperiod=3, s저가period=10)
 
     return data
+
+def 종목별_현재_재무정보(티커):
+    # 자본총계
+    url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Finance.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=103&stkGb=701'
+    page=requests.get(url)
+    tables=pd.read_html(page.text)
+    재무상태표=tables[2]
+    재무상태표=재무상태표.set_index(재무상태표.columns[0])
+    자본총계=재무상태표.loc[['자본']]
+    자본총계=자본총계.astype(int)
+
+    # 시가총액
+    url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
+    page=requests.get(url)
+    tables=pd.read_html(page.text)
+    시세현황=tables[0]
+    시가총액=시세현황.iloc[[4]][1].values[0]
+
+    return 자본총계,시가총액
