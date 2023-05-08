@@ -232,9 +232,9 @@ def 매출증가_종목보기(날짜):
             df_테마.sort_values(by='전년대비증감율',ascending=False,inplace=True)        
             티커s=df_테마['티커'].unique().tolist()
             종목s=df_테마['종목'].unique().tolist()
-            종목=st.selectbox('선택',종목s)
-            _dict=dict(zip(종목s,티커s))
-            st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
+            # 종목=st.selectbox('선택',종목s)
+            # _dict=dict(zip(종목s,티커s))
+            # st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
 
 
             if radio4=='시총이 자본총계보다 작은것':
@@ -245,18 +245,13 @@ def 매출증가_종목보기(날짜):
                     if 시총자본비율<1.01: 
                         st.write(티커,자본총계,시가총액, 시가총액/자본총계)
                         티커1s.append(티커)
+                종목1s=df_테마[df_테마['티커'].isin(티커1s)]['종목'].tolist()
 
-                st.write(티커1s)
+                티커s=티커1s: 종목s=종목1s
 
-                st.write(df_테마[df_테마['티커'].isin(티커1s)]['종목'].tolist())
-
-            # else:
-
-            # 종목=st.selectbox('선택',종목s)
-            # _dict=dict(zip(종목s,티커s))
-            # st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
-
-
+            종목=st.selectbox('선택',종목s)
+            _dict=dict(zip(종목s,티커s))
+            st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
 
         with col2:
             st.write('테마종류:',len(테마s),'선택된 테마의 종목수:',len(티커s))
