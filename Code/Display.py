@@ -191,13 +191,16 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
 
-    col1,col2,col3=st.columns([1,2,4])
+    col1,col2,col3,col4=st.columns([1,2,1,3])
     with col1:
         radio1=st.radio('선택',('테마별로 보기','위치별 보기'), key='r1')
         # radio1=st.radio('선택',('테마별로 보기','바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r1')
     if radio1=='테마별로 보기':
         with col2:
-                radio2=st.radio('선택',('3년연속 매출상승 종목','전체'),key='r2')
+            radio2=st.radio('선택',('3년연속 매출상승 종목','전체'),key='r2')
+
+        with col3:
+            radio4=st.radio('선택',('전체','시총이 자본총계보다 작은것'),key='r4')
     else:
         with col2:
             radio3=st.radio('선택',('바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r3')
@@ -233,7 +236,7 @@ def 매출증가_종목보기(날짜):
             _dict=dict(zip(종목s,티커s))
             st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
         with col2:
-            st.write(len(테마s))
+            st.write('테마종류',len(테마s),'선택된 테마의 종목수:',len(티커s))
             st.dataframe(df_테마)
 
 
