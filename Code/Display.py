@@ -236,8 +236,6 @@ def 매출증가_종목보기(날짜):
             # 종목=st.selectbox('선택',종목s)
             # _dict=dict(zip(종목s,티커s))
             # st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
-
-
             if radio4=='시총이 자본총계보다 작은것':
                 티커1s=[]
                 for 티커 in 티커s:
@@ -247,7 +245,6 @@ def 매출증가_종목보기(날짜):
                         st.write(티커,자본총계,시가총액, 시가총액/자본총계)
                         티커1s.append(티커)
                 종목1s=df_테마[df_테마['티커'].isin(티커1s)]['종목'].tolist()
-
                 티커s=티커1s; 종목s=종목1s
 
             종목=st.selectbox('선택',종목s)
@@ -257,7 +254,6 @@ def 매출증가_종목보기(날짜):
         with col2:
             st.write('테마종류:',len(테마s),'선택된 테마의 종목수:',len(티커s))
             st.dataframe(df_테마)
-
 
         # 재무정보 보여주기
         주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
@@ -289,10 +285,15 @@ def 매출증가_종목보기(날짜):
         col1,col2=st.columns([1,4])
         with col1:
             종목=st.selectbox('선택',종목s)
+            container=st.container()
         with col2:
             st.dataframe(df_위치[df_위치['종목']==종목])
         _dict=dict(zip(종목s,티커s))
         주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
+
+        자본총계,시가총액=GetData.종목별_현재_재무정보(_dict[종목])
+        시총자본비율=시가총액/자본총계
+        container.write('자본총계대비 시총비율:',str(시총자본비율.round(2)))
 
     return
 
