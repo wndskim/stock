@@ -236,10 +236,23 @@ def 매출증가_종목보기(날짜):
             _dict=dict(zip(종목s,티커s))
             st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
 
-            for 티커 in 티커s:
-                자본총계,시가총액=GetData.종목별_현재_재무정보(티커)
-                st.write(티커,자본총계,시가총액, 시가총액/자본총계)
 
+            if radio4=='시총이 자본총계보다 작은것':
+                티커1s=[]
+                for 티커 in 티커s:
+                    자본총계,시가총액=GetData.종목별_현재_재무정보(티커)
+                    시총자본비율=시가총액/자본총계
+                    if 시총자본비율<1.01: 
+                        st.write(티커,자본총계,시가총액, 시가총액/자본총계)
+                        티커1s.append(티커)
+
+                st.dataframe(df_테마[df_테마['티커'] in 티커1s])
+
+            else:
+
+            # 종목=st.selectbox('선택',종목s)
+            # _dict=dict(zip(종목s,티커s))
+            # st.dataframe(df_merge[df_merge['종목']==종목][['테마','업종']])
 
 
 
