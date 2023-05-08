@@ -64,7 +64,7 @@ def 종목별_현재_재무정보(티커):
     tables=pd.read_html(page.text)
     재무상태표=tables[2]
     재무상태표=재무상태표.set_index(재무상태표.columns[0])
-    자본총계=재무상태표.loc[['자본']]
+    자본총계=재무상태표.loc[['자본'][3]]
     자본총계=자본총계.astype(int)
 
     # 시가총액
