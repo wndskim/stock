@@ -191,7 +191,7 @@ def 매출증가_종목보기(날짜):
     df_merge=pd.merge(df1, df3, on='티커',how='left')
     df_merge=pd.merge(df_merge, df2, on='티커',how='left')
 
-    col1,col2,col3,col4=st.columns([1,2,1,3])
+    col1,col2,col3,col4=st.columns([1,2,2,1])
     with col1:
         radio1=st.radio('선택',('테마별로 보기','위치별 보기'), key='r1')
         # radio1=st.radio('선택',('테마별로 보기','바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r1')
@@ -238,7 +238,7 @@ def 매출증가_종목보기(날짜):
 
             for 티커 in 티커s:
                 자본총계,시가총액=GetData.종목별_현재_재무정보(티커)
-                st.write(티커,자본총계,시가총액)
+                st.write(티커,자본총계,시가총액, 시가총액/자본총계)
 
 
 
