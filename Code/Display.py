@@ -246,9 +246,9 @@ def 매출증가_종목보기(날짜):
                         st.write(티커,자본총계,시가총액, 시가총액/자본총계)
                         티커1s.append(티커)
 
-            st.write(티커1s)
+                st.write(티커1s)
 
-            #     st.dataframe(df_테마[df_테마['티커'] in 티커1s])
+                st.write(df_테마[df_테마['티커'].isin(티커1s)]['종목'].tolist())
 
             # else:
 
