@@ -198,7 +198,6 @@ def 매출증가_종목보기(날짜):
     if radio1=='테마별로 보기':
         with col2:
             radio2=st.radio('선택',('3년연속 매출상승 종목','전체'),key='r2')
-
         with col3:
             radio4=st.radio('선택',('전체','시총이 자본총계보다 작은것'),key='r4')
     else:
@@ -206,6 +205,8 @@ def 매출증가_종목보기(날짜):
             radio3=st.radio('선택',('바닥기 보기','상승초기 보기','상승중기 보기','하락기 보기'), key='r3')
         with col3:
             radio2=st.radio('선택',('3년연속 매출상승 종목','전체'),key='r2')
+        with col4:
+            radio4=st.radio('선택',('전체','시총이 자본총계보다 작은것'),key='r4')
 
     df_merge['테마'] = df_merge['테마'].fillna('테마없음')
     if radio2=='전체':
