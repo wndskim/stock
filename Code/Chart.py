@@ -7,7 +7,7 @@ def 차트_시가총액(df,종목):
 
     trace1=go.Scatter(x=df.날짜, y=df['시가총액(억)'], name='시가총액(억)')
     data = [trace1]
-    layout = go.Layout(title='종목별 시가총액', xaxis=dict(title='날짜'), yaxis=dict(title='금액(억)'), width=1200, height=400)
+    layout = go.Layout(title=종목+' 시가총액', xaxis=dict(title='날짜'), yaxis=dict(title='금액(억)'), width=600, height=400)
     fig = go.Figure(data=data, layout=layout)
 
     st.plotly_chart(fig)
