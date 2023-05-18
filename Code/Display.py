@@ -300,12 +300,12 @@ def 매출증가_종목보기(날짜):
 
         주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
-        # 일자별 시가총액 조회
-        시총=GetData.종목별_시가총액_기간(시작일,종료일,_dict[종목]).reset_index()
-        시총['날짜']=시총['날짜'].dt.strftime('%Y-%m-%d')
-        시총['시가총액(억)']=(시총['시가총액']/100000000).astype(int) # 억단위로 조정
+        # # 일자별 시가총액 조회
+        # 시총=GetData.종목별_시가총액_기간(시작일,종료일,_dict[종목]).reset_index()
+        # 시총['날짜']=시총['날짜'].dt.strftime('%Y-%m-%d')
+        # 시총['시가총액(억)']=(시총['시가총액']/100000000).astype(int) # 억단위로 조정
 
-        Chart.차트_시가총액(시총,종목)
+        # Chart.차트_시가총액(시총,종목)
 
     return
 
@@ -823,7 +823,14 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
             st.write('내재가치 계산 못함 !!')
             내재가치=-9999999999
 
-    col1,col2=st.columns([1,4])
+    col1,col2=st.columns([2,3])
+    with col1:
+        # 일자별 시가총액 조회
+        시총=GetData.종목별_시가총액_기간(시작일,종료일,종목).reset_index()
+        시총['날짜']=시총['날짜'].dt.strftime('%Y-%m-%d')
+        시총['시가총액(억)']=(시총['시가총액']/100000000).astype(int) # 억단위로 조정
+        Chart.차트_시가총액(시총,종목)
+
     with col2:
         ### 투자지표
         url=f'https://comp.fnguide.com/SVO2/ASP/SVD_Invest.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=105&stkGb=701'
