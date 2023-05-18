@@ -170,7 +170,8 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
 def 매출증가_종목보기(날짜):
     st.text('최근3년 매출액 증가 및 영업이익 증가 종목 보기')
-    시작일=str(get_date(날짜, 2000)).replace('-','')
+    # 시작일=str(get_date(날짜, 2000)).replace('-','')
+    시작일=str(get_date(날짜, 260*2)).replace('-','')
     종료일=str(날짜).replace('-','')
 
     folder='./Data/'
