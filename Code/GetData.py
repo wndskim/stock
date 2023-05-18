@@ -4,7 +4,7 @@ import ta
 import requests
 import pandas as pd
 
-@st.cache_resource
+# @st.cache_resource
 def 종목별_시가총액_기간(시작일,종료일,티커):
     return stock.get_market_cap(시작일, 종료일, 티커)
 
