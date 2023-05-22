@@ -55,9 +55,11 @@ def 고객예탁금_신용잔고():
 
     columns=['날짜','고객예탁금','신용잔고','신용잔고비율']
     df_concat=df_concat.reindex(columns = columns)
+    df_concat.sort_values(by='날짜',ascending=True,inplace=True)
 
-    df_concat['예탁금증감']=df_concat['고객예탁금'].diff()*-1
-    df_concat['신용잔고증감']=df_concat['신용잔고'].diff()*-1
+    df_concat['예탁금증감']=df_concat['고객예탁금'].diff()
+    df_concat['신용잔고증감']=df_concat['신용잔고'].diff()
+    df_concat.sort_values(by='날짜',ascending=False,inplace=True)
 
     df_concat.set_index('날짜',inplace=True)
     예탁금최고='{:,}'.format(int(df_concat['고객예탁금'].max()))
@@ -80,7 +82,6 @@ def 고객예탁금_신용잔고():
     신용잔고최저='신용잔고최저: '+str(신용잔고최저)+' ('+str(신용잔고최저일)+')\n'
     신용잔고비율최고='신용잔고비율최고: '+str(신용잔고비율최고)+' ('+str(신용잔고비율최고일)+')\n'
     신용잔고비율최저='신용잔고비율최저: '+str(신용잔고비율최저)+' ('+str(신용잔고비율최저일)+')\n'
-    # container.text(고객예탁금최고+고객예탁금최저+신용잔고최고+신용잔고최저+신용잔고비율최고+신용잔고비율최저)
 
     col1,col2=st.columns([1,3])
     with col1:
