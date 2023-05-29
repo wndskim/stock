@@ -3,6 +3,17 @@ import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
 
+def 차트_PER(df,종목):
+
+    trace1=go.Scatter(x=df.날짜, y=df['PER'], name='PER')
+    data = [trace1]
+    layout = go.Layout(title=종목+' PER', xaxis=dict(title='날짜'), yaxis=dict(title='PER'), width=1200, height=400)
+    fig = go.Figure(data=data, layout=layout)
+
+    st.plotly_chart(fig)
+
+    return
+
 def 차트_시가총액(df,종목):
 
     trace1=go.Scatter(x=df.날짜, y=df['시가총액(억)'], name='시가총액(억)')
