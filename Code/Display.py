@@ -174,9 +174,20 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
     return
 
 def 배당농부법종목(날짜):
-    df=pd.read_excel('./Data/배당농부법종목.xlsx')
-    df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
-    st.dataframe(df)
+    col1,col2=st.columns([1,1])
+    with col1:
+        df=pd.read_excel('./Data/배당농부법종목.xlsx')
+        df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+        st.dataframe(df)
+    with col2:
+        st.write('[배당농부의 당신께 드리는 선물, 요즘 주식투자하는 방법](https://dividendfarmerdiary.tistory.com/m/364)')
+        st.markdown('''
+                    ###### :orange[1. 최근 20일동안 외국인과 기관이 가장 많이 매수한 종목 100개 선정]
+                    ###### :orange[2. 100개 종목 중 20일선 위에서 주가가 형성된 것 선별]
+                    ###### :orange[3. 선별된 종목 중 거래량이 전주 대비 3배이상 오른종목 선별]
+                    ###### :orange[4. 15시에 주가가 어제보다 하락했는데, 거래량은 어제보다 적은 종목 매수]
+                    ###### :orange[4. 음봉이 나올때까지 보유, 음봉이 나오고 외국인과 기관이 팔면 매도]
+                    ''')    
     return
 
 def 매출증가_종목보기(날짜):
