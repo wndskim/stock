@@ -68,7 +68,7 @@ def main():
     if job=='조회':
         시작일=str(get_date(조회일, 20)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
-        조회선택=st.sidebar.selectbox('선택',['선택','코스피200','매출증가 종목 보기','인덱스종류','종목별 OHLCV'])
+        조회선택=st.sidebar.selectbox('선택',['선택','코스피200','매출증가 종목 보기','인덱스종류','배당농부법 종목'])
         if 조회선택=='인덱스종류':
             col1,col2=st.columns(2)
             with col1:
@@ -85,6 +85,9 @@ def main():
 
         if 조회선택=='매출증가 종목 보기':
             Display.매출증가_종목보기(조회일)
+
+        if 조회선택=='배당농부법 종목':
+            Display.배당농부법종목(조회일)
 
     if job=='선택':
         chk00=st.checkbox('미연방은행(FRED) 주요지표 보기',value=False)
@@ -392,8 +395,6 @@ def main():
             st.write('[네이버금융(종합정보)](https://finance.naver.com/item/main.naver?code={})'.format(티커))
             st.write('[ZOOM검색](https://search.zum.com/search.zum?method=uni&query={}&qm=f_instant.top)'.format(티커))
             st.write('[다음통합검색](https://search.daum.net/search?w=tot&DA=YZR&t__nil_searchbox=btn&sug=&sugo=&sq=&o=&q={})'.format(티커))
-
-
 
     chk4=st.sidebar.checkbox('2023년 투자전략 보기', value=False)
     if chk4:
