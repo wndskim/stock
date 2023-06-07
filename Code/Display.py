@@ -173,6 +173,12 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
     return
 
+def 배당농부법종목(날짜):
+    df=pd.read_excel(r'C:\Google Drive (wndskim.eric@gmail.com)\MyStocks\stock\Data\배당농부법종목.xlsx')
+    df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+    st.dataframe(df)
+    return
+
 def 매출증가_종목보기(날짜):
     st.text('최근3년 매출액 증가 및 영업이익 증가 종목 보기')
     # 시작일=str(get_date(날짜, 2000)).replace('-','')
