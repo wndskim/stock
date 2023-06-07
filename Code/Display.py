@@ -178,6 +178,7 @@ def 배당농부법종목(날짜):
     with col1:
         df=pd.read_excel('./Data/배당농부법종목.xlsx')
         df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+        st.text('최근 20영업일 기관/외인 순매수 금액 상위 순')
         st.dataframe(df)
     with col2:
         st.write('[배당농부의 당신께 드리는 선물, 요즘 주식투자하는 방법](https://dividendfarmerdiary.tistory.com/m/364)')
