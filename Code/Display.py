@@ -193,7 +193,7 @@ def 배당농부법종목(날짜):
     종목s=df['종목'].unique().tolist()
     _dict=dict(zip(종목s,티커s))
 
-    col1,col2,col3=st.columns([1,2,2])
+    col1,col2,col3=st.columns([1,1,2])
     with col1:
         종목=st.selectbox('선택',종목s)
         티커=_dict[종목]
