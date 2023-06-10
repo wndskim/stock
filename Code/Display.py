@@ -198,8 +198,10 @@ def 배당농부법종목(날짜):
         종목=st.selectbox('선택',종목s)
         티커=_dict[종목]
     with col2:
+        st.text('')
         st.text(티커)
     with col3:
+        st.text('')
         자본총계,시가총액=GetData.종목별_현재_재무정보(_dict[종목])
         시총자본비율=format(시가총액/자본총계,'.2f')
         자본총계대비시총비율='자본총계대비 시총비율: '+시총자본비율
