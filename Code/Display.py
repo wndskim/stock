@@ -193,13 +193,13 @@ def 배당농부법종목(날짜):
     종목s=df['종목'].unique().tolist()
     _dict=dict(zip(종목s,티커s))
 
-    col1,col2=st.columns([1,2])
+    col1,col2,col3=st.columns([1,2,2])
     with col1:
         종목=st.selectbox('선택',종목s)
         티커=_dict[종목]
-
     with col2:
         st.text(티커)
+    with col3:
         자본총계,시가총액=GetData.종목별_현재_재무정보(_dict[종목])
         시총자본비율=format(시가총액/자본총계,'.2f')
         자본총계대비시총비율='자본총계대비 시총비율: '+시총자본비율
@@ -209,8 +209,6 @@ def 배당농부법종목(날짜):
     시작일=str(get_date(날짜, 260*2)).replace('-','')
     종료일=str(날짜).replace('-','')
     주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
-
-
 
     return
 
