@@ -2,6 +2,58 @@ import streamlit as st
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+def 차트_배당정보(df,종목):
+    # Create the figure and axis objects
+    # fig = go.Figure()
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    # Add the line trace
+    fig.add_trace(go.Scatter(x=df.날짜, y=df.DIV, name='배당율', line=dict(color='yellow')),secondary_y=False)
+
+    # Add the bar trace
+    fig.add_trace(go.Bar(x=df.날짜, y=df.DPS, name='배당금', marker=dict(color='darkgrey')),secondary_y=True)
+
+    # Create the first y-axis
+    fig.update_layout(
+        yaxis=dict(
+            title='배당율',
+            titlefont=dict(color='yellow'),
+            tickfont=dict(color='yellow')
+        )
+    )
+
+    # 토요일,일요일 감추기
+    # fig.update_xaxes(
+    #     rangebreaks=[
+    #         dict(bounds=["sat", "mon"]), #hide weekends
+    #     ]
+    # )
+
+    # Create the second y-axis
+    fig.update_layout(
+        yaxis2=dict(
+            title='배당금',
+            titlefont=dict(color='darkgrey'),
+            tickfont=dict(color='darkgrey'),
+            overlaying='y',
+            side='right'
+            )
+    )
+
+    # Update the layout
+    fig.update_layout(
+        title=종목+' 배당정보',
+        xaxis=dict(title='날짜'),
+        width=1300, height=400,
+        legend=dict(x=0.7, y=1)
+    )
+
+    # Show the chart
+    st.plotly_chart(fig)
+
+    return
 
 def 차트_PER(df,종목):
 
