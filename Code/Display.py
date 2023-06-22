@@ -882,11 +882,25 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
             st.write('내재가치 계산 못함 !!')
             내재가치=-9999999999
 
+    # 일자별펀더멘털=GetData.종목별_펀더멘털_기간(시작일,종료일,티커)['PER'].reset_index()
+    # 일자별펀더멘털['날짜']=일자별펀더멘털['날짜'].dt.strftime('%Y-%m-%d')
+    # Chart.차트_PER(일자별펀더멘털,종목)
+
+
     # 일자별 펀더멘털 조회
-    일자별펀더멘털=GetData.종목별_펀더멘털_기간(시작일,종료일,티커)['PER'].reset_index()
-    일자별펀더멘털['날짜']=일자별펀더멘털['날짜'].dt.strftime('%Y-%m-%d')
-    Chart.차트_PER(일자별펀더멘털,종목)
-    # st.dataframe(일자별펀더멘털)
+    일자별펀더멘털=GetData.종목별_펀더멘털_기간(시작일,종료일,티커)
+
+    # 일자별 DIV/DPS 조회
+    일자별DIV=일자별펀더멘털[['DIV','DPS']].reset_index()
+    일자별DIV['날짜']=일자별DIV['날짜'].dt.strftime('%Y-%m-%d')
+    Chart.차트_배당정보(일자별DIV,종목)
+    # Chart.차트_DIV(일자별DIV,종목)
+    
+    # 일자별 PER 조회
+    일자별PER=일자별펀더멘털['PER'].reset_index()
+    일자별PER['날짜']=일자별PER['날짜'].dt.strftime('%Y-%m-%d')
+    Chart.차트_PER(일자별PER,종목)
+
 
     # 일자별 시가총액 조회
     시총=GetData.종목별_시가총액_기간(시작일,종료일,티커).reset_index()
