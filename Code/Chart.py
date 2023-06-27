@@ -10,10 +10,10 @@ def 차트_배당정보(df,종목):
     fig = make_subplots(specs=[[{"secondary_y": True}]])
 
     # Add the line trace
-    fig.add_trace(go.Scatter(x=df.날짜, y=df.DIV, name='배당율', line=dict(color='yellow')),secondary_y=False)
+    fig.add_trace(go.Scatter(x=df.날짜, y=df.DIV, name='배당율', line=dict(color='yellow')),secondary_y=True)
 
     # Add the bar trace
-    fig.add_trace(go.Bar(x=df.날짜, y=df.DPS, name='배당금', marker=dict(color='darkgrey')),secondary_y=True)
+    fig.add_trace(go.Bar(x=df.날짜, y=df.DPS, name='배당금', marker=dict(color='darkgrey')),secondary_y=False)
 
     # Create the first y-axis
     fig.update_layout(
