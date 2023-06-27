@@ -18,7 +18,7 @@ def 차트_배당정보(df,종목):
     # Create the first y-axis
     fig.update_layout(
         yaxis=dict(
-            title='배당율',
+            title='배당금',
             titlefont=dict(color='yellow'),
             tickfont=dict(color='yellow')
         )
@@ -34,7 +34,7 @@ def 차트_배당정보(df,종목):
     # Create the second y-axis
     fig.update_layout(
         yaxis2=dict(
-            title='배당금',
+            title='배당율',
             titlefont=dict(color='darkgrey'),
             tickfont=dict(color='darkgrey'),
             overlaying='y',
