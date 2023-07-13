@@ -69,6 +69,12 @@ def main():
         시작일=str(get_date(조회일, 260*2)).replace('-','')  # 조회일로부터 20일전 부터 데이타 가져오기
         종료일=str(조회일).replace('-','')
         조회선택=st.sidebar.selectbox('선택',['선택','적정주가와 괴리율 보기','배당농부법 종목1','코스피200','매출증가 종목 보기','인덱스종류'])
+
+        if 조회선택=='적정주가와 괴리율 보기':
+
+            return
+        
+
         if 조회선택=='인덱스종류':
             col1,col2=st.columns(2)
             with col1:
@@ -85,10 +91,12 @@ def main():
 
         if 조회선택=='매출증가 종목 보기':
             Display.매출증가_종목보기(조회일)
+            return
 
         if 조회선택=='배당농부법 종목1':
             Display.배당농부법종목1(조회일,시작일,종료일)
-
+            return
+        
     if job=='선택':
         chk00=st.checkbox('미연방은행(FRED) 주요지표 보기',value=False)
         if chk00:
