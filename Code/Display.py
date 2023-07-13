@@ -178,6 +178,8 @@ def 적정주가와괴리율보기():
     df=pd.read_excel(folder+file)
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
 
+    df=df.query('업종!="소프트웨ㅔ어 개발 및 공급업')
+
     df=df.query('적정주가괴리율1>0').sort_values(by='적정주가괴리율1', ascending=True)[['티커','종목','테마','업종','마켓','종가','EPS','영업이익(억)','적정주가1','적정주가2','적정주가괴리율1','적정주가괴리율2']]
 
     st.dataframe(df)
