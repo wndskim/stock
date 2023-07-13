@@ -172,6 +172,17 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
     return
 
+def 적정주가와괴리율보기():
+    folder='./Data/'
+    file='이동평균120기준 위치.xlsx'
+    df=pd.read_excel(folder+file)
+    df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
+
+    st.dataframe(df)
+
+    return
+
+
 def 배당농부법종목1(날짜,시작일,종료일):
     col1,col2=st.columns([1,1])
     with col1:
@@ -209,9 +220,6 @@ def 배당농부법종목1(날짜,시작일,종료일):
         자본총계대비시총비율='자본총계대비 시총비율: '+시총자본비율
         st.write(자본총계대비시총비율)
 
-    # 재무정보 보여주기
-    # 시작일=str(get_date(날짜, 260*2)).replace('-','')
-    # 종료일=str(날짜).replace('-','')
     주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
     return
