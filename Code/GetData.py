@@ -2,6 +2,7 @@ import streamlit as st
 from pykrx import stock
 import ta
 import requests
+from lxml import html
 import pandas as pd
 
 # @st.cache_resource
