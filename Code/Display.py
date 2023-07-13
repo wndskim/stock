@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 from datetime import date, timedelta
 from Code import Dart, Chart, Strategy, GetData
-import requests, os, datetime
+import requests, os, datetime, math
 from pykrx import stock
 
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36'}
@@ -897,13 +897,14 @@ def 재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목):
             st.write(종목_per,업종_per,시가총액,발행주식수, 영업이익,EPS)
 
 
-            if EPS is None:
+            if math.isnan(EPS):
                 적정주가1='N/A'
                 적정주가1값='적정주가1: '+적정주가1
             else:
                 적정주가1=int(EPS*업종_per)
                 적정주가1값='적정주가1: '+str(적정주가1)+' <= 예상EPS/업종PER 기준'
-            if 영업이익 is None:
+
+            if not math.isnan(영업이익):
                 적정주가2='N/A'
                 적정주가2값='적정주가2: '+적정주가2
             else:
