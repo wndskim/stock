@@ -177,7 +177,7 @@ def 적정주가와괴리율보기():
     file='이동평균120기준 위치.xlsx'
     df=pd.read_excel(folder+file)
     df["티커"]=df["티커"].apply(lambda x: str(x).zfill(6))
-    df=df.query('적정주가괴리율1'>"")
+    df=df.query('적정주가괴리율1>""')
 
     st.dataframe(df)
 
