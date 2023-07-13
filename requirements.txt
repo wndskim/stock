@@ -13,3 +13,4 @@ requests
 matplotlib
 pykrx
 fredapi
+lxml
