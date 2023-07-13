@@ -82,3 +82,38 @@ def 종목별_현재_재무정보(티커):
     시가총액=시세현황.iloc[[4]][1].values[0]
 
     return int(자본총계),int(시가총액)
+
+def 적정주가계산용자료가져오기(티커):
+    url = f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
+    response = requests.get(url)
+    tree = html.fromstring(response.content)
+
+    try:
+        종목_per=float(tree.xpath('//*[@id="corp_group2"]/dl[1]/dd')[0].text)
+    except:
+        종목_per=tree.xpath('//*[@id="corp_group2"]/dl[1]/dd')[0].text
+    try:
+        업종_per=float(tree.xpath('//*[@id="corp_group2"]/dl[3]/dd')[0].text)
+    except:
+        업종_per=tree.xpath('//*[@id="corp_group2"]/dl[3]/dd')[0].text
+
+    ### Snapshot
+    url = f'https://comp.fnguide.com/SVO2/ASP/SVD_Main.asp?pGB=1&gicode=A{티커}&cID=&MenuYn=Y&ReportGB=&NewMenuID=101&stkGb=701'
+    tables = pd.read_html(url)
+    try: 시가총액=int(tables[0].loc[4][1])*100000000
+    except: return 0,0,0,0,0,0
+
+    발행주식수=tables[0].loc[6][1]
+    pos=발행주식수.find('/')
+    발행주식수=int(발행주식수[:pos].replace(',',''))
+    try:
+        영업이익=int(tables[10].loc[1]['Annual'][3])
+    except:
+        영업이익=tables[10].loc[1]['Annual'][3]
+
+    try:
+        EPS=int(tables[10].loc[18]['Annual'][3])
+    except:
+        EPS=tables[10].loc[18]['Annual'][3]
+
+    return 종목_per,업종_per,시가총액,발행주식수,영업이익,EPS
