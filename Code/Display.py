@@ -100,9 +100,7 @@ def 연방은행주요지표보기():
     st.write('[10-Year Treasury Constant Maturity Minus 2-Year Treasury Constant Maturity](https://fred.stlouisfed.org/series/{})'.format('T10Y2Y'))
     st.write('[Continued Claims (Insured Unemployment)(실업수당 청구 건수)](https://fred.stlouisfed.org/series/{})'.format('CCSA'))
     st.write('[ Consumer Price Index for All Urban Consumers: All Items in U.S. City Average](https://fred.stlouisfed.org/series/{})'.format('CPIAUCSL'))
-
     # fred = Fred(api_key=fred_api)
-
     return
 
 def 참조링크보기(티커,종목):
@@ -171,6 +169,17 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
     주가정보,내재가치=재무정보_보여주기(조회일, 시작일, 종료일, 티커, 종목선택)
 
     return
+
+def 업종별등락률순위보기():
+    folder='./Data/'
+    file='업종별_등락률순위.xlsx'    
+    df=pd.read_excel(folder+file)
+
+    st.dataframe(df)
+
+    
+    return
+
 
 def 적정주가와괴리율보기():
     folder='./Data/'
