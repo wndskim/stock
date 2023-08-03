@@ -176,6 +176,10 @@ def 업종별등락률순위보기():
     df=pd.read_excel(folder+file)
     df['날짜']=df.날짜.astype(str)
 
+    업종s=df.업종.tolist()
+
+    st.write(업종s)
+
     st.dataframe(df)
 
 
