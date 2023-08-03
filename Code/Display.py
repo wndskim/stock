@@ -172,12 +172,12 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
 def 업종별등락률순위보기():
     folder='./Data/'
-    file='업종별_등락률순위.xlsx'    
+    file='업종별_등락순위.xlsx'    
     df=pd.read_excel(folder+file)
 
     st.dataframe(df)
 
-    
+
     return
 
 
