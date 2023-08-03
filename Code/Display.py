@@ -185,6 +185,7 @@ def 업종별등락률순위보기():
         업종=st.selectbox('선택',업종s)
     with col2:
         링크=_dict[업종]
+        st.text('링크')
         st.write(링크)
 
     st.dataframe(df)
