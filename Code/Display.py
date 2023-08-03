@@ -177,8 +177,10 @@ def 업종별등락률순위보기():
     df['날짜']=df.날짜.astype(str)
 
     업종s=df.업종.tolist()
+    링크s=df.링크.tolist()
+    _dict=dict(zip(업종s,링크s))
 
-    st.write(업종s)
+    업종=st.selectbox('선택',업종s)
 
     st.dataframe(df)
 
