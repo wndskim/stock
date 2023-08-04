@@ -182,7 +182,7 @@ def 업종별등락률순위보기(종료일):
     링크s=df1.링크.tolist()
     _dict=dict(zip(업종s,링크s))
 
-    col1,col2,col3=st.columns([1,1,3])
+    col1,col2,col3=st.columns([1,2,3])
     with col1:
         업종=st.selectbox('선택',업종s)
     with col2:
