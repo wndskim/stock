@@ -4,6 +4,33 @@ import ta
 import requests
 from lxml import html
 import pandas as pd
+from bs4 import BeautifulSoup
+
+
+def 업종소속종목가져오기(url):
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+    data_rows=soup.find('table',attrs={'class':'type_5'})
+
+    종목s,심볼s,대중소=[],[],[]
+    for rows in data_rows.find_all('tr'):
+        columns=rows.find_all('a',href=True, text=True)
+        종목명s=[column.text for column in columns if len(column) > 0]
+        티커s=[column['href'][-6:] for column in columns]
+
+        for 종목명 in 종목명s: 종목s.append(종목명)
+        for 티커 in 티커s:
+            심볼s.append(티커)
+
+            # if 티커 in 코스피대형주: 대중소.append('대형주')
+            # elif 티커 in 코스피중형주: 대중소.append('중형주')
+            # elif 티커 in 코스피소형주: 대중소.append('소형주')
+            # elif 티커 in 코스닥대형주: 대중소.append('대형주')
+            # elif 티커 in 코스닥중형주: 대중소.append('중형주')
+            # elif 티커 in 코스닥소형주: 대중소.append('소형주')
+            # else: 대중소.append('무소속')
+
+    return pd.DataFrame({'티커':심볼s,'종목':종목s})
 
 # @st.cache_resource
 def 종목별_펀더멘털_기간(시작일,종료일,티커):
