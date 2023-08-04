@@ -178,7 +178,7 @@ def 업종별등락률순위보기(종료일):
 
     st.write(종료일)
 
-    df1=df.query('날짜==종료일')
+    df1=df.query('날짜=='+종료일)
 
     업종s=df1.업종.tolist()
     링크s=df1.링크.tolist()
