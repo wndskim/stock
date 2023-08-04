@@ -170,14 +170,16 @@ def 공용화면보기1(조회일,종목선택,티커,종목,df_종목,최고가
 
     return
 
-def 업종별등락률순위보기():
+def 업종별등락률순위보기(종료일):
     folder='./Data/'
     file='업종별_등락순위.xlsx'    
     df=pd.read_excel(folder+file)
     df['날짜']=df.날짜.astype(str)
 
-    업종s=df.업종.tolist()
-    링크s=df.링크.tolist()
+    df1=df.query('날짜==종료일')
+
+    업종s=df1.업종.tolist()
+    링크s=df1.링크.tolist()
     _dict=dict(zip(업종s,링크s))
 
     col1,col2=st.columns([1,3])
