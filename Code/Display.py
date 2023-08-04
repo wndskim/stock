@@ -189,6 +189,9 @@ def 업종별등락률순위보기(종료일):
         링크=_dict[업종]
         st.text('링크')
         st.write(링크)
+        df_종목=GetData.업종소속종목가져오기(링크)
+        
+        st.dataframe(df_종목)
 
     st.dataframe(df1)
 
