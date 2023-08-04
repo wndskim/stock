@@ -193,7 +193,9 @@ def 업종별등락률순위보기(종료일):
         st.text('링크')
         st.write(링크)
 
-        st.dataframe(df[df.업종==업종][['날짜','순위']].sort_values(by='날짜, ascending=False'))
+        df_이력=df[df.업종==업종][['날짜','순위']]
+        df_이력.sort_values(by='날짜',ascending=False, inplace=True)
+        st.dataframe(df_이력)
 
     st.dataframe(df1)
 
