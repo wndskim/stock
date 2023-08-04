@@ -190,7 +190,7 @@ def 업종별등락률순위보기(종료일):
         st.text('링크')
         st.write(링크)
 
-    st.dataframe(df)
+    st.dataframe(df1)
 
 
     return
