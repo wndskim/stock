@@ -542,7 +542,8 @@ def 거래량폭증_종목보기(조회일):
             container=st.container()
         with col2:
             날짜,업종,업종순위,대중소,링크,df_링크=GetData.종목소속업종가져오기(종목선택)
-            st.write('기준일: '+str(날짜)+'   업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소+'   링크: '+링크)
+            st.text('기준일: '+str(날짜)+'   업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소)
+            st.write(링크)
             st.dataframe(df_링크)
 
             df_종목=df[df['종목']==종목선택]
