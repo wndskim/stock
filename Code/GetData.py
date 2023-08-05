@@ -43,8 +43,9 @@ def 종목소속업종가져오기(종목):
     df=pd.read_excel('./Data/업종별_등락순위.xlsx').sort_values(by='날짜',ascending=False)
     df.날짜=df.날짜.astype(str)
     df_링크=df[df.업종==업종][['날짜','링크','순위']]
+    링크=df_링크.링크.values[0]
 
-    return 날짜,업종,업종순위,대중소,df_링크
+    return 날짜,업종,업종순위,대중소,링크,df_링크[['날짜','순위']]
 
 # @st.cache_resource
 def 종목별_펀더멘털_기간(시작일,종료일,티커):
