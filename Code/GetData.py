@@ -40,7 +40,7 @@ def 종목소속업종가져오기(종목):
     업종순위=df_업종.업종순위.values[0]
     대중소=df_업종.대중소.values[0]
 
-    df=pd.read_excel('./Data/업종별_등락순위.xlsx')
+    df=pd.read_excel('./Data/업종별_등락순위.xlsx').sort_values(by='날짜',ascending=False)
     df.날짜=df.날짜.astype(str)
     df_링크=df[df.업종==업종][['날짜','링크','순위']]
 
