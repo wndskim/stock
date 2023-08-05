@@ -255,6 +255,15 @@ def 배당농부법종목1(날짜,시작일,종료일):
         자본총계대비시총비율='자본총계대비 시총비율: '+시총자본비율
         st.write(자본총계대비시총비율)
 
+    날짜,업종,업종순위,대중소,링크,df_링크=GetData.종목소속업종가져오기(종목)
+    sub_col1,sub_col2=st.columns([1,1])
+    with sub_col1:
+        st.text('기준일: '+str(날짜)+'   업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소)
+    sub_col2.write(링크)
+    st.dataframe(df_링크)
+
+
+
     주가정보,내재가치=재무정보_보여주기(날짜, 시작일, 종료일, _dict[종목], 종목)
 
     return
@@ -542,9 +551,6 @@ def 거래량폭증_종목보기(조회일):
             container=st.container()
         with col2:
             날짜,업종,업종순위,대중소,링크,df_링크=GetData.종목소속업종가져오기(종목선택)
-            # st.text('기준일: '+str(날짜)+'   업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소)
-            # st.write(링크)
-
             sub_col1,sub_col2=st.columns([1,1])
             with sub_col1:
                 st.text('기준일: '+str(날짜)+'   업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소)
