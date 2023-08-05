@@ -32,6 +32,10 @@ def 업종소속종목가져오기(url):
 
     return pd.DataFrame({'티커':심볼s,'종목':종목s})
 
+def 종목소속업종가져오기(종목):
+    df=pd.read_excel('./Data/업종별_종목별_등락순위.xlsx')
+    return df[df.종목==종목][['업종','대중소','업종순위']]
+
 # @st.cache_resource
 def 종목별_펀더멘털_기간(시작일,종료일,티커):
     return stock.get_market_fundamental(시작일, 종료일, 티커)
