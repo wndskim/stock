@@ -226,7 +226,7 @@ def 배당농부법종목1(날짜,시작일,종료일):
         st.text('최근 20영업일 기관/외인 순매수 금액 상위 순')
         st.dataframe(df)
     with col2:
-        # st.write('[배당농부의 당신께 드리는 선물, 요즘 주식투자하는 방법](https://dividendfarmerdiary.tistory.com/m/364)')
+        st.write('[배당농부의 당신께 드리는 선물, 요즘 주식투자하는 방법](https://dividendfarmerdiary.tistory.com/m/364)')
         st.markdown('''
                     ###### :orange[1. 최근 20일동안 외국인과 기관이 가장 많이 매수한 종목 100개 선정]
                     ###### :orange[2. 100개 종목 중 20일선 위에서 주가가 형성된 것 선별]
