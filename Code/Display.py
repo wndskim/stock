@@ -546,6 +546,11 @@ def 거래량폭증_종목보기(조회일):
             st.write(링크)
             st.dataframe(df_링크)
 
+            sub_col1,sub_col2=st.columns([1,1])
+            with sub_col1:
+                st.text('기준일: '+str(날짜)+'   업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소)
+            sub_col2.write(링크)
+
             df_종목=df[df['종목']==종목선택]
             티커=df_종목['티커'].values[0]
             최고가=df_종목['기간최고가'].values[0]
