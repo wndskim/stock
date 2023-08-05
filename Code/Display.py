@@ -542,10 +542,11 @@ def 거래량폭증_종목보기(조회일):
             container=st.container()
         with col2:
             df_업종=GetData.종목소속업종가져오기(종목선택)
+            날짜=df_업종.날짜.values[0]
             업종=df_업종.업종.values[0]
             업종순위=df_업종.업종순위.values[0]
             대중소=df_업종.대중소.values[0]
-            st.text('업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소)
+            st.text('기준일: '+날짜+'   업종: '+업종+'   업종순위: '+str(업종순위)+'   '+대중소)
 
             df_종목=df[df['종목']==종목선택]
             티커=df_종목['티커'].values[0]
