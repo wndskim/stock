@@ -540,6 +540,11 @@ def 거래량폭증_종목보기(조회일):
         with col1:
             종목선택=st.selectbox('종목선택',종목s)
             container=st.container()
+
+
+            st.dataframe(GetData.종목소속업종가져오기(종목선택))
+
+            
         with col2:
             df_종목=df[df['종목']==종목선택]
             티커=df_종목['티커'].values[0]
