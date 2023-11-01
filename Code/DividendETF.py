@@ -4,7 +4,7 @@ import yfinance as yf
 
 
 def get_info():
-    ticker='TSLY'
+    ticker='schd'
     info=yf.Ticker(ticker)
 
     history=info.history(interval='1d',start='2013-01-01',end='2023-10-31')
