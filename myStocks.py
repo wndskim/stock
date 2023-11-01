@@ -5,7 +5,7 @@ from pykrx import stock
 import yfinance as yf
 import datetime
 from datetime import date, timedelta
-from Code import Dart, Chart, Strategy, Display
+from Code import Dart, Chart, Strategy, Display, DividendETF
 
 # @st.cache(suppress_st_warning=True)
 def 전종목_등락률(sYear, sort_order):
@@ -55,6 +55,10 @@ def main():
     job=st.sidebar.selectbox('선택',['선택','관심주','조회','특징주','시장 상황 확인','배당성장ETF','년도별 가격 변동률 조회','체크 리스트',\
                              '가격 변동률(년간)'])
 
+    if job=='배당성장ETF':
+        DividendETF.get_info()
+        return
+    
     if job=='시장 상황 확인':
         Strategy.주식시장순환원리_나바로()
         return
