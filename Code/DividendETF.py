@@ -4,7 +4,7 @@ import yfinance as yf
 
 
 def get_info():
-    ticker='SCHD'
+    ticker='TSLY'
     info=yf.Ticker(ticker)
 
     history=info.history()
