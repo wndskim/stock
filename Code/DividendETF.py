@@ -11,6 +11,7 @@ def get_info():
     # history=pd.DataFrame(history)
     # history.Date=history.Date.strftime('%Y-%m-%d')
 
+    st.write(type(history))
     st.write(history)
 
     return
