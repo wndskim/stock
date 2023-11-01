@@ -12,8 +12,8 @@ def get_info():
 
     st.write(history.columns)
 
-    history.set_index(inplace=True,keys='Date')
-    history.index=history.index.strftime('%Y-%m-%d')
+    # history.set_index(inplace=True,keys='Date')
+    # history.index=history.index.strftime('%Y-%m-%d')
 
     # st.write(type(history))
     st.write(history)
