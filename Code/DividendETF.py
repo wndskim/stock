@@ -8,8 +8,8 @@ def get_info():
     info=yf.Ticker(ticker)
 
     history=info.history()
-    history=pd.DataFrame(history)
-    history.Date=history.Date.strftime('%Y-%m-%d')
+    # history=pd.DataFrame(history)
+    # history.Date=history.Date.strftime('%Y-%m-%d')
 
     st.write(history)
 
