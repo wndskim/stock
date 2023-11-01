@@ -8,6 +8,7 @@ def get_info():
     info=yf.Ticker(ticker)
 
     history=info.history()
+    history.Date=history.Date.strftime('%Y-%m-%d')
 
     st.write(history)
 
