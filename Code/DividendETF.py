@@ -9,7 +9,7 @@ def get_info():
 
     history=info.history()
     history=pd.DataFrame(history)
-    # history.Date=history.Date.strftime('%Y-%m-%d')
+    history.Date=history.Date.strftime('%Y-%m-%d')
 
     st.write(history)
 
