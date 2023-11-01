@@ -7,7 +7,7 @@ def get_info():
     ticker='TSLY'
     info=yf.Ticker(ticker)
 
-    history=info.history()
+    history=pd.DataFrame(info.history())
     history.Date=history.Date.strftime('%Y-%m-%d')
 
     st.write(history)
